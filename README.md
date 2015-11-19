@@ -1,8 +1,11 @@
 Sigma - Frontend
 ================
 
-Wow
-Such Readme
-Very documentation
-Much markdown
-Amazed
+Installation
+------------
+
+Requirements: NPM (`sudo apt-get install nodejs npm`).
+```
+npm install
+npm start
+```
