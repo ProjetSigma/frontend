@@ -28,15 +28,42 @@ var sassIncludes = [
     'bower_components/motion-ui/src/'
 ];
 
+var themesPath = 'app/sass/themes/';
+var devThemes = ['classic.scss', 'classic-dark.scss'];
+
+/**
+ * Liste les fichiers d'un répertoire
+ * @param  {string} dir Le dossier
+ * @return {string[]}   La liste des fichiers
+ */
+function getFiles(dir) {
+    return fs
+        .readdirSync(dir)
+        .filter(function(file) {
+            return !fs.statSync(path.join(dir, file)).isDirectory();
+        });
+}
+
 gulp.task('build-sass', function() {
-    return gulp
-        .src('app/sass/bootstrap.scss')
-        .pipe(filter(['**/*.css', '**/*.scss']))
-        .pipe(sass({includePaths: sassIncludes}).on('error', sass.logError))
-        .pipe(concat('style.min.css'))
-        .pipe(gulpif(env === 'prod', uglifycss()))
-        .pipe(gulp.dest('www/'))
-    ;
+    var themeFiles;
+
+    if (env == 'prod') {
+        themeFiles = getFiles(themesPath);
+    } else {
+        themeFiles = devThemes;
+    }
+
+    var tasks = themeFiles.map(function(file) {
+        return gulp
+            .src(themesPath + file)
+            .pipe(filter(['**/*.css', '**/*.scss']))
+            .pipe(sass({includePaths: sassIncludes}).on('error', sass.logError))
+            .pipe(concat(file.replace(/scss/, '') + 'min.css'))
+            .pipe(gulpif(env === 'prod', uglifycss()))
+            .pipe(gulp.dest('www/themes/'))
+        ;
+    });
+
 });
 
 gulp.task('build-js', function() {

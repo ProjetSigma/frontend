@@ -1,5 +1,5 @@
 /bower_components
 /node_modules
 /www/fonts
+/www/themes
 /www/app.min.js
-/www/style.min.css
