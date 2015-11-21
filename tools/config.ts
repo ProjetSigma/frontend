@@ -42,8 +42,6 @@ export const DEV_DEPENDENCIES = [
   { src: 'angular2/bundles/router.dev.js',    dest: LIB_DEST, inject: true },
   { src: 'angular2/bundles/http.dev.js',      dest: LIB_DEST, inject: true },
 
-  // { src: CSS_DEST + '/classic.css', dest: CSS_DEST, inject: true },
-
   { src: 'font-awesome/fonts/FontAwesome.otf',   dest: FONTS_DEST},
   { src: 'font-awesome/fonts/fontawesome-webfont.eot',   dest: FONTS_DEST},
   { src: 'font-awesome/fonts/fontawesome-webfont.svg',   dest: FONTS_DEST},
