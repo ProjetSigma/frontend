@@ -111,7 +111,7 @@ gulp.task('serve', function() {
 
 gulp.task('watch', function() {
     gulp.watch(['app/js/**/*.js', 'app/js/*.js'], ['lint-js', 'build-js']);
-    gulp.watch('app/sass/*.scss', ['build-sass']);
+    gulp.watch('app/sass/**/*.scss', ['build-sass']);
 });
 gulp.task('build', ['build-js', 'build-sass', 'copy-fonts']);
 gulp.task('start', ['watch', 'serve']);
