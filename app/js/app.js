@@ -1,5 +1,5 @@
 $(document).foundation();
 
 $(document).ready(function(){
-    new Foundation.Tooltip($('#tooltip'));
+    new Foundation.AccordionMenu($('#aside-menu'));
 });
