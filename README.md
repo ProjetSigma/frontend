@@ -4,7 +4,7 @@ Sigma - Frontend
 Installation
 ------------
 
-Requirements: NPM (`sudo apt-get install nodejs npm`).
+Requirements: Node > v5 and NPM > v3: https://nodejs.org
 ```
 npm install
 npm start
