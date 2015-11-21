@@ -1,0 +1,10 @@
+{
+    "name": "sigma",
+    "version": "1.0.0",
+    "author": "Projet Sigma",
+    "dependencies": {
+        "font-awesome": "latest",
+        "foundation-sites": "latest",
+        "motion-ui": "latest"
+    }
+}
