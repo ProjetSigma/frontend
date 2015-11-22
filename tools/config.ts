@@ -32,39 +32,39 @@ export const VERSION_NODE         = '4.0.0';
 
 
 export const DEV_DEPENDENCIES = [
-  { src: 'systemjs/dist/system-polyfills.js', dest: LIB_DEST },
+    { src: 'systemjs/dist/system-polyfills.js', dest: LIB_DEST },
 
-  { src: 'es6-shim/es6-shim.min.js',    dest: LIB_DEST, inject: 'shims' },
-  { src: 'reflect-metadata/Reflect.js', dest: LIB_DEST, inject: 'shims' },
-  { src: 'systemjs/dist/system.src.js', dest: LIB_DEST, inject: 'shims' },
+    { src: 'es6-shim/es6-shim.min.js',    dest: LIB_DEST, inject: 'shims' },
+    { src: 'reflect-metadata/Reflect.js', dest: LIB_DEST, inject: 'shims' },
+    { src: 'systemjs/dist/system.src.js', dest: LIB_DEST, inject: 'shims' },
 
-  { src: 'angular2/bundles/angular2.dev.js',  dest: LIB_DEST, inject: true },
-  { src: 'angular2/bundles/router.dev.js',    dest: LIB_DEST, inject: true },
-  { src: 'angular2/bundles/http.dev.js',      dest: LIB_DEST, inject: true },
+    { src: 'angular2/bundles/angular2.dev.js',  dest: LIB_DEST, inject: true },
+    { src: 'angular2/bundles/router.dev.js',    dest: LIB_DEST, inject: true },
+    { src: 'angular2/bundles/http.dev.js',      dest: LIB_DEST, inject: true },
 
-  { src: 'font-awesome/fonts/FontAwesome.otf',   dest: FONTS_DEST},
-  { src: 'font-awesome/fonts/fontawesome-webfont.eot',   dest: FONTS_DEST},
-  { src: 'font-awesome/fonts/fontawesome-webfont.svg',   dest: FONTS_DEST},
-  { src: 'font-awesome/fonts/fontawesome-webfont.ttf',   dest: FONTS_DEST},
-  { src: 'font-awesome/fonts/fontawesome-webfont.woff',  dest: FONTS_DEST},
-  { src: 'font-awesome/fonts/fontawesome-webfont.woff2', dest: FONTS_DEST}
+    { src: 'font-awesome/fonts/FontAwesome.otf',   dest: FONTS_DEST},
+    { src: 'font-awesome/fonts/fontawesome-webfont.eot',   dest: FONTS_DEST},
+    { src: 'font-awesome/fonts/fontawesome-webfont.svg',   dest: FONTS_DEST},
+    { src: 'font-awesome/fonts/fontawesome-webfont.ttf',   dest: FONTS_DEST},
+    { src: 'font-awesome/fonts/fontawesome-webfont.woff',  dest: FONTS_DEST},
+    { src: 'font-awesome/fonts/fontawesome-webfont.woff2', dest: FONTS_DEST}
 ];
 
 export const SCSS_DEPENDENCIES = [
-  'node_modules/foundation-sites/scss',
-  'node_modules/motion-ui/src',
-  'node_modules/font-awesome/scss'
+    'node_modules/foundation-sites/scss',
+    'node_modules/motion-ui/src',
+    'node_modules/font-awesome/scss'
 ];
 
 export const SYSTEM_CONFIG = {
-  defaultJSExtensions: true,
-  paths: { }
+    defaultJSExtensions: true,
+    paths: { }
 };
 
 
 // --------------
 // Private.
 function appVersion(): number|string {
-  var pkg = JSON.parse(readFileSync('package.json').toString());
-  return pkg.version;
+    var pkg = JSON.parse(readFileSync('package.json').toString());
+    return pkg.version;
 }
