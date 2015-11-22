@@ -10,3 +10,21 @@ import {
     directives: [ROUTER_DIRECTIVES]
 })
 export class AppCmp {}
+
+@Component({
+    selector: 'aside',
+    templateUrl: './components/app/aside.html'
+})
+export class Aside {}
+
+@Component({
+    selector: 'login-form',
+    templateUrl : './components/app/login-form.html'
+})
+export class LoginForm {
+    public username;
+    public password;
+    login(username,password) {
+        console.log("L'utilisateur essaye de se connecter avec les identifiants :",username,"et",password);
+    }
+}

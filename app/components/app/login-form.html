@@ -1,0 +1,9 @@
+<form class="callout">
+    <label>Nom d'utilisateur :
+        <input type="email" [(ng-model)]="username" placeholder="prenom.nom@ecole.edu"></input>
+    </label>
+    <label>Mot de passe :
+        <input type="password" [(ng-model)]="password"></input>
+    </label>
+        <button type="submit" (click)="login(username,password)" class="sucess button expanded">Se connecter</button>
+</form>
