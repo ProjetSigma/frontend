@@ -1,6 +1,8 @@
 Sigma - Frontend
 ================
 
+[![Circle CI](https://circleci.com/gh/ProjetSigma/frontend.svg?style=svg)](https://circleci.com/gh/ProjetSigma/frontend)
+
 Installation
 ------------
 
