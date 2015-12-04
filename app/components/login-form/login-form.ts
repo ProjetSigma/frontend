@@ -16,6 +16,21 @@ export class LoginFormComponent {
     }
 
     login(username, password) {
-        return this.authService.authentificate(username, password);
+        return this.authService.authentificate(username, password)
+        .subscribe(
+            res => {
+                this.username = '';
+                this.password = '';
+            },
+            err => this.password = ''
+        );
+    }
+
+    logout() {
+        return this.authService.logout();
+    }
+
+    isAuthenticated() {
+        return this.authService.isAuthenticated();
     }
 }
