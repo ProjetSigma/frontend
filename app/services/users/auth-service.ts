@@ -17,7 +17,7 @@ export class AuthService {
         var request = 'grant_type=password&username='+username+'&password='+password;
 
         var headers = new Headers();
-        headers.append('Authorization', this.clientId+':'+this.clientSecret);
+        headers.append('Authorization', 'Basic ' + btoa(this.clientId+':'+this.clientSecret));
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
         this.http.post('http://localhost:8000/o/token/',
