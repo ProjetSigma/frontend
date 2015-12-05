@@ -1,8 +1,6 @@
 <h2>Liste des utilisateurs</h2>
 <ul>
-    <li>Bidule</li>
-    <!--<li *ng-for="#user in users">{{user.firstname}}</li>-->
+    <li *ng-for="#user of users">{{user.firstname}}</li>
 </ul>
-    <button (click)="getUsers()">Avoir les utilisateurs</button>
-
+<button (click)="getUsers()">Avoir les utilisateurs</button>
 <hr>

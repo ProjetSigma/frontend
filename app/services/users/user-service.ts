@@ -21,8 +21,10 @@ export class UserService {
         );
 
         request.subscribe(
-            (res:Response) => this.users = res.json(),
+            (res:Response) => console.log(res.json()),
             err => console.log('Erreur sur la récupération des utilisateurs')
         );
+
+        return request;
     }
 }

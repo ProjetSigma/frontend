@@ -10,11 +10,12 @@ import {UserService} from '../../services/users/user-service';
 export class UsersListComponent {
     public users;
 
-    constructor(public user_service:UserService) {};
+    constructor(public user_service:UserService) {
+    };
 
     getUsers() {
-        this.users = this.user_service.getUsers();
-        console.log(this.users);
+        this.user_service.getUsers()
+        .subscribe(res => this.users = res.json());
     }
 
 
