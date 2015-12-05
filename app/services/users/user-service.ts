@@ -4,7 +4,7 @@ import {AuthService} from './auth-service';
 import {User} from './user';
 
 @Component({
-    providers: [AuthService, Http, HTTP_PROVIDERS]
+    providers: [Http, HTTP_PROVIDERS]
 })
 export class UserService {
     public users;
