@@ -11,3 +11,8 @@ Requirements: Node > v5 and NPM > v3: https://nodejs.org
 npm install
 npm start
 ```
+
+Wiki
+----
+
+The wiki for the application is here : https://github.com/ProjetSigma/frontend/wiki
