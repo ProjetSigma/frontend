@@ -5,11 +5,10 @@ import {Http, HTTP_PROVIDERS, Headers, Response} from 'angular2/http';
     providers: [Http, HTTP_PROVIDERS]
 })
 export class AuthService {
-    public token;
     public isConnected;
     private clientId = 'Bziiu7E0wFtNre6TLdSnEqIe73prHbjJsPx3p5rL';
     private clientSecret = '8QCDHhiwwAEA5RIwuta8SpprcoJPmpfIwhkPNZil8wJqeLuAh6BKsvWVxNkFvg5YgO0aFrsYngY7YK77iil9f4jRFNSBX11XCe0iGTUd0o9HKCvj72twl0qMT6hlJp3l';
-    private accessToken;
+    public accessToken;
 
     constructor(public http:Http) {
     }
@@ -24,7 +23,7 @@ export class AuthService {
         var request = this.http.post('http://localhost:8000/o/token/',
             params,
             {headers:headers}
-        )
+        );
 
         request.subscribe(
             (res:Response) => this.accessToken = res.json().access_token,
