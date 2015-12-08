@@ -3,8 +3,7 @@ import {AuthService} from '../../services/users/auth-service';
 
 @Component({
     selector: 'login-form',
-    templateUrl: './components/login-form/login-form.html',
-    providers: [AuthService]
+    templateUrl: './components/login-form/login-form.html'
 })
 export class LoginFormComponent {
     public username;
