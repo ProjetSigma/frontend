@@ -14,7 +14,7 @@ export class UserService {
 
     getUsers() {
         var headers = new Headers();
-        headers.append('Authorization', 'Bearer ' + this.auth.accessToken);
+        this.auth.appendAuth(headers);
         headers.append('Accept', 'application/json');
 
         var request = this.http.get('http://localhost:8000/user/',
