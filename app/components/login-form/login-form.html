@@ -1,12 +1,12 @@
-<form class="callout" *ng-if="!isAuthenticated()">
+<form class="callout" *ngIf="!isAuthenticated()">
     <label>Nom d'utilisateur :
-        <input type="email" [(ng-model)]="username" placeholder="prenom.nom@ecole.edu" autofocus></input>
+        <input type="email" [(ngModel)]="username" placeholder="prenom.nom@ecole.edu" autofocus>
     </label>
     <label>Mot de passe :
-        <input type="password" [(ng-model)]="password"></input>
+        <input type="password" [(ngModel)]="password">
     </label>
         <button type="submit" (click)="login(username,password)" class="success button expanded">Se connecter</button>
 </form>
-<form class="callout" *ng-if="isAuthenticated()">
+<form class="callout" *ngIf="isAuthenticated()">
     <a (click)="logout()" class="alert button expanded">Se déconnecter</a>
 </form>
