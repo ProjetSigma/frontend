@@ -11,12 +11,11 @@ export class UsersListComponent {
     public users;
 
     constructor(public user_service:UserService) {
+        this.getUsers();
     };
 
     getUsers() {
         this.user_service.getUsers()
-        .subscribe(res => this.users = res.json());
+            .subscribe(res => this.users = res.json());
     }
-
-
 }
