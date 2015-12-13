@@ -11,6 +11,11 @@ export class AuthService {
     public accessToken;
 
     constructor(public http:Http) {
+        var token: string = localStorage.getItem('accessToken');
+        if (token !== null && token !== '') {
+            this.accessToken = token;
+            this.isConnected = true;
+        }
     }
 
     authentificate(username,password) {
