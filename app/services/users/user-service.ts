@@ -28,4 +28,21 @@ export class UserService {
 
         return request;
     }
+
+    getUser(id: string) {
+        var headers = new Headers();
+        this.auth.appendAuth(headers);
+        headers.append('Accept', 'application/json');
+
+        var request = this.http.get('http://localhost:8000/user/'+ id + '/',
+            {headers:headers}
+        );
+
+        request.subscribe(
+            (res:Response) => console.log(res.json()),
+            err => console.log('Erreur sur la récupération de l\'utilisateur')
+        );
+
+        return request;
+    }
 }

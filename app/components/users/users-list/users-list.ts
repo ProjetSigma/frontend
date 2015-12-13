@@ -1,12 +1,15 @@
 import {Component} from 'angular2/core';
 import {NgFor} from 'angular2/common';
-import {UserService} from '../../services/users/user-service';
+import {ROUTER_DIRECTIVES} from 'angular2/router';
+
+import {UserService} from '../../../services/users/user-service';
+
 
 @Component({
     selector: 'users-list',
-    templateUrl: './components/users-list/users-list.html',
+    templateUrl: './components/users/users-list/users-list.html',
     providers: [UserService],
-    directives: [NgFor]
+    directives: [NgFor, ROUTER_DIRECTIVES]
 })
 export class UsersListComponent {
     public users;

@@ -3,8 +3,7 @@ import {ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router';
 
 import {MenuBarComponent} from '../menu-bar/menu-bar';
 import {MainComponent} from '../main/main';
-import {UsersListComponent} from '../users-list/users-list';
-
+import {UsersComponent} from '../users/users';
 
 
 @Component({
@@ -15,6 +14,6 @@ import {UsersListComponent} from '../users-list/users-list';
 })
 @RouteConfig([
 	{path: '/', component: MainComponent, useAsDefault: true, as: 'Main'},
-	{path: '/user', component: UsersListComponent, as: 'Users'},
+	{path: '/user/...', component: UsersComponent, as: 'Users'},
 ])
 export class AppComponent {}

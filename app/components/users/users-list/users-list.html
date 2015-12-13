@@ -1,0 +1,5 @@
+<h2>Liste des utilisateurs</h2>
+<ul>
+    <li *ngFor="#user of users"><a [routerLink]="['../Details', {id: user.id}]">{{ user.firstname }}</a></li>
+</ul>
+<hr>
