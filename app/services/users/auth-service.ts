@@ -26,7 +26,10 @@ export class AuthService {
         );
 
         request.subscribe(
-            (res:Response) => this.accessToken = res.json().access_token,
+            (res:Response) => {
+                this.accessToken = res.json().access_token;
+                localStorage.setItem('accessToken', this.accessToken);
+            },
             err => console.log('Erreur de mot de passe')
         );
 
@@ -35,6 +38,7 @@ export class AuthService {
 
     logout() {
         this.accessToken = undefined;
+        localStorage.setItem('accessToken', '');
     }
 
     isAuthenticated() {
