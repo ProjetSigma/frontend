@@ -15,7 +15,7 @@ export const APP_TITLE            = 'Sigma';
 
 export const APP_SRC              = 'app';
 export const ASSETS_SRC           = `${APP_SRC}/assets/**/*`;
-export const SCSS_INDEX           = `sass/themes/classic.scss`;
+export const SCSS_INDEX           = ['app/sass/themes/classic.scss'];
 
 export const TOOLS_DIR            = 'tools';
 export const TEST_DEST            = 'test';
