@@ -1,4 +1,5 @@
-import {Component, NgFor} from 'angular2/angular2';
+import {Component} from 'angular2/core';
+import {NgFor} from 'angular2/common';
 import {UserService} from '../../services/users/user-service';
 
 @Component({
