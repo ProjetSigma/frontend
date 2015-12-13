@@ -13,10 +13,8 @@ import {UserService} from '../../../services/users/user-service';
 })
 export class UserDetailsComponent {
     public user = {};
-    public user_id;
 
     constructor(public user_service:UserService, params: RouteParams) {
-        this.user_id = params.get('id');
         this.getUser(params.get('id'));
     };
 
