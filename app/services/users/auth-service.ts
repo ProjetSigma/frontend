@@ -6,8 +6,8 @@ import {Http, HTTP_PROVIDERS, Headers, Response} from 'angular2/http';
 })
 export class AuthService {
     public isConnected;
-    private clientId = 'Bziiu7E0wFtNre6TLdSnEqIe73prHbjJsPx3p5rL';
-    private clientSecret = '8QCDHhiwwAEA5RIwuta8SpprcoJPmpfIwhkPNZil8wJqeLuAh6BKsvWVxNkFvg5YgO0aFrsYngY7YK77iil9f4jRFNSBX11XCe0iGTUd0o9HKCvj72twl0qMT6hlJp3l';
+    private clientId = 'bJeSCIWpvjbYCuXZNxMzVz0wglX8mHR2ZTKHxaDv';
+    private clientSecret = 'XjbfZS6Apq05PDTSL4CoFHGo7NsKVAa1XMVrVElk5N1t0dOSyqxrHPff6okAi6X6Du9XxrK4dl0mLQ0YlscJsjnL5IKhQagQdGv2SgumhYRFaMi6LtHNPXicmMr8oLdy';
     public accessToken;
 
     constructor(public http:Http) {
