@@ -1,6 +1,16 @@
 <login-form>Loading login form...</login-form>
 
-<ul>
-    <li><a [routerLink]="['/Main']">Accueil</a></li>
-    <li><a [routerLink]="['/Users']">Liste des utilisateurs</a></li>
+<ul class="aside__navlinks">
+    <li class="aside__navlink active" [routerLink]="['/Main']">
+        <i class="fa fa-home"></i>
+        Accueil
+    </li>
+    <li class="aside__navlink" [routerLink]="['/Users']">
+        <i class="fa fa-users"></i>
+        Annuaire
+    </li>
+    <li class="aside__navlink">
+        <i class="fa fa-wrench"></i>
+        Admin
+    </li>
 </ul>
