@@ -49,4 +49,8 @@ export class AuthService {
     isAuthenticated() {
         return this.accessToken !== undefined;
     }
+
+    appendAuth(header:Headers) {
+        header.append('Authorization', 'Bearer ' + this.accessToken);
+    }
 }
