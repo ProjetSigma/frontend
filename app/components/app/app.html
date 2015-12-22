@@ -1,5 +1,18 @@
-<login-form *ngIf="!isAuthenticated()">Loading login form...</login-form>
-<menu-bar class="aside" *ngIf="isAuthenticated()">Loading sidebar...</menu-bar>
-<div class="aside--main-container column" *ngIf="isAuthenticated()">
-    <router-outlet></router-outlet>
+<div *ngIf="!isAuthenticated()">
+    <header class="column">
+        <div class="row column align-center">
+            <h1>SIGMA</h1>
+        </div>
+        <hr>
+    </header>
+    <div class="row">
+        <div class="large-3 medium-1 columns"></div>
+        <login-form class="large-6 large-offset-3 medium-10 medium-offset-1 columns end">Loading login form...</login-form>
+    </div>
+</div>
+<div *ngIf="isAuthenticated()">
+    <menu-bar class="aside" >Loading sidebar...</menu-bar>
+    <div class="aside--main-container column">
+        <router-outlet></router-outlet>
+    </div>
 </div>
