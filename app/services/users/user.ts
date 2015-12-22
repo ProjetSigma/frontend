@@ -1,6 +1,7 @@
 export class User {
     public id;
     public last_login;
+    public memberships;
     public email;
     public lastname;
     public firstname;
