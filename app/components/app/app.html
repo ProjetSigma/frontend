@@ -1,4 +1,5 @@
-<menu-bar class="aside">Loading sidebar...</menu-bar>
-<div class="aside--main-container column">
+<login-form *ngIf="!isAuthenticated()">Loading login form...</login-form>
+<menu-bar class="aside" *ngIf="isAuthenticated()">Loading sidebar...</menu-bar>
+<div class="aside--main-container column" *ngIf="isAuthenticated()">
     <router-outlet></router-outlet>
 </div>
