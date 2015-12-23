@@ -11,10 +11,12 @@ import {UserService} from '../../../services/users/user-service';
 })
 export class EditProfileComponent {
     public me:User
+    public editMode
 
     constructor(public user_service:UserService) {
         this.me = new User();
         this.user_service.getMe()
             .subscribe(res => this.me = res.json());
+        this.editMode = false;
     }
 }
