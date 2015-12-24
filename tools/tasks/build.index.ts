@@ -1,5 +1,5 @@
-import {join} from 'path';
-import {APP_SRC, APP_DEST, DEV_DEPENDENCIES} from '../config';
+import {join, sep} from 'path';
+import {APP_SRC, APP_DEST, DEPENDENCIES, ENV} from '../config';
 import {transformPath, templateLocals} from '../utils';
 
 export = function buildIndexDev(gulp, plugins) {
@@ -7,6 +7,7 @@ export = function buildIndexDev(gulp, plugins) {
     return gulp.src(join(APP_SRC, 'index.html'))
       // NOTE: There might be a way to pipe in loop.
       .pipe(inject('shims'))
+      .pipe(inject('libs'))
       .pipe(inject())
       .pipe(plugins.template(templateLocals()))
       .pipe(gulp.dest(APP_DEST));
@@ -21,8 +22,13 @@ export = function buildIndexDev(gulp, plugins) {
   }
 
   function getInjectablesDependenciesRef(name?: string) {
-    return DEV_DEPENDENCIES
+    return DEPENDENCIES
       .filter(dep => dep['inject'] && dep['inject'] === (name || true))
-      .map(dep => `${dep.dest}/${dep.src.split('/').pop()}`);
+      .map(mapPath);
+  }
+
+  function mapPath(dep) {
+    let prodPath = join(dep.dest, dep.src.split(sep).pop());
+    return ('prod' === ENV ? prodPath : dep.src );
   }
 };
