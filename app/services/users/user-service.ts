@@ -7,7 +7,7 @@ import {User} from './user';
     providers: [Http, HTTP_PROVIDERS]
 })
 export class UserService {
-    public users;
+    public users:User[];
 
     constructor(public http:Http, public auth:AuthService) {
     };
