@@ -3,16 +3,17 @@ import {NgFor} from 'angular2/common';
 import {RouteParams} from 'angular2/router';
 
 import {UserService} from '../../../services/users/user-service';
-
+import {User} from '../../../services/users/user';
+import {ProfileDisplayComponent} from './profile-display/profile-display';
 
 @Component({
     selector: 'users-list',
     templateUrl: './components/users/user-details/user-details.html',
     providers: [UserService],
-    directives: [NgFor]
+    directives: [NgFor,ProfileDisplayComponent]
 })
 export class UserDetailsComponent {
-    public user = {};
+    public user = new User();
 
     constructor(public user_service:UserService, params: RouteParams) {
         this.getUser(params.get('id'));

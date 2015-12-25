@@ -1,26 +1,6 @@
 <h1>Profil</h1>
 <div *ngIf="!editMode">
-    <div class="row">
-        <h2>
-            {{ me.firstname }}
-            {{ me.lastname }}
-        </h2>
-    </div>
-    <div class="row">
-        <div class="medium-6 columns">
-            <dl>
-                <dt>Email</dt>
-                <dd>{{ me.email }}</dd>
-            </dl>
-        </div>
-        <div class="medium-6 columns">
-            <dl>
-                <dt>Téléphone</dt>
-                <dd>{{ me.phone }}</dd>
-            </dl>
-        </div>
-    </div>
-
+    <profile-display [user]="me"></profile-display>
     <button (click)="editMode = !editMode" class="success button">
         Modifier le profil
     </button>

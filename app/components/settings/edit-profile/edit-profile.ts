@@ -1,6 +1,7 @@
 import {Component} from 'angular2/core';
 
 import {User} from '../../../services/users/user';
+import {ProfileDisplayComponent} from '../../users/user-details/profile-display/profile-display';
 import {UserService} from '../../../services/users/user-service';
 
 
@@ -8,6 +9,7 @@ import {UserService} from '../../../services/users/user-service';
     selector: 'edit-profile',
     templateUrl: './components/settings/edit-profile/edit-profile.html',
     providers: [UserService],
+    directives: [ProfileDisplayComponent]
 })
 export class EditProfileComponent {
     public me:User
