@@ -10,15 +10,7 @@
         <label>E-mail :
             <input #controlEmail="ngForm" [(ngModel)]="meEdit.email" ngControl="email" required type="text">
         </label>
-        <div [hidden]="controlEmail.valid" class="alert callout">Il te faut entrer l'e-mail de ton École.</div>
-        <label>Prénom :
-            <input #controlFirstName="ngForm" [(ngModel)]="meEdit.firstname" ngControl="firstname" required type="text">
-        </label>
-        <div [hidden]="controlFirstName.valid" class="alert callout">Il te faut entrer un prénom.</div>
-        <label>Nom :
-            <input #controlLastName="ngForm" [(ngModel)]="meEdit.lastname" ngControl="lastname" required type="text">
-        </label>
-        <div [hidden]="controlLastName.valid" class="alert callout">Il te faut entrer un nom de famille.</div>
+        <div [hidden]="controlEmail.valid" class="alert callout">Il te faut entrer une adresse e-mail.</div>
         <label>Téléphone :
             <input #controlPhone="ngForm" [(ngModel)]="meEdit.phone" ngControl="phone" type="text">
         </label>
