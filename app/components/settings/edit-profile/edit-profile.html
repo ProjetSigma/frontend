@@ -1,10 +1,28 @@
 <h1>Profil</h1>
 <div *ngIf="!editMode">
     <profile-display [user]="me"></profile-display>
-    <button (click)="editMode = !editMode" class="success button">
+    <button (click)="editMode = true" class="success button">
         Modifier le profil
     </button>
 </div>
-<div *ngIf="editMode">
-    On édite.
+<div *ngIf="editMode" class="row align-center">
+    <form #editProfileForm="ngForm" class="large-10 columns callout">
+        <label>Prénom :
+            <input #controlFirstName="ngForm" [(ngModel)]="meEdit.firstname" ngControl="firstname" required type="text">
+        </label>
+        <div [hidden]="controlFirstName.valid" class="alert callout">Il te faut entrer un prénom.</div>
+        <label>Nom :
+            <input #controlLastName="ngForm" [(ngModel)]="meEdit.lastname" ngControl="lastname" required type="text">
+        </label>
+        <div [hidden]="controlLastName.valid" class="alert callout">Il te faut entrer un nom de famille.</div>
+        <label>Téléphone :
+            <input #controlPhone="ngForm" [(ngModel)]="meEdit.phone" ngControl="phone" type="text">
+        </label>
+        <div [hidden]="controlPhone.valid" class="alert callout">Ton numéro de téléphone n'est pas bien formaté.</div>
+        <div class="row align-center">
+            <button (click)="editMode = false" class="warning button">Retourner à l'affichage du profil</button>
+            <button (click)="editProfile(meEdit)" [disabled]="!editProfileForm.form.valid" class="success button" type="submit">Modifier son profil</button>
+        </div>
+        <div [hidden]="!errorOnEdit" class="alert callout">Erreur lors de la modification du profil.</div>
+    </form>
 </div>
