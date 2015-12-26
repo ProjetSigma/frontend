@@ -7,6 +7,10 @@
 </div>
 <div *ngIf="editMode" class="row align-center">
     <form #editProfileForm="ngForm" class="large-10 columns callout">
+        <label>E-mail :
+            <input #controlEmail="ngForm" [(ngModel)]="meEdit.email" ngControl="email" required type="text">
+        </label>
+        <div [hidden]="controlEmail.valid" class="alert callout">Il te faut entrer l'e-mail de ton École.</div>
         <label>Prénom :
             <input #controlFirstName="ngForm" [(ngModel)]="meEdit.firstname" ngControl="firstname" required type="text">
         </label>
