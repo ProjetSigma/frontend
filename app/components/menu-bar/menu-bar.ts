@@ -1,10 +1,16 @@
 import {Component} from 'angular2/core';
-import {LoginFormComponent} from '../login-form/login-form';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
+import {AuthService} from '../../services/users/auth-service';
 
 @Component({
     selector: 'menu-bar',
     templateUrl: './components/menu-bar/menu-bar.html',
-    directives: [LoginFormComponent, ROUTER_DIRECTIVES]
+    directives: [ROUTER_DIRECTIVES]
 })
-export class MenuBarComponent { }
+export class MenuBarComponent {
+    constructor(public authService:AuthService) {}
+
+    logout() {
+        return this.authService.logout();
+    }
+}

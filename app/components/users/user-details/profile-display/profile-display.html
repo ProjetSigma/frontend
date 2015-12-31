@@ -1,0 +1,20 @@
+<div class="row">
+    <h2>
+        {{ user.firstname }}
+        {{ user.lastname }}
+    </h2>
+</div>
+<div class="row">
+    <div class="medium-6 columns">
+        <dl>
+            <dt>Email</dt>
+            <dd>{{ user.email }}</dd>
+        </dl>
+    </div>
+    <div class="medium-6 columns">
+        <dl>
+            <dt>Téléphone</dt>
+            <dd>{{ user.phone | phoneNumberFrench }}</dd>
+        </dl>
+    </div>
+</div>
