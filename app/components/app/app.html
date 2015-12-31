@@ -1,15 +1,6 @@
-<div *ngIf="!isAuthenticated()">
-    <header class="column">
-        <div class="row column align-center">
-            <h1>SIGMA</h1>
-        </div>
-        <hr>
-    </header>
-    <div class="row">
-        <div class="large-3 medium-1 columns"></div>
-        <login-form class="large-6 large-offset-3 medium-10 medium-offset-1 columns end">Loading login form...</login-form>
-    </div>
-</div>
+<landing-page *ngIf="!isAuthenticated()">
+
+</landing-page>
 <div *ngIf="isAuthenticated()">
     <menu-bar class="aside" >Loading sidebar...</menu-bar>
     <div class="aside--main-container column">

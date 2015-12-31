@@ -1,0 +1,15 @@
+<form #loginForm="ngForm" *ngIf="!isAuthenticated()" class="callout">
+    <label>Nom d'utilisateur
+        <input #controlUsername="ngForm" [(ngModel)]="username" autofocus ngControl="username" placeholder="prenom.nom@ecole.edu" required type="email">
+    </label>
+    <div [hidden]="controlUsername.pristine || controlUsername.valid" class="alert callout">Entre l'adresse e-mail de ton École.</div>
+    <label>Mot de passe
+        <input #controlPassword="ngForm" [(ngModel)]="password" ngControl="password" required type="password">
+    </label>
+    <div [hidden]="controlPassword.pristine || controlPassword.valid" class="alert callout">Entre ton mot de passe Sigma.</div>
+    <button (click)="login(username,password)" [disabled]="!loginForm.form.valid" class="success button expanded" type="submit">Se connecter</button>
+</form>
+<form *ngIf="isAuthenticated()" class="callout">
+    <a (click)="logout()" class="alert button expanded">Se déconnecter</a>
+
+</form>
