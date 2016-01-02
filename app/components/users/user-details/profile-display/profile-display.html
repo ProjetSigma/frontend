@@ -18,3 +18,12 @@
         </dl>
     </div>
 </div>
+
+<div class="row">
+    <div class="small-4 columns callout" *ngFor="#membership of user.memberships">
+        {{ membership.group.name }}
+    </div>
+    <div *ngIf="user.memberships && user.memberships.length === 0">
+        {{ user.firstname }} n'est dans aucun groupe
+    </div>
+</div>
