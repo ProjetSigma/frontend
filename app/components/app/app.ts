@@ -6,7 +6,7 @@ import {MenuBarComponent} from '../menu-bar/menu-bar';
 import {MainComponent} from '../main/main';
 import {UsersComponent} from '../users/users';
 import {LandingPageComponent} from '../landing-page/landing-page';
-import {AuthService} from '../../services/users/auth-service';
+import {AuthService} from '../../services/auth-service';
 import {SettingsComponent} from '../settings/settings';
 
 

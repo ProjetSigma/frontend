@@ -1,89 +1,49 @@
 import {Component} from 'angular2/core';
-import {Http, HTTP_PROVIDERS, Headers, Response} from 'angular2/http';
-import {AuthService} from './auth-service';
+import {RestService} from '../rest.service';
 import {User} from './user';
 
 @Component({
-    providers: [Http, HTTP_PROVIDERS]
+    providers: [RestService]
 })
 export class UserService {
     public users:User[];
 
-    constructor(public http:Http, public auth:AuthService) {
-    };
+    constructor(public rest: RestService) {
+        this.rest = rest;
+    }
 
     getUsers() {
-        var headers = new Headers();
-        this.auth.appendAuth(headers);
-        headers.append('Accept', 'application/json');
-
-        var request = this.http.get('http://localhost:8000/user/',
-            {headers:headers}
-        );
-
-        request.subscribe(
-            (res:Response) => console.log(res.json()),
-            err => console.log('Erreur sur la récupération des utilisateurs')
-        );
-
-        return request;
+        return this.rest
+            .authRequest('http://localhost:8000/user/')
+            .logError('Erreur sur la récupération des utilisateurs')
+            .get();
     }
 
     getUser(id: string) {
-        var headers = new Headers();
-        this.auth.appendAuth(headers);
-        headers.append('Accept', 'application/json');
-
-        var request = this.http.get('http://localhost:8000/user/'+ id + '/',
-            {headers:headers}
-        );
-
-        request.subscribe(
-            (res:Response) => console.log(res.json()),
-            err => console.log('Erreur sur la récupération de l\'utilisateur')
-        );
-
-        return request;
+        return this.rest
+            .authRequest('http://localhost:8000/user/'+ id + '/')
+            .logError('Erreur sur la récupération de l\'utilisateur')
+            .get();
     }
 
     editUser(user:User) {
-        var requestBody = 'email='+user.email+
-            '&lastname='+user.lastname+
-            '&firstname='+user.firstname+
-            '&phone='+user.phone;
-
-        var headers = new Headers();
-        this.auth.appendAuth(headers);
-        headers.append('Accept', 'application/json');
-        headers.append('Content-Type', 'application/x-www-form-urlencoded');
-
-        var request = this.http.put('http://localhost:8000/user/'+ user.id + '/',
-            requestBody,
-            {headers:headers}
-        );
-
-        request.subscribe(
-            (res:Response) => console.log(res.json()),
-            err => console.log('Erreur sur la modification du profil de l\'utilisateur')
-        );
-
-        return request;
+        // Equivalent to lodash filter on user...
+        var data = {
+            email: user.email,
+            lastname: user.lastname,
+            firstname: user.firstname,
+            phone: user.phone
+        };
+        return this.rest
+            .authRequest('http://localhost:8000/user/'+ user.id + '/')
+            .logError('Erreur sur la modification du profil de l\'utilisateur')
+            .put(data);
     }
 
     getMe() {
-        var headers = new Headers();
-        this.auth.appendAuth(headers);
-        headers.append('Accept', 'application/json');
-
-        var request = this.http.get('http://localhost:8000/user/me/',
-            {headers:headers}
-        );
-
-        request.subscribe(
-            (res:Response) => console.log(res.json()),
-            err => console.log('Erreur sur la récupération de l\'utilisateur')
-        );
-
-        return request;
+        return this.rest
+            .authRequest('http://localhost:8000/user/me/')
+            .logError('Erreur sur la récupération de l\'utilisateur')
+            .get();
     }
 }
