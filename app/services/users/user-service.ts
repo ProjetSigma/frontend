@@ -34,22 +34,8 @@ export class UserService extends RestService {
     }
 
     editPassword(actualPassword:string, newPassword:string) {
-        var headers = new Headers();
-        this.auth.appendAuth(headers);
-        headers.append('Accept', 'application/json');
-        headers.append('Content-Type', 'application/json');
-
-        var request = this.http.put('http://localhost:8000/user/change_password/',
-            JSON.stringify({old_password: actualPassword, password: newPassword}),
-            {headers:headers}
-        ).share();
-
-        request.subscribe(
-            (res:Response) => console.log(res.json()),
-            err => console.log('Erreur sur la modification du mot de passe de l\'utilisateur')
-        );
-
-        return request;
+        return this.authRequest('change_password/')
+            .put({old_password: actualPassword, password: newPassword});
     }
 
     getMe() {
