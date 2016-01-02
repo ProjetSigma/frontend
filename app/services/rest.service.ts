@@ -22,46 +22,46 @@ class RestRequest {
     }
 
     public get() {
-        this._request = this._rest.http.get(this.url, {headers: this.headers});
+        this._request = this._rest.http.get(this.url, {headers: this.headers}).share();
         this._attach();
         return this._request;
     }
 
     public delete() {
-        this._request = this._rest.http.delete(this.url, {headers: this.headers});
+        this._request = this._rest.http.delete(this.url, {headers: this.headers}).share();
         this._attach();
         return this._request;
     }
 
     public head() {
-        this._request = this._rest.http.head(this.url, {headers: this.headers});
+        this._request = this._rest.http.head(this.url, {headers: this.headers}).share();
         this._attach();
         return this._request;
     }
 
     public post(data) {
         this._addPostHeader();
-        this._request = this._rest.http.post(this.url, this._data(data), {headers: this.headers});
+        this._request = this._rest.http.post(this.url, this._data(data), {headers: this.headers}).share();
         this._attach();
         return this._request;
     }
 
     public put(data) {
         this._addPostHeader();
-        this._request = this._rest.http.put(this.url, this._data(data), {headers: this.headers});
+        this._request = this._rest.http.put(this.url, this._data(data), {headers: this.headers}).share();
         this._attach();
         return this._request;
     }
 
     public patch(data) {
         this._addPostHeader();
-        this._request = this._rest.http.patch(this.url, this._data(data), {headers: this.headers});
+        this._request = this._rest.http.patch(this.url, this._data(data), {headers: this.headers}).share();
         this._attach();
         return this._request;
     }
 
     private _addPostHeader() {
-        this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        this.headers.append('Content-Type', 'application/json');
     }
     private _attach() {
         this._request.subscribe(
@@ -72,9 +72,7 @@ class RestRequest {
     }
 
     private _data(data) {
-        return _.map(data, (value:string, index:string) => {
-            return index + '=' + encodeURIComponent(value);
-        }).join('&');
+        return JSON.stringify(data);
     }
 
 }
