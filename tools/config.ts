@@ -48,6 +48,8 @@ export const NPM_DEPENDENCIES = [
   { src: 'angular2/bundles/router.js', inject: 'libs', dest: LIB_DEST }, // use router.min.js with alpha47
   { src: 'angular2/bundles/http.min.js', inject: 'libs', dest: LIB_DEST },
 
+  { src: 'lodash/index.js', inject: 'libs', dest: LIB_DEST },
+
   { src: 'font-awesome/fonts/FontAwesome.otf',   dest: FONTS_DEST},
   { src: 'font-awesome/fonts/fontawesome-webfont.eot',   dest: FONTS_DEST},
   { src: 'font-awesome/fonts/fontawesome-webfont.svg',   dest: FONTS_DEST},

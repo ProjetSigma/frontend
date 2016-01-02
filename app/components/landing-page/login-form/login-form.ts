@@ -1,7 +1,7 @@
 import {Component} from 'angular2/core';
 import {NgForm} from 'angular2/common';
 
-import {AuthService} from '../../../services/users/auth-service';
+import {AuthService} from '../../../services/auth-service';
 
 @Component({
     selector: 'login-form',
