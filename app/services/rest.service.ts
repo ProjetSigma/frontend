@@ -93,18 +93,19 @@ export class RestService {
         this.auth = auth;
     };
 
-
-    public authRequest(url?: string) {
-        if(!url) {
-            url = '';
-        }
-
+    public authRequest(url = '') {
         var headers = new Headers();
         this.auth.appendAuth(headers);
         headers.append('Accept', 'application/json');
+
         var url = this.base_url + this.resource + '/' + url;
-        console.log(url);
         return new RestRequest(url, headers, this);
+    }
+
+    public filter(data, keys: string[]) {
+        var result = {};
+        _.forEach(keys, (key) => { result[key] = data[key]; });
+        return result;
     }
 
     protected useResource(resource: string) {

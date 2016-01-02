@@ -26,13 +26,8 @@ export class UserService extends RestService {
     }
 
     editUser(user:User) {
-        // Equivalent to lodash filter on user...
-        var data = {
-            email: user.email,
-            lastname: user.lastname,
-            firstname: user.firstname,
-            phone: user.phone
-        };
+        var data = this.filter(user, ['email', 'lastname', 'firstname', 'phone']);
+
         return this.authRequest(user.id + '/')
             .logError('Erreur sur la modification du profil de l\'utilisateur')
             .put(data);
