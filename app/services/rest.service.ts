@@ -71,35 +71,43 @@ class RestRequest {
         return this;
     }
 
-    // TODO add URLEncode
     private _data(data) {
-        var body  = '';
-        var first = true;
-        for(var i in data) {
-            if(!first) {
-                body += '&';
-            }
-            body += i + '=' + data[i];
-            first = false;
-        }
-        return body;
+        return _.map(data, (value:string, index:string) => {
+            return index + '=' + encodeURIComponent(value);
+        }).join('&');
     }
 
 }
 
 
 @Component({
-    providers: [Http, HTTP_PROVIDERS]
+    viewProviders: [HTTP_PROVIDERS],
+    providers: [Http, AuthService]
 })
 export class RestService {
+    protected base_url = 'http://localhost:8000/';
+    private resource: string;
+
     constructor(public http:Http, public auth:AuthService) {
+        this.http = http;
+        this.auth = auth;
     };
 
-    authRequest(url: string) {
+
+    public authRequest(url?: string) {
+        if(!url) {
+            url = '';
+        }
+
         var headers = new Headers();
         this.auth.appendAuth(headers);
         headers.append('Accept', 'application/json');
-
+        var url = this.base_url + this.resource + '/' + url;
+        console.log(url);
         return new RestRequest(url, headers, this);
+    }
+
+    protected useResource(resource: string) {
+        this.resource = resource;
     }
 }

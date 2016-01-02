@@ -1,27 +1,26 @@
 import {Component} from 'angular2/core';
 import {RestService} from '../rest.service';
+import {AuthService} from '../auth-service';
+import {Http} from 'angular2/http';
 import {User} from './user';
 
-@Component({
-    providers: [RestService]
-})
-export class UserService {
+@Component({})
+export class UserService extends RestService {
     public users:User[];
 
-    constructor(public rest: RestService) {
-        this.rest = rest;
+    constructor(public http: Http, public auth: AuthService) {
+        super(http, auth);
+        this.useResource('user');
     }
 
     getUsers() {
-        return this.rest
-            .authRequest('http://localhost:8000/user/')
+        return this.authRequest()
             .logError('Erreur sur la récupération des utilisateurs')
             .get();
     }
 
     getUser(id: string) {
-        return this.rest
-            .authRequest('http://localhost:8000/user/'+ id + '/')
+        return this.authRequest(id + '/')
             .logError('Erreur sur la récupération de l\'utilisateur')
             .get();
     }
@@ -34,15 +33,13 @@ export class UserService {
             firstname: user.firstname,
             phone: user.phone
         };
-        return this.rest
-            .authRequest('http://localhost:8000/user/'+ user.id + '/')
+        return this.authRequest(user.id + '/')
             .logError('Erreur sur la modification du profil de l\'utilisateur')
             .put(data);
     }
 
     getMe() {
-        return this.rest
-            .authRequest('http://localhost:8000/user/me/')
+        return this.authRequest('me/')
             .logError('Erreur sur la récupération de l\'utilisateur')
             .get();
     }
