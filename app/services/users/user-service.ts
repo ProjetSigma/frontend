@@ -33,6 +33,11 @@ export class UserService extends RestService {
             .put(data);
     }
 
+    editPassword(actualPassword:string, newPassword:string) {
+        return this.authRequest('change_password/')
+            .put({old_password: actualPassword, password: newPassword});
+    }
+
     getMe() {
         return this.authRequest('me/')
             .logError('Erreur sur la récupération de l\'utilisateur')

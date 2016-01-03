@@ -4,19 +4,21 @@ import {NgForm} from 'angular2/common';
 import {User} from '../../../services/users/user';
 import {ProfileDisplayComponent} from '../../users/user-details/profile-display/profile-display';
 import {UserService} from '../../../services/users/user-service';
+import {EditPasswordComponent} from '../edit-password/edit-password';
 
 
 @Component({
     selector: 'edit-profile',
     templateUrl: './components/settings/edit-profile/edit-profile.html',
     providers: [UserService],
-    directives: [ProfileDisplayComponent,NgForm]
+    directives: [ProfileDisplayComponent,EditPasswordComponent,NgForm]
 })
 export class EditProfileComponent {
     public me:User;
     public meEdit:User;
     public editMode:boolean;
     public errorOnEdit:boolean = false;
+    public editPassword:boolean = false;
 
     constructor(public user_service:UserService) {
         this.me = new User();

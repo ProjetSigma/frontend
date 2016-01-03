@@ -1,8 +1,11 @@
 <h1>Profil</h1>
-<div *ngIf="!editMode">
+<div *ngIf="!editMode && !editPassword">
     <profile-display [user]="me"></profile-display>
     <button (click)="editMode = true" class="success button">
         Modifier le profil
+    </button>
+    <button (click)="editPassword = true" class="success button">
+        Modifier mon mot de passe
     </button>
 </div>
 <div *ngIf="editMode" class="row align-center">
@@ -21,4 +24,10 @@
         </div>
         <div [hidden]="!errorOnEdit" class="alert callout">Erreur lors de la modification du profil.</div>
     </form>
+</div>
+<div class="row align-center" *ngIf="editPassword">
+    <div class="large-2 columns">
+        <button (click)="editPassword = false" class="warning button">Retour</button>
+    </div>
+    <edit-password class="large-10 columns callout"></edit-password>
 </div>
