@@ -14,11 +14,11 @@ import {EditPasswordComponent} from '../edit-password/edit-password';
     directives: [ProfileDisplayComponent,EditPasswordComponent,NgForm]
 })
 export class EditProfileComponent {
-    public me:User;
-    public meEdit:User;
-    public editMode:boolean;
-    public errorOnEdit:boolean = false;
-    public editPassword:boolean = false;
+    private me:User;
+    private meEdit:User;
+    private editMode:boolean;
+    private errorOnEdit:boolean = false;
+    private profilePicture:File;
 
     constructor(public user_service:UserService) {
         this.me = new User();
@@ -30,7 +30,8 @@ export class EditProfileComponent {
         this.editMode = false;
     }
 
-    editProfile(user:User) {
+    editProfile(user:User,profilePicture:File) {
+        console.log(profilePicture);
         this.user_service.editUser(user).subscribe(
             () => {
                 this.me = this.meEdit;
@@ -41,4 +42,9 @@ export class EditProfileComponent {
             }
         );
     }
+
+    profilePictureChangeListener($event): void {
+        this.profilePicture = $event.target.files[0];
+    }
+
 }
