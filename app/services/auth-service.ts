@@ -5,10 +5,10 @@ import {Http, HTTP_PROVIDERS, Headers, Response} from 'angular2/http';
     providers: [Http, HTTP_PROVIDERS]
 })
 export class AuthService {
-    public isConnected;
-    public accessToken;
-    private clientId = 'bJeSCIWpvjbYCuXZNxMzVz0wglX8mHR2ZTKHxaDv';
-    private clientSecret =
+    public isConnected:boolean;
+    public accessToken:string;
+    private clientId:string = 'bJeSCIWpvjbYCuXZNxMzVz0wglX8mHR2ZTKHxaDv';
+    private clientSecret:string =
     'XjbfZS6Apq05PDTSL4CoFHGo7NsKVAa1XMVrVElk5N1t0dOSyqxrHPff6okAi6X6Du9XxrK4dl0mLQ0YlscJsjnL5IKhQagQdGv2SgumhYRFaMi6LtHNPXicmMr8oLdy';
 
     constructor(public http:Http) {

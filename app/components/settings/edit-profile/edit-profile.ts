@@ -37,7 +37,6 @@ export class EditProfileComponent {
                 this.editMode = false;
             },
             res => {
-                console.log(res);
                 this.errorOnEdit = true;
             }
         );

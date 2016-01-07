@@ -91,12 +91,12 @@ export class RestService {
         this.auth = auth;
     };
 
-    public authRequest(url = '') {
+    public authRequest(urlInput:string = '') {
         var headers = new Headers();
         this.auth.appendAuth(headers);
         headers.append('Accept', 'application/json');
 
-        var url = this.base_url + this.resource + '/' + url;
+        var url = this.base_url + this.resource + '/' + urlInput;
         return new RestRequest(url, headers, this);
     }
 
@@ -105,7 +105,6 @@ export class RestService {
         _.forEach(keys, (key) => { result[key] = data[key]; });
         return result;
     }
-
     protected useResource(resource: string) {
         this.resource = resource;
     }

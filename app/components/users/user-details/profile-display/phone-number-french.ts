@@ -13,7 +13,7 @@ export class PhoneNumberFrenchPipe {
   transform(value:string, args:string[]) : any {
       var phonePattern = /^(\+33|0)(\d)\s*(\d\d)\s*(\d\d)\s*(\d\d)\s*(\d\d)$/;
       if (phonePattern.test(value)) {
-          return value.replace(phonePattern,"$1$2 $3 $4 $5 $6");
+          return value.replace(phonePattern,'$1$2 $3 $4 $5 $6');
       } else {
           return value;
       }

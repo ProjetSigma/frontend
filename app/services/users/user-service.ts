@@ -1,5 +1,5 @@
 import {Component} from 'angular2/core';
-import {RestService} from '../rest.service';
+import {RestService} from '../rest-service';
 import {AuthService} from '../auth-service';
 import {Http} from 'angular2/http';
 import {User} from './user';

@@ -6,7 +6,8 @@
     <label>Mot de passe
         <input #controlPassword="ngForm" [(ngModel)]="password" ngControl="password" required type="password">
     </label>
-    <div [hidden]="controlPassword.pristine || controlPassword.valid" class="alert callout">Entre ton mot de passe Sigma.</div>
+    <div [hidden]="passwordError || controlPassword.pristine || controlPassword.valid" class="alert callout">Entre ton mot de passe Sigma.</div>
+    <div [hidden]="!passwordError" class="alert callout">Ton mot de passe est erroné.</div>
     <button (click)="login(username,password)" [disabled]="!loginForm.form.valid" class="success button expanded" type="submit">Se connecter</button>
 </form>
 <form *ngIf="isAuthenticated()" class="callout">

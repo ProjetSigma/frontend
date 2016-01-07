@@ -9,9 +9,10 @@ import {AuthService} from '../../../services/auth-service';
     directives: [NgForm]
 })
 export class LoginFormComponent {
-    public username;
-    public password;
+    public username:string;
+    public password:string;
     private authService: AuthService;
+    private passwordError:boolean = false;
 
     constructor(backend: AuthService) {
         this.authService = backend;
@@ -25,7 +26,10 @@ export class LoginFormComponent {
                 this.username = '';
                 this.password = '';
             },
-            err => this.password = ''
+            err => {
+                this.password = '';
+                this.passwordError = true;
+                }
         );
     }
 

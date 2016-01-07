@@ -13,7 +13,7 @@ import {ProfileDisplayComponent} from './profile-display/profile-display';
     directives: [NgFor,ProfileDisplayComponent]
 })
 export class UserDetailsComponent {
-    public user = new User();
+    public user:User = new User();
 
     constructor(public user_service:UserService, params: RouteParams) {
         this.getUser(params.get('id'));
