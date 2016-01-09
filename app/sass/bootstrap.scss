@@ -5,6 +5,7 @@
 @import 'foundation';
 @import 'motion-ui';
 @import 'font-awesome';
+@import 'animate';
 
 @include foundation-global-styles;
 @include foundation-flex-grid;
@@ -46,3 +47,5 @@
 
 @import 'resets/html';
 @import 'components/aside';
+@import 'components/landing-page';
+@import 'components/login-form';

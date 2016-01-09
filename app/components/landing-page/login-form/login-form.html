@@ -4,7 +4,7 @@
     </label>
     <div [hidden]="controlUsername.pristine || controlUsername.valid" class="alert callout">Entre l'adresse e-mail de ton École.</div>
     <label>Mot de passe
-        <input #controlPassword="ngForm" [(ngModel)]="password" ngControl="password" required type="password">
+        <input [ngClass]="{animated : passwordError, flash : passwordError}" #controlPassword="ngForm" [(ngModel)]="password" ngControl="password" required type="password">
     </label>
     <div [hidden]="passwordError || controlPassword.pristine || controlPassword.valid" class="alert callout">Entre ton mot de passe Sigma.</div>
     <div [hidden]="!passwordError" class="alert callout">Ton mot de passe est erroné.</div>
