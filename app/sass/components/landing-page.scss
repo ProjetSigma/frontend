@@ -1,9 +1,7 @@
 .landing-page {
-    background-color : $landing-page-background-color;
     &__title {
-        background-color : $landing-page-background-color;
-        div {
-
-        }
+        background-color : $landing-page-title-background-color;
+    }
+    &__form-container {
     }
 }
