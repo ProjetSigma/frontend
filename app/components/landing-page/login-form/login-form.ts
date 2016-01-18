@@ -19,7 +19,7 @@ export class LoginFormComponent {
     }
 
     login(username, password) {
-
+        this.passwordError = false;
         return this.authService.authentificate(username, password)
         .subscribe(
             res => {

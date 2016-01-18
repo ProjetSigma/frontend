@@ -1,0 +1,11 @@
+.landing-page {
+    &__title {
+        background-color : $landing-page-title-background-color;
+        color:$white;
+        div {
+            padding-top : rem-calc(20);
+        }
+    }
+    &__content-container {
+    }
+}
