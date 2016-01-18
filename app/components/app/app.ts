@@ -8,7 +8,7 @@ import {UsersComponent} from '../users/users';
 import {GroupsComponent} from '../groups/groups';
 import {LandingPageComponent} from '../landing-page/landing-page';
 import {AuthService} from '../../services/auth-service';
-import {SettingsComponent} from '../settings/settings'
+import {SettingsComponent} from '../settings/settings';
 
 
 @Component({
