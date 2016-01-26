@@ -5,6 +5,7 @@ import {NgIf} from 'angular2/common';
 import {MenuBarComponent} from '../menu-bar/menu-bar';
 import {MainComponent} from '../main/main';
 import {UsersComponent} from '../users/users';
+import {GroupsComponent} from '../groups/groups';
 import {LandingPageComponent} from '../landing-page/landing-page';
 import {AuthService} from '../../services/auth-service';
 import {SettingsComponent} from '../settings/settings';
@@ -19,6 +20,7 @@ import {SettingsComponent} from '../settings/settings';
 @RouteConfig([
     {path: '/', component: MainComponent, useAsDefault: true, as: 'Main'},
     {path: '/user/...', component: UsersComponent, as: 'Users'},
+    {path: '/group/...', component: GroupsComponent, as: 'Groups'},
     {path: '/settings/', component: SettingsComponent, as: 'Settings'},
 ])
 export class AppComponent {
