@@ -1,7 +1,7 @@
 export class User {
     public id:string;
     public last_login:Date;
-    public memberships:string;
+    public memberships;
     public email:string;
     public lastname:string;
     public firstname:string;

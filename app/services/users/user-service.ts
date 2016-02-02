@@ -24,6 +24,11 @@ export class UserService extends RestService {
             .logError('Erreur sur la récupération de l\'utilisateur')
             .get();
     }
+    getMembershipsOfUser(id: string) {
+        return this.authRequest('/group-member/?user=' + id)
+            .logError('Erreur sur la récupération des memberships de l\'utilisateur')
+            .get();
+    }
 
     editUser(user:User) {
         var data = this.filter(user, ['email', 'lastname', 'firstname', 'phone']);

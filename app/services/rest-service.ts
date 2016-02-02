@@ -96,7 +96,12 @@ export class RestService {
         this.auth.appendAuth(headers);
         headers.append('Accept', 'application/json');
 
-        var url = this.base_url + this.resource + '/' + urlInput;
+        var url = this.base_url;
+        if (!urlInput.match(/^\//)) {
+            url += this.resource + '/' + urlInput;
+        } else {
+            url += urlInput.replace(/^\//, '');
+        }
         return new RestRequest(url, headers, this);
     }
 
