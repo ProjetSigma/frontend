@@ -36,7 +36,7 @@
         &:hover {
             background-color: lighten($color-aside, 20%);
         }
-        &.active {
+        &.active, &.router-link-active {
             background-color: lighten($color-aside, 10%);
         }
     }
