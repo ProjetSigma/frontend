@@ -1,10 +1,10 @@
 <h1>
     <small [ngSwitch]="group.type">
-        <i [ngSwitchWhen]="0" class="fa fa-users"></i>
-        <i [ngSwitchWhen]="1" class="fa fa-graduation-cap"></i>
-        <i [ngSwitchWhen]="2" class="fa fa-users"></i>
-        <i [ngSwitchWhen]="3" class="fa fa-users"></i>
-        <i [ngSwitchWhen]="4" class="fa fa-institution"></i>
+        <i *ngSwitchWhen="'0'" class="fa fa-users"></i>
+        <i *ngSwitchWhen="'1'" class="fa fa-graduation-cap"></i>
+        <i *ngSwitchWhen="'2'" class="fa fa-users"></i>
+        <i *ngSwitchWhen="'3'" class="fa fa-users"></i>
+        <i *ngSwitchWhen="'4'" class="fa fa-institution"></i>
     </small>
-    {{group.name}}
+    {{ group.name }}
 </h1>
