@@ -1,4 +1,14 @@
-<h3>{{ auth_service.user.firstname }} {{ auth_service.user.lastname }}</h3>
+<div class="aside__profile">
+    <div class="Avatar Avatar__Large" style="background-image: url('http://localhost:8000/media/img/U9SYozzS24P2OHCWs2zh-O8KPt8F4cyWVh2dc6SG-kom1zzBgTl9NaIlOZ_9mWbcTr7pBqq-D3C17oVMrpoi4tl9tYgheWdMJT6UnXVHo2WGO34mMwuJgnuHg9xO4kR0WCw8OWtGsavoY1CPDBPAbu.JPG')"></div>
+    <div>
+        <div class="h3__title">
+            {{ auth_service.user.firstname }} {{ auth_service.user.lastname }}
+        </div>
+        <div class="h3__subtitle">
+            École polytechnique
+        </div>
+    </div>
+</div>
 <ul class="aside__navlinks">
     <li class="aside__navlink" [routerLink]="['/Main']">
         <i class="fa fa-home"></i>
