@@ -5,6 +5,7 @@ import {User} from '../../../services/users/user';
 import {ProfileDisplayComponent} from '../../users/user-details/profile-display/profile-display';
 import {UserService} from '../../../services/users/user-service';
 import {EditPasswordComponent} from '../edit-password/edit-password';
+import {AuthService} from '../../../services/auth-service';
 
 
 @Component({
@@ -20,27 +21,44 @@ export class EditProfileComponent {
     private errorOnEdit:boolean = false;
     private profilePicture:File;
 
-    constructor(public user_service:UserService) {
-        this.me = new User();
-        this.user_service.getMe()
-            .subscribe(res => {
-                this.me = res.json();
-                this.meEdit = res.json();
-            });
+    constructor(public user_service:UserService, public auth_service:AuthService) {
+        this.me = auth_service.user;
+        this.meEdit = _.clone(auth_service.user);
         this.editMode = false;
     }
 
-    editProfile(user:User,profilePicture:File) {
-        console.log(profilePicture);
+    editProfile(user:User, profilePicture:File) {
         this.user_service.editUser(user).subscribe(
             () => {
-                this.me = this.meEdit;
-                this.editMode = false;
+                if (profilePicture) {
+                    this.user_service.changeUserPhoto(user, profilePicture).subscribe(
+                        () => {
+                            console.log('Upload successfull');
+                            this.me = this.meEdit;
+                            this.editMode = false;
+                            this.reloadProfile();
+                        },
+                        res => {
+                            this.errorOnEdit = true;
+                        }
+                    );
+                } else {
+                    this.me = this.meEdit;
+                    this.editMode = false;
+                    this.reloadProfile();
+                }
             },
             res => {
                 this.errorOnEdit = true;
             }
         );
+    }
+
+    reloadProfile() {
+        this.auth_service.loadUser().subscribe(() => {
+            this.me = this.auth_service.user;
+            this.meEdit = this.auth_service.user;
+        });
     }
 
     profilePictureChangeListener($event): void {
