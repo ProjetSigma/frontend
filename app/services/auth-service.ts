@@ -1,5 +1,6 @@
 import {Component} from 'angular2/core';
 import {Http, HTTP_PROVIDERS, Headers, Response} from 'angular2/http';
+import {User} from './users/user';
 
 @Component({
     providers: [Http, HTTP_PROVIDERS]
@@ -7,6 +8,7 @@ import {Http, HTTP_PROVIDERS, Headers, Response} from 'angular2/http';
 export class AuthService {
     public isConnected:boolean;
     public accessToken:string;
+    public user:User = new User();
     private clientId:string = 'bJeSCIWpvjbYCuXZNxMzVz0wglX8mHR2ZTKHxaDv';
     private clientSecret:string =
     'XjbfZS6Apq05PDTSL4CoFHGo7NsKVAa1XMVrVElk5N1t0dOSyqxrHPff6okAi6X6Du9XxrK4dl0mLQ0YlscJsjnL5IKhQagQdGv2SgumhYRFaMi6LtHNPXicmMr8oLdy';
@@ -16,7 +18,20 @@ export class AuthService {
         if (token !== null && token !== '') {
             this.accessToken = token;
             this.isConnected = true;
+            this.loadUser();
         }
+    }
+
+    loadUser() {
+        var headers = new Headers();
+        this.appendAuth(headers);
+
+        var request = this.http.get('http://localhost:8000/user/me/',
+            {headers:headers}
+        ).share();
+        request.subscribe(res => this.user = res.json());
+
+        return request;
     }
 
     authentificate(username,password) {
@@ -35,6 +50,7 @@ export class AuthService {
             (res:Response) => {
                 this.accessToken = res.json().access_token;
                 localStorage.setItem('accessToken', this.accessToken);
+                this.loadUser();
             },
             err => console.log('Erreur de mot de passe')
         );
