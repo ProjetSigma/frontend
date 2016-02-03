@@ -8,9 +8,10 @@ import {AuthService} from '../../services/auth-service';
     directives: [ROUTER_DIRECTIVES]
 })
 export class MenuBarComponent {
-    constructor(public authService:AuthService) {}
+    constructor(public auth_service:AuthService) {
+    }
 
     logout() {
-        return this.authService.logout();
+        return this.auth_service.logout();
     }
 }
