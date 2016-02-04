@@ -1,5 +1,5 @@
-<div class="aside__profile">
-    <div class="Avatar Avatar__Large" style="background-image: url('http://localhost:8000/media/img/U9SYozzS24P2OHCWs2zh-O8KPt8F4cyWVh2dc6SG-kom1zzBgTl9NaIlOZ_9mWbcTr7pBqq-D3C17oVMrpoi4tl9tYgheWdMJT6UnXVHo2WGO34mMwuJgnuHg9xO4kR0WCw8OWtGsavoY1CPDBPAbu.JPG')"></div>
+<div class="aside__profile" *ngIf="auth_service.user.id">
+    <div *ngIf="auth_service.user.photo" class="Avatar Avatar__Large" style="background-image: url('{{ auth_service.user.photo.file }}')"></div>
     <div>
         <div class="h3__title">
             {{ auth_service.user.firstname }} {{ auth_service.user.lastname }}
