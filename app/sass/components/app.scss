@@ -17,6 +17,13 @@
         height: 50px;
         width: 50px;
     }
+
+    &__Small {
+        height: 40px;
+        width: 40px;
+        min-width: 40px;
+        margin: 3px;
+    }
 }
 
 .h3 {
