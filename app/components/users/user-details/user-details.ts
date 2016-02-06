@@ -7,7 +7,7 @@ import {User} from '../../../services/users/user';
 import {ProfileDisplayComponent} from './profile-display/profile-display';
 
 @Component({
-    selector: 'users-list',
+    selector: 'users-details',
     templateUrl: './components/users/user-details/user-details.html',
     providers: [UserService],
     directives: [NgFor,ProfileDisplayComponent]
