@@ -25,6 +25,7 @@ export class AuthService {
     loadUser() {
         var headers = new Headers();
         this.appendAuth(headers);
+        headers.append('Accept', 'application/json');
 
         var request = this.http.get('http://localhost:8000/user/me/',
             {headers:headers}

@@ -53,7 +53,7 @@ class RestRequest {
         var req = new XMLHttpRequest();
 
         req.onreadystatechange = function() {
-            if (req.readyState == 4) {
+            if (req.readyState === 4) {
                 event.emit(true);
             }
         };
