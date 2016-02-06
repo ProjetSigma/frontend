@@ -1,3 +1,14 @@
+<div class="aside__profile" *ngIf="auth_service.user.id">
+    <div *ngIf="auth_service.user.photo" class="Avatar Avatar__Large" style="background-image: url('{{ auth_service.user.photo.file }}')"></div>
+    <div>
+        <div class="h3__title">
+            {{ auth_service.user.firstname }} {{ auth_service.user.lastname }}
+        </div>
+        <div class="h3__subtitle">
+            École polytechnique
+        </div>
+    </div>
+</div>
 <ul class="aside__navlinks">
     <li class="aside__navlink" [routerLink]="['/Main']">
         <i class="fa fa-home"></i>

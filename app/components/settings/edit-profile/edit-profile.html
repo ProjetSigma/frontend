@@ -18,9 +18,20 @@
             <input #controlPhone="ngForm" [(ngModel)]="meEdit.phone" ngControl="phone" type="text">
         </label>
         <div [hidden]="controlPhone.valid" class="alert callout">Ton numéro de téléphone n'est pas bien formaté.</div>
+        <label>Photo de profil :
+            <div class="row">
+                <div class="medium-6 columns">
+                    <img src="{{ meEdit.photo.file }}" alt="Ma photo de profil"/>
+                </div>
+                <div class="medium-6 columns">
+                    <div>Importer une nouvelle photo :</div>
+                    <input (change)="profilePictureChangeListener($event)" type="file">
+                </div>
+            </div>
+        </label>
         <div class="row align-center">
             <button (click)="editMode = false" class="warning button">Retourner à l'affichage du profil</button>
-            <button (click)="editProfile(meEdit)" [disabled]="!editProfileForm.form.valid" class="success button" type="submit">Modifier son profil</button>
+            <button (click)="editProfile(meEdit,profilePicture)" [disabled]="!editProfileForm.form.valid" class="success button" type="submit">Modifier son profil</button>
         </div>
         <div [hidden]="!errorOnEdit" class="alert callout">Erreur lors de la modification du profil.</div>
     </form>

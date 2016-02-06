@@ -1,4 +1,7 @@
 <div class="row">
+    <div style="float:left;" *ngIf="user.photo">
+        <div class="Avatar Avatar__Large" style="background-image: url('{{ user.photo.file }}')"></div>
+    </div>
     <h2>
         {{ user.firstname }}
         {{ user.lastname }}

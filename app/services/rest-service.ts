@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, EventEmitter} from 'angular2/core';
 import {Http, HTTP_PROVIDERS, Headers, Response} from 'angular2/http';
 import {AuthService} from './auth-service';
 
@@ -44,6 +44,25 @@ class RestRequest {
         this._request = this._rest.http.post(this.url, this._data(data), {headers: this.headers}).share();
         this._attach();
         return this._request;
+    }
+
+    public upload(file) {
+        var event = new EventEmitter();
+        var fd = new FormData();
+        fd.append('file', file);
+        var req = new XMLHttpRequest();
+
+        req.onreadystatechange = function() {
+            if (req.readyState === 4) {
+                event.emit(true);
+            }
+        };
+
+        req.open('post', this.url, true);
+        req.setRequestHeader('Authorization', this.headers.get('Authorization'));
+        req.send(fd);
+
+        return event;
     }
 
     public put(data) {

@@ -38,6 +38,12 @@ export class UserService extends RestService {
             .put(data);
     }
 
+    changeUserPhoto(user:User, profilePicture: File) {
+        return this.authRequest(user.id + '/addphoto/')
+            .logError('Erreur lors de l\'upload d\'une photo de profile')
+            .upload(profilePicture);
+    }
+
     editPassword(actualPassword:string, newPassword:string) {
         return this.authRequest('change_password/')
             .put({old_password: actualPassword, password: newPassword});

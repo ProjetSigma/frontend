@@ -1,5 +1,10 @@
 <h2>Liste des utilisateurs</h2>
 <ul>
-    <li *ngFor="#user of users"><a [routerLink]="['../Details', {id: user.id}]">{{ user.firstname }}</a></li>
+    <li *ngFor="#user of users">
+        <div style="display: inline-block;" *ngIf="user.photo">
+            <div class="Avatar Avatar__Small" style="background-image: url('{{ user.photo.file }}')"></div>
+        </div>
+        <a [routerLink]="['../Details', {id: user.id}]">{{ user.firstname }}</a>
+    </li>
 </ul>
 <hr>
