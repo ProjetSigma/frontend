@@ -12,18 +12,20 @@ import {GroupService} from '../../../../services/groups/group-service';
 })
 export class GroupDisplayComponent {
     @Input('group') group: Group;
-    private resp_school: Group = new Group();
+    private resp_group: Group = new Group();
 
     constructor(public group_service:GroupService) {};
 
     ngOnChanges() {
-      if (this.group.resp_school != undefined) {
-          this.getResp_school(String(this.group.resp_school));
+      if (this.group.resp_group !== undefined) {
+          this.getResp_group(String(this.group.resp_group));
       }
     };
 
-    getResp_school(id: string) {
+    getResp_group(id: string) {
         this.group_service.getGroup(id)
-            .subscribe(res => this.resp_school = res.json());
+            .subscribe(res => this.resp_group = res.json());
     }
+
+
 }

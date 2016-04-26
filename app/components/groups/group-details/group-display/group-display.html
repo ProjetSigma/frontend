@@ -5,13 +5,6 @@
   <small *ngIf="!group.private">
     <i class="fa fa-eye"></i>
   </small>
-  <small [ngSwitch]="group.type">
-    <i *ngSwitchWhen="'basic'" class="fa fa-user-plus"></i>
-    <i *ngSwitchWhen="'cursus'" class="fa fa-suitcase"></i>
-    <i *ngSwitchWhen="'association'" class="fa fa-flag"></i>
-    <i *ngSwitchWhen="'school_promotion'" class="fa fa-graduation-cap"></i>
-    <i *ngSwitchWhen="'school'" class="fa fa-institution"></i>
-  </small>
     {{ group.name }}
-    <small *ngIf="resp_school.name"> | {{ resp_school.name }}</small>
+    <small *ngIf="resp_group.name"> | {{ resp_group.name }}</small>
 </h1>
