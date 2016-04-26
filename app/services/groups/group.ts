@@ -11,4 +11,5 @@ export class Group {
     public req_rank_promote:number;
     public req_rank_demote:number;
     public req_rank_modify_group_infos:number;
+    public resp_group:number;
 }

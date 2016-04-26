@@ -24,7 +24,7 @@
 
 <div class="row">
     <div class="small-4 columns callout" *ngFor="#membership of user.memberships">
-        {{ membership.group.name }}
+        <a [routerLink]="['/Groups/Details',{id: membership.group.id}]">{{ membership.group.name }}</a>
     </div>
     <div *ngIf="user.memberships && user.memberships.length === 0">
         {{ user.firstname }} n'est dans aucun groupe
