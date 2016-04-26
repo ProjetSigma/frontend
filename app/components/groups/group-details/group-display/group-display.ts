@@ -4,7 +4,6 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {Group} from '../../../../services/groups/group';
 import {GroupService} from '../../../../services/groups/group-service';
-import {Membership} from '../../../../services/memberships/membership';
 import {MembershipService} from '../../../../services/memberships/membership-service';
 import {User} from '../../../../services/users/user';
 import {UserService} from '../../../../services/users/user-service';
@@ -39,7 +38,7 @@ export class GroupDisplayComponent {
     };
 
     getRespGroup(id: string) {
-        if (id !== "null") {//id can be null for school groups
+        if (id !== 'null') {//id can be null for school groups
             this.group_service.getGroup(id)
                 .subscribe(res => this.resp_group = res.json());
         }
@@ -48,7 +47,7 @@ export class GroupDisplayComponent {
     getMembersId(memberships : number[]) {
             for (var id of memberships) {
                 this.membership_service.getMembership(String(id))
-                    .subscribe(res => this.getMember(res.json().user));                      );
+                    .subscribe(res => this.getMember(res.json().user));                     
             }
     }
 

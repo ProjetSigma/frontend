@@ -13,5 +13,5 @@
     <div style="display: inline-block;" *ngIf="user.photo">
         <div class="Avatar Avatar__Small" style="background-image: url('{{ user.photo.file }}')"></div>
     </div>
-    <a [routerLink]="['../Details', {id: user.id}]">{{ user.firstname }}</a>
+    <a [routerLink]="['/Users/Details', {id: user.id}]">{{ user.firstname }}</a>
 </li>
