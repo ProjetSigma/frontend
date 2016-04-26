@@ -6,7 +6,6 @@ import {Membership} from './membership';
 
 @Component({})
 export class MembershipService extends RestService {
-    public memberships:Membership[];
 
     constructor(public http: Http, public auth: AuthService) {
         super(http, auth);
@@ -15,13 +14,13 @@ export class MembershipService extends RestService {
 
     getMemberships() {
         return this.authRequest()
-            .logError('Erreur sur la récupération des groupes')
+            .logError('Erreur sur la récupération du membre.')
             .get();
     }
 
     getMembership(id: string) {
         return this.authRequest(id + '/')
-            .logError('Erreur sur la récupération du groupe')
+            .logError('Erreur sur la récupération du membre.')
             .get();
     }
 
@@ -29,7 +28,7 @@ export class MembershipService extends RestService {
         var data = this.filter(membership, []);
 
         return this.authRequest(membership.id + '/')
-            .logError('Erreur sur la modification du groupe')
+            .logError('Erreur sur la modification du membre.')
             .put(data);
     }
 }

@@ -1,5 +1,6 @@
 import {Component, Input} from 'angular2/core';
-import {NgFor, NgIf, NgSwitch, NgSwitchWhen, NgSwitchDefault} from 'angular2/common';
+import {NgFor, NgIf, NgSwitchDefault} from 'angular2/common';
+import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {Group} from '../../../../services/groups/group';
 import {GroupService} from '../../../../services/groups/group-service';
@@ -11,17 +12,16 @@ import {UserService} from '../../../../services/users/user-service';
 @Component({
     selector: 'group-display',
     templateUrl: './components/groups/group-details/group-display/group-display.html',
-    directives: [NgFor, NgIf, NgSwitch, NgSwitchWhen, NgSwitchDefault],
+    directives: [NgFor, NgIf, NgSwitchDefault,ROUTER_DIRECTIVES],
     providers: [GroupService,MembershipService,UserService]
 })
 export class GroupDisplayComponent {
     @Input('group') group: Group;
     private resp_group: Group = new Group();
-    private members_id : number[] = [];
     private members : User[] = [];
 
     constructor(
-        public group_service: GroupService,
+        public group_service : GroupService,
         public membership_service : MembershipService,
         public user_service : UserService
     ) { };
@@ -36,7 +36,6 @@ export class GroupDisplayComponent {
         if (this.group.memberships !== undefined) {
             this.getMembersId(this.group.memberships);
         }
-        this.getMembers(this.members_id);
     };
 
     getRespGroup(id: string) {
@@ -47,17 +46,15 @@ export class GroupDisplayComponent {
     }
 
     getMembersId(memberships : number[]) {
-        for (var id of memberships) {
-            this.membership_service.getMembership(String(id))
-                .suscribe(res => this.members_id.push(res.json()));
-        }
+            for (var id of memberships) {
+                this.membership_service.getMembership(String(id))
+                    .subscribe(res => this.getMember(res.json().user));                      );
+            }
     }
 
-    getMembers(members_id : number[]) {
-        for (var id of members_id) {
-            this.user_service.getUser(String(id))
-            .suscribe(res => this.members.push(res.json()));
-        }
+    getMember(member_id : number) {
+            this.user_service.getUser(String(member_id))
+            .subscribe(res => this.members.push(res.json()));
     }
 
 
