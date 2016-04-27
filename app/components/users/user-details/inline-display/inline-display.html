@@ -7,7 +7,7 @@
         <div class="columns">
             <div class="row expanded align-justify">
                 <div class="columns shrink">
-                    <a [routerLink]="['../Details', {id: user.id}]"><strong>&nbsp;{{ user.firstname }}&nbsp;{{ user.lastname }}</strong></a>
+                    <a [routerLink]="['/Users/Details', {id: user.id}]"><strong>&nbsp;{{ user.firstname }}&nbsp;{{ user.lastname }}</strong></a>
                 </div>
                 <div class="columns shrink"><i class="fa fa-university">
                 </i>&nbsp;{{user.clusters[0]}}
