@@ -4,13 +4,14 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {UserService} from '../../../services/users/user-service';
 import {User} from '../../../services/users/user';
+import {InlineUserDisplayComponent} from '../user-details/inline-display/inline-display'
 
 
 @Component({
     selector: 'users-list',
     templateUrl: './components/users/users-list/users-list.html',
     providers: [UserService],
-    directives: [NgFor, ROUTER_DIRECTIVES]
+    directives: [NgFor, ROUTER_DIRECTIVES,InlineUserDisplayComponent]
 })
 export class UsersListComponent {
     public users:User[];

@@ -8,10 +8,11 @@
     {{ group.name }}
     <small *ngIf="resp_group.name"> | {{ resp_group.name }}</small>
 </h1>
-<h3>Membres du groupe</h3>
-<li *ngFor="#user of members">
-    <div style="display: inline-block;" *ngIf="user.photo">
-        <div class="Avatar Avatar__Small" style="background-image: url('{{ user.photo.file }}')"></div>
+<div class="text-center">
+    <h3>Membres du groupe</h3>
+</div>
+<div class="row">
+    <div class="columns">
+        <inline-display *ngFor="#user of members" [user]="user"></inline-display>
     </div>
-    <a [routerLink]="['/Users/Details', {id: user.id}]">{{ user.firstname }}</a>
-</li>
+</div>
