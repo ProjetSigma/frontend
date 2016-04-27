@@ -20,7 +20,7 @@
         <div [hidden]="controlPhone.valid" class="alert callout">Ton numéro de téléphone n'est pas bien formaté.</div>
         <label>Photo de profil :
             <div class="row">
-                <div class="medium-6 columns">
+                <div *ngIf="meEdit.photo" class="medium-6 columns">
                     <img src="{{ meEdit.photo.file }}" alt="Ma photo de profil"/>
                 </div>
                 <div class="medium-6 columns">

@@ -47,7 +47,7 @@ export class GroupDisplayComponent {
     getMembersId(memberships : number[]) {
             for (var id of memberships) {
                 this.membership_service.getMembership(String(id))
-                    .subscribe(res => this.getMember(res.json().user));                     
+                    .subscribe(res => this.getMember(res.json().user));
             }
     }
 
