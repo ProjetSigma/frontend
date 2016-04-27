@@ -1,0 +1,24 @@
+<div class="callout">
+    <div class="expanded row align-middle">
+        <div class="columns shrink">
+            <div class="Avatar Avatar__Small" *ngIf="user.photo" style="background-image: url('{{ user.photo.file }}')"></div>
+            <div class=" Avatar Avatar__Small" *ngIf="!user.photo"></div>
+        </div>
+        <div class="columns">
+            <div class="row expanded align-justify">
+                <div class="columns shrink">
+                    <a [routerLink]="['../Details', {id: user.id}]"><strong>&nbsp;{{ user.firstname }}&nbsp;{{ user.lastname }}</strong></a>
+                </div>
+                <div class="columns shrink"><i class="fa fa-university">
+                </i>&nbsp;{{user.clusters[0]}}
+                </div>
+                <div class="columns shrink"><i class="fa fa-envelope">
+                </i>&nbsp;<a href="mailto:{{user.email}}">{{user.email}}</a>
+                </div>
+                <div class="columns shrink" *ngIf="user.phone">
+                    <i class="fa fa-phone"></i>&nbsp;<a href="tel:{{user.phone}}">{{user.phone | phoneNumberFrench }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

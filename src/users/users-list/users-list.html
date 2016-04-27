@@ -1,5 +1,4 @@
 <h2>Liste des utilisateurs</h2>
-<<<<<<< 40fddd35c9e3db9e7b86377a223e38e9ef6da711:app/components/users/users-list/users-list.html
 <div class="expanded row">
     <div class="small-6 medium-8 columns">
         <inline-display *ngFor="#user of users" [user]="user"></inline-display>
@@ -8,14 +7,3 @@
         Paramètres de recherche.
     </div>
 </div>
-=======
-<ul>
-    <li *ngFor="let user of users">
-        <div style="display: inline-block;" *ngIf="user.photo">
-            <div class="Avatar Avatar__Small" style="background-image: url('{{ user.photo.file }}')"></div>
-        </div>
-        <a [routerLink]="['../Details', {id: user.id}]">{{ user.firstname }}</a>
-    </li>
-</ul>
-<hr>
->>>>>>> Upgrades (#20):src/users/users-list/users-list.html
