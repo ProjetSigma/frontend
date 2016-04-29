@@ -9,8 +9,8 @@
                 <div class="columns shrink">
                     <a [routerLink]="['/Users/Details', {id: user.id}]"><strong>&nbsp;{{ user.firstname }}&nbsp;{{ user.lastname }}</strong></a>
                 </div>
-                <div class="columns shrink"><i class="fa fa-university">
-                </i>&nbsp;{{user.clusters[0]}}
+                <div *ngFor="let cluster of user.clusters" class="columns shrink"><i class="fa fa-university">
+                </i>&nbsp;{{cluster}}
                 </div>
                 <div class="columns shrink"><i class="fa fa-envelope">
                 </i>&nbsp;<a href="mailto:{{user.email}}">{{user.email}}</a>
