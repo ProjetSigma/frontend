@@ -40,7 +40,7 @@ function processComponentScss() {
 function processExternalScss() {
   return gulp.src([
     //   join(APP_SRC, 'assets', '**', '*.scss')
-      join(APP_SRC, 'assets', 'themes', '**', '*.scss')
+      join(APP_SRC, 'shared', 'assets', 'themes', '**', '*.scss')
     ])
     .pipe(plugins.sass(SASS_OPTIONS))
     .pipe(isProd ? plugins.cached('process-external-css') : plugins.util.noop())

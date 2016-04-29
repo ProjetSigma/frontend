@@ -46,7 +46,7 @@
 @include motion-ui-animations;
 
 @import 'resets/html';
-@import '../app/app';
-@import '../app/aside';
-@import '../landing-page/landing-page';
-@import '../landing-page/login-form/login-form';
+@import '../../app/app';
+@import '../../app/aside';
+@import '../../landing-page/landing-page';
+@import '../../landing-page/login-form/login-form';
