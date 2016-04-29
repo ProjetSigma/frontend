@@ -23,7 +23,7 @@
 </div>
 
 <div class="row">
-    <div class="small-4 columns callout" *ngFor="#membership of user.memberships">
+    <div class="small-4 columns callout" *ngFor="let membership of user.memberships">
         <a [routerLink]="['/Groups/Details',{id: membership.group.id}]">{{ membership.group.name }}</a>
     </div>
     <div *ngIf="user.memberships && user.memberships.length === 0">
