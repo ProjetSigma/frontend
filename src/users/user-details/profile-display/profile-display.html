@@ -1,0 +1,32 @@
+<div class="row">
+    <div style="float:left;" *ngIf="user.photo">
+        <div class="Avatar Avatar__Large" style="background-image: url('{{ user.photo.file }}')"></div>
+    </div>
+    <h2>
+        {{ user.firstname }}
+        {{ user.lastname }}
+    </h2>
+</div>
+<div class="row">
+    <div class="medium-6 columns">
+        <dl>
+            <dt>Email</dt>
+            <dd>{{ user.email }}</dd>
+        </dl>
+    </div>
+    <div class="medium-6 columns">
+        <dl>
+            <dt>Téléphone</dt>
+            <dd>{{ user.phone | phoneNumberFrench }}</dd>
+        </dl>
+    </div>
+</div>
+
+<div class="row">
+    <div class="small-4 columns callout" *ngFor="let membership of user.memberships">
+        <a [routerLink]="['/Groups/Details',{id: membership.group.id}]">{{ membership.group.name }}</a>
+    </div>
+    <div *ngIf="user.memberships && user.memberships.length === 0">
+        {{ user.firstname }} n'est dans aucun groupe
+    </div>
+</div>

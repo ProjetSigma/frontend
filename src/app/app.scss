@@ -1,0 +1,49 @@
+$app-background-color : $color-background;
+
+.app {
+
+}
+
+a {
+    cursor: pointer;
+    color: $color-font;
+    text-decoration: none;
+
+    &:hover {
+        color:$color-primary
+    }
+}
+
+.Avatar {
+    border-radius: 50%;
+    background-size: cover;
+
+    &__Large {
+        height: 60px;
+        width: 60px;
+        min-width: 60px;
+        margin: 5px;
+    }
+
+    &__Medium {
+        height: 50px;
+        width: 50px;
+    }
+
+    &__Small {
+        height: 40px;
+        width: 40px;
+        min-width: 40px;
+    }
+}
+
+.h3 {
+    &__title {
+        font-size: 2em;
+        line-height: 1em;
+    }
+
+    &__subtitle {
+        font-family: Georgia;
+    }
+}

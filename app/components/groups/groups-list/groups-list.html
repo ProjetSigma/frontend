@@ -1,7 +1,0 @@
-<h2>Liste des groupes</h2>
-<ul>
-    <li *ngFor="#group of groups">
-      <a [routerLink]="['../Details', {id: group.id}]">{{ group.name }}</a>
-    </li>
-</ul>
-<hr>
