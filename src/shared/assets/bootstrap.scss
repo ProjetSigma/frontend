@@ -3,6 +3,9 @@
 @import 'foundation-settings';
 // @import 'settings';
 @import 'foundation';
+// @include foundation-grid;
+@include foundation-flex-classes;
+@include foundation-flex-grid;
 @import 'motion-ui';
 @import 'font-awesome';
 @import 'animate';

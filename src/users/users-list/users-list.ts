@@ -4,16 +4,16 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {UserService} from '../../shared/services/users/user-service';
 import {User} from '../../shared/services/users/user';
-import {InlineUserDisplayComponent} from '../user-details/inline-display/inline-display'
+import {InlineUserDisplayComponent} from '../user-details/inline-display/inline-display';
 import {MembershipService} from '../../shared/services/memberships/membership-service';
 import {GroupService} from '../../shared/services/groups/group-service';
 
 
 @Component({
     selector: 'users-list',
-    templateUrl: './components/users/users-list/users-list.html',
+    templateUrl: './users/users-list/users-list.html',
     providers: [UserService, GroupService, MembershipService],
-    directives: [NgFor, ROUTER_DIRECTIVES, InlineUserDisplayComponent]
+    directives: [NgFor,ROUTER_DIRECTIVES, InlineUserDisplayComponent]
 })
 export class UsersListComponent {
     public users: User[] = [];

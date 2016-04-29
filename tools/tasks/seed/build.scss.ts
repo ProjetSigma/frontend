@@ -4,7 +4,7 @@ import * as merge from 'merge-stream';
 import * as autoprefixer from 'autoprefixer';
 import * as cssnano from 'cssnano';
 import {join} from 'path';
-import {APP_SRC, CSS_PROD_BUNDLE, CSS_DEST, APP_DEST, TMP_DIR, BROWSER_LIST, ENV, SASS_OPTIONS} from '../../config';
+import {APP_SRC, CSS_PROD_BUNDLE, CSS_DEST, BROWSER_LIST, ENV, SASS_OPTIONS} from '../../config';
 const plugins = <any>gulpLoadPlugins();
 
 const processors = [
@@ -25,17 +25,6 @@ if (isProd) {
 
 // export = () => merge(processComponentScss(), processExternalScss());
 export = () => merge(processExternalScss());
-
-function processComponentScss() {
-  return gulp.src([
-      join(APP_SRC, '**', '*.scss'),
-      '!' + join(APP_SRC, 'assets', '**', '*.scss')
-    ])
-    .pipe(plugins.sass(SASS_OPTIONS))
-    .pipe(isProd ? plugins.cached('process-component-css') : plugins.util.noop())
-    .pipe(plugins.postcss(processors))
-    .pipe(gulp.dest(isProd ? TMP_DIR: APP_DEST));
-}
 
 function processExternalScss() {
   return gulp.src([

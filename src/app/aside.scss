@@ -1,58 +1,45 @@
-$aside-width: rem-calc(250);
-
+$aside-width:rem-calc(250);
 .aside {
-    width: $aside-width;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-
-    background-color: $color-aside;
-    color: $color-font-aside;
-
+    width:$aside-width;
+    height:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    background-color:$color-aside;
+    color:$color-font-aside;
     &__profile {
-        display: flex;
-        align-items: center;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        margin-left: 5px;
-        margin-right: 5px;
+        display:flex;
+        align-items:center;
+        margin:10px 5px;
     }
-
     &__navlinks {
-        margin: 0;
-
+        margin:0;
         .fa {
-            width: 1em;
-            margin-right: 0.5em;
+            width:1em;
+            margin-right:.5em;
         }
     }
-
     &__navlink {
-        display: block;
-        cursor: pointer;
-        text-transform: uppercase;
-        padding: 0.5em 1em;
-
+        display:block;
+        cursor:pointer;
+        text-transform:uppercase;
+        padding:.5em 1em;
         a {
-            color: $color-font-aside;
+            color:$color-font-aside;
         }
-
         &:first-child {
-            border-top: 1px solid lighten($color-aside, 10%);
+            border-top:1px solid lighten($color-aside, 10%);
         }
-        border-bottom: 1px solid lighten($color-aside, 10%);
-
-
+        border-bottom:1px solid lighten($color-aside, 10%);
         &:hover {
-            background-color: lighten($color-aside, 20%);
+            background-color:lighten($color-aside, 20%);
         }
-        &.active, &.router-link-active {
-            background-color: lighten($color-aside, 10%);
+        &.active,
+        &.router-link-active {
+            background-color:lighten($color-aside, 10%);
         }
     }
 }
-
 .aside--main-container {
-    margin-left: $aside-width;
+    margin-left:$aside-width;
 }
