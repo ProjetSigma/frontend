@@ -4,33 +4,32 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {User} from '../../../shared/services/users/user';
 import {PhoneNumberFrenchPipe} from '../profile-display/phone-number-french';
-import {ClusterService} from '../../../shared/services/clusters/cluster-service';
 
 @Component({
     selector: 'inline-display',
     templateUrl: './users/user-details/inline-display/inline-display.html',
     pipes: [PhoneNumberFrenchPipe],
-    providers: [ClusterService],
+    // providers: [ClusterService],
     directives: [NgIf, ROUTER_DIRECTIVES]
 })
 export class InlineUserDisplayComponent {
     @Input('user') user: User;
 
-    constructor(public cluster_service:ClusterService) {}
+    constructor(/*public cluster_service:ClusterService*/) {}
 
     ngOnChanges() {
-        if (this.user.clusters !== undefined) {
-             for (var i=0;i<this.user.clusters.length;i++) {
-                 this.cluster_service.getCluster(String(this.user.clusters[i]))
-                 .subscribe(res => {
-                     var cluster = res.json();
-                     var index = this.user.clusters.findIndex(function (val) {
-                        return (val === cluster.id);
-                     });
-                     this.user.clusters[index] = cluster.name;
-                     console.log(this.user.clusters);
-                 });
-             }
-         }
+        // if (this.user.clusters !== undefined) {
+        //      for (var i=0;i<this.user.clusters.length;i++) {
+        //          this.cluster_service.getCluster(String(this.user.clusters[i]))
+        //          .subscribe(res => {
+        //              var cluster = res.json();
+        //              var index = this.user.clusters.findIndex(function (val) {
+        //                 return (val === cluster.id);
+        //              });
+        //              this.user.clusters[index] = cluster.name;
+        //              console.log(this.user.clusters);
+        //          });
+        //      }
+        //  }
     }
 }
