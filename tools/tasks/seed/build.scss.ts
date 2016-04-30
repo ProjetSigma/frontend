@@ -4,7 +4,7 @@ import * as merge from 'merge-stream';
 import * as autoprefixer from 'autoprefixer';
 import * as cssnano from 'cssnano';
 import {join} from 'path';
-import {APP_SRC, CSS_PROD_BUNDLE, CSS_DEST, BROWSER_LIST, ENV, SASS_OPTIONS} from '../../config';
+import {APP_SRC, CSS_PROD_BUNDLE, CSS_DEST, APP_DEST, TMP_DIR, BROWSER_LIST, ENV, SASS_OPTIONS} from '../../config';
 const plugins = <any>gulpLoadPlugins();
 
 const processors = [
