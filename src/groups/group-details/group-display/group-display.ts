@@ -7,12 +7,12 @@ import {GroupService} from '../../../shared/services/groups/group-service';
 import {MembershipService} from '../../../shared/services/memberships/membership-service';
 import {User} from '../../../shared/services/users/user';
 import {UserService} from '../../../shared/services/users/user-service';
-import {InlineUserDisplayComponent} from '../../../users/user-details/inline-display/inline-display';
+import {UserInlineDisplayComponent} from '../../../users/user-details/user-inline-display/user-inline-display';
 
 @Component({
     selector: 'group-display',
     templateUrl: './groups/group-details/group-display/group-display.html',
-    directives: [NgFor, NgIf, NgSwitchDefault,ROUTER_DIRECTIVES,InlineUserDisplayComponent],
+    directives: [NgFor, NgIf, NgSwitchDefault,ROUTER_DIRECTIVES,UserInlineDisplayComponent],
     providers: [GroupService,MembershipService,UserService]
 })
 export class GroupDisplayComponent {

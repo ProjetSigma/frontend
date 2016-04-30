@@ -7,13 +7,13 @@ import {PhoneNumberFrenchPipe} from '../profile-display/phone-number-french';
 import {ClusterService} from '../../../shared/services/clusters/cluster-service';
 
 @Component({
-    selector: 'inline-display',
-    templateUrl: './users/user-details/inline-display/inline-display.html',
+    selector: 'user-inline-display',
+    templateUrl: './users/user-details/user-inline-display/user-inline-display.html',
     pipes: [PhoneNumberFrenchPipe],
     providers: [ClusterService],
     directives: [NgIf, ROUTER_DIRECTIVES]
 })
-export class InlineUserDisplayComponent {
+export class UserInlineDisplayComponent {
     @Input('user') user: User;
 
     constructor(public cluster_service:ClusterService) {}

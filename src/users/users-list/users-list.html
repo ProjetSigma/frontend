@@ -1,7 +1,7 @@
 <h2>Liste des utilisateurs</h2>
 <div class="expanded row">
     <div class="small-6 medium-8 columns">
-        <inline-display *ngFor="let user of users" [user]="user"></inline-display>
+        <user-inline-display *ngFor="let user of users" [user]="user"></user-inline-display>
     </div>
     <div class="small-6 medium-4 columns callout">
         Paramètres de recherche.

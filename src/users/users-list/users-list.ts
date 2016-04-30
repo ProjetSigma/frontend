@@ -4,7 +4,7 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {UserService} from '../../shared/services/users/user-service';
 import {User} from '../../shared/services/users/user';
-import {InlineUserDisplayComponent} from '../user-details/inline-display/inline-display';
+import {UserInlineDisplayComponent} from '../user-details/user-inline-display/user-inline-display';
 import {MembershipService} from '../../shared/services/memberships/membership-service';
 import {GroupService} from '../../shared/services/groups/group-service';
 import {ClusterService} from '../../shared/services/clusters/cluster-service';
@@ -14,7 +14,7 @@ import {ClusterService} from '../../shared/services/clusters/cluster-service';
     selector: 'users-list',
     templateUrl: './users/users-list/users-list.html',
     providers: [UserService, GroupService, MembershipService, ClusterService],
-    directives: [NgFor, ROUTER_DIRECTIVES, InlineUserDisplayComponent]
+    directives: [NgFor, ROUTER_DIRECTIVES, UserInlineDisplayComponent]
 })
 export class UsersListComponent {
     public users: User[] = [];
