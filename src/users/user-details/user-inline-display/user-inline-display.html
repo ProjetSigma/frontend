@@ -7,16 +7,25 @@
         <div class="columns">
             <div class="row expanded align-justify">
                 <div class="columns shrink">
-                    <a [routerLink]="['/Users/Details', {id: user.id}]"><strong>&nbsp;{{ user.firstname }}&nbsp;{{ user.lastname }}</strong></a>
+                    <a [routerLink]="['/Users/Details', {id: user.id}]">
+                        <strong>
+                            &nbsp;{{ user.firstname }}&nbsp;{{ user.lastname }}
+                        </strong>
+                    </a>
                 </div>
-                <div *ngFor="let cluster of user.clusters" class="columns shrink"><i class="fa fa-university">
-                </i>&nbsp;{{cluster}}
+                <div *ngFor="let cluster of user.clusters" class="columns shrink">
+                    <div *ngIf="cluster.name">
+                        <i class="fa fa-university"></i> &nbsp;{{cluster.name}}
+                    </div>
                 </div>
-                <div class="columns shrink"><i class="fa fa-envelope">
-                </i>&nbsp;<a href="mailto:{{user.email}}">{{user.email}}</a>
+                <div class="columns shrink"><i class="fa fa-envelope"></i> &nbsp;
+                    <a href="mailto:{{user.email}}">{{user.email}}</a>
                 </div>
                 <div class="columns shrink" *ngIf="user.phone">
-                    <i class="fa fa-phone"></i>&nbsp;<a href="tel:{{user.phone}}">{{user.phone | phoneNumberFrench }}</a>
+                    <i class="fa fa-phone"></i> &nbsp;
+                    <a href="tel:{{user.phone}}">
+                        {{user.phone | phoneNumberFrench }}
+                    </a>
                 </div>
             </div>
         </div>

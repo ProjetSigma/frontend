@@ -27,8 +27,7 @@ export class UserInlineDisplayComponent {
                      var index = this.user.clusters.findIndex(function (val) {
                         return (val === cluster.id);
                      });
-                     this.user.clusters[index] = cluster.name;
-                     console.log(this.user.clusters);
+                     this.user.clusters[index] = cluster;
                  });
              }
          }
