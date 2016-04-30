@@ -4,7 +4,7 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {GroupService} from '../../shared/services/groups/group-service';
 import {Group} from '../../shared/services/groups/group';
-import {GroupInlineDisplayComponent} from '../group-details/group-inline-display/group-inline-display'
+import {GroupInlineDisplayComponent} from '../group-details/group-inline-display/group-inline-display';
 
 
 @Component({

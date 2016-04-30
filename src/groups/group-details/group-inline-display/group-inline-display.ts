@@ -28,7 +28,7 @@ export class GroupInlineDisplayComponent {
                 .subscribe(res => {
                     var resp_group = res.json();
                     this.group_service.getGroup(String(resp_group.id))
-                    .subscribe(res => this.group.resp_group = res.json()););
+                    .subscribe(res => this.group.resp_group = res.json());
                 });
         }
     }

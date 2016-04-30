@@ -6,9 +6,9 @@ import {User} from './users/user';
     providers: [Http, HTTP_PROVIDERS]
 })
 export class AuthService {
+    public user:User = new User();
     private isConnected:boolean;
     private accessToken:string;
-    public user:User = new User();
     private clientId:string = 'bJeSCIWpvjbYCuXZNxMzVz0wglX8mHR2ZTKHxaDv';
     private clientSecret:string =
     'XjbfZS6Apq05PDTSL4CoFHGo7NsKVAa1XMVrVElk5N1t0dOSyqxrHPff6okAi6X6Du9XxrK4dl0mLQ0YlscJsjnL5IKhQagQdGv2SgumhYRFaMi6LtHNPXicmMr8oLdy';
