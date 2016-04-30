@@ -33,7 +33,7 @@ export class UsersListComponent {
             var me = res.json();
             this.getClustersUsers(me);
             this.getAllGroupMembers(me);
-        })
+        });
     }
 
     getClustersUsers(user: User) {
@@ -49,7 +49,7 @@ export class UsersListComponent {
                         this.users.push(user);
                     };
                 };
-            })
+            });
         };
     }
 

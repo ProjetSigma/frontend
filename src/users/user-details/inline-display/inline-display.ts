@@ -29,7 +29,7 @@ export class InlineUserDisplayComponent {
                      });
                      this.user.clusters[index] = cluster.name;
                      console.log(this.user.clusters);
-                 })
+                 });
              }
          }
     }
