@@ -6,8 +6,8 @@ import {User} from './users/user';
     providers: [Http, HTTP_PROVIDERS]
 })
 export class AuthService {
-    public isConnected:boolean;
-    public accessToken:string;
+    private isConnected:boolean;
+    private accessToken:string;
     public user:User = new User();
     private clientId:string = 'bJeSCIWpvjbYCuXZNxMzVz0wglX8mHR2ZTKHxaDv';
     private clientSecret:string =
@@ -51,6 +51,7 @@ export class AuthService {
             (res:Response) => {
                 this.accessToken = res.json().access_token;
                 localStorage.setItem('accessToken', this.accessToken);
+                this.isConnected = true;
                 this.loadUser();
             },
             err => console.log('Erreur de mot de passe')
@@ -61,11 +62,12 @@ export class AuthService {
 
     logout() {
         this.accessToken = undefined;
+        this.isConnected = false;
         localStorage.setItem('accessToken', '');
     }
 
     isAuthenticated() {
-        return this.accessToken !== undefined;
+        return this.isConnected;
     }
 
     appendAuth(header:Headers) {
