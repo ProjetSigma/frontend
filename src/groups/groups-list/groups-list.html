@@ -1,7 +1,10 @@
 <h2>Liste des groupes</h2>
-<ul>
-    <li *ngFor="let group of groups">
-      <a [routerLink]="['../Details', {id: group.id}]">{{ group.name }}</a>
-    </li>
-</ul>
+<div class="expanded row">
+    <div class="small-6 medium-8 columns">
+        <group-inline-display *ngFor="let group of groups" [group]="group"></group-inline-display>
+    </div>
+    <div class="small-6 medium-4 columns callout">
+        Paramètres de recherche.
+    </div>
+</div>
 <hr>

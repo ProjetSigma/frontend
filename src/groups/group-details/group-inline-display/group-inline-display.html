@@ -1,0 +1,18 @@
+<div class="callout">
+    <div class="row expanded align-justify">
+        <div class="columns shrink">
+            <a [routerLink]="['/Groups/Details', {id: group.id}]"><strong>&nbsp;{{ group.name }}</strong></a>
+        </div>
+        <div *ngIf="group.memberships" class="columns shrink">
+            <i class="fa fa-users"></i>
+            &nbsp;{{group.memberships.length}}
+        </div>
+        <div *ngIf="group.resp_group && group.resp_group.name" class="columns shrink">
+            <i class="fa fa-university"></i>
+            &nbsp;
+            <a [routerLink]="['/Groups/Details',{id: group.resp_group.id}]">
+                {{group.resp_group.name}}
+            </a>
+        </div>
+    </div>
+</div>

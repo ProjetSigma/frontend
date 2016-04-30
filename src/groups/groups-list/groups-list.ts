@@ -4,13 +4,14 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {GroupService} from '../../shared/services/groups/group-service';
 import {Group} from '../../shared/services/groups/group';
+import {GroupInlineDisplayComponent} from '../group-details/group-inline-display/group-inline-display'
 
 
 @Component({
     selector: 'groups-list',
     templateUrl: './groups/groups-list/groups-list.html',
     providers: [GroupService],
-    directives: [NgFor, ROUTER_DIRECTIVES]
+    directives: [NgFor,ROUTER_DIRECTIVES,GroupInlineDisplayComponent]
 })
 export class GroupsListComponent {
     public groups:Group[];

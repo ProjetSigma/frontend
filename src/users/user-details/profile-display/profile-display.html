@@ -23,10 +23,10 @@
 </div>
 
 <div class="row">
-    <div class="small-4 columns callout" *ngFor="let membership of user.memberships">
-        <a [routerLink]="['/Groups/Details',{id: membership.group.id}]">{{ membership.group.name }}</a>
-    </div>
-    <div *ngIf="user.memberships && user.memberships.length === 0">
-        {{ user.firstname }} n'est dans aucun groupe
+    <div class="small-12 columns">
+        <group-inline-display *ngFor="let membership of user.memberships" [group]="membership.group"></group-inline-display>
+        <div *ngIf="user.memberships && user.memberships.length === 0">
+            {{ user.firstname }} n'est dans aucun groupe
+        </div>
     </div>
 </div>
