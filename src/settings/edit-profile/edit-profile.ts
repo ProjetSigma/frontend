@@ -6,7 +6,7 @@ import {ProfileDisplayComponent} from '../../users/user-details/profile-display/
 import {UserService} from '../../shared/services/users/user-service';
 import {EditPasswordComponent} from '../edit-password/edit-password';
 import {AuthService} from '../../shared/services/auth-service';
-import * as _ from 'lodash/lodash';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'edit-profile',
