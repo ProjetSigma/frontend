@@ -18,7 +18,7 @@ export class ProjectConfig extends SeedConfig {
         'node_modules/motion-ui/src',
         'node_modules/font-awesome/scss'
     ];
-    this.BOOTSTRAP_MODULE = this.ENABLE_HOT_LOADING ? 'hot_loader_main' : 'main';
+    this.BOOTSTRAP_MODULE = this.ENABLE_HOT_LOADING ? 'hot_loader_main' : 'bootstrap';
     this.ASSETS_SRC = `${this.APP_SRC}/shared/assets/`;
 
     let additional_deps: InjectableDependency[] = [
