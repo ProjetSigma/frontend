@@ -35,6 +35,7 @@ export class UsersListComponent {
         this.user_service.getMe().subscribe(res => {
             var me = res.json();
             Observable.fromPromise(this.api.Cluster.find(1)).subscribe(res => console.log(res), () => console.error('Error'));
+            // this.api.Cluster.find(1).subscribe(res => console.log(res), () => console.error('Error'));
             this.getClustersUsers(me);
             this.getAllGroupMembers(me);
         });
@@ -56,10 +57,9 @@ export class UsersListComponent {
         //     });
         // };
         // for (var c of user.clusters) {
-            Observable.fromPromise(this.api.Cluster.find(1)).subscribe(res => {
-                console.log('coucou');
-                console.log(res);
-            }, () => console.log('Error'));
+            this.api.Cluster.find(1).then(function(r) {
+                console.error(r);
+            });
         // }
     }
 

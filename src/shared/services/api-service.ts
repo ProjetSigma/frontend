@@ -22,22 +22,22 @@ export class APIService {
         this.auth_ = auth;
         // Observable API for JSData.Promise
         // TODO: make it work...
-        Object.defineProperty(
-            JSDataUtils.Promise.prototype,
-            'subscribe',
-            {
-                value: function (onNext, onError, onComplete) {
-                    return this.then(function (result) {
-                        setTimeout(function () {
-                            onNext(result)
-                        }, 0);
-                        setTimeout(function () {
-                            onComplete()
-                        }, 0);
-                    }, onError);
-                }
-            }
-        );
+        // Object.defineProperty(
+        //     JSDataUtils.Promise.prototype,
+        //     'subscribe',
+        //     {
+        //         value: function (onNext, onError, onComplete) {
+        //             return this.then(function (result) {
+        //                 setTimeout(function () {
+        //                     onNext(result)
+        //                 }, 0);
+        //                 setTimeout(function () {
+        //                     onComplete()
+        //                 }, 0);
+        //             }, onError);
+        //         }
+        //     }
+        // );
         Object.defineProperty(
             JSDataUtils.Promise.prototype,
             'toObservable',
@@ -60,7 +60,8 @@ export class APIService {
 
         // Register all Resources
         this.Cluster = this.DS.defineMapper('cluster', {
-            schema: clusterSchema
+            schema: clusterSchema,
+            applySchema: false // for now: JSData Schema API not stable
         });
         console.log(this.Cluster);
     }
