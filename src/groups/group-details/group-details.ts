@@ -1,25 +1,23 @@
 import {Component} from 'angular2/core';
 import {RouteParams} from 'angular2/router';
 
-import {GroupService} from '../../shared/services/groups/group-service';
-import {Group} from '../../shared/services/groups/group';
+import {APIService} from '../../shared/services/api-service';
 import {GroupDisplayComponent} from './group-display/group-display';
 
 @Component({
     selector: 'group-details',
     templateUrl: './groups/group-details/group-details.html',
-    providers: [GroupService],
+    providers: [APIService],
     directives: [GroupDisplayComponent]
 })
 export class GroupDetailsComponent {
-    public group:Group = new Group();
+    public group;
 
-    constructor(public group_service:GroupService, params: RouteParams) {
+    constructor(public api: APIService, params: RouteParams) {
         this.getGroup(params.get('id'));
     };
 
-    getGroup(id: string) {
-        this.group_service.getGroup(id)
-            .subscribe(res => this.group = res.json());
+    getGroup(id) {
+        this.api.Group.find(id).then(res => this.group = res);
     }
 }

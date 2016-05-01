@@ -1,9 +1,10 @@
 import {Component} from 'angular2/core';
 import {NgForm} from 'angular2/common';
 
-import {User} from '../../shared/services/users/user';
+import {Record} from 'js-data';
+
+import {APIService} from '../../shared/services/api-service';
 import {ProfileDisplayComponent} from '../../users/user-details/profile-display/profile-display';
-import {UserService} from '../../shared/services/users/user-service';
 import {EditPasswordComponent} from '../edit-password/edit-password';
 import {AuthService} from '../../shared/services/auth-service';
 import * as _ from 'lodash';
@@ -11,27 +12,31 @@ import * as _ from 'lodash';
 @Component({
     selector: 'edit-profile',
     templateUrl: './settings/edit-profile/edit-profile.html',
-    providers: [UserService],
-    directives: [ProfileDisplayComponent,EditPasswordComponent,NgForm]
+    providers: [APIService],
+    directives: [ProfileDisplayComponent, EditPasswordComponent, NgForm]
 })
 export class EditProfileComponent {
-    private me:User;
-    private meEdit:User;
+    private me;
+    private meEdit;
     private editMode:boolean;
     private errorOnEdit:boolean = false;
     private profilePicture:File;
 
-    constructor(public user_service:UserService, public auth_service:AuthService) {
+    constructor(public api: APIService, public auth_service: AuthService) {
         this.me = auth_service.user;
         this.meEdit = _.clone(auth_service.user);
         this.editMode = false;
     }
 
-    editProfile(user:User, profilePicture:File) {
-        this.user_service.editUser(user).subscribe(
+    editProfile(user: {id: number, any}, profilePicture:File) {
+        this.api.User.update(user.id, user).then(
             () => {
+                let photo_url = 'http://127.0.0.1:8000/user/' + user.id + '/addphoto/';
                 if (profilePicture) {
-                    this.user_service.changeUserPhoto(user, profilePicture).subscribe(
+                    this.api.DS.getAdapter('http').POST(
+                        photo_url,
+                        {file: profilePicture} // TODO: make it works...
+                    ).then(
                         () => {
                             console.log('Upload successfull');
                             this.me = this.meEdit;

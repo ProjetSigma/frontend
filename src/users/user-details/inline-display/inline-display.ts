@@ -1,35 +1,34 @@
 import {Component, Input} from 'angular2/core';
 import {NgIf} from 'angular2/common';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
+import {Record} from 'js-data';
 
-import {User} from '../../../shared/services/users/user';
 import {PhoneNumberFrenchPipe} from '../profile-display/phone-number-french';
+import {APIService} from '../../../shared/services/api-service';
 
 @Component({
     selector: 'inline-display',
     templateUrl: './users/user-details/inline-display/inline-display.html',
     pipes: [PhoneNumberFrenchPipe],
-    // providers: [ClusterService],
+    providers: [APIService, Record],
     directives: [NgIf, ROUTER_DIRECTIVES]
 })
 export class InlineUserDisplayComponent {
-    @Input('user') user: User;
+    @Input('user') user;
 
-    constructor(/*public cluster_service:ClusterService*/) {}
+    constructor(public api: APIService) {}
 
     ngOnChanges() {
-        // if (this.user.clusters !== undefined) {
-        //      for (var i=0;i<this.user.clusters.length;i++) {
-        //          this.cluster_service.getCluster(String(this.user.clusters[i]))
-        //          .subscribe(res => {
-        //              var cluster = res.json();
-        //              var index = this.user.clusters.findIndex(function (val) {
-        //                 return (val === cluster.id);
-        //              });
-        //              this.user.clusters[index] = cluster.name;
-        //              console.log(this.user.clusters);
-        //          });
-        //      }
-        //  }
+        if (this.user.clusters !== undefined) {
+            for (var i = 0; i < this.user.clusters.length; i++) {
+                this.api.Cluster.find(this.user.clusters[i]).then(res => {
+                    var cluster = res;
+                    var index = this.user.clusters.findIndex(function (val) {
+                        return (val === cluster.id);
+                    });
+                    this.user.clusters[index] = cluster.name;
+                });
+            }
+        }
     }
 }

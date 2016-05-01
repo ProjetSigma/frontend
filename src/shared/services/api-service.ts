@@ -18,6 +18,9 @@ export class APIService {
 
     // Resources
     public Cluster: Mapper;
+    public Group: Mapper;
+    public User: Mapper;
+    public Membership: Mapper;
 
     constructor(public auth: AuthService) {
         this.auth_ = auth;
@@ -37,6 +40,18 @@ export class APIService {
             schema: schemas.cluster,
             applySchema: false // for now: JSData Schema API not stable
         });
-        console.log(this.Cluster);
+        this.Group = this.DS.defineMapper('group', {
+            schema: schemas.group,
+            applySchema: false // for now: JSData Schema API not stable
+        });
+        this.User = this.DS.defineMapper('user', {
+            schema: schemas.user,
+            applySchema: false // for now: JSData Schema API not stable
+        });
+        this.Membership = this.DS.defineMapper('membership', {
+            endpoint: 'group-member',
+            schema: schemas.membership,
+            applySchema: false // for now: JSData Schema API not stable
+        });
     }
 }

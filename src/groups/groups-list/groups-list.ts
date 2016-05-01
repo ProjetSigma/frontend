@@ -2,25 +2,24 @@ import {Component} from 'angular2/core';
 import {NgFor} from 'angular2/common';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
 
-import {GroupService} from '../../shared/services/groups/group-service';
-import {Group} from '../../shared/services/groups/group';
+import {APIService} from '../../shared/services/api-service';
 
 
 @Component({
     selector: 'groups-list',
     templateUrl: './groups/groups-list/groups-list.html',
-    providers: [GroupService],
+    providers: [APIService],
     directives: [NgFor, ROUTER_DIRECTIVES]
 })
 export class GroupsListComponent {
-    public groups:Group[];
+    public groups;
 
-    constructor(public user_service:GroupService) {
+    constructor(public api: APIService) {
         this.getGroups();
     };
 
     getGroups() {
-        this.user_service.getGroups()
-            .subscribe(res => this.groups = res.json());
+        this.api.Group.findAll({})
+            .then(res => this.groups = res);
     }
 }
