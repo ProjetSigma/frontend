@@ -2,6 +2,7 @@ import {Component, Input} from 'angular2/core';
 import {NgFor, NgIf, NgSwitchDefault} from 'angular2/common';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
 
+import {Record} from 'js-data';
 import {APIService} from '../../../shared/services/api-service';
 import {InlineUserDisplayComponent} from '../../../users/user-details/inline-display/inline-display';
 
@@ -13,7 +14,7 @@ import {InlineUserDisplayComponent} from '../../../users/user-details/inline-dis
 })
 export class GroupDisplayComponent {
     @Input('group') group;
-    private resp_group;
+    private resp_group = new Record();
     private members = [];
 
     constructor(public api: APIService) { };
@@ -22,13 +23,12 @@ export class GroupDisplayComponent {
     //that is why we have to update the view with new data
     //once the answer is received alog with the group to display.
     ngOnChanges() {
-        console.log(this.group);
-        // if (this.group && this.group.resp_group !== undefined) {
-        //     this.getRespGroup(String(this.group.resp_group));
-        // }
-        // if (this.group && this.group.memberships !== undefined) {
-        //     this.getMembersId(this.group.memberships);
-        // }
+        if (this.group && this.group.resp_group !== undefined) {
+             this.getRespGroup(String(this.group.resp_group));
+        }
+        if (this.group && this.group.memberships !== undefined) {
+            this.getMembersId(this.group.memberships);
+        }
     }
 
     getRespGroup(id: string) {

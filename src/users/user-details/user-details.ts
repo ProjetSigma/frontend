@@ -2,6 +2,7 @@ import {Component} from 'angular2/core';
 import {NgFor} from 'angular2/common';
 import {RouteParams} from 'angular2/router';
 
+import {Record} from 'js-data';
 import {APIService} from '../../shared/services/api-service';
 import {ProfileDisplayComponent} from './profile-display/profile-display';
 
@@ -12,7 +13,7 @@ import {ProfileDisplayComponent} from './profile-display/profile-display';
     directives: [NgFor, ProfileDisplayComponent]
 })
 export class UserDetailsComponent {
-    public user;
+    public user = new Record();
 
     constructor(public api: APIService, params: RouteParams) {
         this.getUser(params.get('id'));

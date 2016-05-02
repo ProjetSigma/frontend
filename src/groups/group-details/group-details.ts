@@ -1,6 +1,7 @@
 import {Component} from 'angular2/core';
 import {RouteParams} from 'angular2/router';
 
+import {Record} from 'js-data';
 import {APIService} from '../../shared/services/api-service';
 import {GroupDisplayComponent} from './group-display/group-display';
 
@@ -11,7 +12,7 @@ import {GroupDisplayComponent} from './group-display/group-display';
     directives: [GroupDisplayComponent]
 })
 export class GroupDetailsComponent {
-    public group;
+    public group = new Record();
 
     constructor(public api: APIService, params: RouteParams) {
         this.getGroup(params.get('id'));
