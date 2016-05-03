@@ -1,19 +1,20 @@
 import {Component} from 'angular2/core';
 import {NgFor} from 'angular2/common';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
-import {Record} from 'js-data';
 
 import {APIService} from '../../shared/services/api-service';
+import {User} from '../../shared/services/user';
+
 import {InlineUserDisplayComponent} from '../user-details/inline-display/inline-display';
 
 @Component({
     selector: 'users-list',
     templateUrl: './users/users-list/users-list.html',
-    providers: [APIService, Record],
+    providers: [APIService, User],
     directives: [NgFor, ROUTER_DIRECTIVES, InlineUserDisplayComponent]
 })
 export class UsersListComponent {
-    public users: Record[] = [];
+    public users: User[] = [];
 
     constructor(public api: APIService) {
         this.getUsers();

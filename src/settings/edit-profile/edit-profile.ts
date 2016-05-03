@@ -1,13 +1,14 @@
 import {Component} from 'angular2/core';
 import {NgForm} from 'angular2/common';
 
-import {Record} from 'js-data';
+import * as _ from 'lodash';
 
+import {AuthService} from '../../shared/services/auth-service';
 import {APIService} from '../../shared/services/api-service';
+import {User} from '../../shared/services/user';
+
 import {ProfileDisplayComponent} from '../../users/user-details/profile-display/profile-display';
 import {EditPasswordComponent} from '../edit-password/edit-password';
-import {AuthService} from '../../shared/services/auth-service';
-import * as _ from 'lodash';
 
 @Component({
     selector: 'edit-profile',
@@ -16,8 +17,8 @@ import * as _ from 'lodash';
     directives: [ProfileDisplayComponent, EditPasswordComponent, NgForm]
 })
 export class EditProfileComponent {
-    private me;
-    private meEdit;
+    private me: User;
+    private meEdit: User;
     private editMode:boolean;
     private errorOnEdit:boolean = false;
     private profilePicture:File;
@@ -28,7 +29,7 @@ export class EditProfileComponent {
         this.editMode = false;
     }
 
-    editProfile(user: {id: number, any}, profilePicture:File) {
+    editProfile(user: User, profilePicture: File) {
         this.api.User.update(user.id, user).then(
             () => {
                 let photo_url = 'http://127.0.0.1:8000/user/' + user.id + '/addphoto/';

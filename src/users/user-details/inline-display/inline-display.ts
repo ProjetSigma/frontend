@@ -1,20 +1,21 @@
 import {Component, Input} from 'angular2/core';
 import {NgIf} from 'angular2/common';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
-import {Record} from 'js-data';
+
+import {APIService} from '../../../shared/services/api-service';
+import {User} from '../../../shared/services/user';
 
 import {PhoneNumberFrenchPipe} from '../profile-display/phone-number-french';
-import {APIService} from '../../../shared/services/api-service';
 
 @Component({
     selector: 'inline-display',
     templateUrl: './users/user-details/inline-display/inline-display.html',
     pipes: [PhoneNumberFrenchPipe],
-    providers: [APIService, Record],
+    providers: [APIService, User],
     directives: [NgIf, ROUTER_DIRECTIVES]
 })
 export class InlineUserDisplayComponent {
-    @Input('user') user;
+    @Input('user') user: User;
 
     constructor(public api: APIService) {}
 

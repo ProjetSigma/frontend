@@ -1,15 +1,16 @@
 import {Component} from 'angular2/core';
 
-import {utils as JSDataUtils, DataStore, Mapper} from 'js-data';
-import {HttpAdapter} from 'js-data-http';
-import {Observable} from 'rxjs/Rx';
+import {utils as JSDataUtils, DataStore, Mapper, Record} from 'js-data';
+import {HttpAdapter, addActions} from 'js-data-http';
 
 import {AuthService} from './auth-service';
+
+import {User, userActions} from './user';
 import * as schemas from './schemas';
 // import * as relations from './relations';
 
 @Component({
-    providers: [AuthService, JSDataUtils, DataStore, Mapper, Observable]
+    providers: [AuthService, JSDataUtils, DataStore, Mapper, addActions, User]
 })
 export class APIService {
     protected base_url: string = 'http://127.0.0.1:8000/';
@@ -40,14 +41,19 @@ export class APIService {
             schema: schemas.cluster,
             applySchema: false // for now: JSData Schema API not stable
         });
+
         this.Group = this.DS.defineMapper('group', {
             schema: schemas.group,
             applySchema: false // for now: JSData Schema API not stable
         });
+        
         this.User = this.DS.defineMapper('user', {
+            recordClass: User,
             schema: schemas.user,
-            applySchema: false // for now: JSData Schema API not stable
+            applySchema: true // for now: JSData Schema API not stable
         });
+        // addActions(userActions)(this.DS.getMapper('user'));
+
         this.Membership = this.DS.defineMapper('membership', {
             endpoint: 'group-member',
             schema: schemas.membership,
