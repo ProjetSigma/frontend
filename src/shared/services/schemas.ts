@@ -1,14 +1,5 @@
 import {Schema} from 'js-data';
 
-export const cluster = new Schema({
-    properties: {
-        id: {type: 'integer'},
-        name: {type: 'string'},
-        description: {type: 'string'},
-        design: {type: 'string'}
-    }
-});
-
 export const group = new Schema({
     properties: {
         id: {type: 'integer'},
@@ -26,19 +17,6 @@ export const group = new Schema({
     }
 });
 
-export const user = new Schema({
-    properties: {
-        id: {type: 'integer'},
-        lastname: {type: 'string'},
-        firstname: {type: 'string'},
-        email: {type: 'string', format: 'email'},
-        phone: {type: 'string'},
-        is_active: {type: 'boolean'},
-        last_login: {type: 'string', format: 'date-time'},
-        last_modified: {type: 'string', format: 'date-time'},
-        join_date: {type: 'string', format: 'date-time'}
-    }
-});
 
 export const membership = new Schema({
     properties: {

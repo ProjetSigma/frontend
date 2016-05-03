@@ -1,16 +1,17 @@
 import {Component} from 'angular2/core';
 
-import {utils as JSDataUtils, DataStore, Mapper, Record} from 'js-data';
+import {utils as JSDataUtils, DataStore, Mapper, Record, Schema} from 'js-data';
 import {HttpAdapter, addActions} from 'js-data-http';
 
 import {AuthService} from './auth-service';
 
-import {User, userActions} from './user';
+import {Cluster, clusterSchema, clusterRelations} from './cluster';
+import {User, UserCluster, userSchema, userRelations} from './user';
 import * as schemas from './schemas';
 // import * as relations from './relations';
 
 @Component({
-    providers: [AuthService, JSDataUtils, DataStore, Mapper, addActions, User]
+    providers: [AuthService]
 })
 export class APIService {
     protected base_url: string = 'http://127.0.0.1:8000/';
@@ -18,6 +19,7 @@ export class APIService {
     private auth_: AuthService;
 
     // Resources
+    public UserCluster: Mapper;
     public Cluster: Mapper;
     public Group: Mapper;
     public User: Mapper;
@@ -37,20 +39,41 @@ export class APIService {
         this.DS.registerAdapter('http', httpAdapt, {default: true});
 
         // Register all Resources
+        this.DS.defineMapper('user_cluster', {
+            // recordClass: UserCluster,
+            relations: {
+                belongsTo: {
+                    user: {
+                        foreignKey: 'user_id',
+                        localField: 'user'
+                    },
+                    cluster: {
+                        foreignKey: 'cluster_id',
+                        localField: 'cluster'
+                    }
+                }
+            },
+            debug: true
+        });
         this.Cluster = this.DS.defineMapper('cluster', {
-            schema: schemas.cluster,
-            applySchema: false // for now: JSData Schema API not stable
+            recordClass: Cluster,
+            schema: clusterSchema,
+            applySchema: true,
+            relations: clusterRelations,
+            debug: true
         });
 
         this.Group = this.DS.defineMapper('group', {
             schema: schemas.group,
             applySchema: false // for now: JSData Schema API not stable
         });
-        
+
         this.User = this.DS.defineMapper('user', {
             recordClass: User,
-            schema: schemas.user,
-            applySchema: true // for now: JSData Schema API not stable
+            schema: userSchema,
+            applySchema: true,
+            relations: userRelations,
+            debug: true
         });
         // addActions(userActions)(this.DS.getMapper('user'));
 

@@ -21,15 +21,16 @@ export class InlineUserDisplayComponent {
 
     ngOnChanges() {
         if (this.user.clusters !== undefined) {
-            for (var i = 0; i < this.user.clusters.length; i++) {
-                this.api.Cluster.find(this.user.clusters[i]).then(res => {
-                    var cluster = res;
-                    var index = this.user.clusters.findIndex(function (val) {
-                        return (val === cluster.id);
-                    });
-                    this.user.clusters[index] = cluster.name;
-                });
-            }
+            console.log(this.user.user_clusters);
+        //     for (var i = 0; i < this.user.clusters.length; i++) {
+        //         this.api.Cluster.find(this.user.clusters[i].id).then(res => {
+        //             var cluster = res;
+        //             var index = this.user.clusters.findIndex(function (val) {
+        //                 return (val === cluster.id);
+        //             });
+        //             this.user.clusters[index] = cluster.name;
+        //         });
+        //     }
         }
     }
 }
