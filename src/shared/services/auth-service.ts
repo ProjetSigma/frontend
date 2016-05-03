@@ -6,6 +6,7 @@ import {User} from './users/user';
     providers: [Http, HTTP_PROVIDERS]
 })
 export class AuthService {
+    protected base_url = 'http://localhost:8000/';
     public user:User = new User();
     private isConnected:boolean;
     private accessToken:string;
@@ -27,7 +28,7 @@ export class AuthService {
         this.appendAuth(headers);
         headers.append('Accept', 'application/json');
 
-        var request = this.http.get('http://localhost:8000/user/me/',
+        var request = this.http.get(this.base_url + 'user/me/',
             {headers:headers}
         ).share();
         request.subscribe(res => this.user = res.json());
@@ -42,7 +43,7 @@ export class AuthService {
         headers.append('Authorization', 'Basic ' + btoa(this.clientId+':'+this.clientSecret));
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
-        var request = this.http.post('http://localhost:8000/o/token/',
+        var request = this.http.post(this.base_url + 'o/token/',
             params,
             {headers:headers}
         );
