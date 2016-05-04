@@ -13,7 +13,7 @@
                         </strong>
                     </a>
                 </div>
-                <div *ngFor="let cluster of user.clusters" class="columns shrink">
+                <div *ngFor="let cluster of user.getClusters()" class="columns shrink">
                     <div *ngIf="cluster.name">
                         <i class="fa fa-university"></i> &nbsp;{{cluster.name}}
                     </div>

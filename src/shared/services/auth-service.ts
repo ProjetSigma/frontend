@@ -1,15 +1,15 @@
 import {Component} from 'angular2/core';
 import {Http, HTTP_PROVIDERS, Headers, Response} from 'angular2/http';
-import {User} from './users/user';
+import {User} from '../resources/user';
 
 @Component({
     providers: [Http, HTTP_PROVIDERS]
 })
 export class AuthService {
     protected base_url = 'http://localhost:8000/';
-    public user:User = new User();
-    private isConnected:boolean;
-    private accessToken:string;
+    public isConnected: boolean;
+    public accessToken: string;
+    public user: User = new User();
     private clientId:string = 'bJeSCIWpvjbYCuXZNxMzVz0wglX8mHR2ZTKHxaDv';
     private clientSecret:string =
     'XjbfZS6Apq05PDTSL4CoFHGo7NsKVAa1XMVrVElk5N1t0dOSyqxrHPff6okAi6X6Du9XxrK4dl0mLQ0YlscJsjnL5IKhQagQdGv2SgumhYRFaMi6LtHNPXicmMr8oLdy';
@@ -30,7 +30,7 @@ export class AuthService {
 
         var request = this.http.get(this.base_url + 'user/me/',
             {headers:headers}
-        ).share();
+        );//.share(); // TODO: C'est quoi ce "share()" ? ^^
         request.subscribe(res => this.user = res.json());
 
         return request;

@@ -22,26 +22,26 @@ class RestRequest {
     }
 
     public get() {
-        this._request = this._rest.http.get(this.url, {headers: this.headers}).share();
+        this._request = this._rest.http.get(this.url, {headers: this.headers});//share()();
         this._attach();
         return this._request;
     }
 
     public delete() {
-        this._request = this._rest.http.delete(this.url, {headers: this.headers}).share();
+        this._request = this._rest.http.delete(this.url, {headers: this.headers});//share()();
         this._attach();
         return this._request;
     }
 
     public head() {
-        this._request = this._rest.http.head(this.url, {headers: this.headers}).share();
+        this._request = this._rest.http.head(this.url, {headers: this.headers});//share()();
         this._attach();
         return this._request;
     }
 
     public post(data) {
         this._addPostHeader();
-        this._request = this._rest.http.post(this.url, this._data(data), {headers: this.headers}).share();
+        this._request = this._rest.http.post(this.url, this._data(data), {headers: this.headers});//share()();
         this._attach();
         return this._request;
     }
@@ -67,14 +67,14 @@ class RestRequest {
 
     public put(data) {
         this._addPostHeader();
-        this._request = this._rest.http.put(this.url, this._data(data), {headers: this.headers}).share();
+        this._request = this._rest.http.put(this.url, this._data(data), {headers: this.headers});//share()();
         this._attach();
         return this._request;
     }
 
     public patch(data) {
         this._addPostHeader();
-        this._request = this._rest.http.patch(this.url, this._data(data), {headers: this.headers}).share();
+        this._request = this._rest.http.patch(this.url, this._data(data), {headers: this.headers});//share()();
         this._attach();
         return this._request;
     }

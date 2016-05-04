@@ -2,34 +2,35 @@ import {Component, Input} from 'angular2/core';
 import {NgIf} from 'angular2/common';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
 
-import {User} from '../../../shared/services/users/user';
+import {APIService} from '../../../shared/services/api-service';
+import {User} from '../../../shared/resources/user';
+
 import {PhoneNumberFrenchPipe} from '../profile-display/phone-number-french';
-import {ClusterService} from '../../../shared/services/clusters/cluster-service';
 
 @Component({
     selector: 'user-inline-display',
     templateUrl: './users/user-details/user-inline-display/user-inline-display.html',
     pipes: [PhoneNumberFrenchPipe],
-    providers: [ClusterService],
+    providers: [APIService, User],
     directives: [NgIf, ROUTER_DIRECTIVES]
 })
 export class UserInlineDisplayComponent {
     @Input('user') user: User;
 
-    constructor(public cluster_service:ClusterService) {}
+    constructor(public api: APIService) {}
 
     ngOnChanges() {
         if (this.user.clusters !== undefined) {
-             for (var i=0;i<this.user.clusters.length;i++) {
-                 this.cluster_service.getCluster(String(this.user.clusters[i]))
-                 .subscribe(res => {
-                     var cluster = res.json();
-                     var index = this.user.clusters.findIndex(function (val) {
-                        return (val === cluster.id);
-                     });
-                     this.user.clusters[index] = cluster;
-                 });
-             }
-         }
+            console.log(this.user.user_clusters);
+        //     for (var i = 0; i < this.user.clusters.length; i++) {
+        //         this.api.Cluster.find(this.user.clusters[i].id).then(res => {
+        //             var cluster = res;
+        //             var index = this.user.clusters.findIndex(function (val) {
+        //                 return (val === cluster.id);
+        //             });
+        //             this.user.clusters[index] = cluster.name;
+        //         });
+        //     }
+        }
     }
 }
