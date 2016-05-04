@@ -1,6 +1,6 @@
 import {Component} from 'angular2/core';
 import {Http, HTTP_PROVIDERS, Headers, Response} from 'angular2/http';
-import {User} from './user';
+import {User} from '../resources/user';
 
 @Component({
     providers: [Http, HTTP_PROVIDERS]

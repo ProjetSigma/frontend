@@ -5,7 +5,7 @@ import * as _ from 'lodash';
 
 import {AuthService} from '../../shared/services/auth-service';
 import {APIService} from '../../shared/services/api-service';
-import {User} from '../../shared/services/user';
+import {User} from '../../shared/resources/user';
 
 import {ProfileDisplayComponent} from '../../users/user-details/profile-display/profile-display';
 import {EditPasswordComponent} from '../edit-password/edit-password';
@@ -30,11 +30,11 @@ export class EditProfileComponent {
     }
 
     editProfile(user: User, profilePicture: File) {
-        this.api.User.update(user.id, user).then(
+        this.api.store.update('user', user.id, user).then(
             () => {
                 let photo_url = 'http://127.0.0.1:8000/user/' + user.id + '/addphoto/';
                 if (profilePicture) {
-                    this.api.DS.getAdapter('http').POST(
+                    this.api.store.getAdapter('http').POST(
                         photo_url,
                         {file: profilePicture} // TODO: make it works...
                     ).then(

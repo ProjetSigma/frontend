@@ -3,7 +3,7 @@ import {NgFor} from 'angular2/common';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {APIService} from '../../shared/services/api-service';
-import {User} from '../../shared/services/user';
+import {User} from '../../shared/resources/user';
 
 import {InlineUserDisplayComponent} from '../user-details/inline-display/inline-display';
 
@@ -21,6 +21,6 @@ export class UsersListComponent {
     };
 
     getUsers() {
-        this.api.User.findAll({}).then(res => this.users = res);
+        this.api.store.findAll('user').then(res => this.users = res);
     }
 }

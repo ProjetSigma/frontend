@@ -19,7 +19,6 @@ export class GroupsListComponent {
     };
 
     getGroups() {
-        this.api.Group.findAll({})
-            .then(res => this.groups = res);
+        this.api.store.findAll('group').then(res => this.groups = res);
     }
 }

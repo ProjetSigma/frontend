@@ -4,6 +4,7 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {Record} from 'js-data';
 import {APIService} from '../../../shared/services/api-service';
+import {User} from '../../../shared/resources/user';
 import {InlineUserDisplayComponent} from '../../../users/user-details/inline-display/inline-display';
 
 @Component({
@@ -15,7 +16,7 @@ import {InlineUserDisplayComponent} from '../../../users/user-details/inline-dis
 export class GroupDisplayComponent {
     @Input('group') group;
     private resp_group = new Record();
-    private members = [];
+    private members: User[] = [];
 
     constructor(public api: APIService) { };
 
@@ -33,17 +34,17 @@ export class GroupDisplayComponent {
 
     getRespGroup(id: string) {
         if (id !== 'null') {//id can be null for school groups
-            this.api.Group.find(id).then(res => this.resp_group = res);
+            this.api.store.find('group', id).then(res => this.resp_group = res);
         }
     }
 
     getMembersId(memberships : number[]) {
         for (var id of memberships) {
-            this.api.Membership.find(id).then(res => this.getMember(res.user));
+            this.api.store.find('membership', id).then(res => this.getMember(res.user));
         }
     }
 
     getMember(member_id : number) {
-        this.api.User.find(member_id).then(res => this.members.push(res));
+        this.api.store.find('user', member_id).then(res => this.members.push(res));
     }
 }

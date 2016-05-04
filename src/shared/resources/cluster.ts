@@ -9,7 +9,7 @@ export class Cluster extends Record {
     // Relational fields
     public cluster_users: any[] = [];
 
-    constructor (props) {
+    constructor (props?) {
         super(props);
     }
 }

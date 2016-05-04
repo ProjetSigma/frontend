@@ -20,7 +20,7 @@ export class EditPasswordComponent {
 
     editPassword(actualPassword:string, newPassword:string) {
         this.onSuccess = false;
-        this.api.DS.getAdapter('http').PUT(
+        this.api.store.getAdapter('http').PUT(
             'http://127.0.0.1:8000/user/change_password/',
             {old_password: actualPassword, password: newPassword}
         ).then(

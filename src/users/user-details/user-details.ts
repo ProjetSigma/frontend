@@ -3,7 +3,7 @@ import {NgFor} from 'angular2/common';
 import {RouteParams} from 'angular2/router';
 
 import {APIService} from '../../shared/services/api-service';
-import {User} from '../../shared/services/user';
+import {User} from '../../shared/resources/user';
 
 import {ProfileDisplayComponent} from './profile-display/profile-display';
 
@@ -21,6 +21,6 @@ export class UserDetailsComponent {
     };
 
     getUser(id) {
-        this.api.User.find(id).then(res => this.user = res);
+        this.api.store.find('user', id).then(res => this.user = res);
     }
 }

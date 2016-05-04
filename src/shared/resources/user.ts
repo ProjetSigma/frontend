@@ -1,4 +1,4 @@
-import {Mapper, Record, Schema} from 'js-data';
+import {Record, Schema} from 'js-data';
 
 import {Cluster} from './cluster';
 
@@ -19,7 +19,7 @@ export class User extends Record {
     public clusters: number[]; // clusters ids returned by REST API
     public user_clusters: UserCluster[]; // client-side only relational objects 'user_cluster'
 
-    constructor (props) {
+    constructor (props?) {
         super(props);
         this.last_login = new Date();
         this.last_modified = new Date();
@@ -64,7 +64,7 @@ export const userRelations = {
             localField: 'user_clusters'
         }
     }
-}
+};
 
 export const userActions = {
     'me': {

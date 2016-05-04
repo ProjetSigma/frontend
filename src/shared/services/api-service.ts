@@ -1,12 +1,12 @@
 import {Component} from 'angular2/core';
 
-import {utils as JSDataUtils, DataStore, Mapper, Record, Schema} from 'js-data';
+import {DataStore} from 'js-data';
 import {HttpAdapter, addActions} from 'js-data-http';
 
 import {AuthService} from './auth-service';
 
-import {Cluster, clusterSchema, clusterRelations} from './cluster';
-import {User, UserCluster, userSchema, userRelations} from './user';
+import {Cluster, clusterSchema, clusterRelations} from '../resources/cluster';
+import {User, UserCluster, userSchema, userRelations} from '../resources/user';
 import * as schemas from './schemas';
 // import * as relations from './relations';
 
@@ -15,15 +15,8 @@ import * as schemas from './schemas';
 })
 export class APIService {
     protected base_url: string = 'http://127.0.0.1:8000/';
-    public DS: DataStore = new DataStore();
+    public store: DataStore = new DataStore();
     private auth_: AuthService;
-
-    // Resources
-    public UserCluster: Mapper;
-    public Cluster: Mapper;
-    public Group: Mapper;
-    public User: Mapper;
-    public Membership: Mapper;
 
     constructor(public auth: AuthService) {
         this.auth_ = auth;
@@ -36,10 +29,10 @@ export class APIService {
 
         // Setup DataStore and HttpAdapter
         let httpAdapt = new HttpAdapter({ basePath: this.base_url, httpConfig: {headers: headers}, forceTrailingSlash: true });
-        this.DS.registerAdapter('http', httpAdapt, {default: true});
+        this.store.registerAdapter('http', httpAdapt, {default: true});
 
         // Register all Resources
-        this.DS.defineMapper('user_cluster', {
+        this.store.defineMapper('user_cluster', {
             // recordClass: UserCluster,
             relations: {
                 belongsTo: {
@@ -55,7 +48,7 @@ export class APIService {
             },
             debug: true
         });
-        this.Cluster = this.DS.defineMapper('cluster', {
+        this.store.defineMapper('cluster', {
             recordClass: Cluster,
             schema: clusterSchema,
             applySchema: true,
@@ -63,12 +56,12 @@ export class APIService {
             debug: true
         });
 
-        this.Group = this.DS.defineMapper('group', {
+        this.store.defineMapper('group', {
             schema: schemas.group,
             applySchema: false // for now: JSData Schema API not stable
         });
 
-        this.User = this.DS.defineMapper('user', {
+        this.store.defineMapper('user', {
             recordClass: User,
             schema: userSchema,
             applySchema: true,
@@ -77,7 +70,7 @@ export class APIService {
         });
         // addActions(userActions)(this.DS.getMapper('user'));
 
-        this.Membership = this.DS.defineMapper('membership', {
+        this.store.defineMapper('membership', {
             endpoint: 'group-member',
             schema: schemas.membership,
             applySchema: false // for now: JSData Schema API not stable

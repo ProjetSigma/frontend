@@ -19,6 +19,6 @@ export class GroupDetailsComponent {
     };
 
     getGroup(id) {
-        this.api.Group.find(id).then(res => this.group = res);
+        this.api.store.find('group', id).then(res => this.group = res);
     }
 }
