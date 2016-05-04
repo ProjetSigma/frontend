@@ -5,8 +5,6 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 import {APIService} from '../../shared/services/api-service';
 import {User} from '../../shared/resources/user';
 import {UserInlineDisplayComponent} from '../user-details/user-inline-display/user-inline-display';
-import {MembershipService} from '../../shared/services/memberships/membership-service';
-import {GroupService} from '../../shared/services/groups/group-service';
 
 @Component({
     selector: 'users-list',
