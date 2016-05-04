@@ -5,12 +5,12 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 import {Record} from 'js-data';
 import {APIService} from '../../../shared/services/api-service';
 import {User} from '../../../shared/resources/user';
-import {InlineUserDisplayComponent} from '../../../users/user-details/inline-display/inline-display';
+import {UserInlineDisplayComponent} from '../../../users/user-details/user-inline-display/user-inline-display';
 
 @Component({
     selector: 'group-display',
     templateUrl: './groups/group-details/group-display/group-display.html',
-    directives: [NgFor, NgIf, NgSwitchDefault, ROUTER_DIRECTIVES, InlineUserDisplayComponent],
+    directives: [NgFor, NgIf, NgSwitchDefault, ROUTER_DIRECTIVES, UserInlineDisplayComponent],
     providers: [APIService]
 })
 export class GroupDisplayComponent {
