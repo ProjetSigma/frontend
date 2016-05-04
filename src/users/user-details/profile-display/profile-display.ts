@@ -10,7 +10,7 @@ import {GroupInlineDisplayComponent} from '../../../groups/group-details/group-i
 @Component({
     selector: 'profile-display',
     templateUrl: './users/user-details/profile-display/profile-display.html',
-    pipes: [PhoneNumberFrenchPipe, User],
+    pipes: [PhoneNumberFrenchPipe],
     directives: [NgFor, NgIf, ROUTER_DIRECTIVES, GroupInlineDisplayComponent]
 })
 export class ProfileDisplayComponent {
