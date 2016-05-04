@@ -2,7 +2,7 @@ import {Component, Input} from 'angular2/core';
 import {NgIf} from 'angular2/common';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
 
-import {Group} from '../../../shared/services/groups/group';
+import {Group} from '../../../shared/resources/group';
 import {APIService} from '../../../shared/services/api-service';
 
 @Component({
@@ -15,16 +15,4 @@ export class GroupInlineDisplayComponent {
     @Input('group') group: Group;
 
     constructor(public api:APIService) {}
-
-    ngOnChanges() {
-        if (this.group.resp_group !== undefined) {
-            this.getRespGroup(String(this.group.resp_group));
-        }
-    }
-
-    getRespGroup(id: string) {
-        if (id !== 'null') {//id can be null for school groups
-            this.api.store.find('group', id).then(res => this.group.resp_group = res);
-        }
-    }
 }

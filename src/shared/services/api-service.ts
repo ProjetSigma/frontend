@@ -7,6 +7,7 @@ import {AuthService} from './auth-service';
 
 import {Cluster, clusterSchema, clusterRelations} from '../resources/cluster';
 import {User, UserCluster, userSchema, userRelations} from '../resources/user';
+import {Group, groupSchema, groupRelations} from '../resources/group'
 import * as schemas from './schemas';
 // import * as relations from './relations';
 
@@ -57,8 +58,11 @@ export class APIService {
         });
 
         this.store.defineMapper('group', {
-            schema: schemas.group,
-            applySchema: false // for now: JSData Schema API not stable
+            recordClass: Group,
+            schema: groupSchema,
+            applySchema: true,
+            relations: groupRelations,
+            debug: true
         });
 
         this.store.defineMapper('user', {
