@@ -30,7 +30,11 @@
     "webdriver-update": "webdriver-manager update"
   },
   "contributors": [
-    "Naresh Bhatia <nareshbhatia>"
+    "Basile Bruneau <NTag>",
+    "Daniel Haziza <TheBirdie>",
+    "Camille Masset <tizot>",
+    "Denis Merigoux <denismerigoux",
+    "Gabriel Pichot <gpichot>"
   ],
   "license": "MIT",
   "devDependencies": {
