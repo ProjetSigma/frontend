@@ -16,12 +16,6 @@ You must have `ts-node` installed as global. If you don't, use:
 npm install -g ts-node
 ```
 
-You must also have Ruby and [scss-lint](https://github.com/brigade/scss-lint) installed. If you are running on MacOS, to install `scss-lint` you need to use `sudo` and a folder that you can write to. For example:
-
-```bash
-sudo gem install -n /usr/local/bin scss_lint
-```
-
 Then you can install node modules.
 ```
 npm install
