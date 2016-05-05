@@ -7,7 +7,9 @@
             <i class="fa fa-users"></i>
             &nbsp;{{group.memberships.length}}
         </div>
-        <div *ngIf="group.group_resp_group && group.group_resp_group.name" class="columns shrink">
+        <div *ngIf="group.group_resp_group &&
+            group.group_resp_group.name &&
+            group.group_resp_group.id !== group.id" class="columns shrink">
             <i class="fa fa-university"></i>
             &nbsp;
             <a [routerLink]="['/Groups/Details',{id: group.group_resp_group.id}]">

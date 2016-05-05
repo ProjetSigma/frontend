@@ -9,10 +9,11 @@ import {APIService} from '../../../shared/services/api-service';
     selector: 'group-inline-display',
     templateUrl: './groups/group-details/group-inline-display/group-inline-display.html',
     directives: [NgIf, ROUTER_DIRECTIVES],
-    providers: [APIService]
 })
 export class GroupInlineDisplayComponent {
     @Input('group') group: Group;
 
-    constructor(public api:APIService) {}
+    ngOnChanges() {
+        console.log(this.group)
+    }
 }

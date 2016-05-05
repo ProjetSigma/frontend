@@ -8,7 +8,6 @@ import {GroupInlineDisplayComponent} from '../group-details/group-inline-display
 @Component({
     selector: 'groups-list',
     templateUrl: './groups/groups-list/groups-list.html',
-    providers: [APIService],
     directives: [NgFor, ROUTER_DIRECTIVES, GroupInlineDisplayComponent]
 })
 export class GroupsListComponent {

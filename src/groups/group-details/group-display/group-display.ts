@@ -10,8 +10,7 @@ import {UserInlineDisplayComponent} from '../../../users/user-details/user-inlin
 @Component({
     selector: 'group-display',
     templateUrl: './groups/group-details/group-display/group-display.html',
-    directives: [NgFor, NgIf, NgSwitchDefault, ROUTER_DIRECTIVES, UserInlineDisplayComponent],
-    providers: [APIService]
+    directives: [NgFor, NgIf, NgSwitchDefault, ROUTER_DIRECTIVES, UserInlineDisplayComponent]
 })
 export class GroupDisplayComponent {
     @Input('group') group;

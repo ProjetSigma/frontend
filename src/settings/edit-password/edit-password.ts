@@ -7,7 +7,6 @@ import {APIService} from '../../shared/services/api-service';
 @Component({
     selector: 'edit-password',
     templateUrl: './settings/edit-password/edit-password.html',
-    providers: [APIService],
     directives: [NgForm]
 })
 export class EditPasswordComponent {

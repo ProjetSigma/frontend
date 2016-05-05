@@ -9,7 +9,6 @@ import {UserInlineDisplayComponent} from '../user-details/user-inline-display/us
 @Component({
     selector: 'users-list',
     templateUrl: './users/users-list/users-list.html',
-    providers: [APIService, User],
     directives: [NgFor, ROUTER_DIRECTIVES, UserInlineDisplayComponent]
 })
 export class UsersListComponent {

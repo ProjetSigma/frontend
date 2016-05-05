@@ -8,7 +8,6 @@ import {GroupDisplayComponent} from './group-display/group-display';
 @Component({
     selector: 'group-details',
     templateUrl: './groups/group-details/group-details.html',
-    providers: [APIService],
     directives: [GroupDisplayComponent]
 })
 export class GroupDetailsComponent {

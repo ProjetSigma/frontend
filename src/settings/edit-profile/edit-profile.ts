@@ -13,7 +13,6 @@ import {EditPasswordComponent} from '../edit-password/edit-password';
 @Component({
     selector: 'edit-profile',
     templateUrl: './settings/edit-profile/edit-profile.html',
-    providers: [APIService],
     directives: [ProfileDisplayComponent, EditPasswordComponent, NgForm]
 })
 export class EditProfileComponent {
