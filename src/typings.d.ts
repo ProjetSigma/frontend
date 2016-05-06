@@ -1,1 +1,1 @@
-/// <reference path="../tools/manual_typings/project/lodash.d.ts" />`
+/// <reference path="./shared/typings/lodash.d.ts" />`

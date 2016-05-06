@@ -1,7 +1,7 @@
 import {Component, EventEmitter} from 'angular2/core';
 import {Http, HTTP_PROVIDERS, Headers, Response} from 'angular2/http';
 import {AuthService} from './auth-service';
-import {api_url} from '../../config.ts';
+import {api_url} from '../../config';
 
 
 class RestRequest {

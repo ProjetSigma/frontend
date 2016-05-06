@@ -4,7 +4,7 @@ import {DataStore} from 'js-data';
 import {HttpAdapter, addActions} from 'js-data-http';
 
 import {AuthService} from './auth-service';
-import {api_url} from '../../config.ts';
+import {api_url} from '../../config';
 
 import {Cluster, clusterSchema, clusterRelations} from '../resources/cluster';
 import {User, UserCluster, userSchema, userRelations} from '../resources/user';

@@ -10,7 +10,7 @@ import {
 
 const BUNDLER_OPTIONS = {
   format: 'cjs',
-  minify: true,
+  minify: false,
   mangle: false
 };
 

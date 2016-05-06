@@ -1,7 +1,7 @@
 import {Component} from 'angular2/core';
 import {Http, HTTP_PROVIDERS, Headers, Response} from 'angular2/http';
 import {User} from '../resources/user';
-import {api_url} from '../../config.ts';
+import {api_url} from '../../config';
 
 @Component({
     providers: [Http, HTTP_PROVIDERS]
