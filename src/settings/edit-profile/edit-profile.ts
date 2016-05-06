@@ -1,8 +1,6 @@
 import {Component} from 'angular2/core';
 import {NgForm} from 'angular2/common';
 
-import * as _ from 'lodash';
-
 import {AuthService} from '../../shared/services/auth-service';
 import {APIService} from '../../shared/services/api-service';
 import {User} from '../../shared/resources/user';
@@ -26,7 +24,7 @@ export class EditProfileComponent {
         this.editMode = false;
         this.me = new User();
         this.meEdit = new User();
-        this.reloadProfile()
+        this.reloadProfile();
     }
 
     editProfile(user: User, profilePicture: File) {

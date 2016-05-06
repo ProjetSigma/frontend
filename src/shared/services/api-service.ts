@@ -9,8 +9,6 @@ import {Cluster, clusterSchema, clusterRelations} from '../resources/cluster';
 import {User, userSchema, userRelations} from '../resources/user';
 import {Group, groupSchema, groupRelations} from '../resources/group';
 import {Membership,membershipSchema,membershipRelations} from '../resources/membership';
-import * as schemas from './schemas';
-// import * as relations from './relations';
 
 @Component({
     providers: [AuthService]

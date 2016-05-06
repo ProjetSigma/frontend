@@ -3,7 +3,6 @@ import {NgFor, NgIf} from 'angular2/common';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {User} from '../../../shared/resources/user';
-import {Membership} from '../../../shared/resources/membership';
 import {APIService} from '../../../shared/services/api-service';
 
 import {PhoneNumberFrenchPipe} from './phone-number-french';
@@ -22,16 +21,16 @@ export class ProfileDisplayComponent {
 
     ngOnChanges() {
         if (this.user.id !== undefined) {
-            this.getGroups()
-        }
+            this.getGroups();
+        };
     }
 
     getGroups() {
         this.api.store.findAll('membership',{'user':this.user.id}).then(res => {
             for (var membership of this.user.memberships) {
-                this.api.store.find('group',membership.group_id)
+                this.api.store.find('group',membership.group_id);
             };
-        })
+        });
     }
 
 }

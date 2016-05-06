@@ -2,6 +2,7 @@ import {Record, Schema} from 'js-data';
 
 import {Cluster} from './cluster';
 import {Membership} from './membership';
+import * as _ from 'lodash';
 
 export class User extends Record {
     public id: number;
