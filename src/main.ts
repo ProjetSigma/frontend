@@ -5,10 +5,9 @@ import {LocationStrategy, HashLocationStrategy} from 'angular2/platform/common';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {AppComponent} from './app/app';
 import {AuthService} from './shared/services/auth-service';
-import {RestService} from './shared/services/rest-service';
 import {APIService} from './shared/services/api-service';
 
 bootstrap(AppComponent, [
-  ROUTER_PROVIDERS, HTTP_PROVIDERS, AuthService, RestService, APIService,
+  ROUTER_PROVIDERS, HTTP_PROVIDERS, AuthService, APIService,
   provide(LocationStrategy, { useClass: HashLocationStrategy })
 ]);
