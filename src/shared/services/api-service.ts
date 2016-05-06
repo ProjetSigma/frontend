@@ -1,13 +1,14 @@
 import {Component} from 'angular2/core';
 
 import {DataStore} from 'js-data';
-import {HttpAdapter, addActions} from 'js-data-http';
+import {HttpAdapter} from 'js-data-http';
 
 import {AuthService} from './auth-service';
 
 import {Cluster, clusterSchema, clusterRelations} from '../resources/cluster';
-import {User, UserCluster, userSchema, userRelations} from '../resources/user';
-import {Group, groupSchema, groupRelations} from '../resources/group'
+import {User, userSchema, userRelations} from '../resources/user';
+import {Group, groupSchema, groupRelations} from '../resources/group';
+import {Membership,membershipSchema,membershipRelations} from '../resources/membership';
 import * as schemas from './schemas';
 // import * as relations from './relations';
 
@@ -76,8 +77,11 @@ export class APIService {
 
         this.store.defineMapper('membership', {
             endpoint: 'group-member',
-            schema: schemas.membership,
-            applySchema: false // for now: JSData Schema API not stable
+            recordClass: Membership,
+            schema: membershipSchema,
+            applySchema: true,
+            relations: membershipRelations,
+            debug:true
         });
     }
 }

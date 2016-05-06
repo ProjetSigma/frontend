@@ -3,7 +3,6 @@ import {NgIf} from 'angular2/common';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {Group} from '../../../shared/resources/group';
-import {APIService} from '../../../shared/services/api-service';
 
 @Component({
     selector: 'group-inline-display',
@@ -13,7 +12,4 @@ import {APIService} from '../../../shared/services/api-service';
 export class GroupInlineDisplayComponent {
     @Input('group') group: Group;
 
-    ngOnChanges() {
-        console.log(this.group)
-    }
 }

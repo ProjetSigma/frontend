@@ -23,27 +23,22 @@ export class GroupDisplayComponent {
     //that is why we have to update the view with new data
     //once the answer is received alog with the group to display.
     ngOnChanges() {
-        if (this.group && this.group.resp_group !== undefined) {
-             this.getRespGroup(String(this.group.resp_group));
-        }
-        if (this.group && this.group.memberships !== undefined) {
-            this.getMembersId(this.group.memberships);
+        if (this.group !== undefined) {
+             this.getRespGroup();
+             this.getMembers();
         }
     }
 
-    getRespGroup(id: string) {
-        if (id !== 'null') {//id can be null for school groups
-            this.api.store.find('group', id).then(res => this.resp_group = res);
-        }
+    getRespGroup() {
+            this.api.store.find('group', this.group.resp_group_id);
     }
 
-    getMembersId(memberships : number[]) {
-        for (var id of memberships) {
-            this.api.store.find('membership', id).then(res => this.getMember(res.user));
-        }
-    }
+    getMembers() {
+        this.api.store.findAll('membership',{'group':this.group.id}).then(res =>{
+            for (var membership of this.group.memberships) {
+                this.api.store.find('user', membership.user_id);
+            };
+        })
 
-    getMember(member_id : number) {
-        this.api.store.find('user', member_id).then(res => this.members.push(res));
     }
 }

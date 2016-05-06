@@ -6,13 +6,18 @@
     <i class="fa fa-eye"></i>
   </small>
     {{ group.name }}
-    <small *ngIf="resp_group.name"> | {{ resp_group.name }}</small>
+    <small *ngIf="group.resp_group && group.resp_group.name"> | {{ group.resp_group.name }}</small>
 </h1>
 <div class="row text-center">
     <h3>Membres du groupe</h3>
 </div>
 <div class="row">
     <div class="columns">
-        <user-inline-display *ngFor="let user of members" [user]="user"></user-inline-display>
+        <div *ngFor="let membership of group.memberships">
+            <div *ngIf="membership && membership.userObj && membership.userObj.id">
+                <user-inline-display [user]="membership.userObj">
+                </user-inline-display>
+            </div>
+        </div>
     </div>
 </div>

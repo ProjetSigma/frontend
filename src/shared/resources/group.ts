@@ -1,10 +1,15 @@
 import {Record, Schema} from 'js-data';
+import {Membership} from './membership';
 
 export class Group extends Record {
+    //Fields fetched from the backend
     public id: number;
-    public memberships: number[];//array of id of Memberships
+    public resp_group_id: number;
+    public members_count: number;
     public name: string;
-    private visibility: string;//public or privaye
+    public is_private:boolean;//public or private
+    public description: string;
+    public is_protected:boolean;
     public default_member_rank: number;
     public req_rank_invite: number;
     public req_rank_kick: number;
@@ -13,9 +18,9 @@ export class Group extends Record {
     public req_rank_demote: number;
     public req_rank_modify_group_infos: number;
 
-    //Relational field
-    public resp_group: number;
-    public group_resp_group: Group;
+    //Relational fields added by JS-Data
+    public resp_group: Group;
+    public memberships: Membership[];
 
 
     constructor(props?) {
@@ -26,9 +31,12 @@ export class Group extends Record {
 export const groupSchema = new Schema({
     properties: {
         id: { type: 'integer' },
-        memberships: { type: 'array', items: { type: 'integer' } },
+        resp_group_id: {type: 'integer'},
+        members_count: {type: 'integer'},
         name: { type: 'string' },
-        visibility: { type: 'string' },
+        is_private: { type: 'boolean' },
+        description: {type: 'string'},
+        is_protected: {type: 'boolean'},
         default_member_rank: { type: 'integer' },
         req_rank_invite: { type: 'integer' },
         req_rank_kick: { type: 'integer' },
@@ -40,12 +48,16 @@ export const groupSchema = new Schema({
 });
 
 export const groupRelations = {
-    //The next two relations allow the mapping of user.group_resp_group to the
-    //group whose key is group.resp_group.
     belongsTo: {
         group: {
-            localKey: 'resp_group',
-            localField: 'group_resp_group'
+            localKey: 'resp_group_id',
+            localField: 'resp_group'
+        }
+    },
+    hasMany: {
+        membership: {
+            foreignKey: 'group_id',
+            localField: 'memberships'
         }
     }
-}
+};

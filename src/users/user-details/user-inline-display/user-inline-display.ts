@@ -10,7 +10,6 @@ import {PhoneNumberFrenchPipe} from '../profile-display/phone-number-french';
     selector: 'user-inline-display',
     templateUrl: './users/user-details/user-inline-display/user-inline-display.html',
     pipes: [PhoneNumberFrenchPipe],
-    providers: [User],
     directives: [NgIf, ROUTER_DIRECTIVES]
 })
 export class UserInlineDisplayComponent {

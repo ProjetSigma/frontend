@@ -1,11 +1,13 @@
 import {Record, Schema} from 'js-data';
 
 import {Cluster} from './cluster';
+import {Membership} from './membership';
 
 export class User extends Record {
     public id: number;
-    public last_login: Date;
     public photo;
+    public clusters_id:number[];
+    public last_login: Date;
     public email: string;
     public lastname: string;
     public firstname: string;
@@ -15,9 +17,9 @@ export class User extends Record {
     public join_date: Date;
 
     // Relational fields
-    public groups: any[]; // TODO: type Group[]
     public clusters: number[]; // clusters ids returned by REST API
     public user_clusters: UserCluster[]; // client-side only relational objects 'user_cluster'
+    public memberships:Membership[];
 
     constructor (props?) {
         super(props);
@@ -46,6 +48,7 @@ export class UserCluster extends Record {
 export const userSchema = new Schema({
     properties: {
         id: {type: 'integer'},
+        clusters_id : {type : 'array', items: {type: 'integer'}},
         lastname: {type: 'string'},
         firstname: {type: 'string'},
         email: {type: 'string', format: 'email'},
@@ -62,6 +65,10 @@ export const userRelations = {
         user_cluster: {
             foreignKey: 'user_id',
             localField: 'user_clusters'
+        },
+        membership: {
+            foreignKey: 'user_id',
+            localField: 'memberships'
         }
     }
 };
