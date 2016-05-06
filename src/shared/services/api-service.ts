@@ -4,6 +4,7 @@ import {DataStore} from 'js-data';
 import {HttpAdapter, addActions} from 'js-data-http';
 
 import {AuthService} from './auth-service';
+import {api_url} from '../../config.ts';
 
 import {Cluster, clusterSchema, clusterRelations} from '../resources/cluster';
 import {User, UserCluster, userSchema, userRelations} from '../resources/user';
@@ -14,7 +15,7 @@ import * as schemas from './schemas';
     providers: [AuthService]
 })
 export class APIService {
-    protected base_url: string = 'http://127.0.0.1:8000/';
+    protected base_url: string = api_url;
     public store: DataStore = new DataStore();
     private auth_: AuthService;
 

@@ -1,12 +1,13 @@
 import {Component} from 'angular2/core';
 import {Http, HTTP_PROVIDERS, Headers, Response} from 'angular2/http';
 import {User} from '../resources/user';
+import {api_url} from '../../config.ts';
 
 @Component({
     providers: [Http, HTTP_PROVIDERS]
 })
 export class AuthService {
-    protected base_url = 'http://localhost:8000/';
+    protected base_url = api_url;
     public isConnected: boolean;
     public accessToken: string;
     public user: User = new User();

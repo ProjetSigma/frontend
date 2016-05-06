@@ -8,6 +8,8 @@
 </a>
 
 ## Installation
+After cloning the repository, copy the file `src/config.ts.dist` to `src/config.ts`.
+
 Requirements: Node > v5 and NPM > v3: https://nodejs.org  
 
 You must have `ts-node` installed as global. If you don't, use:

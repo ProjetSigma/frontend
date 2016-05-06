@@ -1,6 +1,7 @@
 import {Component, EventEmitter} from 'angular2/core';
 import {Http, HTTP_PROVIDERS, Headers, Response} from 'angular2/http';
 import {AuthService} from './auth-service';
+import {api_url} from '../../config.ts';
 
 
 class RestRequest {
@@ -102,7 +103,7 @@ class RestRequest {
     providers: [Http, AuthService]
 })
 export class RestService {
-    protected base_url = 'http://localhost:8000/';
+    protected base_url = api_url;
     private resource: string;
 
     constructor(public http:Http, public auth:AuthService) {
