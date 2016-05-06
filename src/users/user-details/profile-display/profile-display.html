@@ -25,8 +25,8 @@
 <div class="row">
     <div class="small-12 columns">
         <div *ngFor="let membership of user.memberships">
-            <div *ngIf="membership && membership.groupObj && membership.groupObj.id">
-                <group-inline-display [group]="membership.groupObj">
+            <div *ngIf="membership && membership.group && membership.group.id">
+                <group-inline-display [group]="membership.group">
                 </group-inline-display>
             </div>
         </div>

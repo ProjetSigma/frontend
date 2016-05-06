@@ -40,11 +40,11 @@ export const membershipRelations = {
     belongsTo: {
         group: {
             localKey: 'group_id',
-            localField : 'groupObj'
+            localField : 'group'
         },
         user: {
             localKey: 'user_id',
-            localField: 'userObj'
+            localField: 'user'
         }
     }
 };
