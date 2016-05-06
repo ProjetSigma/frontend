@@ -24,7 +24,12 @@
 
 <div class="row">
     <div class="small-12 columns">
-        <group-inline-display *ngFor="let membership of user.memberships" [group]="membership.group"></group-inline-display>
+        <div *ngFor="let membership of user.memberships">
+            <div *ngIf="membership && membership.group && membership.group.id">
+                <group-inline-display [group]="membership.group">
+                </group-inline-display>
+            </div>
+        </div>
         <div *ngIf="user.memberships && user.memberships.length === 0">
             {{ user.firstname }} n'est dans aucun groupe
         </div>

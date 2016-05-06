@@ -1,4 +1,4 @@
-<div class="aside__profile" *ngIf="auth_service.user.id">
+<div [routerLink]="['/Users/Details', {id: auth_service.user.id}]" class="aside__profile" *ngIf="auth_service.user.id">
     <div *ngIf="auth_service.user.photo" class="Avatar Avatar__Large" style="background-image: url('{{ auth_service.user.photo.file }}')"></div>
     <div>
         <div class="h3__title">
@@ -11,27 +11,21 @@
 </div>
 <ul class="aside__navlinks">
     <li class="aside__navlink" [routerLink]="['/Main']">
-        <i class="fa fa-home"></i>
-        Accueil
+        <i class="fa fa-home"></i> Accueil
     </li>
     <li class="aside__navlink" [routerLink]="['/Users']">
-        <i class="fa fa-user"></i>
-        Annuaire
+        <i class="fa fa-user"></i> Annuaire
     </li>
     <li class="aside__navlink" [routerLink]="['/Groups']">
-        <i class="fa fa-users"></i>
-        Groupes
+        <i class="fa fa-users"></i> Groupes
     </li>
     <li class="aside__navlink">
-        <i class="fa fa-calendar"></i>
-        Calendrier
+        <i class="fa fa-calendar"></i> Calendrier
     </li>
     <li class="aside__navlink" [routerLink]="['/Settings']">
-        <i class="fa fa-wrench"></i>
-        Réglages
+        <i class="fa fa-wrench"></i> Réglages
     </li>
     <li class="aside__navlink" (click)="logout()">
-        <i class="fa fa-sign-out"></i>
-        Déconnexion
+        <i class="fa fa-sign-out"></i> Déconnexion
     </li>
 </ul>

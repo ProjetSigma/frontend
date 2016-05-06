@@ -10,7 +10,6 @@ import {ProfileDisplayComponent} from './profile-display/profile-display';
 @Component({
     selector: 'users-details',
     templateUrl: './users/user-details/user-details.html',
-    providers: [APIService, User],
     directives: [NgFor, ProfileDisplayComponent]
 })
 export class UserDetailsComponent {

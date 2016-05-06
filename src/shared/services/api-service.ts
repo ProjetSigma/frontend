@@ -1,15 +1,15 @@
 import {Component} from 'angular2/core';
 
 import {DataStore} from 'js-data';
-import {HttpAdapter, addActions} from 'js-data-http';
+import {HttpAdapter} from 'js-data-http';
 
 import {AuthService} from './auth-service';
 import {api_url} from '../../config';
 
 import {Cluster, clusterSchema, clusterRelations} from '../resources/cluster';
-import {User, UserCluster, userSchema, userRelations} from '../resources/user';
-import * as schemas from './schemas';
-// import * as relations from './relations';
+import {User, userSchema, userRelations} from '../resources/user';
+import {Group, groupSchema, groupRelations} from '../resources/group';
+import {Membership,membershipSchema,membershipRelations} from '../resources/membership';
 
 @Component({
     providers: [AuthService]
@@ -58,8 +58,11 @@ export class APIService {
         });
 
         this.store.defineMapper('group', {
-            schema: schemas.group,
-            applySchema: false // for now: JSData Schema API not stable
+            recordClass: Group,
+            schema: groupSchema,
+            applySchema: true,
+            relations: groupRelations,
+            debug: true
         });
 
         this.store.defineMapper('user', {
@@ -73,8 +76,11 @@ export class APIService {
 
         this.store.defineMapper('membership', {
             endpoint: 'group-member',
-            schema: schemas.membership,
-            applySchema: false // for now: JSData Schema API not stable
+            recordClass: Membership,
+            schema: membershipSchema,
+            applySchema: true,
+            relations: membershipRelations,
+            debug:true
         });
     }
 }
