@@ -66,6 +66,7 @@ export class AuthService {
         this.accessToken = undefined;
         this.isConnected = false;
         localStorage.setItem('accessToken', '');
+        location.reload(true);
     }
 
     isAuthenticated() {
