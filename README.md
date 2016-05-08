@@ -27,6 +27,16 @@ To run the livereload server:
 npm start
 ```
 
+## Logging in
+
+To navigate on the site, fire up the backend server (see the [readme](https://github.com/ProjetSigma/backend)) and connect to the site using accounts from this list :
+* user@sigma.fr / user
+* denis.merigoux@sigma.fr / denis.merigoux
+* camille.masset@sigma.fr / camille.masset
+* hugo.tresentaux@sigma.fr / hugo.Tresentaux
+* arthur.pesah@sigma.fr / arthur.pesah
+You can connect to any account you see on the site by using the email adress / username pattern just like above.
+
 ## Wiki
 The wiki for the application is here : https://github.com/ProjetSigma/frontend/wiki
 
