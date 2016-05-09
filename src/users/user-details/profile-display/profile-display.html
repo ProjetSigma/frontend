@@ -14,7 +14,7 @@
             <dd>{{ user.email }}</dd>
         </dl>
     </div>
-    <div class="medium-6 columns">
+    <div *ngIf='user.phone' class="medium-6 columns">
         <dl>
             <dt>Téléphone</dt>
             <dd>{{ user.phone | phoneNumberFrench }}</dd>
@@ -23,6 +23,7 @@
 </div>
 
 <div class="row">
+    <h3> Groupes auxquels appartient {{user.firstname}} </h3>
     <div class="small-12 columns">
         <div *ngFor="let membership of user.memberships">
             <div *ngIf="membership && membership.group && membership.group.id">
