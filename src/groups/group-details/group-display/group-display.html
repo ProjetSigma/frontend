@@ -12,12 +12,10 @@
     <h3>Membres du groupe</h3>
 </div>
 <div class="row">
-    <div class="columns">
-        <div *ngFor="let membership of group.memberships">
-            <div *ngIf="membership && membership.user && membership.user.id">
-                <user-inline-display [user]="membership.user">
-                </user-inline-display>
-            </div>
+    <div *ngFor="let membership of group.memberships" class="medium-12 large-6 card">
+        <div *ngIf="membership && membership.user && membership.user.id">
+            <user-inline-display [user]="membership.user">
+            </user-inline-display>
         </div>
     </div>
 </div>
