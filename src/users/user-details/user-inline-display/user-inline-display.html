@@ -1,12 +1,13 @@
-<div class="callout adapted">
+<div class="callout">
     <div class="row centervertical">
-        <div class="columns shrink centervertical">
+        <div class="shrink centervertical">
             <div class="Avatar Avatar__Large" *ngIf="user.photo" style="background-image: url('{{ user.photo.file }}')"></div>
             <div class=" Avatar Avatar__Large" *ngIf="!user.photo"></div>
         </div>
-        <div class="columns centervertical">
+        <div class="centervertical">
             <div class="align-justify">
-                <a [routerLink]="['/Users/Details', {id: user.id}]">
+                &nbsp;
+                <a [routerLink]="['/Users/Details', {id: user.id}]" class="name">
                     <strong>
                         &nbsp;{{ user.firstname }}&nbsp;{{ user.lastname }}
                     </strong>

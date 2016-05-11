@@ -1,13 +1,12 @@
 <h2>Liste des utilisateurs</h2>
-<div class="expanded row">
-    <div class="small-6 medium-8 columns">
+<div class="row">
+        <p class="inline"> Rechercher quelqu'un</p>
+        <search-box class="champ" (update)="firstname = $event"></search-box>
+</div>
+<div class="expanded">
         <div class="row">
             <div class="medium-12 large-6 card" *ngFor="let user of users">
                 <user-inline-display [user]="user"></user-inline-display>
             </div>
         </div>
-    </div>
-    <div class="small-6 medium-4 columns callout">
-        Paramètres de recherche.
-    </div>
 </div>

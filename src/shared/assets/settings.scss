@@ -19,8 +19,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .callout {
-  border-color: grey;
   border-radius: 5px;
-  box-shadow: 2px 2px 1px #888888;
   padding: 0.5rem;
+  margin: 0px 0px .5rem;
+}
+
+.champ {
+    border-radius: 5px;
+    margin-left: 0.5rem;
+}
+
+.fa {
+    min-width: 14px;
 }
