@@ -1,7 +1,7 @@
 <div class="callout">
     <div class="expanded row align-middle">
         <div class="columns shrink">
-            <div class="Avatar Avatar__Small" *ngIf="user.photo" style="background-image: url('{{ user.photo.file }}')"></div>
+            <div class="Avatar Avatar__Small" *ngIf="user.photo" [style.background-image]="'url(' + user.photo.file + ')'"></div>
             <div class=" Avatar Avatar__Small" *ngIf="!user.photo"></div>
         </div>
         <div class="columns">
