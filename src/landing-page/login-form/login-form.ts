@@ -1,7 +1,7 @@
 import {Component} from 'angular2/core';
 import {NgForm} from 'angular2/common';
 
-import {AuthService} from '../../shared/services/auth-service';
+import {APIService} from '../../shared/services/api-service';
 
 @Component({
     selector: 'login-form',
@@ -11,16 +11,14 @@ import {AuthService} from '../../shared/services/auth-service';
 export class LoginFormComponent {
     public username:string;
     public password:string;
-    private _authService:AuthService;
     private _passwordError:boolean = false;
 
-    constructor(backend: AuthService) {
-        this._authService = backend;
+    constructor(private api:APIService) {
     }
 
     login(username, password) {
         this._passwordError = false;
-        return this._authService.authentificate(username, password)
+        return this.api.login(username, password)
             .subscribe(
                 res => {
                     this.username = '';
@@ -34,10 +32,10 @@ export class LoginFormComponent {
     }
 
     logout() {
-        return this._authService.logout();
+        return this.api.logout();
     }
 
     isAuthenticated() {
-        return this._authService.isAuthenticated();
+        return this.api.isAuthenticated();
     }
 }
