@@ -1,6 +1,6 @@
 import {Component} from 'angular2/core';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
-import {AuthService} from '../shared/services/auth-service';
+import {APIService} from '../shared/services/api-service';
 
 @Component({
     selector: 'menu-bar',
@@ -8,10 +8,10 @@ import {AuthService} from '../shared/services/auth-service';
     directives: [ROUTER_DIRECTIVES]
 })
 export class MenuBarComponent {
-    constructor(public auth_service:AuthService) {
+    constructor(public api:APIService) {
     }
 
     logout() {
-        return this.auth_service.logout();
+        return this.api.logout();
     }
 }

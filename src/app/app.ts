@@ -7,8 +7,9 @@ import {MainComponent} from '../main/main';
 import {UsersComponent} from '../users/users';
 import {GroupsComponent} from '../groups/groups';
 import {LandingPageComponent} from '../landing-page/landing-page';
-import {AuthService} from '../shared/services/auth-service';
 import {SettingsComponent} from '../settings/settings';
+
+import {APIService} from '../shared/services/api-service';
 
 
 @Component({
@@ -24,9 +25,5 @@ import {SettingsComponent} from '../settings/settings';
     {path: '/settings/', component: SettingsComponent, as: 'Settings'},
 ])
 export class AppComponent {
-    constructor(public authService:AuthService) {}
-
-    isAuthenticated() {
-        return this.authService.isAuthenticated();
-    }
+    constructor(public api:APIService) {}
 }

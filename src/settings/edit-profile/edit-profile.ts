@@ -1,7 +1,6 @@
 import {Component} from 'angular2/core';
 import {NgForm} from 'angular2/common';
 
-import {AuthService} from '../../shared/services/auth-service';
 import {APIService} from '../../shared/services/api-service';
 import {User} from '../../shared/resources/user';
 
@@ -20,7 +19,7 @@ export class EditProfileComponent {
     private errorOnEdit: boolean = false;
     private profilePicture: File;
 
-    constructor(public api: APIService, public auth_service: AuthService) {
+    constructor(public api: APIService) {
         this.editMode = false;
         this.me = new User();
         this.meEdit = new User();
@@ -59,7 +58,7 @@ export class EditProfileComponent {
     }
 
     reloadProfile() {
-        this.api.store.find('user',this.auth_service.user.id).then(me => {
+        this.api.store.find('user',this.api.me.id).then(me => {
             this.me = me;
             this.meEdit = me;
             console.log(me);

@@ -1,4 +1,5 @@
 import {Record, Schema} from 'js-data';
+import {IActionOpts} from 'js-data-http';
 
 import {Cluster} from './cluster';
 import {Membership} from './membership';
@@ -74,7 +75,7 @@ export const userRelations = {
     }
 };
 
-export const userActions = {
+export const userActions : { [key: string]: IActionOpts; } = {
     'me': {
         adapter: 'http',
         pathname: 'me',
