@@ -6,4 +6,34 @@ $color-primary: #1377b9;
 $color-success: #1a8622;
 $color-warning: #e69c00;
 $color-alert: #b92a13;
+$title-font: "Ubuntu";
 @import '../bootstrap';
+@import 'custom';
+@import '../settings';
+
+.fa {
+    min-width: 14px;
+}
+
+.Avatar {
+    border-radius: 50%;
+    background-size: cover;
+
+    &__Large {
+        height: 60px;
+        width: 60px;
+        min-width: 60px;
+        margin: 5px;
+    }
+
+    &__Medium {
+        height: 50px;
+        width: 50px;
+    }
+
+    &__Small {
+        height: 40px;
+        width: 40px;
+        min-width: 40px;
+    }
+}

@@ -11,7 +11,7 @@
         </div>
         <div *ngIf="group.resp_group &&
             group.resp_group.name &&
-            group.resp_group.id !== group.id" class="shrink school columns">
+            group.resp_group.id !== group.id" class="shrink school">
 
             <a [routerLink]="['/Groups/Details',{id: group.resp_group.id}]">
                 {{group.resp_group.name}}

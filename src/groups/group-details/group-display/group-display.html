@@ -6,8 +6,11 @@
     <i class="fa fa-eye"></i>
   </small>
     {{ group.name }}
-    <small *ngIf="group.resp_group && group.resp_group.name"> | {{ group.resp_group.name }}</small>
+    <small *ngIf="group.resp_group && group.resp_group.name && !(group.resp_group.name === group.name)"> | {{ group.resp_group.name }}</small>
 </h1>
+<div *ngIf="group.description" class="description">
+    {{ group.description }}
+</div>
 <div class="row text-center">
     <h3>Membres du groupe</h3>
 </div>

@@ -9,26 +9,3 @@
 @import '../../users/user-details/user-inline-display/user-inline-display';
 @import '../../users/users-list/users-list';
 @import '../../groups/group-details/group-inline-display/group-inline-display';
-
-body {
-    font-size: 0.9em;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: "Ubuntu";
-}
-
-.callout {
-  border-radius: 5px;
-  padding: 0.5rem;
-  margin: 0px 0px .5rem;
-}
-
-.champ {
-    border-radius: 5px;
-    margin-left: 0.5rem;
-}
-
-.fa {
-    min-width: 14px;
-}
