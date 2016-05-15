@@ -1,10 +1,10 @@
 <h1>
     Mon profil
     <small *ngIf="!editMode && !editPassword">
-        <button (click)="editMode = true" class="success button">
+        <button (click)="editMode = true" class="button-default">
             Modifier mes informations
         </button>
-        <button (click)="editPassword = true" class="success button">
+        <button (click)="editPassword = true" class="button-default">
             Modifier mon mot de passe
         </button>
     </small>
@@ -32,15 +32,15 @@
             </div>
         </label>
         <div class="row align-center">
-            <button (click)="editMode = false" class="warning button">Retourner à l'affichage du profil</button>
-            <button (click)="editProfile(meEdit,profilePicture)" [disabled]="!editProfileForm.form.valid" class="success button" type="submit">Modifier son profil</button>
+            <button (click)="editMode = false" class="button-warning">Retourner à l'affichage du profil</button>
+            <button (click)="editProfile(meEdit,profilePicture)" [disabled]="!editProfileForm.form.valid" class="button-ok" type="submit">Modifier son profil</button>
         </div>
         <div [hidden]="!errorOnEdit" class="alert callout">Erreur lors de la modification du profil.</div>
     </form>
 </div>
 <div class="row align-center" *ngIf="editPassword">
-    <div class="large-2 columns">
-        <button (click)="editPassword = false" class="warning button">Retour</button>
-    </div>
-    <edit-password class="large-10 columns callout"></edit-password>
+  <edit-password class="large-10 columns callout"></edit-password>
+  <div class="large-2 columns">
+      <button (click)="editPassword = false" class="button-warning">Retour</button>
+  </div>
 </div>

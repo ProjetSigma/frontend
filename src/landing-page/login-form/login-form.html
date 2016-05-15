@@ -17,7 +17,7 @@
     <div [hidden]="!_passwordError" class="alert callout">
         Ton mot de passe est erroné.
     </div>
-    <button (click)="login(username,password)" [disabled]="!loginForm.form.valid" class="success button expanded" type="submit">
+    <button (click)="login(username,password)" [disabled]="!loginForm.form.valid" class="button-ok button expanded" type="submit">
         Se connecter
     </button>
 </form>

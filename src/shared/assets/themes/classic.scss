@@ -8,7 +8,6 @@ $color-warning: #e69c00;
 $color-alert: #b92a13;
 $title-font: "Ubuntu";
 @import '../bootstrap';
-@import 'custom';
 @import '../settings';
 
 .fa {
@@ -36,4 +35,35 @@ $title-font: "Ubuntu";
         width: 40px;
         min-width: 40px;
     }
+}
+
+%custom-button {
+    @include button;
+    border : $callout-border;
+    font-family: $body-font-family;
+}
+
+.button-ok {
+    @extend %custom-button;
+    color: $color-success;
+}
+
+.button-no {
+    @extend %custom-button;
+    color: $color-alert;
+}
+
+.button-warning{
+    @extend %custom-button;
+    color: $color-warning;
+}
+
+.button-primary {
+    @extend %custom-button;
+    color: $color-primary;
+}
+
+.button-default {
+    @extend %custom-button;
+    color: $color-font;
 }
