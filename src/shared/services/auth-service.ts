@@ -1,6 +1,7 @@
 import {Component} from 'angular2/core';
 import {Http, HTTP_PROVIDERS, Headers, Response} from 'angular2/http';
 import {api_url} from '../../config';
+import {Observable} from 'rxjs';
 
 @Component({
     providers: [Http, HTTP_PROVIDERS]
@@ -31,7 +32,7 @@ export class AuthService {
         var request = this.http.post(this.base_url + 'o/token/',
             params,
             {headers:headers}
-        );
+        ).share();
 
         request.subscribe(
             (res:Response) => {
@@ -42,7 +43,7 @@ export class AuthService {
             err => console.log('Erreur de mot de passe')
         );
 
-        return request;
+        return request
     }
 
     logout() {
