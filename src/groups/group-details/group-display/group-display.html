@@ -17,6 +17,11 @@
         Rejoindre le groupe
         </button>
     </span>
+    <span *ngIf="canLeaveGroup()">
+        &nbsp;<button (click)="leaveGroup()" class="button-no">
+        Quitter le groupe
+        </button>
+    </span>
 </div>
 <div class="row">
     <div *ngFor="let membership of group.memberships" class="medium-12 large-6 card">

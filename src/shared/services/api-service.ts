@@ -18,7 +18,9 @@ export class APIService {
     public store: DataStore = new DataStore();
     public me: User = new User();
 
-    constructor(private auth: AuthService) { }
+    constructor(private auth: AuthService) {
+        this.auth.checkIfPreviouslyAuthentificated();
+    }
 
     buildStore() {
         // Configure headers
@@ -116,6 +118,18 @@ export class APIService {
                 });
             };
         });
+    }
+
+    getMyMembership(group_id:number) {
+        if(this.me.memberships) {
+            for (var membership of this.me.memberships) {
+                if (membership.group_id === group_id)
+                    return membership;
+            }
+            return undefined;
+        } else {
+            return undefined;
+        }
     }
 
     //Returns true if the user is member of the argument group.

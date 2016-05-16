@@ -4,8 +4,8 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {APIService} from '../../../shared/services/api-service';
 import {Group} from '../../../shared/resources/group';
-import {Membership} from '../../../shared/resources/membership';
 import {UserInlineDisplayComponent} from '../../../users/user-details/user-inline-display/user-inline-display';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'group-display',
@@ -26,10 +26,6 @@ export class GroupDisplayComponent {
         }
     }
 
-    canJoinGroup() {
-        return (this.group.default_member_rank > -1 && !this.api.isInMyGroups(this.group.id));
-    }
-
     getMembers() {
         this.api.store.findAll('membership', { 'group': this.group.id }).then(res => {
             for (var membership of this.group.memberships) {
@@ -38,7 +34,28 @@ export class GroupDisplayComponent {
         });
     }
 
+    canJoinGroup() {
+        return (this.group.default_member_rank > -1 && !this.api.isInMyGroups(this.group.id));
+    }
+
     joinGroup() {
-        console.log("Je veux rejoindre le groupe.");
+        this.api.store.create('membership', {
+            user_id : this.api.me.id,
+            group_id : this.group.id
+        });
+    }
+
+    canLeaveGroup() {
+        return this.api.isInMyGroups(this.group.id);
+    }
+
+    leaveGroup() {
+        var membership =this.api.getMyMembership(this.group.id);
+        this.api.store.destroy('membership',membership.id).then(
+            res => {
+                _.remove(this.group.memberships,membership);
+                _.remove(this.api.me.memberships,membership);
+            }
+        );
     }
 }

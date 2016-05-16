@@ -1,7 +1,6 @@
 import {Component} from 'angular2/core';
 import {Http, HTTP_PROVIDERS, Headers, Response} from 'angular2/http';
 import {api_url} from '../../config';
-import {Observable} from 'rxjs';
 
 @Component({
     providers: [Http, HTTP_PROVIDERS]
@@ -22,6 +21,14 @@ export class AuthService {
         }
     };
 
+    checkIfPreviouslyAuthentificated() {
+        var accessToken = localStorage.getItem('sigmaAccessToken');
+        if (accessToken !== '') {
+            this.accessToken = accessToken;
+            this.isConnected = true;
+        }
+    }
+
     authentificate(username,password) {
         var params = 'grant_type=password&username='+username+'&password='+password;
 
@@ -37,19 +44,19 @@ export class AuthService {
         request.subscribe(
             (res:Response) => {
                 this.accessToken = res.json().access_token;
-                localStorage.setItem('accessToken', this.accessToken);
+                localStorage.setItem('sigmaAccessToken', this.accessToken);
                 this.isConnected = true;
             },
             err => console.log('Erreur de mot de passe')
         );
 
-        return request
+        return request;
     }
 
     logout() {
         this.accessToken = undefined;
         this.isConnected = false;
-        localStorage.setItem('accessToken', '');
+        localStorage.setItem('sigmaAccessToken', '');
     }
 
     isAuthenticated() {
