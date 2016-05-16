@@ -4,7 +4,6 @@ import {Membership} from './membership';
 export class Group extends Record {
     //Fields fetched from the backend
     public id: number;
-    public resp_group_id: number;
     public members_count: number;
     public name: string;
     public is_private:boolean;//public or private
@@ -31,7 +30,6 @@ export class Group extends Record {
 export const groupSchema = new Schema({
     properties: {
         id: { type: 'integer' },
-        resp_group_id: {type: 'integer'},
         members_count: {type: 'integer'},
         name: { type: 'string' },
         is_private: { type: 'boolean' },
@@ -48,12 +46,6 @@ export const groupSchema = new Schema({
 });
 
 export const groupRelations = {
-    belongsTo: {
-        group: {
-            localKey: 'resp_group_id',
-            localField: 'resp_group'
-        }
-    },
     hasMany: {
         membership: {
             foreignKey: 'group_id',

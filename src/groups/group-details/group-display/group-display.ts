@@ -21,13 +21,8 @@ export class GroupDisplayComponent {
     //once the answer is received alog with the group to display.
     ngOnChanges() {
         if (this.group !== undefined) {
-            this.getRespGroup();
             this.getMembers();
         }
-    }
-
-    getRespGroup() {
-        this.api.store.find('group', this.group.resp_group_id);
     }
 
     getMembers() {

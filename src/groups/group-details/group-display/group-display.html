@@ -6,7 +6,6 @@
     <i class="fa fa-eye"></i>
   </small>
     {{ group.name }}
-    <small *ngIf="group.resp_group && group.resp_group.name && !(group.resp_group.name === group.name)"> | {{ group.resp_group.name }}</small>
 </h1>
 <div *ngIf="group.description" class="description">
     {{ group.description }}
