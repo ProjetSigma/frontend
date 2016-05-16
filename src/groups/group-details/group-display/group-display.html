@@ -10,8 +10,13 @@
 <div *ngIf="group.description" class="description">
     {{ group.description }}
 </div>
-<div class="row text-center">
+<div class="row">
     <h3>Membres du groupe</h3>
+    <span *ngIf="canJoinGroup()">
+        &nbsp;<button (click)="joinGroup()" class="button-primary">
+        Rejoindre le groupe
+        </button>
+    </span>
 </div>
 <div class="row">
     <div *ngFor="let membership of group.memberships" class="medium-12 large-6 card">

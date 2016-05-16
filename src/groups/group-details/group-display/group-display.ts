@@ -4,6 +4,7 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {APIService} from '../../../shared/services/api-service';
 import {Group} from '../../../shared/resources/group';
+import {Membership} from '../../../shared/resources/membership';
 import {UserInlineDisplayComponent} from '../../../users/user-details/user-inline-display/user-inline-display';
 
 @Component({
@@ -25,11 +26,19 @@ export class GroupDisplayComponent {
         }
     }
 
+    canJoinGroup() {
+        return (this.group.default_member_rank > -1 && !this.api.isInMyGroups(this.group.id));
+    }
+
     getMembers() {
         this.api.store.findAll('membership', { 'group': this.group.id }).then(res => {
             for (var membership of this.group.memberships) {
                 this.api.store.find('user', membership.user_id);
             };
         });
+    }
+
+    joinGroup() {
+        console.log("Je veux rejoindre le groupe.");
     }
 }

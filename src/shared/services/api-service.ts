@@ -80,12 +80,16 @@ export class APIService {
         });
     }
 
+    //Auth-related methods
     login(username, password) {
         var authRequest =  this.auth.authentificate(username, password);
         authRequest.subscribe(res => {
             this.buildStore();
             (addActions(userActions)(this.store.getMapper('user'))).me()
-            .then(res =>  this.me = res);
+            .then(res =>  {
+                this.me = res;
+                this.getMyGroups();
+            });
         }, error => '');
         return authRequest;
     };
@@ -97,5 +101,33 @@ export class APIService {
 
     isAuthenticated() {
         return this.auth.isAuthenticated();
+    }
+
+    //Me-related methods
+
+    //Retrieves all the groups of the logged user and attach them to the User
+    //object.
+    getMyGroups() {
+        this.store.findAll('membership',{'user':this.me.id}).then(res => {
+            this.me.memberships = res;
+            for (var membership of this.me.memberships) {
+                this.store.find('group',membership.group_id).then(res => {
+                    membership.group = res;
+                });
+            };
+        });
+    }
+
+    //Returns true if the user is member of the argument group.
+    isInMyGroups(group_id:number) {
+        if (this.me.memberships) {
+            for (var membership of this.me.memberships) {
+                if (membership.group_id === group_id)
+                    return true;
+            }
+            return false;
+        } else {
+            return false;
+        }
     }
 }
