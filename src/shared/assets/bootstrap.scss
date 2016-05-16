@@ -1,7 +1,6 @@
 @charset 'utf-8';
 
 @import 'foundation-settings';
-// @import 'settings';
 @import 'foundation';
 // @include foundation-grid;
 @include foundation-flex-classes;
@@ -49,7 +48,3 @@
 @include motion-ui-animations;
 
 @import 'resets/html';
-@import '../../app/app';
-@import '../../menu-bar/aside';
-@import '../../landing-page/landing-page';
-@import '../../landing-page/login-form/login-form';

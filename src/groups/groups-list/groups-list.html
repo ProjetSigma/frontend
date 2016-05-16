@@ -1,10 +1,9 @@
 <h2>Liste des groupes</h2>
-<div class="expanded row">
-    <div class="small-6 medium-8 columns">
+<div class="form-inline row">
+        <p> Rechercher un groupe &nbsp;</p>
+        <search-box (update)="group = $event"></search-box>
+</div>
+<div class="expanded columns">
         <group-inline-display *ngFor="let group of groups" [group]="group"></group-inline-display>
-    </div>
-    <div class="small-6 medium-4 columns callout">
-        Paramètres de recherche.
-    </div>
 </div>
 <hr>

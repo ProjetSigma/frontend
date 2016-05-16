@@ -5,11 +5,12 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 import {APIService} from '../../shared/services/api-service';
 import {User} from '../../shared/resources/user';
 import {UserInlineDisplayComponent} from '../user-details/user-inline-display/user-inline-display';
+import {SearchBox} from '../../shared/resources/search-box';
 
 @Component({
     selector: 'users-list',
     templateUrl: './users/users-list/users-list.html',
-    directives: [NgFor, ROUTER_DIRECTIVES, UserInlineDisplayComponent]
+    directives: [NgFor, ROUTER_DIRECTIVES, UserInlineDisplayComponent, SearchBox]
 })
 export class UsersListComponent {
     public users: User[] = [];

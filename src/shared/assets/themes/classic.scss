@@ -6,4 +6,64 @@ $color-primary: #1377B9;
 $color-success: #1A8622;
 $color-warning: #E69C00;
 $color-alert: #B92A13;
+$title-font: "Ubuntu";
 @import '../bootstrap';
+@import '../settings';
+
+.fa {
+    min-width: 14px;
+}
+
+.Avatar {
+    border-radius: 50%;
+    background-size: cover;
+
+    &__Large {
+        height: 60px;
+        width: 60px;
+        min-width: 60px;
+        margin: 5px;
+    }
+
+    &__Medium {
+        height: 50px;
+        width: 50px;
+    }
+
+    &__Small {
+        height: 40px;
+        width: 40px;
+        min-width: 40px;
+    }
+}
+
+%custom-button {
+    @include button;
+    border : $callout-border;
+    font-family: $body-font-family;
+}
+
+.button-ok {
+    @extend %custom-button;
+    color: $color-success;
+}
+
+.button-no {
+    @extend %custom-button;
+    color: $color-alert;
+}
+
+.button-warning{
+    @extend %custom-button;
+    color: $color-warning;
+}
+
+.button-primary {
+    @extend %custom-button;
+    color: $color-primary;
+}
+
+.button-default {
+    @extend %custom-button;
+    color: $color-font;
+}

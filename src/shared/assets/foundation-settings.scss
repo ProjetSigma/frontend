@@ -44,7 +44,7 @@
 // ---------
 
 $global-width: rem-calc(1200);
-$global-font-size: 100%;
+$global-font-size: 95%;
 $global-lineheight: 1.5;
 $secondary-color: #777;
 $primary-color: $color-primary;
@@ -66,7 +66,7 @@ $global-padding: 1rem;
 $global-margin: 1rem;
 $global-weight-normal: normal;
 $global-weight-bold: bold;
-$global-radius: 0;
+$global-radius: 5px;
 $global-namespace: false;
 $global-text-direction: ltr;
 $rem-base: 16px;
@@ -93,7 +93,7 @@ $grid-column-gutter: 30px;
 // 4. Base Typography
 // ------------------
 
-$header-font-family: $body-font-family;
+$header-font-family: $title-font;
 $header-font-weight: $global-weight-normal;
 $header-font-style: normal;
 $font-family-monospace: Consolas, "Liberation Mono", Courier, monospace;
@@ -226,9 +226,9 @@ $breadcrumbs-item-slash: true;
 $button-padding: 0.85em 1em;
 $button-margin: 0 $global-margin $global-margin 0;
 $button-fill: solid;
-$button-background: $primary-color;
+$button-background: $white;
 $button-background-hover: scale-color($button-background, $lightness: -15%);
-$button-color: #fff;
+$button-color: #000;
 $button-color-alt: #000;
 $button-radius: $global-radius;
 $button-sizes: (
@@ -253,8 +253,8 @@ $buttongroup-expand-max: 6;
 $callout-background: $white;
 $callout-background-fade: 85%;
 $callout-border: 1px solid rgba($black, 0.25);
-$callout-margin: 0 0 1rem 0;
-$callout-padding: 1rem;
+$callout-margin: 0 .5rem .5rem 0;
+$callout-padding: .5rem;
 $callout-font-color: $body-font-color;
 $callout-font-color-alt: $body-background;
 $callout-radius: $global-radius;
