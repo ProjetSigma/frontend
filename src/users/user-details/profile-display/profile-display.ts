@@ -33,4 +33,42 @@ export class ProfileDisplayComponent {
         });
     }
 
+    realMemberships() {
+        if (this.user.memberships) {
+            return this.user.memberships.filter(function(membership) {
+                return membership.perm_rank > 0;
+            });
+        } else {
+            return [];
+        }
+    }
+
+    pendingMemberships() {
+        if (this.user.memberships) {
+            return this.user.memberships.filter(function(membership) {
+                return membership.perm_rank === 0
+            });
+        } else {
+            return [];
+        }
+    }
+
+    existPendingMemberships() {
+        return this.pendingMemberships().length > 0;
+    }
+
+    invitedMemberships() {
+        if (this.user.memberships) {
+            return this.user.memberships.filter(function(membership) {
+                return membership.perm_rank < 0
+            });
+        } else {
+            return [];
+        }
+    }
+
+    existInvitedMemberships() {
+        return this.invitedMemberships().length > 0;
+    }
+
 }

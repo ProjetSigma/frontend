@@ -25,14 +25,44 @@
 <div class="row">
     <h3> Groupes auxquels appartient {{user.firstname}} </h3>
     <div class="small-12 columns">
-        <div *ngFor="let membership of user.memberships">
+        <div *ngFor="let membership of realMemberships()">
             <div *ngIf="membership && membership.group && membership.group.id">
                 <group-inline-display [group]="membership.group">
                 </group-inline-display>
             </div>
         </div>
-        <div *ngIf="user.memberships && user.memberships.length === 0">
+        <div *ngIf="user.memberships && realMemberships() === 0">
             {{ user.firstname }} n'est dans aucun groupe
+        </div>
+    </div>
+</div>
+<div *ngIf="existPendingMemberships()">
+    <div class="row">
+        <h3>Demandes d'adhésion</h3>
+    </div>
+    <div class="row">
+        <div class="small-12 columns">
+            <div *ngFor="let membership of pendingMemberships()">
+                <div *ngIf="membership && membership.group && membership.group.id">
+                    <group-inline-display [group]="membership.group">
+                    </group-inline-display>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="existInvitedMemberships()">
+    <div class="row">
+        <h3>Invitations en attente</h3>
+    </div>
+    <div class="row">
+        <div class="small-12 columns">
+            <div *ngFor="let membership of invitedMemberships()">
+                <div *ngIf="membership && membership.group && membership.group.id">
+                    <group-inline-display [group]="membership.group">
+                    </group-inline-display>
+                </div>
+            </div>
         </div>
     </div>
 </div>

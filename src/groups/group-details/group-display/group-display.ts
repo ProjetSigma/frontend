@@ -34,14 +34,52 @@ export class GroupDisplayComponent {
         });
     }
 
+    realMemberships() {
+        if (this.group.memberships) {
+            return this.group.memberships.filter(function(membership) {
+                return membership.perm_rank > 0;
+            });
+        } else {
+            return [];
+        }
+    }
+
+    pendingMemberships() {
+        if (this.group.memberships) {
+            return this.group.memberships.filter(function(membership) {
+                return membership.perm_rank === 0
+            });
+        } else {
+            return [];
+        }
+    }
+
+    existPendingMemberships() {
+        return this.pendingMemberships().length > 0;
+    }
+
+    invitedMemberships() {
+        if (this.group.memberships) {
+            return this.group.memberships.filter(function(membership) {
+                return membership.perm_rank < 0
+            });
+        } else {
+            return [];
+        }
+    }
+
+    existInvitedMemberships() {
+        return this.invitedMemberships().length > 0;
+    }
+
     canJoinGroup() {
         return (this.group.default_member_rank > -1 && !this.api.isInMyGroups(this.group.id));
     }
 
     joinGroup() {
         this.api.store.create('membership', {
-            user_id : this.api.me.id,
-            group_id : this.group.id
+            user_id: this.api.me.id,
+            group_id: this.group.id
         });
     }
 
@@ -50,12 +88,13 @@ export class GroupDisplayComponent {
     }
 
     leaveGroup() {
-        var membership =this.api.getMyMembership(this.group.id);
-        this.api.store.destroy('membership',membership.id).then(
+        var membership = this.api.getMyMembership(this.group.id);
+        this.api.store.destroy('membership', membership.id).then(
             res => {
-                _.remove(this.group.memberships,membership);
-                _.remove(this.api.me.memberships,membership);
+                _.remove(this.group.memberships, membership);
+                _.remove(this.api.me.memberships, membership);
             }
-        );
+            );
     }
+
 }

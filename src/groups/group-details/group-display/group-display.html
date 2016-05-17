@@ -24,10 +24,36 @@
     </span>
 </div>
 <div class="row">
-    <div *ngFor="let membership of group.memberships" class="medium-12 large-6 card">
+    <div *ngFor="let membership of realMemberships()" class="medium-12 large-6 card">
         <div *ngIf="membership && membership.user && membership.user.id">
             <user-inline-display [user]="membership.user">
             </user-inline-display>
+        </div>
+    </div>
+</div>
+<div *ngIf="existPendingMemberships()">
+    <div class="row">
+        <h3>Demandes d'adhésion</h3>
+    </div>
+    <div class="row">
+        <div *ngFor="let membership of pendingMemberships()" class="medium-12 large-6 card">
+            <div *ngIf="membership && membership.user && membership.user.id">
+                <user-inline-display [user]="membership.user">
+                </user-inline-display>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="existInvitedMemberships()">
+    <div class="row">
+        <h3>Invitations en attente</h3>
+    </div>
+    <div class="row">
+        <div *ngFor="let membership of invitedMemberships()" class="medium-12 large-6 card">
+            <div *ngIf="membership && membership.user && membership.user.id">
+                <user-inline-display [user]="membership.user">
+                </user-inline-display>
+            </div>
         </div>
     </div>
 </div>
