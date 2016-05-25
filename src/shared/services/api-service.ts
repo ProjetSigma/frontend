@@ -19,7 +19,9 @@ export class APIService {
     public me: User = new User();
 
     constructor(private auth: AuthService) {
-        this.auth.checkIfPreviouslyAuthentificated();
+        if (this.auth.checkIfPreviouslyAuthentificated()) {
+            this.initializeStore();
+        }
     }
 
     buildStore() {
@@ -86,19 +88,22 @@ export class APIService {
     login(username, password) {
         var authRequest =  this.auth.authentificate(username, password);
         authRequest.subscribe(res => {
-            this.buildStore();
-            (addActions(userActions)(this.store.getMapper('user'))).me()
-            .then(res =>  {
-                this.me = res;
-                this.getMyGroups();
-            });
+            this.initializeStore();
         }, error => '');
         return authRequest;
     };
 
+    initializeStore() {
+        this.buildStore();
+        (addActions(userActions)(this.store.getMapper('user'))).me()
+        .then(res =>  {
+            this.me = res;
+            this.getMyGroups();
+        });
+    }
+
     logout() {
         this.auth.logout();
-        location.reload();
     };
 
     isAuthenticated() {

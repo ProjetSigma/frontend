@@ -14,11 +14,7 @@ export class AuthService {
     'XjbfZS6Apq05PDTSL4CoFHGo7NsKVAa1XMVrVElk5N1t0dOSyqxrHPff6okAi6X6Du9XxrK4dl0mLQ0YlscJsjnL5IKhQagQdGv2SgumhYRFaMi6LtHNPXicmMr8oLdy';
 
     constructor(public http:Http) {
-        var token: string = localStorage.getItem('accessToken');
-        if (token !== null && token !== '') {
-            this.accessToken = token;
-            this.isConnected = true;
-        }
+        this.checkIfPreviouslyAuthentificated();
     };
 
     checkIfPreviouslyAuthentificated() {
@@ -26,6 +22,9 @@ export class AuthService {
         if (accessToken !== '') {
             this.accessToken = accessToken;
             this.isConnected = true;
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -57,6 +56,7 @@ export class AuthService {
         this.accessToken = undefined;
         this.isConnected = false;
         localStorage.setItem('sigmaAccessToken', '');
+        location.reload();
     }
 
     isAuthenticated() {
