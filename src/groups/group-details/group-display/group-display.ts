@@ -4,6 +4,7 @@ import {ROUTER_DIRECTIVES} from 'angular2/router';
 
 import {APIService} from '../../../shared/services/api-service';
 import {Group} from '../../../shared/resources/group';
+import {Membership} from '../../../shared/resources/membership';
 import {UserInlineDisplayComponent} from '../../../users/user-details/user-inline-display/user-inline-display';
 import * as _ from 'lodash';
 
@@ -47,7 +48,7 @@ export class GroupDisplayComponent {
     pendingMemberships() {
         if (this.group.memberships) {
             return this.group.memberships.filter(function(membership) {
-                return membership.perm_rank === 0
+                return membership.perm_rank === 0;
             });
         } else {
             return [];
@@ -61,7 +62,7 @@ export class GroupDisplayComponent {
     invitedMemberships() {
         if (this.group.memberships) {
             return this.group.memberships.filter(function(membership) {
-                return membership.perm_rank < 0
+                return membership.perm_rank < 0;
             });
         } else {
             return [];
@@ -95,6 +96,26 @@ export class GroupDisplayComponent {
                 _.remove(this.api.me.memberships, membership);
             }
             );
+    }
+
+    canAcceptJoinRequests() {
+        if (this.api.isInMyGroups(this.group.id)) {
+            var membership = this.api.getMyMembership(this.group.id);
+            return this.group.req_rank_accept_join_requests< membership.perm_rank;
+        } else {
+            return false;
+        }
+    }
+
+    acceptJoinRequest(membership:Membership) {
+        //TODO
+    }
+
+    rejectJoinRequest(membership:Membership) {
+        this.api.store.destroy('membership',membership.id).then(
+            res => {
+                _.remove(this.group.memberships,membership);
+            });
     }
 
 }

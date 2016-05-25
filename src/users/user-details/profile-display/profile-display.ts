@@ -46,7 +46,7 @@ export class ProfileDisplayComponent {
     pendingMemberships() {
         if (this.user.memberships) {
             return this.user.memberships.filter(function(membership) {
-                return membership.perm_rank === 0
+                return membership.perm_rank === 0;
             });
         } else {
             return [];
@@ -60,7 +60,7 @@ export class ProfileDisplayComponent {
     invitedMemberships() {
         if (this.user.memberships) {
             return this.user.memberships.filter(function(membership) {
-                return membership.perm_rank < 0
+                return membership.perm_rank < 0;
             });
         } else {
             return [];
