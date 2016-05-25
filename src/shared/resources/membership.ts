@@ -1,4 +1,5 @@
 import {Record, Schema} from 'js-data';
+import {IActionOpts} from 'js-data-http';
 import {User} from './user';
 import {Group} from './group';
 
@@ -49,10 +50,10 @@ export const membershipRelations = {
     }
 };
 
-export const membershipActions = {
+export const membershipActions : { [key: string]: IActionOpts; } = {
     'acceptJoinRequest' : {
         adapter: 'http',
         pathname: 'accept_join_request',
-        method: 'PUT'
+        response: (u) => { return new Membership(u.data); }
     }
-}
+};

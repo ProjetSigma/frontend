@@ -103,22 +103,25 @@ export class GroupDisplayComponent {
     canAcceptJoinRequests() {
         if (this.api.isInMyGroups(this.group.id)) {
             var membership = this.api.getMyMembership(this.group.id);
-            return this.group.req_rank_accept_join_requests< membership.perm_rank;
+            return this.group.req_rank_accept_join_requests<= membership.perm_rank;
         } else {
             return false;
         }
     }
 
     acceptJoinRequest(membership:Membership) {
+        //Hack required, can't define it in membershipActions because
+        //js-data-http typescript interface is crappy.
+        membershipActions['acceptJoinRequest']['method'] = 'PUT';
         (addActions(membershipActions)
         (this.api.store.getMapper('membership'))).acceptJoinRequest(
             membership.id,{
                 user_id:membership.user_id,
                 group_id:membership.group_id
-            }
-        ).then(res =>{
-            membership.perm_rank = res.data.perm_rank;
-        })
+            }, {method : 'PUT'}
+        ).then(res => {
+            membership.perm_rank = res.perm_rank;
+        });
     }
 
     rejectJoinRequest(membership:Membership) {
