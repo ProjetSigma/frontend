@@ -48,3 +48,11 @@ export const membershipRelations = {
         }
     }
 };
+
+export const membershipActions = {
+    'acceptJoinRequest' : {
+        adapter: 'http',
+        pathname: 'accept_join_request',
+        method: 'PUT'
+    }
+}

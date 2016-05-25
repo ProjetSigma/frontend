@@ -1,6 +1,8 @@
 import {Component, Input} from 'angular2/core';
 import {NgFor, NgIf, NgSwitchDefault} from 'angular2/common';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
+import {addActions} from 'js-data-http';
+import {membershipActions} from '../../../shared/resources/membership';
 
 import {APIService} from '../../../shared/services/api-service';
 import {Group} from '../../../shared/resources/group';
@@ -108,7 +110,15 @@ export class GroupDisplayComponent {
     }
 
     acceptJoinRequest(membership:Membership) {
-        //TODO
+        (addActions(membershipActions)
+        (this.api.store.getMapper('membership'))).acceptJoinRequest(
+            membership.id,{
+                user_id:membership.user_id,
+                group_id:membership.group_id
+            }
+        ).then(res =>{
+            membership.perm_rank = res.data.perm_rank;
+        })
     }
 
     rejectJoinRequest(membership:Membership) {
