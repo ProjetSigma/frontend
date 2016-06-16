@@ -1,14 +1,19 @@
 <form #loginForm="ngForm" *ngIf="!isAuthenticated()" class="callout login-form__form">
-    <label for="login-form-username-input">Adresse email</label>
-    <input #controlUsername="ngForm" [(ngModel)]="username" autofocus ngControl="username"
+<h3 class="row align-center">Log in</h3>
+<div class="row">
+    <label class="small-0 columns" for="login-form-username-input" class="fa fa-user"> </label>
+    <input class="small-10 columns" #controlUsername="ngForm" [(ngModel)]="username" autofocus ngControl="username"
         placeholder="prenom.nom@ecole.edu" required type="email" id="login-form-username-input" />
 
     <div [hidden]="controlUsername.pristine || controlUsername.valid" class="alert callout">
         Entre l'adresse e-mail de ton École.
     </div>
-    <label for="login-form-password-input">Mot de passe</label>
-    <input #controlPassword="ngForm" [(ngModel)]="password" [attr.autofocus]="!_passwordError"
-        [ngClass]="{animated : _passwordError, flash : _passwordError}" ngControl="password" required type="password"
+</div>
+<div class="row">
+    <label class="small-0 columns" for="login-form-password-input" class="fa fa-lock"> </label>
+    <input class="small-10 columns" #controlPassword="ngForm" [(ngModel)]="password" [attr.autofocus]="!_passwordError"
+        [ngClass]="{animated : _passwordError, flash : _passwordError}" ngControl="password" placeholder="password"
+        required type="password"
         id="login-form-password-input" />
 
     <div [hidden]="_passwordError || controlPassword.pristine || controlPassword.valid" class="alert callout">
@@ -17,6 +22,7 @@
     <div [hidden]="!_passwordError" class="alert callout">
         Ton mot de passe est erroné.
     </div>
+</div>
     <button (click)="login(username,password)" [disabled]="!loginForm.form.valid" class="button-ok button expanded" type="submit">
         Se connecter
     </button>
