@@ -9,4 +9,4 @@ export = () => {
       '!' + join(APP_SRC, '**', '*.scss')
     ])
     .pipe(gulp.dest(APP_DEST));
-}
+};

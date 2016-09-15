@@ -6,7 +6,7 @@ $color-primary: #1377B9;
 $color-success: #1A8622;
 $color-warning: #E69C00;
 $color-alert: #B92A13;
-$title-font: "Ubuntu";
+$title-font: 'Ubuntu';
 @import '../bootstrap';
 @import '../settings';
 
@@ -39,7 +39,7 @@ $title-font: "Ubuntu";
 
 %custom-button {
     @include button;
-    border : $callout-border;
+    border: $callout-border;
     font-family: $body-font-family;
 }
 
@@ -53,7 +53,7 @@ $title-font: "Ubuntu";
     color: $color-alert;
 }
 
-.button-warning{
+.button-warning {
     @extend %custom-button;
     color: $color-warning;
 }

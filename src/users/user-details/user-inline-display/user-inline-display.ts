@@ -14,4 +14,4 @@ import {PhoneNumberFrenchPipe} from '../profile-display/phone-number-french';
 })
 export class UserInlineDisplayComponent {
     @Input('user') user: User;
-}
+};
