@@ -36,7 +36,7 @@ export class ProfileDisplayComponent {
     realMemberships() {
         if (this.user.memberships) {
             return this.user.memberships.filter(function(membership) {
-                return membership.perm_rank > 0;
+                return membership.is_accepted;
             });
         } else {
             return [];
@@ -44,9 +44,10 @@ export class ProfileDisplayComponent {
     }
 
     pendingMemberships() {
+      ///need to interact with the group to see if need_validation_to_join is true
         if (this.user.memberships) {
             return this.user.memberships.filter(function(membership) {
-                return membership.perm_rank === 0;
+                return membership.is_accepted === false;
             });
         } else {
             return [];
@@ -60,7 +61,7 @@ export class ProfileDisplayComponent {
     invitedMemberships() {
         if (this.user.memberships) {
             return this.user.memberships.filter(function(membership) {
-                return membership.perm_rank < 0;
+                return membership.is_accepted === false;
             });
         } else {
             return [];

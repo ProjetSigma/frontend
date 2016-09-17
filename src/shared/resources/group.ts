@@ -10,6 +10,7 @@ export class Group extends Record {
     public description: string;
     public is_protected:boolean;
     public can_anyone_join:boolean;
+    public need_validation_to_join:boolean;
 
     //Relational fields added by JS-Data
     public resp_group: Group;
@@ -29,7 +30,8 @@ export const groupSchema = new Schema({
         is_private: { type: 'boolean' },
         description: {type: 'string'},
         is_protected: {type: 'boolean'},
-        can_anyone_join: {type : 'boolean'}
+        can_anyone_join: {type : 'boolean'},
+        need_validation_to_join: {type : 'boolean'}
     }
 });
 
