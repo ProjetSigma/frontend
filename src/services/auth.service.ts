@@ -3,11 +3,7 @@ import {Http, Headers, Response} from '@angular/http';
 import {api_url} from '../config';
 
 @Injectable()
-@Component({
-    providers: [Http]
-})
 export class AuthService {
-
     protected base_url = api_url;
     public isConnected: boolean;
     public accessToken: string;
@@ -21,7 +17,7 @@ export class AuthService {
 
     checkIfPreviouslyAuthentificated() {
         var accessToken = localStorage.getItem('sigmaAccessToken');
-        if (accessToken !== '') {
+        if (accessToken !== null) {
             this.accessToken = accessToken;
             this.isConnected = true;
             return true;

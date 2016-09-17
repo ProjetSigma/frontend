@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Component } from '@angular/core';
 
 import {DataStore} from 'js-data';
 import {HttpAdapter, addActions} from 'js-data-http';
