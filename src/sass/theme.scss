@@ -65,3 +65,8 @@ $title-font: "Ubuntu";
     @extend %custom-button;
     color: $color-font;
 }
+
+body {
+    word-break: break-word; // Non standard for webkit
+    hyphens: auto;
+}

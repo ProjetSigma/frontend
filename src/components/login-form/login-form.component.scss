@@ -1,0 +1,18 @@
+$login-form-background-color: $light-gray;
+
+.login-form {
+	background-color: $login-form-background-color;
+
+	&__form {
+		background-color: $login-form-background-color;
+
+		label, input {
+			display: inline-block;
+		}
+
+		label {
+			font-size: 2em;
+			width: 1.2em;
+		}
+	}
+}
