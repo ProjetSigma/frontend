@@ -12,16 +12,31 @@
 
 You'll need to install Node (version at leat 4.4.4) from [the Node.js website](https://nodejs.org/en/download/package-manager/). Once installed, check the version with `nodejs --version`. Then run the following commands inside the `frontend/` directory:
 ```bash
-cp src/config.ts.dist src/config.ts
 sudo npm install -g ts-node
 npm install
 ```
 
 If there is a failure at `npm install`, your Node.js version is too old or you have two versions of Node.js installed.
 
-##Fire up the server
+## Development server
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-To run the livereload server:
+## Code scaffolding
+
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class`.
+
+## Build
+
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+
+## Running unit tests
+
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+## Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Before running the tests make sure you are serving the app via `ng serve`.
 ```
 npm start
 ```
@@ -38,7 +53,7 @@ windows:
       panes:
         - cd ~/sigma/frontend
         - cd ~/sigma/backend && source .env/bin/activate && python manage.py runserver
-        - cd ~/sigma/frontend && npm start
+        - cd ~/sigma/frontend && ng serve
 ```
 
 After this, you'll just have to enter one command to get ready to develop:
