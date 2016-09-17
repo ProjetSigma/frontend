@@ -1,14 +1,12 @@
-import {provide} from 'angular2/core';
-import {bootstrap} from 'angular2/platform/browser';
-import {ROUTER_PROVIDERS} from 'angular2/router';
-import {LocationStrategy, HashLocationStrategy} from 'angular2/platform/common';
-import {HTTP_PROVIDERS} from 'angular2/http';
-import {AppComponent} from './app/app';
-import {AuthService} from './shared/services/auth-service';
-import {APIService} from './shared/services/api-service';
-import 'rxjs/Rx';
+import './polyfills.ts';
 
-bootstrap(AppComponent, [
-  ROUTER_PROVIDERS, HTTP_PROVIDERS, AuthService, APIService,
-  provide(LocationStrategy, { useClass: HashLocationStrategy })
-]);
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { enableProdMode } from '@angular/core';
+import { environment } from './environments/environment';
+import { AppModule } from './app/';
+
+if (environment.production) {
+  enableProdMode();
+}
+
+platformBrowserDynamic().bootstrapModule(AppModule);
