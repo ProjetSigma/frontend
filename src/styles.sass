@@ -1,52 +1,20 @@
 @charset 'utf-8';
 
-/* Import the global SASS styles */
-@import "node_modules/foundation-sites/scss/foundation";
-@import "./sass/theme.scss";
-@import "./sass/foundation-settings.scss";
-
 /* Enable the foundation styles */
-@include foundation-flex-classes;
-@include foundation-global-styles;
-@include foundation-flex-grid;
-@include foundation-typography;
-@include foundation-button;
-@include foundation-forms;
-@include foundation-visibility-classes;
-@include foundation-float-classes;
-@include foundation-accordion;
-@include foundation-badge;
-@include foundation-breadcrumbs;
-@include foundation-button-group;
-@include foundation-callout;
-@include foundation-close-button;
-@include foundation-drilldown-menu;
-@include foundation-dropdown;
-@include foundation-dropdown-menu;
-@include foundation-flex-video;
-@include foundation-label;
-@include foundation-media-object;
-@include foundation-menu;
-@include foundation-off-canvas;
-@include foundation-orbit;
-@include foundation-pagination;
-@include foundation-progress-bar;
-@include foundation-slider;
-@include foundation-sticky;
-@include foundation-reveal;
-@include foundation-switch;
-@include foundation-table;
-@include foundation-tabs;
-@include foundation-thumbnail;
-@include foundation-title-bar;
-@include foundation-tooltip;
-@include foundation-top-bar;
+@import '../node_modules/foundation-sites/scss/foundation';
+@include foundation-everything
+
+
+
+/* Import the global SASS styles */
+@import "./sass/theme.scss";
 
 /*** Import font-awesome CSS and fonts ***/
 @import '../node_modules/font-awesome/css/font-awesome.css';
 
 /*** Importing all the components' style ***/
 
-@import "./components/login-form/login-form.component.scss";
+@import "./components/landing-page/login-form/login-form.component.scss";
 @import "./components/landing-page/landing-page.component.scss";
 @import "./components/app/app.component.scss";
+@import "./components/navbar/aside.scss";

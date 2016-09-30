@@ -1,0 +1,67 @@
+<h1>
+  <small *ngIf="group.private">
+    <i class="fa fa-eye-slash"></i>
+  </small>
+  <small *ngIf="!group.private">
+    <i class="fa fa-eye"></i>
+  </small>
+    {{ group.name }}
+</h1>
+<div *ngIf="group.description" class="description">
+    {{ group.description }}
+</div>
+<div class="row">
+    <h3>Membres du groupe</h3>
+    <span *ngIf="canJoinGroup()">
+        &nbsp;<button (click)="joinGroup()" class="button-primary">
+        Rejoindre le groupe
+        </button>
+    </span>
+    <span *ngIf="canLeaveGroup()">
+        &nbsp;<button (click)="leaveGroup()" class="button-no">
+        Quitter le groupe
+        </button>
+    </span>
+</div>
+<div class="row">
+    <div *ngFor="let membership of realMemberships()" class="medium-12 large-6 card">
+        <div *ngIf="membership && membership.user && membership.user.id">
+            <user-inline-display [user]="membership.user">
+            </user-inline-display>
+        </div>
+    </div>
+</div>
+<div *ngIf="existPendingMemberships()">
+    <div class="row">
+        <h3>Demandes d'adhésion</h3>
+    </div>
+    <div class="row">
+        <div *ngFor="let membership of pendingMemberships()" class="medium-12 large-6 card">
+            <div *ngIf="membership && membership.user && membership.user.id">
+                    <user-inline-display [user]="membership.user">
+                    </user-inline-display>
+                    <div class="row align-center" *ngIf="canAcceptJoinRequests()">
+                        <button class="button-ok" (click)="acceptJoinRequest(membership)" >
+                            <i class="fa fa-check"></i> Accepter {{membership.user.firstname}}
+                        </button>
+                        <button class="button-no" (click)="rejectJoinRequest(membership)">
+                            <i class="fa fa-times"></i> Rejeter la demande
+                        </button>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="existInvitedMemberships()">
+    <div class="row">
+        <h3>Invitations en attente</h3>
+    </div>
+    <div class="row">
+        <div *ngFor="let membership of invitedMemberships()" class="medium-12 large-6 card">
+            <div *ngIf="membership && membership.user && membership.user.id">
+                <user-inline-display [user]="membership.user">
+                </user-inline-display>
+            </div>
+        </div>
+    </div>
+</div>

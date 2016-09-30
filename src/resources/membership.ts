@@ -11,15 +11,7 @@ export class Membership extends Record {
     public created:Date;
     public join_date:Date;
     public leave_date:Date;
-    public is_administrator:boolean;
-    public is_super_administrator:boolean;
-    public can_invite:boolean;
-    public can_be_contacted:boolean;
-    public can_publish:boolean;
-    public can_kick:boolean;
-    public can_modify_group_infos:boolean;
-    public is_accepted:boolean;
-
+    public perm_rank:number;
 
     //Fields linked by JS-Data
     public user:User;
@@ -41,14 +33,7 @@ export const membershipSchema = new Schema({
         created: {type: 'string', format: 'date-time'},
         join_date: {type: 'string', format: 'date-time'},
         leave_date: {type: 'string', format: 'date-time'},
-        is_administrator: {type: 'boolean'},
-        is_super_administrator: {type: 'boolean'},
-        can_invite: {type: 'boolean'},
-        can_kick: {type: 'boolean'},
-        can_be_contacted: {type: 'boolean'},
-        can_publish: {type: 'boolean'},
-        can_modify_group_infos: {type: 'boolean'},
-        is_accepted: {type: 'boolean'}
+        perm_rank: {type : 'integer'}
     }
 });
 

@@ -1,0 +1,15 @@
+<div class="callout">
+    <div class="row expanded align-justify">
+        <div class="small-5">
+            <a [routerLink]="['/Groups/Details', {id: group.id}]"><strong>&nbsp;{{ group.name }}</strong></a>
+        </div>
+        <div class="small-7">
+            <div class="row align-justify">
+        <div *ngIf="group.memberships" class="columns shrink">
+            <i class="fa fa-users"></i>
+            &nbsp;{{group.members_count}}
+        </div>
+    </div>
+</div>
+    </div>
+</div>

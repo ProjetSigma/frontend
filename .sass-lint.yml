@@ -14,8 +14,6 @@ files:
   include: 'sass/**/*.s+(a|c)ss'
   ignore:
     - 'nodes_modules/**/*.*'
-    - 'src/shared/assets/foundation-settings.scss'
-    - 'src/shared/assets/animate.css'
 # Rule Configuration
 rules:
   extends-before-mixins: 2

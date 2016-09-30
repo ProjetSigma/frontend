@@ -9,8 +9,13 @@ export class Group extends Record {
     public is_private:boolean;//public or private
     public description: string;
     public is_protected:boolean;
-    public can_anyone_join:boolean;
-    public need_validation_to_join:boolean;
+    public default_member_rank: number;
+    public req_rank_invite: number;
+    public req_rank_kick: number;
+    public req_rank_accept_join_requests: number;
+    public req_rank_promote: number;
+    public req_rank_demote: number;
+    public req_rank_modify_group_infos: number;
 
     //Relational fields added by JS-Data
     public resp_group: Group;
@@ -30,8 +35,13 @@ export const groupSchema = new Schema({
         is_private: { type: 'boolean' },
         description: {type: 'string'},
         is_protected: {type: 'boolean'},
-        can_anyone_join: {type : 'boolean'},
-        need_validation_to_join: {type : 'boolean'}
+        default_member_rank: { type: 'integer' },
+        req_rank_invite: { type: 'integer' },
+        req_rank_kick: { type: 'integer' },
+        req_rank_accept_join_requests: { type: 'integer' },
+        req_rank_promote: { type: 'integer' },
+        req_rank_demote: { type: 'integer' },
+        req_rank_modify_group_infos: { type: 'integer' },
     }
 });
 

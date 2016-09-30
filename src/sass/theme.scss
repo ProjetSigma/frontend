@@ -36,7 +36,6 @@ $title-font: "Ubuntu";
 }
 
 %custom-button {
-    @include button;
     border : $callout-border;
     font-family: $body-font-family;
 }

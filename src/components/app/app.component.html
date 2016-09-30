@@ -3,8 +3,10 @@
 </landing-page>
 
 <div  [hidden]="!api.isAuthenticated()">
-    <!--<menu-bar class="aside" >Loading sidebar...</menu-bar>-->
+     <navbar class="aside" >Loading sidebar...</navbar>
     <div class="aside--main-container column">
         <router-outlet></router-outlet>
     </div>
 </div>
+
+<p>Salut</p>
