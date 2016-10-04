@@ -7,6 +7,7 @@ import {APIService} from '../../../shared/services/api-service';
 import {Chat} from '../../../shared/resources/chat';
 import {ChatMember} from '../../../shared/resources/chat-member';
 import {Message} from '../../../shared/resources/message';
+import {User} from '../../../shared/resources/user';
 
 @Component({
     selector: 'chat-display',
@@ -17,13 +18,21 @@ export class ChatDisplayComponent {
     @Input('chat') chat: Chat;
     private newMessage: string;
     private myChatMember: ChatMember;
+    private add: boolean;
     private messages: boolean;
+    private users: User[];
+    private newMember: User;
 
 
     constructor(public api: APIService) {
         this.newMessage = '';
         this.myChatMember = new ChatMember;
+        this.add = false;
         this.messages = true;
+        this.api.store.findAll('user').then(res => {
+            this.users = res;
+        });
+        this.newMember = new User();
     };
 
     //The component is loaded before the answer to the request,
@@ -91,7 +100,23 @@ export class ChatDisplayComponent {
         });
     }
 
+    addMember(){
+        console.log(this.newMember);
+        this.api.store.getAdapter('http').POST(
+            api_url+'chat/'+this.myChatMember.chat_id+'/add_member',
+             {'user_id':this.newMember}
+            ).then(
+            (res) => {
+                console.log(res);
+                console.log('Membre ajouté');
+        });
+    }
+
     seeMessages(){
         this.messages = !this.messages;
+    }
+
+    seeAddMember(){
+        this.add = !this.add;
     }
 }

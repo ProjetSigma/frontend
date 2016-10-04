@@ -1,6 +1,33 @@
 <h1>
     {{ chat.name }}
+    <button *ngIf="myChatMember.is_admin" (click)="seeAddMember()"
+        class="hollow warning small button small-6 columns">
+        <i class="fa fa-plus"></i>
+    </button>
 </h1>
+<!-- TODO : faire un champ avec autocomplétion https://github.com/oferh/ng2-completer, nécessite angular2:1.0.0
+<div id="addMember" [hidden]="add">
+    <div class="input-group">
+      <input class="input-group-field" type="text" [(ngModel)]="searchUser" (input)="newMember">
+      <div class="input-group-button">
+          <button type="submit" class="hollow button postfix" value="Add" (click)="addMember(newMember)">
+              <i class="fa fa-plus"></i>
+          </button>
+      </div>
+    </div>
+</div>-->
+<div [hidden]="!add">
+    <div class="input-group">
+    <select [(ngModel)]="newMember" class="input-group-field">
+        <option *ngFor="let user of users" [value]="user.id">{{user.firstname}} {{user.lastname}}</option>
+    </select>
+    <div class="input-group-button">
+        <button type="submit" class="hollow button postfix" value="Add" (click)="addMember()">
+            <i class="fa fa-plus"></i>
+        </button>
+    </div>
+    </div>
+</div>
 <div class="row">
 <div class="small-12 medium-6 columns">
     <h2>
