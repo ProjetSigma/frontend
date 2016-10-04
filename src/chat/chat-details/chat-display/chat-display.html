@@ -1,0 +1,40 @@
+<h1>
+    {{ chat.name }}
+</h1>
+<div class="row">
+<div class="small-12 medium-6 columns">
+    <h2>
+        <button class="hollow small" (click)="seeMessages()">
+        <i class="fa fa-comments"></i> Messages
+        </button>
+    </h2>
+    <div *ngIf="chat.messages && messages">
+        <div *ngFor="let message of chat.messages">
+            <div *ngIf="message.chatmember && message.chatmember.user && message.chatmember.user.photo" class="shrink centervertical">
+                <div class="Avatar Avatar__Large" [style.background-image]="'url(' + message.chatmember.user.photo.file + ')'"></div>
+            </div>
+            <div *ngIf="!(message.chatmember && message.chatmember.user && message.chatmember.user.photo)" class="shrink centervertical">
+                <div class=" Avatar Avatar__Large" ></div>
+            </div>
+            <div class="centervertical">
+                <div class="align-justify">
+                    &nbsp;
+                    <a *ngIf="message.chatmember && message.chatmember.user" [routerLink]="['/Users/Details', {id: message.chatmember.user.id}]" class="name">
+                        <strong>
+                            &nbsp;{{ message.chatmember.user.firstname }}&nbsp;{{ message.chatmember.user.lastname }}
+                        </strong>
+                    </a>
+                    <span> {{message.date|date:'yMMMdjm'}} </span>
+                    <p> {{message.text}} </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="input-group" *ngIf="messages && myChatMember.is_member">
+      <input class="input-group-field" type="text" [(ngModel)]="newMessage">
+      <div class="input-group-button">
+        <input type="submit" class="button" value="Envoi" (click)="sendMessage()">
+      </div>
+    </div>
+</div>
+</div>
