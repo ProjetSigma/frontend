@@ -8,6 +8,7 @@ import {UsersComponent} from '../users/users';
 import {GroupsComponent} from '../groups/groups';
 import {LandingPageComponent} from '../landing-page/landing-page';
 import {SettingsComponent} from '../settings/settings';
+import {ChatsComponent} from '../chat/chat';
 
 import {APIService} from '../shared/services/api-service';
 
@@ -23,6 +24,7 @@ import {APIService} from '../shared/services/api-service';
     {path: '/user/...', component: UsersComponent, as: 'Users'},
     {path: '/group/...', component: GroupsComponent, as: 'Groups'},
     {path: '/settings/', component: SettingsComponent, as: 'Settings'},
+    {path: '/chat/...', component: ChatsComponent, as: 'Chat'},
 ])
 export class AppComponent {
     constructor(public api:APIService) {}
