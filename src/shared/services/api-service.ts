@@ -10,6 +10,9 @@ import {Cluster, clusterSchema, clusterRelations} from '../resources/cluster';
 import {User, userSchema, userRelations, userActions} from '../resources/user';
 import {Group, groupSchema, groupRelations} from '../resources/group';
 import {Membership, membershipSchema, membershipRelations} from '../resources/membership';
+import {ChatMember, chatmemberSchema, chatmemberRelations} from '../resources/chat-member';
+import {Chat, chatSchema, chatRelations} from '../resources/chat';
+import {Message, messageSchema, messageRelations} from '../resources/message';
 
 @Component({
 })
@@ -80,6 +83,30 @@ export class APIService {
             schema: membershipSchema,
             applySchema: true,
             relations: membershipRelations,
+            debug: true
+        });
+
+        this.store.defineMapper('chatmember', {
+            recordClass: ChatMember,
+            schema: chatmemberSchema,
+            applySchema: true,
+            relations: chatmemberRelations,
+            debug: true
+        });
+
+        this.store.defineMapper('chat', {
+            recordClass: Chat,
+            schema: chatSchema,
+            applySchema: true,
+            relations: chatRelations,
+            debug: true
+        });
+
+        this.store.defineMapper('message', {
+            recordClass: Message,
+            schema: messageSchema,
+            applySchema: true,
+            relations: messageRelations,
             debug: true
         });
     }

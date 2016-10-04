@@ -3,6 +3,7 @@ import {IActionOpts} from 'js-data-http';
 
 import {Cluster} from './cluster';
 import {Membership} from './membership';
+import {ChatMember} from './chat-member';
 import * as _ from 'lodash';
 
 export class User extends Record {
@@ -22,6 +23,7 @@ export class User extends Record {
     public clusters: number[]; // clusters ids returned by REST API
     public user_clusters: UserCluster[]; // client-side only relational objects 'user_cluster'
     public memberships:Membership[];
+    public chatmembers:ChatMember[];
 
     constructor (props?) {
         super(props);
@@ -71,6 +73,10 @@ export const userRelations = {
         membership: {
             foreignKey: 'user_id',
             localField: 'memberships'
+        },
+        chatmember: {
+            foreignKey: 'user_id',
+            localField: 'chatmembers'
         }
     }
 };
