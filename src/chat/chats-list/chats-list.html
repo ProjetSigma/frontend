@@ -1,4 +1,18 @@
 <h2>Liste des conversations</h2>
+<div class="row">
+    <div class="inline">
+        <div class="input-group column">
+            <input #input type="text" [(ngModel)]="searchChat" (input)="updateChats($event)"
+            *ngIf="search" class="input-group-field">
+            <div class="input-group-button customButton">
+                <button type="submit" class="hollow button postfix" value="Search" (click)="seeSearch()">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="expanded columns">
     <chat-inline-display *ngFor="let chat of displayedChats" [chat]="chat"></chat-inline-display>
 </div>
