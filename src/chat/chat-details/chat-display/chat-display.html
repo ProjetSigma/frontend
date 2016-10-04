@@ -64,4 +64,71 @@
       </div>
     </div>
 </div>
+<div class="small-12 medium-6 columns">
+    <h2> Paramètres </h2>
+    <button class="hollow small button" (click)="putView(1)"> Voir membres </button>
+    <button class="hollow small button" (click)="changeRole(myChatMember.id,'member')"
+     *ngIf="!myChatMember.is_member && !myChatMember.isBanned">
+        Rejoindre la discussion
+    </button>
+    <button class="hollow small button" (click)="putView(2)" *ngIf="myChatMember.is_admin">
+        Gérer les membres
+    </button>
+    <button class="hollow small button" (click)="putView(3)" *ngIf="myChatMember.is_admin">
+        Changer le nom
+    </button>
+    <button class="hollow small button" (click)="changeRole(myChatMember.id,'leave')"
+    *ngIf="myChatMember.is_member && !myChatMember.is_creator">
+        Quitter la discussion
+    </button>
+    <div *ngIf="view == 1">
+        <h3> Liste des participants </h3>
+        <ul *ngIf="chat.members">
+            <div *ngFor="let chatmember of chat.members">
+                <div *ngIf="chatmember.user">
+                <user-inline-display [user]="chatmember.user">
+                </user-inline-display>
+            </div>
+            </div>
+        </ul>
+    </div>
+    <div *ngIf="view == 2">
+        <h3> Liste des participants </h3>
+        <ul *ngIf="chat.members">
+            <div *ngFor="let chatmember of chat.members">
+                <div *ngIf="chatmember.user">
+                <p>
+                    {{chatmember.user.firstname}} {{chatmember.user.lastname}} &nbsp;
+                    <button class="hollow small button success" (click)="changeRole(chatmember.id,'admin')"
+                    *ngIf="!chatmember.is_admin && !chatmember.is_banned && !chatmember.is_creator">
+                        Rendre admin
+                    </button>
+                    <button class="hollow small button warning" (click)="changeRole(chatmember.id,'member')"
+                    *ngIf="chatmember.is_admin && !chatmember.is_banned && !chatmember.is_creator">
+                        Enlever admin
+                    </button>
+                    <button class="hollow small button alert" (click)="changeRole(chatmember.id,'banned')"
+                    *ngIf="!chatmember.is_banned && !chatmember.is_creator">
+                        Bannir
+                    </button>
+                    <button class="hollow small button" (click)="changeRole(chatmember.id,'member')"
+                    *ngIf="chatmember.is_banned">
+                        Enlever le ban
+                    </button>
+                    <span *ngIf="chatmember.is_creator"> est créateur, protégé. </span>
+                </p>
+            </div>
+            </div>
+        </ul>
+    </div>
+    <div *ngIf="view == 3">
+        <h3> Changer le nom de la discussion </h3>
+        <div class="input-group">
+          <input class="input-group-field" type="text" [(ngModel)]="newChatName">
+          <div class="input-group-button">
+            <input type="submit" class="button" value="Changer" (click)="changeName()">
+          </div>
+        </div>
+    </div>
+</div>
 </div>
