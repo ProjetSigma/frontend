@@ -11,6 +11,17 @@
             </div>
         </div>
     </div>
+    <div class="inline">
+        <div class="input-group column">
+            <input #input type="text" [(ngModel)]="newChat"
+            *ngIf="add" class="input-group-field">
+            <div class="input-group-button customButton">
+                <button type="submit" class="hollow button postfix" value="AddChat" (click)="addChat()">
+                    <i class="fa fa-plus"></i>
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="expanded columns">

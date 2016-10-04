@@ -1,6 +1,7 @@
 import {Component} from 'angular2/core';
 import {NgFor} from 'angular2/common';
-import {ROUTER_DIRECTIVES} from 'angular2/router';
+import {ROUTER_DIRECTIVES, Router} from 'angular2/router';
+import {api_url} from '../../config';
 
 import {APIService} from '../../shared/services/api-service';
 import {ChatInlineDisplayComponent} from '../chat-details/chat-inline-display/chat-inline-display';
@@ -15,13 +16,16 @@ export class ChatsListComponent {
     private allChats: Chat[] = [];
     private displayedChats: Chat[] = [];
     private searchChat: string = '';
+    private newChat: string = '';
     private search: boolean;
+    private add: boolean;
 
     constructor(public api: APIService, public router: Router) {
         this.allChats = [];
         this.displayedChats = [];
         this.getChats();
         this.search = false;
+        this.add = false;
     };
 
     getChats() {
@@ -50,5 +54,22 @@ export class ChatsListComponent {
 
     seeSearch(){
         this.search = ! this.search;
+    }
+
+    addChat(){
+        if (this.add && this.newChat !== ''){
+            this.api.store.getAdapter('http').POST(
+                api_url+'chat/',
+                 {'name': this.newChat}
+                ).then(
+                (res) => {
+                    console.log(res);
+                    console.log('Chat créé.');
+                    this.newChat = '';
+                    this.router.navigateByUrl('/chat/'+res.data.id);
+            });
+        } else {
+            this.add = !this.add;
+        }
     }
 }
