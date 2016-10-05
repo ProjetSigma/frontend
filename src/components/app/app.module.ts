@@ -2,8 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { GroupsModule } from '../groups/groups.module';
-import { UsersModule } from '../users/users.module';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from '../main/main.component';

@@ -10,22 +10,22 @@
     </div>
 </div>
 <ul class="aside__navlinks">
-    <li class="aside__navlink" [routerLink]="['/Main']">
+    <li class="aside__navlink" routerLink="/main" routerLinkActive="active">
         <i class="fa fa-home"></i> Accueil
     </li>
-    <li class="aside__navlink" [routerLink]="['/Users']">
+    <li class="aside__navlink" routerLink="/users" routerLinkActive="active">
         <i class="fa fa-user"></i> Annuaire
     </li>
-    <li class="aside__navlink" [routerLink]="['/Groups']">
+    <li class="aside__navlink" routerLink="/groups" routerLinkActive="active">
         <i class="fa fa-users"></i> Groupes
     </li>
-	<li class="aside__navlink" [routerLink]="['/Messenger']">
+	<li class="aside__navlink">
         <i class="fa fa-commenting-o"></i> Messenger
     </li>
     <li class="aside__navlink">
         <i class="fa fa-calendar"></i> Calendrier
     </li>
-    <li class="aside__navlink" [routerLink]="['/Settings']">
+    <li class="aside__navlink" routerLink="/settings" routerLinkActive="active">
         <i class="fa fa-wrench"></i> Réglages
     </li>
     <li class="aside__navlink" (click)="logout()">

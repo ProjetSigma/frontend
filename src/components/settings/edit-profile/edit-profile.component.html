@@ -13,11 +13,11 @@
 <div *ngIf="editMode" class="row align-center">
     <form #editProfileForm="ngForm" class="large-10 columns callout">
         <label>E-mail :
-            <input [(ngModel)]="meEdit.email" ngControl="email" required type="text">
+            <input [(ngModel)]="meEdit.email" required type="text">
         </label>
         <!--<div [hidden]="controlEmail.valid" class="alert callout">Il te faut entrer une adresse e-mail.</div>-->
         <label>Téléphone :
-            <input [(ngModel)]="meEdit.phone" ngControl="phone" type="text">
+            <input [(ngModel)]="meEdit.phone" type="text">
         </label>
         <!--<div [hidden]="controlPhone.valid" class="alert callout">Ton numéro de téléphone n'est pas bien formaté.</div>-->
         <label>Photo de profil :
@@ -39,7 +39,7 @@
     </form>
 </div>
 <div class="row align-center" *ngIf="editPassword">
-  <edit-password class="large-10 columns callout"></edit-password>
+  <edit-password class="large-10 columns"></edit-password>
   <div class="large-2 columns">
       <button (click)="editPassword = false" class="button-warning">Retour</button>
   </div>

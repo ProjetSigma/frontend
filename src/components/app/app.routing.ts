@@ -14,10 +14,10 @@ const appRoutes: Routes = [
 	  pathMatch: 'full'
 	},
     {path: 'main', component: MainComponent},
-    {path: 'group', component: GroupsListComponent},
+    {path: 'groups', component: GroupsListComponent},
 	{path: 'group/:id', component: GroupDetailsComponent},
     {path: 'settings', component: SettingsComponent},
-	{path: 'user', component: UsersListComponent},
+	{path: 'users', component: UsersListComponent},
 	{path: 'user/:id', component: UserDetailsComponent}
 ];
 export const appRoutingProviders: any[] = [

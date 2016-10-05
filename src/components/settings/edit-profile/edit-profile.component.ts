@@ -14,11 +14,13 @@ export class EditProfileComponent {
     private me: User;
     private meEdit: User;
     private editMode: boolean;
+	private editPassword: boolean;
     private errorOnEdit: boolean = false;
     private profilePicture: File;
 
     constructor(public api: APIService) {
         this.editMode = false;
+		this.editPassword = false;
         this.me = new User();
         this.meEdit = new User();
         this.reloadProfile();
@@ -56,11 +58,8 @@ export class EditProfileComponent {
     }
 
     reloadProfile() {
-        this.api.store.find('user',this.api.me.id).then(me => {
-            this.me = me;
-            this.meEdit = me;
-            console.log(me);
-        });
+		this.me = this.api.me;
+		this.meEdit = this.api.me;
     }
 
     profilePictureChangeListener($event): void {

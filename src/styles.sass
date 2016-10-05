@@ -1,6 +1,7 @@
 @charset 'utf-8';
 
 /* Enable the foundation styles */
+@import './sass/foundation-settings.scss';
 @import '../node_modules/foundation-sites/scss/foundation';
 @include foundation-everything
 
@@ -9,12 +10,12 @@
 /* Import the global SASS styles */
 @import "./sass/theme.scss";
 
+
 /*** Import font-awesome CSS and fonts ***/
 @import '../node_modules/font-awesome/css/font-awesome.css';
 
 /*** Importing all the components' style ***/
-
-@import "./components/landing-page/login-form/login-form.component.scss";
-@import "./components/landing-page/landing-page.component.scss";
-@import "./components/app/app.component.scss";
-@import "./components/navbar/aside.scss";
+@import 'components/app/app.component.scss'
+@import 'components/landing-page/landing-page.component.scss'
+@import 'components/landing-page/login-form/login-form.component.scss'
+@import 'components/navbar/navbar.component.scss'

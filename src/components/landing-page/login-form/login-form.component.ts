@@ -4,7 +4,7 @@ import {APIService} from '../../../services/api.service';
 
 @Component({
     selector: 'login-form',
-    templateUrl: './login-form.component.html',
+    templateUrl: './login-form.component.html'
 })
 export class LoginFormComponent {
     public username:string;
