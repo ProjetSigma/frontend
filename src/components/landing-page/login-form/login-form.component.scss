@@ -1,10 +1,8 @@
-$login-form-background-color: $light-gray;
-
 .login-form {
-	background-color: $login-form-background-color;
+	background-color: $light-gray;
 
 	&__form {
-		background-color: $login-form-background-color;
+		background-color: $light-gray;
 
 		label, input {
 			display: inline-block;

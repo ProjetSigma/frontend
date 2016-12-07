@@ -2,7 +2,7 @@ $landing-page-title-background-color: $black;
 
 .landing-page {
 	&__title {
-
+		font-family: $title-font;
 		background-color: $landing-page-title-background-color;
 		color: $white;
 
@@ -20,4 +20,10 @@ $landing-page-title-background-color: $black;
 	&__form-container {
 		padding-top: rem-calc(20);
 	}
+}
+
+.h3 {
+	font-size: 1.5em;
+	line-height: 1em;
+	font-family: $title-font;
 }

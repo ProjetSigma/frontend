@@ -1,0 +1,8 @@
+.leftbar-group-list {
+  ul {
+    @include accordion-item;
+  }
+  li {
+    @include accordion-title;
+  }
+}

@@ -5,7 +5,8 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from '../main/main.component';
-import { NavbarComponent } from '../navbar/navbar.component';
+import { NavbarLeftComponent } from '../navbar_left/navbar_left.component';
+import { NavbarRightComponent } from '../navbar_right/navbar_right.component';
 import { SettingsComponent } from '../settings/settings.component';
 import { EditPasswordComponent } from '../settings/edit-password/edit-password.component';
 import { EditProfileComponent } from '../settings/edit-profile/edit-profile.component';
@@ -40,7 +41,8 @@ import { routing, appRoutingProviders }  from './app.routing';
 	EditProfileComponent,
 	LoginFormComponent,
 	PhoneNumberFrenchPipe,
-	NavbarComponent
+	NavbarLeftComponent,
+	NavbarRightComponent
   ],
   imports: [
     BrowserModule,

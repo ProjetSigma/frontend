@@ -1,67 +1,141 @@
-<h1>
-  <small *ngIf="group.private">
-    <i class="fa fa-eye-slash"></i>
-  </small>
-  <small *ngIf="!group.private">
-    <i class="fa fa-eye"></i>
-  </small>
-    {{ group.name }}
-</h1>
-<div *ngIf="group.description" class="description">
-    {{ group.description }}
-</div>
-<div class="row">
-    <h3>Membres du groupe</h3>
-    <span *ngIf="canJoinGroup()">
-        &nbsp;<button (click)="joinGroup()" class="button-primary">
-        Rejoindre le groupe
-        </button>
-    </span>
-    <span *ngIf="canLeaveGroup()">
-        &nbsp;<button (click)="leaveGroup()" class="button-no">
-        Quitter le groupe
-        </button>
-    </span>
-</div>
-<div class="row">
-    <div *ngFor="let membership of realMemberships()" class="medium-12 large-6 card">
-        <div *ngIf="membership && membership.user && membership.user.id">
-            <user-inline-display [user]="membership.user">
-            </user-inline-display>
+  <div class="column medium-9 large-8">
+    <div class="group-menu-wrapper" data-sticky-container>
+      <div class="top-bar group-menu" data-sticky data-options="marginTop:0;" style="width:100%">
+        <div class="top-bar-left shrink group-title">
+          <h3>Some Group</h3>
         </div>
+        <div class="top-bar-right">
+          <ul class="menu align-right">
+            <li><a href="search.html"><i class="fa fa-search"></i></a></li>
+            <li><a href="settings.html">Settings</a></li>
+            <li><a href="chat.html">Chat</a></li>
+            <li><a href="members.html">Members</a></li>
+            <li><a href="index.html">Home</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
-</div>
-<div *ngIf="existPendingMemberships()">
-    <div class="row">
-        <h3>Demandes d'adhésion</h3>
-    </div>
-    <div class="row">
-        <div *ngFor="let membership of pendingMemberships()" class="medium-12 large-6 card">
-            <div *ngIf="membership && membership.user && membership.user.id">
-                    <user-inline-display [user]="membership.user">
-                    </user-inline-display>
-                    <div class="row align-center" *ngIf="canAcceptJoinRequests()">
-                        <button class="button-ok" (click)="acceptJoinRequest(membership)" >
-                            <i class="fa fa-check"></i> Accepter {{membership.user.firstname}}
-                        </button>
-                        <button class="button-no" (click)="rejectJoinRequest(membership)">
-                            <i class="fa fa-times"></i> Rejeter la demande
-                        </button>
-                    </div>
+    <div class="group-content">
+      <div class="row align-justify group-writing-wrapper hide" id="write-new-post" data-toggler=".hide">
+        <div class="column medium-9 large-8 large-offset-2 medium-offset-3 group-writing-pane">
+          <h4>Post in : Group 1</h4>
+          <input type="text" placeholder="title"/>
+          <textarea rows="4" placeholder="content"></textarea>
+          <div class="button-group">
+            <button class="button"><i class="fa fa-camera"></i></button>
+            <button class="button"><i class="fa fa-video-camera"></i></button>
+            <button class="button"><i class="fa fa-file-o"></i></button>
+            <button class="button"><i class="fa fa-calendar-o"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="add-button">
+        <button type="button" data-toggle="write-new-post" class="large button">+</button>
+      </div>
+      <div class="group-post">
+        <div class="group-post-header row">
+          <div class="column shrink">
+            <img class="profile-pic" src="../../../../resources/img/default.jpg" alt="profile pic" />
+          </div>
+          <div class="column">
+            <h4 class="post-title">
+              This is a title
+            </h4>
+            <p>by <span>John Smith</span> on <span>Dec, 24</span></p>
+          </div>
+        </div>
+        <div class="group-post-content">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde harum rem, beatae ipsa consectetur quisquam. Rerum ratione, delectus atque tempore sed, suscipit ullam, beatae distinctio cupiditate ipsam eligendi tempora expedita
+        </div>
+        <div class="row align-middle">
+          <div class="column shrink group-post-action button-group">
+            <button class="button hollow" type="button" name="save"><i class="fa fa-star"></i></button>
+            <button class="button hollow" type="button" name="remind"><i class="fa fa-bell"></i></button>
+            <button class="button hollow" type="button" name="reply"><i class="fa fa-comment"></i></button>
+            <button class="button hollow" type="button" name="share"><i class="fa fa-share-alt"></i></button>
+          </div>
+          <div class="column post-display-comments">
+            <a href="#">Display comments <i class="fa fa-caret-down"></i></a>
+          </div>
+        </div>
+        <!--<div class="group-post-comments">
+          <div class="group-post-comment-wrapper">
+            <div class="group-post-comment">
+              Here is some comment. Can't say more.
             </div>
-        </div>
-    </div>
-</div>
-<div *ngIf="existInvitedMemberships()">
-    <div class="row">
-        <h3>Invitations en attente</h3>
-    </div>
-    <div class="row">
-        <div *ngFor="let membership of invitedMemberships()" class="medium-12 large-6 card">
-            <div *ngIf="membership && membership.user && membership.user.id">
-                <user-inline-display [user]="membership.user">
-                </user-inline-display>
+            <div class="group-post-commenter">
+              by <span>John Doe</span> on <span>Dec, 24</span>
             </div>
+          </div>
+        </div>-->
+      </div>
+
+      <div class="group-post">
+        <div class="group-post-header row">
+          <div class="column shrink">
+            <img class="profile-pic" src="../../../../resources/img/default.jpg" alt="profile pic" />
+          </div>
+          <div class="column">
+            <h4 class="post-title">
+              This is a title
+            </h4>
+            <p>by <span>John Smith</span> on <span>Dec, 24</span></p>
+          </div>
         </div>
+        <div class="group-post-content">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde harum rem, beatae ipsa consectetur quisquam. Rerum ratione, delectus atque tempore sed, suscipit ullam, beatae distinctio cupiditate ipsam eligendi tempora expedita
+        </div>
+        <div class="group-post-action button-group">
+          <button class="button hollow" type="button" name="save"><i class="fa fa-star"></i></button>
+          <button class="button hollow" type="button" name="remind"><i class="fa fa-bell"></i></button>
+          <button class="button hollow" type="button" name="reply"><i class="fa fa-comment"></i></button>
+          <button class="button hollow" type="button" name="share"><i class="fa fa-share-alt"></i></button>
+        </div>
+      </div>
+      <div class="group-post">
+        <div class="group-post-header row">
+          <div class="column shrink">
+            <img class="profile-pic" src="../../../../resources/img/default.jpg" alt="profile pic" />
+          </div>
+          <div class="column">
+            <h4 class="post-title">
+              This is a title
+            </h4>
+            <p>by <span>John Smith</span> on <span>Dec, 24</span></p>
+          </div>
+        </div>
+        <div class="group-post-content">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde harum rem, beatae ipsa consectetur quisquam. Rerum ratione, delectus atque tempore sed, suscipit ullam, beatae distinctio cupiditate ipsam eligendi tempora expedita
+        </div>
+        <div class="group-post-action button-group">
+          <button class="button hollow" type="button" name="save"><i class="fa fa-star"></i></button>
+          <button class="button hollow" type="button" name="remind"><i class="fa fa-bell"></i></button>
+          <button class="button hollow" type="button" name="reply"><i class="fa fa-comment"></i></button>
+          <button class="button hollow" type="button" name="share"><i class="fa fa-share-alt"></i></button>
+        </div>
+      </div>
+      <div class="group-post">
+        <div class="group-post-header row">
+          <div class="column shrink">
+            <img class="profile-pic" src="../../../../resources/img/default.jpg" alt="profile pic" />
+          </div>
+          <div class="column">
+            <h4 class="post-title">
+              This is a title
+            </h4>
+            <p>by <span>John Smith</span> on <span>Dec, 24</span></p>
+          </div>
+        </div>
+        <div class="group-post-content">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde harum rem, beatae ipsa consectetur quisquam. Rerum ratione, delectus atque tempore sed, suscipit ullam, beatae distinctio cupiditate ipsam eligendi tempora expedita
+        </div>
+        <div class="group-post-action button-group">
+          <button class="button hollow" type="button" name="save"><i class="fa fa-star"></i></button>
+          <button class="button hollow" type="button" name="remind"><i class="fa fa-bell"></i></button>
+          <button class="button hollow" type="button" name="reply"><i class="fa fa-comment"></i></button>
+          <button class="button hollow" type="button" name="share"><i class="fa fa-share-alt"></i></button>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+  <div id="main-rightbar" class="column show-for-large large-2"></div>

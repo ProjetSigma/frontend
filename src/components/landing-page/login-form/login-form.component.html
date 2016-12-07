@@ -1,10 +1,9 @@
 <form #loginForm="ngForm" *ngIf="!isAuthenticated()" class="callout login-form__form">
-<h3 class="row align-center">Connexion</h3>
+<h3>Connexion</h3>
 <div class="row">
-    <label class="small-0 columns" for="login-form-username-input" class="fa fa-user"> </label>
+	<label class="small-0 columns" for="login-form-username-input" class="fa fa-user"> </label>
     <input class="small-10 columns" #controlUsername="ngModel" [(ngModel)]="username" autofocus ngControl="username"
         placeholder="prenom.nom@ecole.edu" required type="email" id="login-form-username-input" name="username" />
-
     <div [hidden]="controlUsername.pristine || controlUsername.valid" class="alert callout">
         Entre l'adresse e-mail de ton École.
     </div>

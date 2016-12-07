@@ -1,10 +1,12 @@
+
+
 <landing-page class="landing-page" *ngIf="!api.isAuthenticated()">
 
 </landing-page>
 
-<<div  [hidden]="!api.isAuthenticated()">
-     <navbar class="aside" >Loading sidebar...</navbar>
-    <div class="aside--main-container">
+<div  [hidden]="!api.isAuthenticated()">
+     <navbar_left>Loading sidebar...</navbar_left>
+    <div>
         <router-outlet></router-outlet>
     </div>
 </div>

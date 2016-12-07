@@ -1,1 +1,27 @@
-<edit-profile></edit-profile>
+<div *ngIf="!editProfile && !editPassword">
+	<h1>
+		Mon profil
+		<small>
+			<button (click)="editProfile = true" class="button-default">
+				Modifier mes informations
+			</button>
+			<button (click)="editPassword = true" class="button-default">
+				Modifier mon mot de passe
+			</button>
+		</small>
+	</h1>
+	<profile-display [user]="me"></profile-display>
+</div>
+
+<div class="row align-center" *ngIf="editPassword">
+	<edit-password class="large-10 columns"></edit-password>
+	<div class="large-2 columns">
+      <button (click)="editPassword = false" class="button-warning">Retour</button>
+	</div>
+</div>
+<div class="row align-center" *ngIf="editProfile">
+	<edit-profile class="large-10 columns" [user]="me" (profileEdited)="profileEdited($event)"></edit-profile>
+	<div class="large-2 columns">
+      <button (click)="editProfile = false" class="button-warning">Retour</button>
+  </div>
+</div>

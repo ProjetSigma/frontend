@@ -11,9 +11,20 @@ export class EditPasswordComponent {
     public onSuccess:boolean = false;
     public actualPassword:string;
     public newPassword:string;
+	public invalidActualPassword:boolean = false;
+	public invalidNewPassword:boolean = false;
 
     constructor(public api: APIService) {
     }
+	
+	newPasswordInputBlur() {
+		if(this.newPassword.length < 8) {
+			this.invalidNewPassword = true;
+		}
+		else {
+			this.invalidNewPassword = false;
+		}
+	}
 
     editPassword(actualPassword:string, newPassword:string) {
         this.onSuccess = false;
@@ -30,6 +41,7 @@ export class EditPasswordComponent {
                 console.log(res);
                 if (res.status === 403) { // wrong actualPassword
                     this.actualPassword = '';
+					this.invalidActualPassword = true;
                 } else {
                     this.newPassword = '';
                 }

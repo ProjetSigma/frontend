@@ -10,11 +10,8 @@ a {
     }
 }
 
-.h3 {
-
-    &__title {
-        font-size: 1.5em;
-        line-height: 1em;
-        font-family: $title-font;
-    }
+h3 {
+	font-size: 1.5em;
+	line-height: 1em;
+	font-family: $title-font;
 }

@@ -38,7 +38,7 @@ export class GroupDisplayComponent {
     realMemberships() {
         if (this.group.memberships) {
             return this.group.memberships.filter(function(membership) {
-                return membership.perm_rank > 0;
+                return membership.is_accepted === true;
             });
         } else {
             return [];
@@ -46,9 +46,9 @@ export class GroupDisplayComponent {
     }
 
     pendingMemberships() {
-        if (this.group.memberships) {
+        if (this.group.memberships && this.group.need_validation_to_join) {
             return this.group.memberships.filter(function(membership) {
-                return membership.perm_rank === 0;
+                return membership.is_accepted === false;
             });
         } else {
             return [];
@@ -62,7 +62,7 @@ export class GroupDisplayComponent {
     invitedMemberships() {
         if (this.group.memberships) {
             return this.group.memberships.filter(function(membership) {
-                return membership.perm_rank < 0;
+                return membership.is_accepted === false;
             });
         } else {
             return [];
@@ -74,7 +74,7 @@ export class GroupDisplayComponent {
     }
 
     canJoinGroup() {
-        return (this.group.default_member_rank > -1 && !this.api.isInMyGroups(this.group.id));
+        return (this.group.can_anyone_join && !this.api.isInMyGroups(this.group.id));
     }
 
     joinGroup() {
@@ -101,7 +101,7 @@ export class GroupDisplayComponent {
     canAcceptJoinRequests() {
         if (this.api.isInMyGroups(this.group.id)) {
             var membership = this.api.getMyMembership(this.group.id);
-            return this.group.req_rank_accept_join_requests<= membership.perm_rank;
+            return membership.can_invite;
         } else {
             return false;
         }
@@ -118,7 +118,7 @@ export class GroupDisplayComponent {
                 group_id:membership.group_id
             }, {method : 'PUT'}
         ).then(res => {
-            membership.perm_rank = res.perm_rank;
+            membership.is_accepted = true;
         });
     }
 

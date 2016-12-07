@@ -10,7 +10,6 @@ export class User extends Record {
     public id: number;
     public photo;
     public clusters_id:number[];
-    public last_login: Date;
     public email: string;
     public lastname: string;
     public firstname: string;
@@ -18,6 +17,7 @@ export class User extends Record {
     public is_active: boolean;
     public last_modified: Date;
     public join_date: Date;
+	public last_login: Date;
 
     // Relational fields
     public clusters: number[]; // clusters ids returned by REST API
@@ -26,9 +26,6 @@ export class User extends Record {
 
     constructor (props?) {
         super(props);
-        this.last_login = new Date();
-        this.last_modified = new Date();
-        this.join_date = new Date();
     }
 
     // Returns the clusters list as JSData Records list
@@ -49,6 +46,7 @@ export class UserCluster extends Record {
 }
 
 export const userSchema = new Schema({
+	type: 'object',
     properties: {
         id: {type: 'integer'},
         clusters_id : {type : 'array', items: {type: 'integer'}},
@@ -56,6 +54,7 @@ export const userSchema = new Schema({
         firstname: {type: 'string'},
         email: {type: 'string', format: 'email'},
         phone: {type: 'string'},
+		photo: {},
         is_active: {type: 'boolean'},
         last_login: {type: 'string', format: 'date-time'},
         last_modified: {type: 'string', format: 'date-time'},

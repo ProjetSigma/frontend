@@ -14,7 +14,7 @@ export class UserDetailsComponent {
     public user = new User();
 
     constructor(public api: APIService, route: ActivatedRoute) {
-        this.getUser(route.params.forEach((params: Params) => {+params['id']}));
+        route.params.forEach((params: Params) => {this.getUser(+params['id'])});
     };
 
     getUser(id) {
