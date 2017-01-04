@@ -12,9 +12,6 @@
 # File Options
 files:
   include: 'sass/**/*.s+(a|c)ss'
-  ignore:
-    - 'nodes_modules/**/*.*'
-	- 'src/sass/foundation-settings.scss'
 # Rule Configuration
 rules:
   extends-before-mixins: 2
