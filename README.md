@@ -19,7 +19,9 @@ npm install
 If there is a failure at `npm install`, your Node.js version is too old or you have two versions of Node.js installed.
 
 ## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+We use angular-cli which integrate ts compilation, manage project configuration, run server.
+
+run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
