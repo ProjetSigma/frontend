@@ -1,0 +1,183 @@
+@mixin base-card {
+  background: $white;
+  padding: $global-padding;
+  //margin: $global-margin;
+  border: 1px solid $medium-gray;
+}
+@mixin card {
+  @include base-card;
+  margin: $global-margin;
+}
+
+@mixin profile-pic($dim) {
+  height: $dim;
+  width: $dim;
+  border-radius: 50%;
+}
+
+
+
+.main-leftbar-group {
+  h3 {
+    opacity: 1;
+    i {
+      visibility: hidden;
+      color: $medium-gray;
+      font-size: 0.6em;
+    }
+  }
+  h3:hover {
+    color: $medium-gray;
+    i {
+      visibility: visible;
+    }
+  }
+}
+
+
+.group-title {
+  margin-bottom: 0;
+  padding-left: $global-padding;
+}
+
+.group-menu {
+  background-color: $medium-gray;
+}top
+.group-content {
+  padding: $global-padding;
+}
+.add-button {
+  position: fixed;
+  bottom: 0;
+  right: 2*$global-margin;
+
+}
+.group-writing-wrapper {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  max-width: 1200px;
+}
+.group-writing-pane {
+  padding-top: $global-padding;
+  background-color: $white;
+  border: 1px solid $medium-gray;
+}
+.group-post {
+  margin: $global-margin 0;
+  padding: $global-margin;
+  background-color: $white;
+  border: 1px solid $medium-gray;
+}
+.group-post-header {
+  h1, h2, h3, h4 {
+    margin-bottom: 0;
+  }
+
+  span {
+    text-decoration: underline;
+  }
+  span:hover {
+    background-color: $light-gray;
+  }
+
+  .profile-pic {
+    display: inline-block;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    background-color: $medium-gray;
+  }
+
+}
+
+.group-post-content {
+  padding: $global-padding 0;
+}
+
+.group-post-action.button-group {
+  margin: 0;
+}
+.group-member-list {
+  margin: $global-margin;
+}
+.group-member {
+  background-color: $white;
+  border: 1px solid $medium-gray;
+  margin: $global-margin 0;
+
+  .profile-pic {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+  }
+
+  h4, h5 {
+    margin-bottom: 0;
+  }
+}
+
+.post-display-comments {
+  text-align: right;
+}
+
+.leftbar-group-list {
+  ul {
+    @include accordion-item;
+  }
+  li {
+    @include accordion-title;
+  }
+}
+
+.group-post-comments {
+  background-color: $light-gray;
+  margin: 0
+}
+.group-post-comment {
+  border-top: 1px solid $medium-gray;
+}
+
+#calendar-wrapper {
+  padding: $global-padding;
+}
+
+.event-panel {
+  @include card;
+
+  #submit-new-event {
+    margin: 0;
+  }
+}
+
+#calendar th, #calendar td {
+  font-weight: normal;
+}
+
+.chat-inner-panel {
+  height: 80vh;
+  overflow-y: scroll;
+  background-color: $white;
+  padding: $global-padding;
+  margin-bottom: $global-margin;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.chat-message {
+  @include base-card;
+  margin-bottom: $global-margin;
+  .info img {
+    @include profile-pic(2rem);
+  }
+  .content {
+
+  }
+}
+.chat-message.from-me {
+  background-color: map-get($foundation-palette, 'primary');
+  color: $white;
+}

@@ -13,7 +13,7 @@ export class GroupDetailsComponent {
     public group = new Record();
 
     constructor(public api: APIService, route: ActivatedRoute) {
-        this.getGroup(route.params.forEach((params: Params) => {+params['id']}));
+        this.getGroup(+route.snapshot.params['id']);
     };
 
     getGroup(id) {
