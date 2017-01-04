@@ -6,7 +6,6 @@ import {HttpAdapter, addActions} from 'js-data-http';
 import {AuthService} from './auth.service';
 import {api_url} from '../config';
 
-import {Cluster, clusterSchema, clusterRelations} from '../resources/cluster';
 import {User, userSchema, userRelations, userActions} from '../resources/user';
 import {Group, groupSchema, groupRelations} from '../resources/group';
 import {Membership, membershipSchema, membershipRelations} from '../resources/membership';
@@ -48,13 +47,6 @@ export class APIService {
                       }
                   }
               },
-              debug: true
-          });
-          this.store.defineMapper('cluster', {
-              recordClass: Cluster,
-              schema: clusterSchema,
-              applySchema: true,
-              relations: clusterRelations,
               debug: true
           });
 

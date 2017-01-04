@@ -14,7 +14,7 @@ const appRoutes: Routes = [
 	  pathMatch: 'full'
 	},
     {path: 'main', component: MainComponent},
-    {path: 'groups', component: GroupsListComponent},
+    {path: 'group', component: GroupsListComponent},
 	{path: 'group/:id', component: GroupDetailsComponent},
     {path: 'settings', component: SettingsComponent},
 	{path: 'users', component: UsersListComponent},

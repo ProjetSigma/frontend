@@ -16,15 +16,14 @@ export class AuthService {
     };
 
     checkIfPreviouslyAuthentificated() {
-        /*var accessToken = localStorage.getItem('sigmaAccessToken');
+        var accessToken = localStorage.getItem('sigmaAccessToken');
         if (accessToken !== null) {
             this.accessToken = accessToken;
             this.isConnected = true;
             return true;
         } else {
             return false;
-        }*/
-		return false;
+        }
     }
 
     authentificate(username, password) {
