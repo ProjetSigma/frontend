@@ -1,7 +1,9 @@
+///<reference path="../../../node_modules/@ng-bootstrap/ng-bootstrap/index.d.ts"/>
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from '../main/main.component';
@@ -48,7 +50,8 @@ import { routing, appRoutingProviders }  from './app.routing';
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing
+    routing,
+    NgbModule
   ],
   providers: [appRoutingProviders],
   bootstrap: [AppComponent]

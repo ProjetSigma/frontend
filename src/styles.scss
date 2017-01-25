@@ -1,16 +1,20 @@
 @charset 'utf-8';
 
-//Importation à part dans le DOM car c'est du CSS directement
+//Importation ï¿½ part dans le DOM car c'est du CSS directement
 @import '../node_modules/font-awesome/css/font-awesome.css';
 
-//Importation de foundation et de ses paramètres
+// Importation de bootstrap
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+//Importation de foundation et de ses paramï¿½tres
+/*
 @import './sass/foundation-settings.scss';
 @import '../node_modules/foundation-sites/scss/foundation.scss';
 @include foundation-everything;
 
 
 
-//Thème général perso du projet
+//Thï¿½me gï¿½nï¿½ral perso du projet
 @import './sass/theme.scss';
 
 
@@ -20,7 +24,7 @@
 @import './components/landing-page/login-form/login-form.component.scss';
 @import './components/navbar_left/navbar_left.component.scss';
 @import './components/groups/group-details/group-display/group-display.component.scss';
-
+*/
 
 
 

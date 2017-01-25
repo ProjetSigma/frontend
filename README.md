@@ -7,16 +7,23 @@
 <img src="https://img.shields.io/badge/license-GNU%20Affero%20General%20Public%20License%20%28AGPL%29%20v3.0-blue.svg" alt="license" />
 </a>
 
+## Notes
+
+This is a version of Sigma which uses Bootstrap and ng-bootstrap instead of Foundation for Sites.
+ng-bootstrap is a library of UI components based on Bootstrap and Angular2.
+See https://ng-bootstrap.github.io/#/components/ for details about each available component.
+
 
 ## Installation
 
-You'll need to install Node (version at leat 4.4.4) from [the Node.js website](https://nodejs.org/en/download/package-manager/). Once installed, check the version with `nodejs --version`. Then run the following commands inside the `frontend/` directory:
-```bash
-sudo npm install -g ts-node
-npm install
+We assume you already have installed the project (see angular-1.0's readme for further instructions).
+From there, you'll need to install Bootstrap and ng-bootstrap :
+```
+npm install bootstrap@4.0.0-alpha.6
+npm install @ng-bootstrap/ng-bootstrap@1.0.0-alpha.6
 ```
 
-If there is a failure at `npm install`, your Node.js version is too old or you have two versions of Node.js installed.
+
 
 ## Development server
 We use angular-cli which integrate ts compilation, manage project configuration, run server.

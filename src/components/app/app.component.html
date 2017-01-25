@@ -4,9 +4,11 @@
 
 </landing-page>
 
-<div  [hidden]="!api.isAuthenticated()">
-     <navbar_left>Loading sidebar...</navbar_left>
-    <div class="column medium-10 large-10">
-        <router-outlet></router-outlet>
+<div  [hidden]="!api.isAuthenticated()" class="container-fluid">
+    <div class="row">
+        <navbar_left>Loading sidebar...</navbar_left>
+        <div class="col-9">
+            <router-outlet></router-outlet>
+        </div>
     </div>
 </div>
