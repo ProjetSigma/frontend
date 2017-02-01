@@ -6,7 +6,9 @@
 
 <div  [hidden]="!api.isAuthenticated()" class="container-fluid">
     <div class="row">
-        <navbar_left>Loading sidebar...</navbar_left>
+        <div class="col-3">
+          <navbar_left>Loading sidebar...</navbar_left>
+        </div>
         <div class="col-9">
             <router-outlet></router-outlet>
         </div>
