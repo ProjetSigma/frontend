@@ -11,11 +11,11 @@
 @import './sass/foundation-settings.scss';
 @import '../node_modules/foundation-sites/scss/foundation.scss';
 @include foundation-everything;
-
+*/
 
 
 //Th�me g�n�ral perso du projet
-@import './sass/theme.scss';
+@import './sass/bootstrap-theme.scss';
 
 
 //SASS des composants
@@ -24,7 +24,4 @@
 @import './components/landing-page/login-form/login-form.component.scss';
 @import './components/navbar_left/navbar_left.component.scss';
 @import './components/groups/group-details/group-display/group-display.component.scss';
-*/
-
-
-
+@import './components/groups/group-details/group-publications/group-publications.component.scss';

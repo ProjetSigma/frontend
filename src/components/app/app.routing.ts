@@ -5,6 +5,7 @@ import { UsersListComponent } from '../users/users-list/users-list.component';
 import { UserDetailsComponent } from '../users/user-details/user-details.component';
 import { GroupsListComponent } from '../groups/groups-list/groups-list.component';
 import { GroupDetailsComponent } from '../groups/group-details/group-details.component';
+import { GroupPublicationsComponent } from '../groups/group-details/group-publications/group-publications.component';
 import { SettingsComponent } from '../settings/settings.component';
 
 const appRoutes: Routes = [
@@ -15,7 +16,8 @@ const appRoutes: Routes = [
 	},
     {path: 'main', component: MainComponent},
     {path: 'group', component: GroupsListComponent},
-	{path: 'group/:id', component: GroupDetailsComponent},
+	{path: 'group/:id', component: GroupPublicationsComponent},
+	{path: 'group/:id/members', component: GroupDetailsComponent},
     {path: 'settings', component: SettingsComponent},
 	{path: 'users', component: UsersListComponent},
 	{path: 'user/:id', component: UserDetailsComponent}

@@ -20,6 +20,7 @@ import { GroupsListComponent } from '../groups/groups-list/groups-list.component
 import { GroupDetailsComponent } from '../groups/group-details/group-details.component';
 import { GroupInlineDisplayComponent } from '../groups/group-details/group-inline-display/group-inline-display.component';
 import { GroupDisplayComponent } from '../groups/group-details/group-display/group-display.component';
+import { GroupPublicationsComponent } from '../groups/group-details/group-publications/group-publications.component';
 import { LandingPageComponent } from '../landing-page/landing-page.component';
 import { LoginFormComponent } from '../landing-page/login-form/login-form.component';
 import { PhoneNumberFrenchPipe } from '../users/phone-number-french';
@@ -35,6 +36,7 @@ import { routing, appRoutingProviders }  from './app.routing';
 	GroupInlineDisplayComponent,
 	GroupDisplayComponent,
 	GroupDetailsComponent,
+  GroupPublicationsComponent,
 	UsersListComponent,
 	UserDetailsComponent,
 	UserInlineDisplayComponent,

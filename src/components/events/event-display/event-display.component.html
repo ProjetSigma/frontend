@@ -24,18 +24,16 @@
       </div>
     </nav>
     <div class="group-content">
-      <div id="group-writing-wrapper" class="row justify-content-end group-writing-wrapper">
-        <div class="col-8 card group-writing-card">
-          <h4>Post in : Group 1 </h4>
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Title">
-            <textarea rows="4" class="form-control" placeholder="content"></textarea>
-            <div class="btn-group">
-              <button type="button" class="btn btn-default"><i class="fa fa-camera"></i></button>
-              <button type="button" class="btn btn-default"><i class="fa fa-video-camera"></i></button>
-              <button type="button" class="btn btn-default"><i class="fa fa-file-o"></i></button>
-              <button type="button" class="btn btn-default"><i class="fa fa-calendar-o"></i></button>
-            </div>
+      <div class="row align-justify group-writing-wrapper" hidden id="write-new-post" data-toggler=".hide">
+        <div class="column medium-9 large-8 large-offset-2 medium-offset-3 group-writing-pane">
+          <h4>Post in : Group 1</h4>
+          <input type="text" placeholder="title"/>
+          <textarea rows="4" placeholder="content"></textarea>
+          <div class="button-group">
+            <button class="button"><i class="fa fa-camera"></i></button>
+            <button class="button"><i class="fa fa-video-camera"></i></button>
+            <button class="button"><i class="fa fa-file-o"></i></button>
+            <button class="button"><i class="fa fa-calendar-o"></i></button>
           </div>
         </div>
       </div>
@@ -50,10 +48,10 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde harum rem, beatae ipsa consectetur quisquam. Rerum ratione, delectus atque tempore sed, suscipit ullam, beatae distinctio cupiditate ipsam eligendi tempora expedita
             </p>
             <div class="btn-group">
-              <button class="btn btn-default" name="save"><i class="fa fa-star"></i></button>
-              <button class="btn btn-default" name="remind"><i class="fa fa-bell"></i></button>
-              <button class="btn btn-default" name="reply"><i class="fa fa-comment"></i></button>
-              <button class="btn btn-default" name="share"><i class="fa fa-share-alt"></i></button>
+              <button class="btn" name="save"><i class="fa fa-star"></i></button>
+              <button class="btn" name="remind"><i class="fa fa-bell"></i></button>
+              <button class="btn" name="reply"><i class="fa fa-comment"></i></button>
+              <button class="btn" name="share"><i class="fa fa-share-alt"></i></button>
             </div>
           </div>
 

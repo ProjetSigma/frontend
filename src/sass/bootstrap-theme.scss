@@ -8,6 +8,15 @@ $color-warning: #E69C00;
 $color-alert: #B92A13;
 $title-font: 'Ubuntu';
 
+$black: black;
+$white: white;
+$light-gray: lightgray;
+
+$standard-padding: 1rem;
+$large-padding: 1.2rem;
+
+$standard-margin: 1rem;
+
 .fa {
     min-width: 14px;
 }
@@ -33,36 +42,6 @@ $title-font: 'Ubuntu';
         width: 40px;
         min-width: 40px;
     }
-}
-
-%custom-button {
-    border : $callout-border;
-    font-family: $body-font-family;
-}
-
-.button-ok {
-    @extend %custom-button;
-    color: $color-success;
-}
-
-.button-no {
-    @extend %custom-button;
-    color: $color-alert;
-}
-
-.button-warning{
-    @extend %custom-button;
-    color: $color-warning;
-}
-
-.button-primary {
-    @extend %custom-button;
-    color: $color-primary;
-}
-
-.button-default {
-    @extend %custom-button;
-    color: $color-font;
 }
 
 body {
