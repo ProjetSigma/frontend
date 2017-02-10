@@ -1,32 +1,32 @@
-<form #loginForm="ngForm" *ngIf="!isAuthenticated()" class="callout login-form__form">
-<h3>Connexion</h3>
-<div class="row">
-	<label class="small-0 columns" for="login-form-username-input" class="fa fa-user"> </label>
-    <input class="small-10 columns" #controlUsername="ngModel" [(ngModel)]="username" autofocus ngControl="username"
-        placeholder="prenom.nom@ecole.edu" required type="email" id="login-form-username-input" name="username" />
-    <div [hidden]="controlUsername.pristine || controlUsername.valid" class="alert callout">
-        Entre l'adresse e-mail de ton École.
-    </div>
-</div>
-<div class="row">
-    <label class="small-0 columns" for="login-form-password-input" class="fa fa-lock"> </label>
-    <input class="small-10 columns" #controlPassword="ngModel" [(ngModel)]="password" [attr.autofocus]="!_passwordError"
-        [ngClass]="{animated : _passwordError, flash : _passwordError}" ngControl="password" placeholder="password"
-        required type="password"
-        id="login-form-password-input" name="password" />
+<form #loginForm="ngForm" *ngIf="!auth.is_authenticated()" class="form-horizontal">
+	<h3>Connexion</h3>
+	<div class="row form-group" [class.has-error]="controlUsername.pristine || controlUsername.valid">
+		<label class="col-2 control-label fa fa-user" for="login-form-username-input"></label>
+		<input class="col-10 form-control" #controlUsername="ngModel" [(ngModel)]="username" autofocus ngControl="username"
+			placeholder="prenom.nom@ecole.edu" required type="email" id="login-form-username-input" name="username" />
+		<div class="col-10 col-push-2 help-bloc" [hidden]="controlUsername.pristine || controlUsername.valid">
+			Entre l'adresse e-mail de ton École.
+		</div>
+	</div>
+	<div class="row form-group">
+		<label class="col-2 control-label fa fa-lock" for="login-form-password-input"> </label>
+		<input class="col-10 form-control" #controlPassword="ngModel" [(ngModel)]="password" [attr.autofocus]="!_passwordError"
+			[ngClass]="{animated : _passwordError, flash : _passwordError}" ngControl="password" placeholder="password"
+			required type="password"
+			id="login-form-password-input" name="password" />
 
-    <div [hidden]="_passwordError || controlPassword.pristine || controlPassword.valid" class="alert callout">
-        Entre ton mot de passe Sigma.
-    </div>
-    <div [hidden]="!_passwordError" class="alert callout">
-        Ton mot de passe est erroné.
-    </div>
-</div>
-    <button (click)="login(username,password)" [disabled]="!loginForm.form.valid" class="button-ok button expanded" type="submit">
-        Se connecter
-    </button>
+		<div [hidden]="_passwordError || controlPassword.pristine || controlPassword.valid" class="col-10 col-push-2 help-bloc">
+			Entre ton mot de passe Sigma.
+		</div>
+		<div [hidden]="!_passwordError" class="col-10 col-push-2 help-bloc">
+			Ton mot de passe est erroné.
+		</div>
+	</div>
+		<button (click)="login()" [disabled]="!loginForm.form.valid" class="btn btn-primary" type="submit">
+			Se connecter
+		</button>
 </form>
 
-<form *ngIf="isAuthenticated()" class="callout">
+<form *ngIf="auth.is_authenticated()" class="callout">
     <a (click)="logout()" class="alert button expanded">Se déconnecter</a>
 </form>

@@ -18,16 +18,16 @@ export class APIService {
       public me: User = new User();
 
       constructor(private auth: AuthService) {
-          if (this.auth.checkIfPreviouslyAuthentificated()) {
+          /*if (this.auth.checkIfPreviouslyAuthentificated()) {
               this.initializeStore();
-          }
+          }*/
       }
 
       buildStore() {
           // Configure headers
           let headers = {
               'Content-Type': 'application/json',
-              'Authorization': 'Bearer ' + this.auth.accessToken
+              'Authorization': 'Bearer ' + this.auth.token()
           };
           // Setup DataStore and HttpAdapter
           let httpAdapt = new HttpAdapter({ basePath: this.base_url, httpConfig: { headers: headers }, forceTrailingSlash: true });
@@ -78,11 +78,11 @@ export class APIService {
 
       //Auth-related methods
       login(username, password) {
-          var authRequest =  this.auth.authentificate(username, password);
+          /*var authRequest =  this.auth.authentificate(username, password);
           authRequest.subscribe(res => {
               this.initializeStore();
           }, error => '');
-          return authRequest;
+          return authRequest;*/
       };
 
       initializeStore() {
@@ -97,10 +97,6 @@ export class APIService {
       logout() {
           this.auth.logout();
       };
-
-      isAuthenticated() {
-          return this.auth.isAuthenticated();
-      }
 
       //Me-related methods
 

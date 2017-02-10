@@ -1,10 +1,7 @@
+<landing-page class="landing-page" *ngIf="!auth.is_authenticated()"> </landing-page>
+<!-- <main [hidden]="!auth.is_authenticated()"> -->
 
-
-<landing-page class="landing-page" *ngIf="!api.isAuthenticated()">
-
-</landing-page>
-
-<div  [hidden]="!api.isAuthenticated()" class="container-fluid">
+<div [hidden]="!auth.is_authenticated()" class="container-fluid">
     <div class="row">
         <div class="col-3">
           <navbar_left>Loading sidebar...</navbar_left>

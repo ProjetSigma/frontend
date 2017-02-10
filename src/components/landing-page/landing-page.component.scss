@@ -1,6 +1,10 @@
 $landing-page-title-background-color: $black;
 
 .landing-page {
+	width: 100%;
+	height: 100%;
+	display: block;
+	
 	&__title {
 		font-family: $title-font;
 		background-color: $landing-page-title-background-color;
@@ -18,7 +22,20 @@ $landing-page-title-background-color: $black;
 	}
 
 	&__form-container {
+		width: 80%;
+		margin: auto;
 		padding-top: rem-calc(20);
+	}
+	
+	&__footer {
+		position: absolute;
+		bottom: 0px;
+		background-color: $light-gray;
+		font-size: 0.8em;
+		padding: 3em;
+		h3 {
+			font-size: 1.5em;
+		}
 	}
 }
 

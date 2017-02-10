@@ -1,10 +1,10 @@
-import { FrontendNewPage } from './app.po';
+import { SigmaFrontendPage } from './app.po';
 
-describe('frontend-new App', function() {
-  let page: FrontendNewPage;
+describe('sigma-frontend App', function() {
+  let page: SigmaFrontendPage;
 
   beforeEach(() => {
-    page = new FrontendNewPage();
+    page = new SigmaFrontendPage();
   });
 
   it('should display message saying app works', () => {

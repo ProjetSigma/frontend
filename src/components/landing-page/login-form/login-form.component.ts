@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 
-import {APIService} from '../../../services/api.service';
+import {AuthService, AuthErrorCallback} from '../../../services/auth.service';
 
 @Component({
     selector: 'login-form',
@@ -9,31 +9,29 @@ import {APIService} from '../../../services/api.service';
 export class LoginFormComponent {
     public username:string;
     public password:string;
+    
+    private error_callback: AuthErrorCallback;
     private _passwordError:boolean = false;
 
-    constructor(private api:APIService) {
+    constructor(private auth:AuthService) {
+        this.error_callback = (err => this.handle_error(err));
+        this.auth.add_error_callback(this.error_callback);
     }
-
-    login(username, password) {
+    
+    ngOnDestroy() {
+        this.auth.remove_error_callback(this.error_callback)
+    }
+    
+    login() {
         this._passwordError = false;
-        return this.api.login(username, password)
-            .subscribe(
-                res => {
-                    this.username = '';
-                    this.password = '';
-                },
-                err => {
-                    this.password = '';
-                    this._passwordError = true;
-                }
-            );
+        this.auth.authenticate(
+            this.username,
+            this.password
+        )
     }
+    
+    handle_error(err) {
+        this._passwordError = true;
+    }   
 
-    logout() {
-        return this.api.logout();
-    }
-
-    isAuthenticated() {
-        return this.api.isAuthenticated();
-    }
 }

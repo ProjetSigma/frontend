@@ -27,8 +27,8 @@
     <div class="small-12 columns">
         <div *ngFor="let membership of realMemberships()">
             <div *ngIf="membership && membership.group && membership.group.id">
-                <group-inline-display [group]="membership.group">
-                </group-inline-display>
+                <!-- <group-inline-display [group]="membership.group"> -->
+                <!-- </group-inline-display> -->
             </div>
         </div>
         <div *ngIf="user.memberships && realMemberships() === 0">
@@ -44,8 +44,8 @@
         <div class="small-12 columns">
             <div *ngFor="let membership of pendingMemberships()">
                 <div *ngIf="membership && membership.group && membership.group.id">
-                    <group-inline-display [group]="membership.group">
-                    </group-inline-display>
+                    <!-- <group-inline-display [group]="membership.group"> -->
+                    <!-- </group-inline-display> -->
                 </div>
             </div>
         </div>
@@ -59,8 +59,8 @@
         <div class="small-12 columns">
             <div *ngFor="let membership of invitedMemberships()">
                 <div *ngIf="membership && membership.group && membership.group.id">
-                    <group-inline-display [group]="membership.group">
-                    </group-inline-display>
+                    <!-- <group-inline-display [group]="membership.group"> -->
+                    <!-- </group-inline-display> -->
                 </div>
             </div>
         </div>

@@ -5,7 +5,7 @@ import {Group} from '../../../../resources/group'
 
 
 import {APIService} from '../../../../services/api.service';
-import {GroupInlineDisplayComponent} from '../../../groups/group-details/group-inline-display/group-inline-display.component';
+// import {GroupInlineDisplayComponent} from '../../../groups/group-details/group-inline-display/group-inline-display.component';
 
 
 @Component({

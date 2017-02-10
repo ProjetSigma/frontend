@@ -4,8 +4,6 @@ import {IActionOpts} from 'js-data-http';
 import {Cluster} from './cluster';
 import {Membership} from './membership';
 
-import * as _ from 'lodash';
-
 export class User extends Record {
     public id: number;
     public photo;
@@ -30,7 +28,8 @@ export class User extends Record {
 
     // Returns the clusters list as JSData Records list
     public getClusters(): Cluster[] {
-        return _.reduce(this.user_clusters, c => c['cluster'], []);
+        return []
+        // return _.reduce(this.user_clusters, c => c['cluster'], []);
     }
 }
 

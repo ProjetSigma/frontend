@@ -1,26 +1,29 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MainComponent } from '../main/main.component';
-import { UsersListComponent } from '../users/users-list/users-list.component';
-import { UserDetailsComponent } from '../users/user-details/user-details.component';
-import { GroupsListComponent } from '../groups/groups-list/groups-list.component';
-import { GroupDetailsComponent } from '../groups/group-details/group-details.component';
-import { GroupPublicationsComponent } from '../groups/group-details/group-publications/group-publications.component';
-import { SettingsComponent } from '../settings/settings.component';
+
+import { HomeComponent } from '../home/home.component';
+import { GroupComponent } from '../groups/group.component';
+import { GroupRoutes } from '../groups/group.routing';
+
+// import { UsersListComponent } from '../users/users-list/users-list.component';
+// import { GroupDetailsComponent } from '../groups/group-details/group-details.component';
+// import { UserDetailsComponent } from '../users/user-details/user-details.component';
+// import { GroupsListComponent } from '../groups/groups-list/groups-list.component';
+// import { SettingsComponent } from '../settings/settings.component';
 
 const appRoutes: Routes = [
 	{
 	  path: '',
-	  redirectTo: '/main',
+	  redirectTo: '/home',
 	  pathMatch: 'full'
 	},
-    {path: 'main', component: MainComponent},
-    {path: 'group', component: GroupsListComponent},
-	{path: 'group/:id', component: GroupPublicationsComponent},
-	{path: 'group/:id/members', component: GroupDetailsComponent},
-    {path: 'settings', component: SettingsComponent},
-	{path: 'users', component: UsersListComponent},
-	{path: 'user/:id', component: UserDetailsComponent}
+    {path: 'home', component: HomeComponent},
+	{path: 'group/:id', component: GroupComponent, children:GroupRoutes}
+    
+	// {path: 'group/:id/members', component: GroupDetailsComponent},
+    // {path: 'settings', component: SettingsComponent},
+	// {path: 'users', component: UsersListComponent},
+	// {path: 'user/:id', component: UserDetailsComponent}
 ];
 export const appRoutingProviders: any[] = [
 ];
