@@ -11,6 +11,5 @@ export class NavbarLeftComponent {
     }
 
     logout() {
-        return this.api.logout();
     }
 }

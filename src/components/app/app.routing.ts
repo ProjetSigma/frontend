@@ -2,8 +2,7 @@ import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from '../home/home.component';
-import { GroupComponent } from '../groups/group.component';
-import { GroupRoutes } from '../groups/group.routing';
+import { GroupRoute } from '../groups/group.exporter';
 
 // import { UsersListComponent } from '../users/users-list/users-list.component';
 // import { GroupDetailsComponent } from '../groups/group-details/group-details.component';
@@ -18,13 +17,13 @@ const appRoutes: Routes = [
 	  pathMatch: 'full'
 	},
     {path: 'home', component: HomeComponent},
-	{path: 'group/:id', component: GroupComponent, children:GroupRoutes}
+    
+    GroupRoute // -> 'group/:id'
     
 	// {path: 'group/:id/members', component: GroupDetailsComponent},
     // {path: 'settings', component: SettingsComponent},
 	// {path: 'users', component: UsersListComponent},
 	// {path: 'user/:id', component: UserDetailsComponent}
 ];
-export const appRoutingProviders: any[] = [
-];
+
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

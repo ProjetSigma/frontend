@@ -2,7 +2,6 @@ import {Record, Schema} from 'js-data';
 import {Membership} from './membership';
 
 export class Group extends Record {
-    //Fields fetched from the backend
     public id: number;
     public name: string;
     public desription: string;
@@ -15,11 +14,10 @@ export class Group extends Record {
     public members_visibility: number;
     public group_visibility: number;
 
-    //Relational fields added by JS-Data
+    
     public acknowledging: Group[];
     public acknowledged_by: Group;
     public memberships: Membership[];
-
 
     constructor(props?) {
         super(props);
@@ -47,10 +45,19 @@ export const groupRelations = {
         acknowledging: {
             foreignKey: 'acknowledged_by_id',
             localField: 'acknowledging'
-        }
-        membership: {
+        },
+        memberships: {
             foreignKey: 'group_id',
             localField: 'memberships'
         }
     }
+};
+
+
+export const groupMapper = {
+    recordClass: Group,
+    schema: groupSchema,
+    relations: groupRelations,
+    applySchema: true,
+    debug: true
 };

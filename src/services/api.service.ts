@@ -6,98 +6,52 @@ import {HttpAdapter, addActions} from 'js-data-http';
 import {AuthService} from './auth.service';
 import {api_url} from '../config';
 
-import {User, userSchema, userRelations, userActions} from '../resources/user';
-import {Group, groupSchema, groupRelations} from '../resources/group';
+import {User, userMapper, userActions} from '../resources/user';
+import {groupMapper} from '../resources/group';
+import {groupFieldMapper} from '../resources/group-field';
+import {groupFieldValueMapper} from '../resources/group-field-value';
+import {membershipMapper} from '../resources/membership';
+
 import {Membership, membershipSchema, membershipRelations} from '../resources/membership';
 
 @Injectable()
 export class APIService {
 
     protected base_url: string = api_url;
-      public store: DataStore = new DataStore();
-      public me: User = new User();
+    protected httpAdapter: HttpAdapter;
+    
+    public store: DataStore = new DataStore();
+    public me: User = new User();
 
-      constructor(private auth: AuthService) {
-          /*if (this.auth.checkIfPreviouslyAuthentificated()) {
-              this.initializeStore();
-          }*/
-      }
+    
+    constructor(private auth: AuthService) {
+        let headers = {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + this.auth.token()
+        };
+        this.httpAdapter = new HttpAdapter({ basePath: this.base_url, httpConfig: { headers: headers }, forceTrailingSlash: true });
 
-      buildStore() {
-          // Configure headers
-          let headers = {
-              'Content-Type': 'application/json',
-              'Authorization': 'Bearer ' + this.auth.token()
-          };
-          // Setup DataStore and HttpAdapter
-          let httpAdapt = new HttpAdapter({ basePath: this.base_url, httpConfig: { headers: headers }, forceTrailingSlash: true });
-          this.store.registerAdapter('http', httpAdapt, { default: true });
-          // Register all Resources
-          this.store.defineMapper('user_cluster', {
-              // recordClass: UserCluster,
-              relations: {
-                  belongsTo: {
-                      user: {
-                          foreignKey: 'user_id',
-                          localField: 'user'
-                      },
-                      cluster: {
-                          foreignKey: 'cluster_id',
-                          localField: 'cluster'
-                      }
-                  }
-              },
-              debug: true
-          });
+        // Create store
+        this.store.registerAdapter('http', this.httpAdapter, { default: true });
 
-          this.store.defineMapper('group', {
-              recordClass: Group,
-              schema: groupSchema,
-              applySchema: true,
-              relations: groupRelations,
-              debug: true
-          });
+        this.store.defineMapper('user', userMapper);
+        this.store.defineMapper('group', groupMapper);
+        this.store.defineMapper('group-field', groupFieldMapper);
+        this.store.defineMapper('group-field-value', groupFieldValueMapper);
+        this.store.defineMapper('membership', membershipMapper);
 
-          this.store.defineMapper('user', {
-              recordClass: User,
-              schema: userSchema,
-              applySchema: true,
-              relations: userRelations,
-              debug: true,
-          });
+        // this.initializeStore();
+    }
 
-          this.store.defineMapper('membership', {
-              endpoint: 'group-member',
-              recordClass: Membership,
-              schema: membershipSchema,
-              applySchema: true,
-              relations: membershipRelations,
-              debug: true
-          });
-      }
+    initializeStore() {
+        (addActions(userActions)(this.store.getMapper('user'))).me()
+        .then(res =>  {
+            this.me = res;
+            this.getMyGroups();
+        });
+    }
 
-      //Auth-related methods
-      login(username, password) {
-          /*var authRequest =  this.auth.authentificate(username, password);
-          authRequest.subscribe(res => {
-              this.initializeStore();
-          }, error => '');
-          return authRequest;*/
-      };
-
-      initializeStore() {
-          this.buildStore();
-          (addActions(userActions)(this.store.getMapper('user'))).me()
-          .then(res =>  {
-              this.me = res;
-              this.getMyGroups();
-          });
-      }
-
-      logout() {
-          this.auth.logout();
-      };
-
+      
       //Me-related methods
 
       //Retrieves all the groups of the logged user and attach them to the User

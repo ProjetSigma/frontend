@@ -68,3 +68,13 @@ export const membershipActions : { [key: string]: IActionOpts; } = {
         response: (u) => { return new Membership(u.data); }
     }
 };
+
+
+export const membershipMapper = {
+    endpoint: 'group-member',
+    recordClass: Membership,
+    schema: membershipSchema,
+    applySchema: true,
+    relations: membershipRelations,
+    debug: true
+}

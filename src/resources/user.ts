@@ -81,3 +81,11 @@ export const userActions : { [key: string]: IActionOpts; } = {
         response: (u) => { return new User(u.data); }
     }
 };
+
+export const userMapper = {
+    recordClass: User,
+    schema: userSchema,
+    applySchema: true,
+    relations: userRelations,
+    debug: true
+}
