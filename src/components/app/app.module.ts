@@ -1,4 +1,5 @@
 import { APIService } from '../../services/api.service';
+import { APIAdapterService } from '../../services/adapter.service';
 import { AuthService } from '../../services/auth.service';
 
 import { AppComponent } from './app.component';
@@ -52,6 +53,8 @@ import { routing }  from './app.routing';
     providers: [
         APIService,
         AuthService,
+        APIAdapterService,
+        
         ...GroupProviders
     ],
     

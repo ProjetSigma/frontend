@@ -63,7 +63,14 @@ export class AuthService {
         this.auth_info = new AuthInfo();
         this.connected = false;
         
-        if(this.auth_info.refresh_token != null)
+        var t = (new Date).getTime();        
+        if(this.auth_info.expires != null && this.auth_info.expires < t) {
+            this.connected = true;
+            setTimeout(() => this.refresh, (t - this.auth_info.expires) / 2);
+            this.unlogin_timeout = setTimeout(() => this.logout, (t - this.auth_info.expires));
+        }
+        
+        else if(this.auth_info.refresh_token != null)
             this.refresh();
     };
 

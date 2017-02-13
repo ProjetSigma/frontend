@@ -42,11 +42,11 @@ export const groupSchema = new Schema({
 
 export const groupRelations = {
     hasMany: {
-        acknowledging: {
+        group: {
             foreignKey: 'acknowledged_by_id',
             localField: 'acknowledging'
         },
-        memberships: {
+        membership: {
             foreignKey: 'group_id',
             localField: 'memberships'
         }

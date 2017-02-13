@@ -1,10 +1,7 @@
-import { Injectable, Component } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 import {DataStore} from 'js-data';
-import {HttpAdapter, addActions} from 'js-data-http';
-
-import {AuthService} from './auth.service';
-import {api_url} from '../config';
+import {APIAdapterService} from './adapter.service'
 
 import {User, userMapper, userActions} from '../resources/user';
 import {groupMapper} from '../resources/group';
@@ -12,43 +9,30 @@ import {groupFieldMapper} from '../resources/group-field';
 import {groupFieldValueMapper} from '../resources/group-field-value';
 import {membershipMapper} from '../resources/membership';
 
-import {Membership, membershipSchema, membershipRelations} from '../resources/membership';
 
 @Injectable()
 export class APIService {
-
-    protected base_url: string = api_url;
-    protected httpAdapter: HttpAdapter;
     
     public store: DataStore = new DataStore();
     public me: User = new User();
 
     
-    constructor(private auth: AuthService) {
-        let headers = {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + this.auth.token()
-        };
-        this.httpAdapter = new HttpAdapter({ basePath: this.base_url, httpConfig: { headers: headers }, forceTrailingSlash: true });
-
-        // Create store
-        this.store.registerAdapter('http', this.httpAdapter, { default: true });
+    constructor(protected adapter: APIAdapterService) {
+        this.store.registerAdapter('http', this.adapter, { default: true });
 
         this.store.defineMapper('user', userMapper);
         this.store.defineMapper('group', groupMapper);
         this.store.defineMapper('group-field', groupFieldMapper);
         this.store.defineMapper('group-field-value', groupFieldValueMapper);
         this.store.defineMapper('membership', membershipMapper);
-
-        // this.initializeStore();
     }
 
     initializeStore() {
-        (addActions(userActions)(this.store.getMapper('user'))).me()
-        .then(res =>  {
-            this.me = res;
-            this.getMyGroups();
-        });
+        // (addActions(userActions)(this.store.getMapper('user'))).me()
+        // .then(res =>  {
+            // this.me = res;
+            // this.getMyGroups();
+        // });
     }
 
       

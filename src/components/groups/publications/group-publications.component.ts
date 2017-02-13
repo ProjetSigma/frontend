@@ -8,8 +8,8 @@ import {Group} from '../../../resources/group';
     templateUrl: 'group-publications.component.html',
 })
 export class GroupPublicationsComponent {
-    // @Input('group') group: Group;
-    @Input('group') group: number;
+    @Input('group') group: Group;
+    // @Input('group') group: number;
     
     constructor(public route: ActivatedRoute) {
         
