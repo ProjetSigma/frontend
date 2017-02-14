@@ -8,7 +8,8 @@ export const GroupRoute = {
     path: 'group/:group_id',
     component: GroupComponent,
     children: GroupRoutes,
-    resolve: { 'group' : GroupResolver }
+    resolve: { 'group' : GroupResolver },
+    canActivate: [GroupResolver]
 }
 
 export const GroupDeclarations = [

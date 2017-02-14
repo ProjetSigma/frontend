@@ -1,111 +1,75 @@
 import {Injectable} from '@angular/core';
-
-import {ws_url} from '../config';
-
-class Transaction {
-    public id: number;
-    
-}
+import {AuthService} from './auth.service';
+import {Transaction, SigmaWebSocket} from '../utils/websocket';
+import {ws_config} from '../config';
 
 @Injectable()
-class SigmaWebSocket {
+export class WebSocketService {
     
-	private transactions = {};
-	private nextTransactionId:number = 0;
-    private ws;
-	
-    constructor() {
-        this.reconnect();
+    private ws: SigmaWebSocket;
+    
+    constructor(private auth: AuthService) {
+        this.ws = new SigmaWebSocket(ws_config);
+        
+        this.ws.onopen = (ev:Event) => {
+            this.checkForAuth();
+        }
     }
     
-	reconnect() {
-		this.ws = new WebSocket(url);
-		this.ws.onmessage = this.ws_onmessage;
-		this.ws.onclose = this.ws_onclose;
-		this.ws.onerror = this.ws_onerror;
-	}
+    checkForAuth(): void {
+        if(this.auth.is_authenticated()) {
+            let tr: AuthenticationTransaction = new AuthenticationTransaction(this.ws);
+            tr.send(this.auth.token());
+        }
+    }
     
-	send(msg) {
-		msg = JSON.stringify(msg)
-		this.ws.send(msg);
-	}
+    ready(): boolean {
+        return this.ws.ready();
+    }
     
-	registerTransaction(transaction) {
-		id = this.nextTransactionId;
-		this.nextTransactionId += 1;
-		
-		transaction.id = id;
-		this.transactions[id] = transaction
-	}
-	
-	
-	this.ws_onmessage = (function(self){
-			return function(msg_event){
-				msg = JSON.parse(msg_event.data);
-			
-				if(! 'id' in msg) { return; }
-				if(msg.id < 0) { self.onevent(msg); return; }
-				if(! msg.id in self.transactions) { return; }
-				
-				transaction = self.transactions[msg.id];
-				transaction.onmessage(msg);
-			}
-		})(this);
-	
-	this.ws_onclose = (function(self){
-		return function(){
-			setTimeout(self.reconnect, 2000);
-		}
-	})(this);
-	
-	this.ws_onerror = (function(self){
-		return function() {
-			setTimeout(self.reconnect, 2000);
-		}
-	})(this);
-	
-	
-	this.onevent = function(msg) {}
-	
-	this.reconnect();
-	return this;
+    sendREST(params: RESTRequestParams) : Promise<any> {
+        let tr: RESTTransaction = new RESTTransaction(this.ws);
+        return tr.send(params);
+    }
+    
 }
 
-
-function AuthenticationTransaction(ws, token) {
-	this.ws = ws;
-	this.ws.registerTransaction(this);
-	
-	this.sendOriginalMessage = function() {
-		message = {
+export class AuthenticationTransaction extends Transaction {
+    constructor(ws: SigmaWebSocket) {super(ws);}
+    
+    send(token: string) : Promise<any> {
+		return super._send({
 			id: this.id,
 			protocol: "SIGMA.0.1",
 			action: "AUTH",
 			token: token
-		}
-		this.ws.send(message);
-	}
-	
-	return this;
+		});
+    }
 }
 
-function RESTTransaction(ws, loc, action, data="", pk=null) {
-	this.ws = ws;
-	this.ws.registerTransaction(this);
-	
-	this.sendOriginalMessage = function() {
-		message = {
-			id : this.id,
-			protocol: "SIGMA.0.1",
-			action: "REST_API",
-			REST_action: action,
-			REST_location: loc,
-			REST_data: data,
-		}
-		if(pk != null) message.REST_pk = pk
-		
-		this.ws.send(message);
-	}
-	
-	return this;
+interface RESTRequestParams { location: string; action: string; data?: any; id?: string|number; };
+export class RESTTransaction extends Transaction {    
+    constructor(ws: SigmaWebSocket) {super(ws);}
+    
+    send(params: RESTRequestParams) : Promise<any> {
+        return new Promise((resolve, reject) => {
+            super._send({
+                id : this.id,
+                protocol: "SIGMA.0.1",
+                action: "REST_API",
+                REST_action: params.action,
+                REST_location: params.location,
+                REST_data: ('data' in params ? params.data : undefined),
+                REST_pk: ('id' in params ? params.id : undefined)
+                
+            }).then((res:any) => { // Treat rest errors
+                if(res.code <= 10)
+                    resolve(res.content);
+                else
+                    reject(Error(res));
+            }, (err:any) => {
+                reject(err);
+            });
+        });
+    }
 }

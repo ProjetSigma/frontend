@@ -1,5 +1,5 @@
 import {Component, Inject, Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, ActivatedRoute, Resolve}   from '@angular/router';
+import {ActivatedRouteSnapshot, ActivatedRoute, Resolve, CanActivate}   from '@angular/router';
 import {RoutingComponents} from '../../utils/routing-component';
 
 import {APIService} from '../../services/api.service';
@@ -7,11 +7,22 @@ import {Group} from '../../resources/group';
 
 
 @Injectable()
-export class GroupResolver implements Resolve<Group> {
+export class GroupResolver implements Resolve<Group>, CanActivate {
     constructor(private api: APIService) {}
-
+    private promise: any = null;
+    
+    canActivate(route: ActivatedRouteSnapshot): Promise<boolean> {
+        return this.resolve(route).then((obj) => {
+            return (obj != null);
+        })
+    }
+    
     resolve(route: ActivatedRouteSnapshot) {
-        return this.api.store.find('group', route.params['group_id']);
+        if(this.promise == null)
+            this.promise = this.api.store.find('group', route.params['group_id']).catch((err) => {
+                return null;
+            });
+        return this.promise;
     }
 }
 

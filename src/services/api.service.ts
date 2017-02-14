@@ -3,11 +3,15 @@ import {Injectable} from '@angular/core';
 import {DataStore} from 'js-data';
 import {APIAdapterService} from './adapter.service'
 
+import {acknowledgmentMapper}           from '../resources/acknowledgment';
+import {acknowledgmentInvitationMapper} from '../resources/acknowledgment-invitation';
+import {groupMapper}                    from '../resources/group';
+import {groupFieldMapper}               from '../resources/group-field';
+import {groupFieldValueMapper}          from '../resources/group-field-value';
+import {membershipMapper}               from '../resources/membership';
+import {groupInvitationMapper}          from '../resources/group-invitation';
+
 import {User, userMapper, userActions} from '../resources/user';
-import {groupMapper} from '../resources/group';
-import {groupFieldMapper} from '../resources/group-field';
-import {groupFieldValueMapper} from '../resources/group-field-value';
-import {membershipMapper} from '../resources/membership';
 
 
 @Injectable()
@@ -20,11 +24,14 @@ export class APIService {
     constructor(protected adapter: APIAdapterService) {
         this.store.registerAdapter('http', this.adapter, { default: true });
 
+        this.store.defineMapper('acknowledgment', acknowledgmentMapper);
+        this.store.defineMapper('acknowledgment-invitation', acknowledgmentInvitationMapper);
         this.store.defineMapper('user', userMapper);
         this.store.defineMapper('group', groupMapper);
         this.store.defineMapper('group-field', groupFieldMapper);
         this.store.defineMapper('group-field-value', groupFieldValueMapper);
         this.store.defineMapper('membership', membershipMapper);
+        this.store.defineMapper('group-invitation', groupInvitationMapper);
     }
 
     initializeStore() {

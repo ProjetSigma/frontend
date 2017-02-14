@@ -1,6 +1,7 @@
 import { APIService } from '../../services/api.service';
 import { APIAdapterService } from '../../services/adapter.service';
 import { AuthService } from '../../services/auth.service';
+import { WebSocketService } from '../../services/ws.service';
 
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from '../landing-page/landing-page.component';
@@ -54,6 +55,7 @@ import { routing }  from './app.routing';
         APIService,
         AuthService,
         APIAdapterService,
+        WebSocketService,
         
         ...GroupProviders
     ],

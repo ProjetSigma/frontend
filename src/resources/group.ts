@@ -1,5 +1,6 @@
 import {Record, Schema} from 'js-data';
 import {Membership} from './membership';
+import {Acknowledgment} from './acknowledgment';
 
 export class Group extends Record {
     public id: number;
@@ -15,8 +16,8 @@ export class Group extends Record {
     public group_visibility: number;
 
     
-    public acknowledging: Group[];
-    public acknowledged_by: Group;
+    public acknowledging: Acknowledgment[];
+    public acknowledged_by: Acknowledgment[];
     public memberships: Membership[];
 
     constructor(props?) {
@@ -42,10 +43,13 @@ export const groupSchema = new Schema({
 
 export const groupRelations = {
     hasMany: {
-        group: {
+        acknowledgment: [{
             foreignKey: 'acknowledged_by_id',
             localField: 'acknowledging'
-        },
+        }, {
+            foreignKey: 'acknowledged_id',
+            localField: 'acknowledged'
+        }]
         membership: {
             foreignKey: 'group_id',
             localField: 'memberships'

@@ -74,52 +74,53 @@ export class AuthService {
             this.refresh();
     };
 
-    authenticate(username, password) {
+    authenticate(username, password) : Promise<Response> {
         var headers = new Headers();
             headers.append('Authorization', 'Basic ' + btoa(this.clientId + ':' + this.clientSecret));
             headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
         var params = 'grant_type=' + 'password' + '&username=' + username + '&password=' + password;
-        var request = this.http.post(api_url + 'o/token/', params, {headers: headers}).subscribe(
-            res => this.login(res),
-            err => this.handle_error(err)
+        var request = this.http.post(api_url + 'o/token/', params, {headers: headers}).toPromise().then(
+            (res) => this.handle_auth(res),
+            (err) => this.handle_error(err)
         );
 
         return request;
     }
     
-    refresh() {
+    refresh() : Promise<Response> {
         var headers = new Headers();
             headers.append('Authorization', 'Basic ' + btoa(this.clientId + ':' + this.clientSecret));
             headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
         var params = 'grant_type=' + 'refresh_token' + '&refresh_token=' + this.auth_info.refresh_token;
-        var request = this.http.post(api_url + 'o/token/', params, {headers: headers}).subscribe(
-            res => this.login(res),
-            err => this.handle_error(err)
+        var request = this.http.post(api_url + 'o/token/', params, {headers: headers}).toPromise().then(
+            (res) => this.handle_auth(res),
+            (err) => this.handle_error(err)
         );
 
         return request;
     }
     
-    private error_cb: AuthErrorCallback[] = [];
-    
-    add_error_callback(cb) {
-        this.error_cb.push(cb)
-    }
-    
-    remove_error_callback(cb) {
-        var i = this.error_cb.indexOf(cb);
-        this.error_cb.splice(i, 1);
-    }
-    
-    handle_error(err: Response) {
-        console.log(err);
-        var cb: AuthErrorCallback;
-        for(cb of this.error_cb)
-            cb(err)
+    handle_auth(resp : Response) : Promise<Response> {
+        this.auth_info.set(
+            resp.json().access_token,
+            resp.json().refresh_token,
+            (new Date()).getTime() + resp.json().expires_in
+        );
         
+        setTimeout(() => this.refresh, resp.json().expires_in / 2);
+        if(this.unlogin_timeout != null) clearTimeout(this.unlogin_timeout);
+        this.unlogin_timeout = setTimeout(() => this.logout, resp.json().expires_in);
+        
+        this.connected = true;
+        
+        return Promise.resolve(resp);
+    }
+    
+    handle_error(err: Response) : Promise<Response> {
         this.logout();
+        return Promise.reject(err);
     }
     
 //*********************************************************************************************
@@ -134,20 +135,6 @@ export class AuthService {
 
 
 //*********************************************************************************************
-    
-    login(resp : Response) {
-        this.auth_info.set(
-            resp.json().access_token,
-            resp.json().refresh_token,
-            (new Date()).getTime() + resp.json().expires_in
-        );
-        
-        setTimeout(() => this.refresh, resp.json().expires_in / 2);
-        if(this.unlogin_timeout != null) clearTimeout(this.unlogin_timeout);
-        this.unlogin_timeout = setTimeout(() => this.logout, resp.json().expires_in);
-        
-        this.connected = true;
-    }
     
     logout() {
         this.auth_info.clear();

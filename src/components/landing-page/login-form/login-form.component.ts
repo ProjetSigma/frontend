@@ -10,28 +10,18 @@ export class LoginFormComponent {
     public username:string;
     public password:string;
     
-    private error_callback: AuthErrorCallback;
     private _passwordError:boolean = false;
 
-    constructor(private auth:AuthService) {
-        this.error_callback = (err => this.handle_error(err));
-        this.auth.add_error_callback(this.error_callback);
-    }
-    
-    ngOnDestroy() {
-        this.auth.remove_error_callback(this.error_callback)
-    }
+    constructor(private auth:AuthService) {}
     
     login() {
         this._passwordError = false;
         this.auth.authenticate(
             this.username,
             this.password
-        )
+        ).catch((err) => {
+            this._passwordError = true;
+        });
     }
-    
-    handle_error(err) {
-        this._passwordError = true;
-    }   
 
 }
