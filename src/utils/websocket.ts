@@ -72,7 +72,7 @@ export class SigmaWebSocket {
         
         this.ws.onopen = (event:Event) => {
             clearTimeout(abortTimeout);
-            onopen(event);
+            this.onopen(event);
         };
 
         this.ws.onclose = (event:CloseEvent) => {

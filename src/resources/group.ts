@@ -49,7 +49,7 @@ export const groupRelations = {
         }, {
             foreignKey: 'acknowledged_id',
             localField: 'acknowledged'
-        }]
+        }],
         membership: {
             foreignKey: 'group_id',
             localField: 'memberships'

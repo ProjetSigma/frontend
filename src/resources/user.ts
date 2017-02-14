@@ -1,7 +1,6 @@
 import {Record, Schema} from 'js-data';
 import {IActionOpts} from 'js-data-http';
 
-import {Cluster} from './cluster';
 import {Membership} from './membership';
 
 export class User extends Record {
@@ -18,28 +17,9 @@ export class User extends Record {
 	public last_login: Date;
 
     // Relational fields
-    public clusters: number[]; // clusters ids returned by REST API
-    public user_clusters: UserCluster[]; // client-side only relational objects 'user_cluster'
     public memberships:Membership[];
 
     constructor (props?) {
-        super(props);
-    }
-
-    // Returns the clusters list as JSData Records list
-    public getClusters(): Cluster[] {
-        return []
-        // return _.reduce(this.user_clusters, c => c['cluster'], []);
-    }
-}
-
-export class UserCluster extends Record {
-    public user_id: number;
-    public cluster_id: number;
-    public user: User;
-    public cluster: Cluster;
-
-    constructor(props) {
         super(props);
     }
 }
@@ -48,7 +28,6 @@ export const userSchema = new Schema({
 	type: 'object',
     properties: {
         id: {type: 'integer'},
-        clusters_id : {type : 'array', items: {type: 'integer'}},
         lastname: {type: 'string'},
         firstname: {type: 'string'},
         email: {type: 'string', format: 'email'},

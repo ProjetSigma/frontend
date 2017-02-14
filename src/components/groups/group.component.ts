@@ -26,7 +26,6 @@ export class GroupResolver implements Resolve<Group>, CanActivate {
     }
 }
 
-
 var rc : RoutingComponents = new RoutingComponents([
     {name: 'home', selector: 'group-publications', inputs: ['group'], route: {
         path: ''

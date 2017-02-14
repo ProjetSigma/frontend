@@ -4,6 +4,7 @@ import { AuthService } from '../../services/auth.service';
 import { WebSocketService } from '../../services/ws.service';
 
 import { AppComponent } from './app.component';
+import { Error404Component } from '../error404/error404.component';
 import { LandingPageComponent } from '../landing-page/landing-page.component';
 import { LoginFormComponent } from '../landing-page/login-form/login-form.component';
 
@@ -34,6 +35,7 @@ import { routing }  from './app.routing';
 @NgModule({
     declarations: [
         AppComponent,
+        Error404Component,
         LandingPageComponent,
         LoginFormComponent,
         HomeComponent,

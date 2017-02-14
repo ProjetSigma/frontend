@@ -17,7 +17,7 @@ export const acknowledgmentSchema = new Schema({
 	type: 'object',
     properties: {
         id: { type: 'integer' },
-        date: { type: 'string' }
+        date: { type: 'string', format: 'date-time' }
     }
 });
 
