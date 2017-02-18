@@ -7,11 +7,11 @@
 	<a href="#" class="navbar-brand">Some Group</a>
 	<div class="collapse navbar-collapse" id="groupNavbar">
 		<ul class="nav navbar-nav navbar-right">
-			<li class="nav-item" [class.active]="enabledRoute('publications')"><a href="#" class="nav-link">Home</a></li>
-			<li class="nav-item" [class.active]="enabledRoute('members')"><a href="#" class="nav-link">Members</a></li>
-			<li class="nav-item" [class.active]="enabledRoute('chat')"><a href="#" class="nav-link">Chat</a></li>
-			<li class="nav-item" [class.active]="enabledRoute('settings')"><a href="#" class="nav-link">Settings</a></li>
-			<li class="nav-item" [class.active]="enabledRoute('search')"><a href="#" class="nav-link"><i class="fa fa-search"></i></a></li>
+			<li class="nav-item" routerLink="publications" routerLinkActive="active"><a  class="nav-link">Home</a></li>
+			<li class="nav-item" routerLink="members" routerLinkActive="active"><a class="nav-link">Members</a></li>
+			<li class="nav-item" ><a href="#" class="nav-link">Chat</a></li>
+			<li class="nav-item" ><a href="#" class="nav-link">Settings</a></li>
+			<li class="nav-item" ><a href="#" class="nav-link"><i class="fa fa-search"></i></a></li>
 		</ul>
 	</div>
 </nav>

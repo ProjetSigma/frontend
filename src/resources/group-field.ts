@@ -38,9 +38,20 @@ export const groupFieldSchema = new Schema({
     }
 });
 
+
+export const groupFieldRelations = {
+    belongsTo: {
+        group: {
+            localKey: 'group_id',
+            localField: 'group'
+        }
+    }
+};
+
 export const groupFieldMapper = {
     recordClass: GroupField,
     schema: groupFieldSchema,
+    relations: groupFieldRelations,
     applySchema: true,
     debug: true
 };

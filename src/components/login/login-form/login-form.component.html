@@ -1,4 +1,4 @@
-<form #loginForm="ngForm" *ngIf="!auth.is_authenticated()" class="form-horizontal">
+<form #loginForm="ngForm" *ngIf="!auth.isAuthenticated()" class="form-horizontal">
 	<h3>Connexion</h3>
 	<div class="row form-group" [class.has-error]="controlUsername.pristine || controlUsername.valid">
 		<label class="col-2 control-label fa fa-user" for="login-form-username-input"></label>
@@ -10,15 +10,15 @@
 	</div>
 	<div class="row form-group">
 		<label class="col-2 control-label fa fa-lock" for="login-form-password-input"> </label>
-		<input class="col-10 form-control" #controlPassword="ngModel" [(ngModel)]="password" [attr.autofocus]="!_passwordError"
-			[ngClass]="{animated : _passwordError, flash : _passwordError}" ngControl="password" placeholder="password"
+		<input class="col-10 form-control" #controlPassword="ngModel" [(ngModel)]="password" [attr.autofocus]="!hasPasswordError"
+			[ngClass]="{animated : hasPasswordError, flash : hasPasswordError}" ngControl="password" placeholder="password"
 			required type="password"
 			id="login-form-password-input" name="password" />
 
-		<div [hidden]="_passwordError || controlPassword.pristine || controlPassword.valid" class="col-10 col-push-2 help-bloc">
+		<div [hidden]="hasPasswordError || controlPassword.pristine || controlPassword.valid" class="col-10 col-push-2 help-bloc">
 			Entre ton mot de passe Sigma.
 		</div>
-		<div [hidden]="!_passwordError" class="col-10 col-push-2 help-bloc">
+		<div [hidden]="!hasPasswordError" class="col-10 col-push-2 help-bloc">
 			Ton mot de passe est erroné.
 		</div>
 	</div>
@@ -27,6 +27,6 @@
 		</button>
 </form>
 
-<form *ngIf="auth.is_authenticated()" class="callout">
+<form *ngIf="auth.isAuthenticated()" class="callout">
     <a (click)="logout()" class="alert button expanded">Se déconnecter</a>
 </form>

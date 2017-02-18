@@ -1,13 +1,4 @@
-<landing-page class="landing-page" *ngIf="!auth.is_authenticated()"> </landing-page>
+<!-- <landing-page class="landing-page" *ngIf="!auth.is_authenticated()"> </landing-page> -->
 <!-- <main [hidden]="!auth.is_authenticated()"> -->
 
-<div [hidden]="!auth.is_authenticated()" class="container-fluid">
-    <div class="row">
-        <div class="col-3">
-          <navbar_left>Loading sidebar...</navbar_left>
-        </div>
-        <div class="col-9">
-            <router-outlet></router-outlet>
-        </div>
-    </div>
-</div>
+<router-outlet></router-outlet>

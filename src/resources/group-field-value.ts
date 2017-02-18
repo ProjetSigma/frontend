@@ -28,9 +28,24 @@ export const groupFieldValueSchema = new Schema({
     }
 });
 
+
+export const groupFieldValueRelations = {
+    belongsTo: {
+        "membership": {
+            localKey: 'membership_id',
+            localField: 'membership'
+        },
+        "group-field": {
+            localKey: 'field_id',
+            localField: 'field'
+        }
+    }
+};
+
 export const groupFieldValueMapper = {
     recordClass: GroupFieldValue,
     schema: groupFieldValueSchema,
+    relations: groupFieldValueRelations,
     applySchema: true,
     debug: true
 };

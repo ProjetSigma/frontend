@@ -10,7 +10,6 @@ import {GroupFieldValue} from '../../resources/group-field-value';
     templateUrl: 'group-field.component.html',
 })
 export class GroupDisplayComponent {
-	//Pourquoi créer un GroupDetailsComponent dans ce cas ? Ne peut on pas mettre à la fois un accès par Input et par route ?
     @Input('field') field: GroupField;
     @Input('membership') membership: Membership;
     

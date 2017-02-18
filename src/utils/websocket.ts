@@ -19,7 +19,7 @@ export class Transaction {
         this.ws.registerTransaction(this);
     }
     
-    _send(msg: any) {
+    send(msg: any) {
         let taskId = this.respQueue.newTask();
         return new Promise((resolve, reject) => {
             this.ws.send(msg);

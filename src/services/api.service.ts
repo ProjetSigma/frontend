@@ -23,7 +23,7 @@ export class APIService {
     
     constructor(protected adapter: APIAdapterService) {
         this.store.registerAdapter('http', this.adapter, { default: true });
-
+        
         this.store.defineMapper('acknowledgment', acknowledgmentMapper);
         this.store.defineMapper('acknowledgment-invitation', acknowledgmentInvitationMapper);
         this.store.defineMapper('user', userMapper);

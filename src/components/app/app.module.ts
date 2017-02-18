@@ -5,8 +5,9 @@ import { WebSocketService } from '../../services/ws.service';
 
 import { AppComponent } from './app.component';
 import { Error404Component } from '../error404/error404.component';
-import { LandingPageComponent } from '../landing-page/landing-page.component';
-import { LoginFormComponent } from '../landing-page/login-form/login-form.component';
+import { LoginComponent } from '../login/login.component';
+import { LoginFormComponent } from '../login/login-form/login-form.component';
+import { MainComponent } from '../main/main.component';
 
 import { HomeComponent } from '../home/home.component';
 import { GroupDeclarations, GroupProviders } from '../groups/group.exporter';
@@ -36,10 +37,11 @@ import { routing }  from './app.routing';
     declarations: [
         AppComponent,
         Error404Component,
-        LandingPageComponent,
+        LoginComponent,
         LoginFormComponent,
+        MainComponent,
+        
         HomeComponent,
-
         ...GroupDeclarations,
 
         SettingsComponent,

@@ -1,13 +1,13 @@
-$landing-page-title-background-color: $black;
+$login-title-background-color: $black;
 
-.landing-page {
+.login {
 	width: 100%;
 	height: 100%;
 	display: block;
 	
 	&__title {
 		font-family: $title-font;
-		background-color: $landing-page-title-background-color;
+		background-color: $login-title-background-color;
 		color: $white;
 
 		div {
@@ -44,3 +44,5 @@ $landing-page-title-background-color: $black;
 	line-height: 1em;
 	font-family: $title-font;
 }
+
+@import './login-form/login-form.component.scss';

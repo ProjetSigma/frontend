@@ -3,6 +3,8 @@ import {AuthService} from './auth.service';
 import {Transaction, SigmaWebSocket} from '../utils/websocket';
 import {ws_config} from '../config';
 
+interface RESTRequestParams { location: string; action: string; data?: any; id?: string|number; params?: any };
+
 @Injectable()
 export class WebSocketService {
     
@@ -17,7 +19,7 @@ export class WebSocketService {
     }
     
     checkForAuth(): void {
-        if(this.auth.is_authenticated()) {
+        if(this.auth.isAuthenticated()) {
             let tr: AuthenticationTransaction = new AuthenticationTransaction(this.ws);
             tr.send(this.auth.token());
         }
@@ -28,48 +30,39 @@ export class WebSocketService {
     }
     
     sendREST(params: RESTRequestParams) : Promise<any> {
-        let tr: RESTTransaction = new RESTTransaction(this.ws);
-        return tr.send(params);
+        let tr: Transaction = new Transaction(this.ws);
+        return tr.send({
+            id : tr.id,
+            protocol: "SIGMA.0.1",
+            action: "REST_API",
+            REST_action: params.action,
+            REST_location: params.location,
+            REST_data: ('data' in params ? params.data : undefined),
+            REST_qparams: ('params' in params ? params.params: undefined),
+            REST_pk: ('id' in params ? params.id : undefined)
+            
+        }).then((res:any) => { // Treat rest errors
+            if(res.code <= 10)
+                Promise.resolve(res.content);
+            else
+                Promise.reject(Error(res));
+        }, (err:any) => {
+            Promise.reject(err);
+        });
     }
     
 }
+
 
 export class AuthenticationTransaction extends Transaction {
     constructor(ws: SigmaWebSocket) {super(ws);}
     
     send(token: string) : Promise<any> {
-		return super._send({
+		return super.send({
 			id: this.id,
 			protocol: "SIGMA.0.1",
 			action: "AUTH",
 			token: token
 		});
-    }
-}
-
-interface RESTRequestParams { location: string; action: string; data?: any; id?: string|number; };
-export class RESTTransaction extends Transaction {    
-    constructor(ws: SigmaWebSocket) {super(ws);}
-    
-    send(params: RESTRequestParams) : Promise<any> {
-        return new Promise((resolve, reject) => {
-            super._send({
-                id : this.id,
-                protocol: "SIGMA.0.1",
-                action: "REST_API",
-                REST_action: params.action,
-                REST_location: params.location,
-                REST_data: ('data' in params ? params.data : undefined),
-                REST_pk: ('id' in params ? params.id : undefined)
-                
-            }).then((res:any) => { // Treat rest errors
-                if(res.code <= 10)
-                    resolve(res.content);
-                else
-                    reject(Error(res));
-            }, (err:any) => {
-                reject(err);
-            });
-        });
     }
 }

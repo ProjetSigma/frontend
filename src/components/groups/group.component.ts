@@ -1,53 +1,37 @@
 import {Component, Inject, Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, ActivatedRoute, Resolve, CanActivate}   from '@angular/router';
-import {RoutingComponents} from '../../utils/routing-component';
+import {ActivatedRouteSnapshot, ActivatedRoute, Resolve, Router}   from '@angular/router';
+import {GroupRoutingComponents} from './group.routing';
 
 import {APIService} from '../../services/api.service';
 import {Group} from '../../resources/group';
 
 
 @Injectable()
-export class GroupResolver implements Resolve<Group>, CanActivate {
+export class GroupResolver implements Resolve<Group> {
     constructor(private api: APIService) {}
-    private promise: any = null;
     
-    canActivate(route: ActivatedRouteSnapshot): Promise<boolean> {
-        return this.resolve(route).then((obj) => {
-            return (obj != null);
-        })
-    }
-    
-    resolve(route: ActivatedRouteSnapshot) {
-        if(this.promise == null)
-            this.promise = this.api.store.find('group', route.params['group_id']).catch((err) => {
-                return null;
-            });
-        return this.promise;
+    resolve(route: ActivatedRouteSnapshot) : Promise<Group> {
+        return this.api.store.find('group', route.params['group_id']).catch((err) => {
+            return Promise.resolve(undefined);
+        });
     }
 }
-
-var rc : RoutingComponents = new RoutingComponents([
-    {name: 'home', selector: 'group-publications', inputs: ['group'], route: {
-        path: ''
-    }}
-])
-
 
 @Component({
     templateUrl: 'group.component.html',
-    providers: [ rc.provider, GroupResolver ]
+    providers: [ GroupResolver, GroupRoutingComponents.provider ]
 })
 export class GroupComponent {
-    public rc : RoutingComponents = rc;
+    public rc = GroupRoutingComponents;
     
-    constructor(@Inject(rc.provider) outputs, public route: ActivatedRoute) {
-        outputs.data['group'] = route.snapshot.data['group'];
-    };
+    constructor(@Inject(GroupRoutingComponents.token) public outputs, public route: ActivatedRoute, private router: Router) {}
     
-    enabledRoute(name) {
-        return (name == "publications");
+    ngOnInit() {
+        this.route.data.subscribe(data => {
+            if(data['group'] == undefined)
+                this.router.navigate(['404'], {skipLocationChange: true});
+            this.outputs.data['group'] = data['group'];
+        });
     }
+    
 }
-
-export const GroupRoutes = rc.routes;
-export const GroupRoutesComponents = rc.components;

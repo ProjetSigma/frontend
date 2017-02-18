@@ -1,0 +1,18 @@
+#group-writing-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  .group-writing-card {
+    padding: $large-padding $standard-padding;
+  }
+
+  h4 {
+
+  }
+
+  input[type="text"], textarea, .input-group {
+    margin-bottom: $standard-margin;
+  }
+}

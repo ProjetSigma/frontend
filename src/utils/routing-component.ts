@@ -1,52 +1,76 @@
-import {Component, Injectable} from '@angular/core';
-import {ActivatedRoute, Route, Routes}   from '@angular/router';
+import {Component, OpaqueToken, Inject} from '@angular/core';
+import {ActivatedRoute, Route, Routes, Router, NavigationExtras}   from '@angular/router';
 
-export class RouteDescriptor {
-    public name: string;
-    public selector: string;
-    public inputs: string[] = [];
-    public route: Route;
+export interface RouteInput {
+    input: string;
+    output?: string;
+    required?: boolean;
 }
 
-export class RoutingComponents {
-    public routes_descr : RouteDescriptor[] = [];
-    public routes: Routes = [];
-    public components: any[] = [];
-    public provider: any;
+export interface RouteDescriptor {
+    name: string;
+    selector: string;
+    inputs?: (RouteInput|string)[];
+    route: Route;
+}
+
+export interface RoutingComponents {
+    routes_descr : RouteDescriptor[];
+    routes: Routes;
+    components: any[];
+    service: any;
+    token: OpaqueToken;
+    provider: any;
+}
+
+export function newRoutingComponents(routes_descr: RouteDescriptor[]) : RoutingComponents {
+    // Data provider
+    interface Dict { [key: string] : any; };
+    class InputService {
+        public data: Dict = [];
+    }
+    let token : OpaqueToken = new OpaqueToken("routing-components-input-service");
     
-    constructor(routes_descr: RouteDescriptor[]) {
-        this.routes_descr = routes_descr;
-        
-        interface Dict { [key: string] : any; };
-            
-        @Injectable()
-        class InputService {
-            public data: Dict = [];
+    // Generate template
+    function createInputArgument(input: RouteInput|string) {
+        if(typeof input === "string") {
+            return '[' + input + ']="inputs.data[\'' + input + '\']" *ngIf="inputs.data[\'' + input + '\'] != undefined" ';
+        } else {
+            if(!input.output) input.output = input.input;
+            return ('[' + input.input + ']="inputs.data[\'' + input.output + '\']" ') + (input.required ? '*ngIf="inputs.data[\'' + input.output + '\'] != undefined" ' : '');
         }
-        
-        for(var r of routes_descr) {
-            var tmpl: string = '<'+r.selector+' ';
-            for(var i of r.inputs) {
-                tmpl += '[' + i + ']="inputs.data[\'' + i + '\']" ';
-            }
-            tmpl += '></'+r.selector+'>';
-            
-            @Component({
-                template: tmpl
-            })
-            class component {
-                constructor(public inputs : InputService, public route: ActivatedRoute) {};
-            }
-            
-            r.route.component = component;
-            this.routes.push(r.route);
-            this.components.push(component);
+    }
+    function createTemplate(route: RouteDescriptor) {
+        let tmpl: string = '<'+route.selector+' ';
+        for(let input of route.inputs) {
+            tmpl += createInputArgument(input);
         }
-        
-        this.provider = InputService;
+        tmpl += '></'+route.selector+'>';
+        return tmpl;
     }
     
-    isRouteEnabled = function(act_route, route_descr) {
-        // return act_route.
+    // Component constructions
+    let routes: Routes = [];
+    let components: any[] = [];
+    for(let route of routes_descr) {
+        @Component({
+            template: createTemplate(route)
+        })
+        class component {
+            constructor(@Inject(token) public inputs : InputService) {};
+        }
+        
+        route.route.component = component;
+        routes.push(route.route);
+        components.push(component);
     }
+    
+    return {
+        routes_descr: routes_descr,
+        service: InputService,
+        token: token,
+        routes: routes,
+        components: components,
+        provider: {provide: token, useClass: InputService}
+    };
 }

@@ -4,11 +4,11 @@ import {ActivatedRoute, Params}   from '@angular/router';
 import {Group} from '../../../resources/group';
 
 @Component({
-    selector: 'group-publications',
-    templateUrl: 'group-publications.component.html',
+    selector: 'group-members',
+    templateUrl: 'group-members.component.html',
 })
-export class GroupPublicationsComponent {
+export class GroupMembersComponent {
     @Input('group') group: Group;
     
-    constructor(public route: ActivatedRoute) { }
+    constructor() { }
 }
