@@ -10,8 +10,7 @@
 @import './sass/bootstrap-theme.scss';
 
 //SASS des composants
+@import './components/main/main.component.scss';
+
 @import './components/login/login.component.scss';
-
 @import './components/navbar_left/navbar_left.component.scss';
-
-@import './components/groups/group.component.scss';

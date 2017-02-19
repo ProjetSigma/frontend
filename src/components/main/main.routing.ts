@@ -1,9 +1,9 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { Error404Component } from '../error404/error404.component';
-import { HomeComponent } from '../home/home.component';
-import { GroupRoute } from '../groups/group.exporter';
+import { Error404Component } from './404/error404.component';
+import { HomeComponent } from './home/home.component';
+import { GroupRoute } from './groups/group.routing';
 
 export const MainRoutes = [
     {path: '', component: HomeComponent},

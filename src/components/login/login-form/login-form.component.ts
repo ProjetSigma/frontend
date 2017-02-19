@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {Router}   from '@angular/router';
 
-import {AuthService, AuthErrorCallback} from '../../../services/auth.service';
+import {AuthService} from '../../../services/auth.service';
 
 @Component({
     selector: 'login-form',
@@ -10,6 +10,7 @@ import {AuthService, AuthErrorCallback} from '../../../services/auth.service';
 export class LoginFormComponent {
     public username:string;
     public password:string;
+    public save:boolean = true;
     
     private hasPasswordError:boolean = false;
 
@@ -19,7 +20,8 @@ export class LoginFormComponent {
         this.hasPasswordError = false;
         this.auth.authenticate(
             this.username,
-            this.password
+            this.password,
+            this.save
         ).then(
             (resp) => {
                 if(window.location.pathname == "/login")
@@ -33,4 +35,7 @@ export class LoginFormComponent {
         );
     }
 
+    logout() {
+        this.auth.logout();
+    }
 }

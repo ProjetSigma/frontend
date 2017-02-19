@@ -1,4 +1,4 @@
-<form #loginForm="ngForm" *ngIf="!auth.isAuthenticated()" class="form-horizontal">
+<form #loginForm="ngForm" class="form-horizontal">
 	<h3>Connexion</h3>
 	<div class="row form-group" [class.has-error]="controlUsername.pristine || controlUsername.valid">
 		<label class="col-2 control-label fa fa-user" for="login-form-username-input"></label>
@@ -22,11 +22,11 @@
 			Ton mot de passe est erroné.
 		</div>
 	</div>
+	<!--<div class="row form-group">
+		<input type="checkbox" [(ngModel)]="save" id="login-form-save-input" name="save"/>
+		<label class="control-label" for="login-form-save-input" checked="true">Rester connecté</label>
+	</div>-->
 		<button (click)="login()" [disabled]="!loginForm.form.valid" class="btn btn-primary" type="submit">
 			Se connecter
 		</button>
-</form>
-
-<form *ngIf="auth.isAuthenticated()" class="callout">
-    <a (click)="logout()" class="alert button expanded">Se déconnecter</a>
 </form>

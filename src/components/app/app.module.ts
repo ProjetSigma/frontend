@@ -1,16 +1,8 @@
-import { APIService } from '../../services/api.service';
-import { APIAdapterService } from '../../services/adapter.service';
-import { AuthService } from '../../services/auth.service';
-import { WebSocketService } from '../../services/ws.service';
-
 import { AppComponent } from './app.component';
-import { Error404Component } from '../error404/error404.component';
 import { LoginComponent } from '../login/login.component';
 import { LoginFormComponent } from '../login/login-form/login-form.component';
-import { MainComponent } from '../main/main.component';
 
-import { HomeComponent } from '../home/home.component';
-import { GroupDeclarations, GroupProviders } from '../groups/group.exporter';
+import { MainDeclarations, MainProviders } from '../main/main.exports';
 
 
 import { NavbarLeftComponent } from '../navbar_left/navbar_left.component';
@@ -24,25 +16,26 @@ import { UserInlineDisplayComponent } from '../users/user-details/user-inline-di
 import { ProfileDisplayComponent } from '../users/user-details/profile-display/profile-display.component';
 import { PhoneNumberFrenchPipe } from '../users/phone-number-french';
 
+import { AuthService, AuthInitializer } from 'services/auth.service';
+import { WebSocketService } from 'services/ws.service';
+import { APIAdapterService } from 'services/adapter.service';
+import { APIService } from 'services/api.service';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RoutingModule }  from './app.routing';
 
-import { routing }  from './app.routing';
 
 @NgModule({
     declarations: [
         AppComponent,
-        Error404Component,
         LoginComponent,
         LoginFormComponent,
-        MainComponent,
         
-        HomeComponent,
-        ...GroupDeclarations,
+        ...MainDeclarations,
 
         SettingsComponent,
         UsersListComponent,
@@ -56,19 +49,21 @@ import { routing }  from './app.routing';
         NavbarRightComponent
     ],
     providers: [
-        APIService,
         AuthService,
-        APIAdapterService,
         WebSocketService,
+        APIAdapterService,
+        APIService,
         
-        ...GroupProviders
+        AuthInitializer,
+        
+        ...MainProviders
     ],
     
     imports: [
         BrowserModule,
         FormsModule,
         HttpModule,
-        routing,
+        RoutingModule,
         NgbModule
     ],
     bootstrap: [AppComponent]
