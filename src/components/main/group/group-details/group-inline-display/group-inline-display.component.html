@@ -1,10 +1,10 @@
 <div class="card">
   <div class="card-block">
     <img src="../../../../../assets/img.jpg" style="margin-top:-20px;border-radius: 10px;" width="60"/>
-    <div style="display:inline-block;">
-      <div style="font-size:120%">{{ group.name }}</div>
+    <div style="display:inline-block;margin-left:10px;">
+      <a [routerLink]="['/group', group.pk]" routerLinkActive="active" style="font-size:120%">{{ group.name }}</a>
       <!--<div *ngIf="api.me.photo" [style.background-image]="'url(' + api.me.photo.file + ')'"></div>-->
-      <p>10 utilisateurs</p>
+      <p>{{group.nb}} membres</p>
     </div>
   </div>
 </div>

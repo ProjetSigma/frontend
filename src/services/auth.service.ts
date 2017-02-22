@@ -100,6 +100,7 @@ export class AuthService {
                 resolve(true);
             } else {
                 return this.refresh().then((resp) => {
+                    console.log("salut 1");
                     resolve(true);
                 }, (err) => {
                     resolve(false);
