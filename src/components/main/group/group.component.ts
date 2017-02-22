@@ -12,7 +12,6 @@ export class GroupResolver implements Resolve<Group> {
     constructor(private api: APIService) {}
 
     resolve(route: ActivatedRouteSnapshot) : Promise<Group> {
-        console.log("construct");
         return this.api.store.find('group', route.params['group_id']).catch((err) => {
             return Promise.resolve(undefined);
         });
