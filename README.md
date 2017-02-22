@@ -16,23 +16,15 @@ See https://ng-bootstrap.github.io/#/components/ for details about each availabl
 
 ## Installation
 
-We assume you already have installed the project (see angular-1.0's readme for further instructions).
-From there, you'll need to install Bootstrap and ng-bootstrap :
-```
-npm install bootstrap@4.0.0-alpha.6
-npm install @ng-bootstrap/ng-bootstrap@1.0.0-alpha.6
-```
-
-
+Run `npm intall` to download and install all dependencies.
+To avoid errors, be aware that :
+* you don't have any other version of `angular-cli` installed, as it is now deprecated.  
+The CLI is now officialy part of angular project is now accessible via `@angular/cli`
+* you don't have deprecated packages in your `node_modules`, from last installations.
 
 ## Development server
-We use angular-cli which integrate ts compilation, manage project configuration, run server.
 
-run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class`.
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Build
 
@@ -73,12 +65,7 @@ tmuxinator sigma
 ## Logging in
 
 To navigate on the site, fire up the backend server (see the [readme](https://github.com/ProjetSigma/backend)) and connect to the site using accounts from this list :
-* user@sigma.fr / user
-* denis.merigoux@sigma.fr / denis.merigoux
-* camille.masset@sigma.fr / camille.masset
-* hugo.tresentaux@sigma.fr / hugo.Tresentaux
-* arthur.pesah@sigma.fr / arthur.pesah
-You can connect to any account you see on the site by using the email adress / username pattern just like above.
+* admin@sigma.fr - admin
 
 ## Wiki
 The wiki for the application is here : https://github.com/ProjetSigma/frontend/wiki
