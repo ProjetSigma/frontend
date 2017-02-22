@@ -7,6 +7,7 @@ import {AuthService} from '../../services/auth.service';
 })
 export class MainComponent {
     constructor(private router: Router, private auth: AuthService) {
+        console.log("salut 2");
         auth.isAuthenticated().subscribe((authed) => {
             if(!authed)
                 this.router.navigate(["login"], {skipLocationChange: true});

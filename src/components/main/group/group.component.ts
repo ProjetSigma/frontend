@@ -10,8 +10,9 @@ import {Group} from 'resources/group';
 @Injectable()
 export class GroupResolver implements Resolve<Group> {
     constructor(private api: APIService) {}
-    
+
     resolve(route: ActivatedRouteSnapshot) : Promise<Group> {
+        console.log("construct");
         return this.api.store.find('group', route.params['group_id']).catch((err) => {
             return Promise.resolve(undefined);
         });
@@ -29,9 +30,9 @@ export class GroupProvider {
     templateUrl: 'group.component.html',
     providers: [GroupResolver, GroupProvider]
 })
-export class GroupComponent {    
+export class GroupComponent {
     constructor(public route: ActivatedRoute, private router: Router, private grPr: GroupProvider) {}
-    
+
     ngOnInit() {
         this.route.data.subscribe(data => {
             if(data['group'] == undefined)
@@ -40,5 +41,5 @@ export class GroupComponent {
                 this.grPr.setGroup(data['group']);
         });
     }
-    
+
 }
