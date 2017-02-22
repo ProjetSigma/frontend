@@ -2,12 +2,12 @@ import {Component, Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, ActivatedRoute, Resolve, Router}   from '@angular/router';
 
 import {APIService} from 'services/api.service';
-import {User} from 'resources/group';
+import {User} from 'resources/user';
 
 @Injectable()
 export class UserResolver implements Resolve<User> {
     constructor(private api: APIService) {}
-    
+
     resolve(route: ActivatedRouteSnapshot) : Promise<User> {
         return this.api.store.find('user', route.params['user_id']).catch((err) => {
             return Promise.resolve(undefined);
@@ -21,9 +21,9 @@ export class UserResolver implements Resolve<User> {
 })
 export class UserComponent {
     private user: User;
-    
+
     constructor(public route: ActivatedRoute, private router: Router) {}
-    
+
     ngOnInit() {
         this.route.data.subscribe(data => {
             if(data['user'] == undefined) '';
@@ -32,5 +32,5 @@ export class UserComponent {
                 this.user = data['user'];
         });
     }
-    
+
 }
