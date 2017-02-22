@@ -93,19 +93,21 @@ export class AuthService {
     }
 
 //*********************************************************************************************
-
+    private init_promise: Promise<any> = null;
     init() : Promise<any> {
-        return new Promise((resolve, reject) => {
-            if(this.refresh_token == null) {
-                resolve(true);
-            } else {
-                return this.refresh().then((resp) => {
-                    resolve(true);
-                }, (err) => {
-                    resolve(false);
-                });
-            }
-        });
+        if(this.init_promise == null)
+            this.init_promise = new Promise((resolve, reject) => {
+                if(this.refresh_token == null) {
+                    resolve();
+                } else {
+                    return this.refresh().then((resp) => {
+                        resolve();
+                    }, (err) => {
+                        resolve();
+                    });
+                }
+            });
+        return this.init_promise;
     }
 
 }
