@@ -1,0 +1,20 @@
+<nav class="navbar sticky-top navbar-toggleable-sm">
+	<button class="navbar-toggler navbar-toggler-right" type="button"
+		data-toggle="collapse" data-target="#groupNavbar"
+		aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"><i class="fa fa-bars"></i></span>
+	</button>
+	<a href="#" class="navbar-brand">Some Group</a>
+	<div class="collapse navbar-collapse" id="groupNavbar">
+		<ul class="nav navbar-nav navbar-right">
+			<li class="nav-item" routerLink="publications" routerLinkActive="active"><a  class="nav-link">Home</a></li>
+			<li class="nav-item" routerLink="members" routerLinkActive="active"><a class="nav-link">Members</a></li>
+			<li class="nav-item" ><a href="#" class="nav-link">Chat</a></li>
+			<li class="nav-item" ><a href="#" class="nav-link">Settings</a></li>
+			<li class="nav-item" ><a href="#" class="nav-link"><i class="fa fa-search"></i></a></li>
+		</ul>
+	</div>
+</nav>
+<div class="group-content">
+	<router-outlet></router-outlet>
+</div>

@@ -19,6 +19,7 @@ export class Membership extends Record {
     public can_kick:boolean;
     public can_modify_group_infos:boolean;
     public is_accepted:boolean;
+    
 
     //Fields linked by JS-Data
     public user:User;
