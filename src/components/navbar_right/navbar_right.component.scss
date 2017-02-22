@@ -1,56 +1,26 @@
-$aside-width: rem-calc(250);
-
-.aside {
-    width: $aside-width;
-    height: 100%;
+.flux-stickbottom {
     position: fixed;
-    top: 0;
-    left: 0;
-    background-color: $color-aside;
-    color: $color-font-aside;
+    bottom: 0;
+    width: inherit;
+    padding: 12px;
 
-    &__profile {
-        display: flex;
-        align-items: center;
-        margin: 10px 5px;
-        cursor: pointer;
-    }
-
-    &__navlinks {
-        margin: 0;
-
-        .fa {
-            width: 1em;
-            margin-right: .5em;
-        }
-    }
-
-    &__navlink {
-        display: block;
-        cursor: pointer;
-        text-transform: uppercase;
-        padding: .5em 1em;
-        border-bottom: 1px solid lighten($color-aside, 10%);
-
-        a {
-            color: $color-font-aside;
-        }
-
-        &:first-child {
-            border-top: 1px solid lighten($color-aside, 10%);
-        }
-
-        &:hover {
-            background-color: lighten($color-aside, 20%);
-        }
-
-        &.active,
-        &.router-link-active {
-            background-color: lighten($color-aside, 10%);
-        }
+    a {
+        margin-top: 6px;
+        margin-bottom: 6px;
     }
 }
 
-.aside--main-container {
-    margin-left: $aside-width;
+.profil-pic {
+	width: 8.5rem;
+	height: 8.5rem;
+	border-radius: 5%;
+}
+
+.profil-name {
+	padding: 6px;
+}
+
+.profil-content {
+	margin-left: 24px;
+	margin-right: 24px;
 }
