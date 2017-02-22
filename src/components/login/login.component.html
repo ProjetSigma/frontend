@@ -1,36 +1,34 @@
-<header class="login__title">
-    <div class="align-center">
-        <h1>SIGMA</h1>
-		<h2>réseau social étudiant (en cours de développement)</h2>
-    </div>
-</header>
+<div id="clouds">
+  <div style="position:absolute; top:50%;">
+    <div class="cloud x1"></div>
+  	<!-- Time for multiple clouds to dance around -->
+  	<div class="cloud x2"></div>
+  	<div class="cloud x3"></div>
+  	<div class="cloud x4"></div>
+  	<div class="cloud x5"></div>
+  </div>
 
-<div class="login__form-container row">
-   <div class="col-sm-12 col-md-7">
-	   <h2>Bienvenue sur Sigma !</h2>
-	   <p>Sigma est un site communautaire réalisé par des étudiants et pour des étudiants. Il est fondé sur l'esprit de promo et la vie associative en école d'ingénieur ou à l'université. Contacte ton BDE pour savoir si ton établissement fait partie du réseau.</p>
-   </div>
-   <div class="col-sm-12 col-md-5">
-		<login-form class="login-form align-center">Loading login form...</login-form>
-   </div>
-</div>
+    <h1 style="margin-top:5%;width:130px;margin-left:auto;margin-right:auto;">Sigma</h1>
 
-<div class="login__footer">
-	<div class="row">
-		<div class="col-sm-10 col-md-4">
-			<h3>Fonctionnalités</h3>
-			<p>Sigma proposera les fonctionnalités basiques d'un réseau social (messagerie, groupes, notifications...) mais de façon adaptée à la vie associative</p>
-			<p>Un <em>calendrier</em> personnel vous permettra d'indiquer à quels événements vous souhaitez participer (tournoi sportif, soirée, conférence...)</p>
-		</div>
-		<div class="col-sm-10 col-md-4">
-			<h3>Planning</h3>
-			<p>Sigma proposera une version <em>alpha</em> pour les volontaires de chaque école en décembre 2016. Les premiers retours d'utilisateurs permettront de produire une <em>beta</em> stable pour la rentrée 2017.</p>
-			<p>Si vous souhaitez participer à la version alpha, rejoignez nous dans l'espace développeurs</p>
-		</div>
-		<div class="col-sm-10 col-md-4">
-			<h3>Développeurs</h3>
-			<p>Sigma est en développement. Une dizaine de membre actifs venant de l'X, l'ENS, MinesPonts et Supoptique y travaillent en ce moment.</p>
-			<p>Pour consulter le code, veuillez vous rendre <a href="https://github.com/ProjetSigma">ici</a> !</p>
-		</div>
-	</div>
+
+  <div class="container" style="margin-left:auto;margin-right:auto;">
+      <div class="card card-container">
+          <p id="profile-name" class="profile-name-card"></p>
+          <form class="form-signin">
+              <span id="reauth-email" class="reauth-email"></span>
+              <input type="email" [(ngModel)]="username" name="username" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+              <input type="password" [(ngModel)]="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+              <div id="remember" class="checkbox">
+                  <label>
+                      <input type="checkbox" value="remember-me"> Remember me
+                  </label>
+              </div>
+              <button (click)="login()" class="btn btn-secondary" style="margin-top:20px;margin-left:auto;margin-right:auto;width:100px" type="submit">Sign in</button>
+          </form><!-- /form -->
+          <a href="#" style="margin-left:auto;margin-right:auto;" class="forgot-password">
+              Forgot the password?
+          </a>
+      </div><!-- /card-container -->
+  </div><!-- /container -->
+
 </div>

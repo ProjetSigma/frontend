@@ -1,6 +1,5 @@
 import { AppComponent } from './app.component';
 import { LoginComponent } from '../login/login.component';
-import { LoginFormComponent } from '../login/login-form/login-form.component';
 
 import { MainDeclarations, MainProviders } from '../main/main.exports';
 
@@ -33,8 +32,7 @@ import { RoutingModule }  from './app.routing';
     declarations: [
         AppComponent,
         LoginComponent,
-        LoginFormComponent,
-        
+
         ...MainDeclarations,
 
         SettingsComponent,
@@ -53,12 +51,12 @@ import { RoutingModule }  from './app.routing';
         WebSocketService,
         APIAdapterService,
         APIService,
-        
+
         AuthInitializer,
-        
+
         ...MainProviders
     ],
-    
+
     imports: [
         BrowserModule,
         FormsModule,
