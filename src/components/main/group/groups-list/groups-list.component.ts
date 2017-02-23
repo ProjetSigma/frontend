@@ -6,13 +6,12 @@ import {GroupInlineDisplayComponent} from '../group-details/group-inline-display
 import {Group} from '../../../../resources/group';
 
 @Component({
-    selector: 'groups-list',
     templateUrl: 'groups-list.component.html'
 })
 export class GroupsListComponent {
-    private allGroups: Group[] = [];
-    private displayedGroups: Group[] = [];
-    private searchGroup: string = '';
+    public allGroups: Group[] = [];
+    public displayedGroups: Group[] = [];
+    public searchGroup = '';
 
     constructor(public api: APIService) {
         this.allGroups = [];
@@ -31,7 +30,7 @@ export class GroupsListComponent {
     updateGroups(searchBar) {
         this.displayedGroups = this.allGroups;
 
-        var q = searchBar.target.value;
+        let q = searchBar.target.value;
         if (q.trim() === '') {
             return;
         }

@@ -14,7 +14,7 @@ export class GroupDisplayComponent {
     @Input('membership') membership: Membership;
 
     constructor(public api: APIService) {
-        
+
     };
-    
+
 }

@@ -12,8 +12,8 @@ export const GroupDeclarations = [
     GroupMembersComponent,
     GroupsListComponent,
     GroupInlineDisplayComponent
-]
+];
 
 export const GroupProviders = [
     GroupResolver
-]
+];
