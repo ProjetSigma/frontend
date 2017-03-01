@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {GroupProvider} from '../group.component';
 
-import {APIService} from 'services/api.service';
 import {Group} from 'resources/group';
 import {Membership} from 'resources/membership';
 import {UserInlineDisplayComponent} from 'components/users/user-details/user-inline-display/user-inline-display.component';
@@ -20,7 +19,7 @@ export class GroupMembersComponent {
                 this.group = gr;
                 this.api.store.subFind('group', this.group.pk, 'members').then(m => {
                     this.members = m;
-                })
+                });
             }
         );
     }
