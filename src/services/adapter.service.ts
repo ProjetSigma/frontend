@@ -8,6 +8,8 @@ import {api_url} from '../config';
 @Injectable()
 export class APIAdapterService extends HttpAdapter {
 
+    private basePath: string;
+
     constructor(public auth: AuthService, public ws: WebSocketService) {
         super({
             basePath: api_url,
@@ -18,6 +20,7 @@ export class APIAdapterService extends HttpAdapter {
                 'Content-Type': 'application/json'
             }}
         });
+        this.basePath = api_url;
     }
 
     updateOptions(options) {
@@ -49,6 +52,24 @@ export class APIAdapterService extends HttpAdapter {
             } else {
                 options = this.updateOptions(options);
                 return super.find(resourceConfig, id, options);
+            }
+        });
+    }
+
+    subFind(resourceConfig: any, id: string|number, name: string, params: any, options?: any) : Promise<any> {
+        return this.wrap(() => {
+            if (this.ws.ready()) {
+                return this.ws.sendREST({
+                    location: this.getEndpoint(resourceConfig, null, options),
+                    action: name,
+                    id: id,
+                    params: params
+                });
+            } else {
+                options = this.updateOptions(options);
+                const url = this.basePath + this.getEndpoint(resourceConfig, null, options) + '/' + id + '/' + name;
+                console.log(url);
+                return super.GET(url, options);
             }
         });
     }

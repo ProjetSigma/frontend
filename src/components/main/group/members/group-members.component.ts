@@ -1,16 +1,25 @@
 import {Component} from '@angular/core';
 import {GroupProvider} from '../group.component';
+
+import {APIService} from 'services/api.service';
 import {Group} from 'resources/group';
+import {Membership} from 'resources/membership';
 
 @Component({
     templateUrl: 'group-members.component.html',
 })
 export class GroupMembersComponent {
     public group: Group;
+    public members: Membership[];
 
-    constructor(public grPr: GroupProvider) {
+    constructor(public grPr: GroupProvider, protected api: APIService) {
         this.grPr.group.subscribe(
-            (gr: Group) => { this.group = gr; }
+            (gr: Group) => {
+                this.group = gr;
+                this.api.store.subFind('group', this.group.pk, 'members').then(m => {
+                    this.members = m;
+                })
+            }
         );
     }
 }
