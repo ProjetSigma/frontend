@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {NgIf} from '@angular/common';
 
-import {User} from '../../../../resources/user';
+import {User} from 'resources/user';
 
 import {PhoneNumberFrenchPipe} from '../../phone-number-french';
 
