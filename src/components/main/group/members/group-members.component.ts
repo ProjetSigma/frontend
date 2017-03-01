@@ -12,7 +12,8 @@ import {APIService} from 'services/api.service';
 export class GroupMembersComponent {
     public group: Group;
     public members: Membership[];
-
+    public showAdvancedSearch = false;
+    
     constructor(public grPr: GroupProvider, protected api: APIService) {
         this.grPr.group.subscribe(
             (gr: Group) => {
