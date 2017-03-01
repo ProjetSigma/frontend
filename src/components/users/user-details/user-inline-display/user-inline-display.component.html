@@ -1,4 +1,23 @@
-<div class="callout">
+<div class="card user-inline-display" (click)="show=!show">
+  <div class="row align-items-center">
+    <div class="col-auto">
+      <img class="avatar" src="../resources/img/default.jpg">
+    </div>
+    <div class="col">
+        <h4 class="card-title">Félix Martel</h4>
+        <h6 class="card-subtitle">Branleur-en-chef</h6>
+    </div>
+    <div class="col col-auto">
+      <button type="button" class="btn btn-secondary"><i class="fa fa-envelope"></i></button>
+    </div>
+  </div>
+  <ul *ngIf="show" class="user-field-list list-group list-group-flush">
+    <li class="list-group-item" *ngFor="let field of field_values">
+      <i>{{group_fields[field.id]}}</i>{{field.value}}
+    </li>
+  </ul>
+</div>
+<!--<div class="callout">
     <div class="row centervertical">
         <div class="shrink centervertical">
             <div class="Avatar Avatar__Large" *ngIf="user.photo" [style.background-image]="'url(' + user.photo.file + ')'"></div>
@@ -13,7 +32,7 @@
                     </strong>
                 </a>
                 <!-- user.getClusters() doesn't work on 04/05/2016 -->
-                <div *ngFor="let cluster of user.getClusters()">
+                <!--<div *ngFor="let cluster of user.getClusters()">
                     <div *ngIf="cluster.name">
                         <i class="fa fa-university"></i> &nbsp;{{cluster.name}}
                     </div>
@@ -30,4 +49,4 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->

@@ -4,6 +4,8 @@ import {GroupProvider} from '../group.component';
 import {APIService} from 'services/api.service';
 import {Group} from 'resources/group';
 import {Membership} from 'resources/membership';
+import {UserInlineDisplayComponent} from 'components/users/user-details/user-inline-display/user-inline-display.component';
+import {APIService} from 'services/api.service';
 
 @Component({
     templateUrl: 'group-members.component.html',

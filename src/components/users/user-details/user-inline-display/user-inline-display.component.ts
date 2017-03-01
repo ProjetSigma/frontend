@@ -11,4 +11,20 @@ import {PhoneNumberFrenchPipe} from '../../phone-number-french';
 })
 export class UserInlineDisplayComponent {
     @Input('user') user: User;
+    public show = false;
+    public group_fields = ["Promo","Casert", "Section"];
+    public field_values = [
+    {
+      id: 0,
+      value: "X2015"
+    },
+    {
+      id: 1,
+      value: "10.40.57"
+    },
+    {
+      id: 2,
+      value: "Ultimate"
+    }
+    ];
 };
