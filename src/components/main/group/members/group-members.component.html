@@ -18,4 +18,18 @@
 
 <div class="member-list">
     <user-inline-display *ngFor="let user of group.getMembers()" [user]="user"></user-inline-display>
+  <!--<div class="card inline-group-member row align-items-center">
+
+    <div class="col col-sm-auto">
+      <img class="avatar" src="../resources/img/default.jpg">
+    </div>
+    <div class="col">
+      <div class="card-block titles">
+        <h4 class="card-title">Denis Mérigoux</h4>
+        <h6 class="card-subtitle">Branleur-en-chef</h6>
+      </div>
+    </div>
+  </div>-->
+  <user-inline-display [user]="user">
+  </user-inline-display>
 </div>

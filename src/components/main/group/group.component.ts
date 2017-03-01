@@ -1,5 +1,5 @@
-import {Component, Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, ActivatedRoute, Resolve, Router}   from '@angular/router';
+import {Component, Injectable, OnInit} from '@angular/core';
+import {ActivatedRouteSnapshot, ActivatedRoute, Resolve, Router} from '@angular/router';
 
 import {Observable} from 'rxjs/Observable';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
@@ -11,7 +11,7 @@ import {Group} from 'resources/group';
 export class GroupResolver implements Resolve<Group> {
     constructor(private api: APIService) {}
 
-    resolve(route: ActivatedRouteSnapshot) : Promise<Group> {
+    resolve(route: ActivatedRouteSnapshot): Promise<Group> {
         return this.api.store.find('group', route.params['group_id']).catch((err) => {
             return Promise.resolve(undefined);
         });
@@ -21,7 +21,7 @@ export class GroupResolver implements Resolve<Group> {
 export class GroupProvider {
     private _g: BehaviorSubject<Group>;
     constructor() { this._g = new BehaviorSubject(new Group()); }
-    get group() : Observable<Group> { return this._g.asObservable(); }
+    get group(): Observable<Group> { return this._g.asObservable(); }
     setGroup(g: Group): void { this._g.next(g); }
 }
 
@@ -29,20 +29,20 @@ export class GroupProvider {
     templateUrl: 'group.component.html',
     providers: [GroupResolver, GroupProvider]
 })
-export class GroupComponent {
-    private group: Group;
 
+export class GroupComponent implements OnInit {
+    private group: Group;
     constructor(public route: ActivatedRoute, private router: Router, private grPr: GroupProvider) {}
 
     ngOnInit() {
         this.route.data.subscribe(data => {
-            if(data['group'] == undefined)
+            if (data['group'] === undefined) {
                 this.router.navigate(['404'], {skipLocationChange: true});
+            }
             else {
               this.grPr.setGroup(data['group']);
               this.group = data['group'];
             }
-
         });
     }
 

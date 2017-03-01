@@ -1,8 +1,14 @@
-.centervertical {
-    display: inline-block;
-    vertical-align: middle;
-}
+.user-inline-display {
+  padding: $padding;
+  margin-top: $margin;
 
-.name {
-    margin-left: -12px;
+  &:hover {
+    background-color: $dark-white;
+  }
+  .avatar {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+  }
+
 }

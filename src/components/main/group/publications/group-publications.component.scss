@@ -1,18 +1,8 @@
-#group-writing-wrapper {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
+@import './postform/postform.component.scss';
 
-  .group-writing-card {
-    padding: $large-padding $standard-padding;
-  }
+.publications {
+}
 
-  h4 {
-
-  }
-
-  input[type="text"], textarea, .input-group {
-    margin-bottom: $standard-margin;
-  }
+postform {
+	width: 100%;
 }

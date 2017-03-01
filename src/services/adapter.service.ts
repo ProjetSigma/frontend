@@ -12,17 +12,17 @@ export class APIAdapterService extends HttpAdapter {
         super({
             basePath: api_url,
             forceTrailingSlash: true,
-            error: (a,b)=>{},
-            log: (a,b)=>{},
+            error: (a, b) => {},
+            log: (a, b) => {},
             httpConfig: {headers: {
                 'Content-Type': 'application/json'
             }}
-        })
+        });
     }
 
-    addAuthHeader(options) {
-        if(!this.auth.isAuthenticated()) return;
-        if(!options) options = {};
+    updateOptions(options) {
+        if (!this.auth.isAuthenticated()) { return; }
+        if (!options) { options = {}; }
 
         options.headers = {
             'Content-Type': 'application/json',
@@ -31,114 +31,114 @@ export class APIAdapterService extends HttpAdapter {
         return options;
     }
 
-    wrap(cb: Function) : Promise<any> {
+    wrap(cb: Function): Promise<any> {
         return this.auth.init().then(() => {
-            let p : Promise<any> = cb();
+            const p: Promise<any> = cb();
             return p;
         });
     }
 
-    find(resourceConfig: any, id: string|number, options?:any) : Promise<any> {
+    find(resourceConfig: any, id: string|number, options?: any): Promise<any> {
         return this.wrap(() => {
-            if(this.ws.ready()) {
+            if (this.ws.ready()) {
                 return this.ws.sendREST({
                     location: this.getEndpoint(resourceConfig, null, options),
-                    action: "retrieve",
+                    action: 'retrieve',
                     id: id
                 });
             } else {
-                options = this.addAuthHeader(options)
+                options = this.updateOptions(options);
                 return super.find(resourceConfig, id, options);
             }
         });
     }
 
-    findAll(resourceConfig:any, params:any, options?:any) : Promise<any>{
+    findAll(resourceConfig: any, params: any, options?: any): Promise<any> {
         return this.wrap(() => {
-            if(this.ws.ready()) {
+            if (this.ws.ready()) {
                 return this.ws.sendREST({
                     location: this.getEndpoint(resourceConfig, null, options),
-                    action: "list",
+                    action: 'list',
                     params: params
                 });
             } else {
-                options = this.addAuthHeader(options);
+                options = this.updateOptions(options);
                 return super.findAll(resourceConfig, params, options);
             }
         });
     }
 
-    create(resourceConfig:any, attrs:any, options?:any) : Promise<any> {
+    create(resourceConfig: any, attrs: any, options?: any): Promise<any> {
         return this.wrap(() => {
-            if(this.ws.ready()) {
+            if (this.ws.ready()) {
                 return this.ws.sendREST({
                     location: this.getEndpoint(resourceConfig, null, options),
-                    action: "create",
+                    action: 'create',
                     data: attrs
                 });
             } else {
-                options = this.addAuthHeader(options)
+                options = this.updateOptions(options);
                 return super.create(resourceConfig, attrs, options);
             }
         });
     }
 
-    update(resourceConfig:any, id: string|number, attrs:any, options?:any) : Promise<any> {
+    update(resourceConfig: any, id: string|number, attrs: any, options?: any): Promise<any> {
         return this.wrap(() => {
-            if(this.ws.ready()) {
+            if (this.ws.ready()) {
                 return this.ws.sendREST({
                     location: this.getEndpoint(resourceConfig, null, options),
-                    action: "update",
+                    action: 'update',
                     id: id
                 });
             } else {
-                options = this.addAuthHeader(options);
+                options = this.updateOptions(options);
                 return super.update(resourceConfig, id, attrs, options);
             }
         });
     }
 
-    updateAll(resourceConfig:any, attrs:any, params:any, options?:any) : Promise<any> {
+    updateAll(resourceConfig: any, attrs: any, params: any, options?: any): Promise<any> {
         return this.wrap(() => {
-            if(this.ws.ready()) {
+            if (this.ws.ready()) {
                 return this.ws.sendREST({
                     location: this.getEndpoint(resourceConfig, null, options),
-                    action: "update",
+                    action: 'update',
                     data: attrs,
                     params: params
                 });
             } else {
-                options = this.addAuthHeader(options);
+                options = this.updateOptions(options);
                 return super.updateAll(resourceConfig, attrs, params, options);
             }
         });
     }
 
-    destroy(resourceConfig:any, id: string|number, options?:any) : Promise<any> {
+    destroy(resourceConfig: any, id: string|number, options?: any): Promise<any> {
         return this.wrap(() => {
-            if(this.ws.ready()) {
+            if (this.ws.ready()) {
                 return this.ws.sendREST({
                     location: this.getEndpoint(resourceConfig, null, options),
-                    action: "destroy",
+                    action: 'destroy',
                     id: id
                 });
             } else {
-                options = this.addAuthHeader(options);
+                options = this.updateOptions(options);
                 return super.destroy(resourceConfig, id, options);
             }
         });
     }
 
-    destroyAll(resourceConfig:any, params?:any, options?:any) : Promise<any> {
+    destroyAll(resourceConfig: any, params?: any, options?: any): Promise<any> {
         return this.wrap(() => {
-            if(this.ws.ready()) {
+            if (this.ws.ready()) {
                 return this.ws.sendREST({
                     location: this.getEndpoint(resourceConfig, null, options),
-                    action: "destroy",
+                    action: 'destroy',
                     params: params
                 });
             } else {
-                options = this.addAuthHeader(options);
+                options = this.updateOptions(options);
                 return super.destroyAll(resourceConfig, params, options);
             }
         });

@@ -17,4 +17,4 @@ export const MainRoutes = [
     {path: 'group', component: GroupsListComponent},
     {path: '404', component: Error404Component},
     {path: '**', component: Error404Component}
-]
+];

@@ -4,7 +4,7 @@ import {Acknowledgment} from './acknowledgment';
 import {User} from './user';
 
 export class Group extends Record {
-    public id: number;
+    public pk: number;
     public name: string;
     public desription: string;
 
@@ -35,7 +35,7 @@ export class Group extends Record {
 }
 
 export const groupSchema = new Schema({
-	type: 'object',
+    type: 'object',
     properties: {
         id: { type: 'integer' },
         name: { type: 'string' },
@@ -72,5 +72,6 @@ export const groupMapper = {
     schema: groupSchema,
     relations: groupRelations,
     applySchema: true,
+    idAttribute: 'pk',
     debug: true
 };
