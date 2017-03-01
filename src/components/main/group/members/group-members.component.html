@@ -10,14 +10,11 @@
     </button>
   </div>-->
   <div class="input-group-btn">
-    <button type="button" class="btn btn-secondary">
+    <button type="button" class="btn btn-secondary" (click)="showAdvancedSearch = !showAdvancedSearch">
       Avancé
     </button>
   </div>
 </div>
-
-<div class="member-list">
-    <user-inline-display *ngFor="let user of group.getMembers()" [user]="user"></user-inline-display>
   <!--<div class="card inline-group-member row align-items-center">
 
     <div class="col col-sm-auto">
@@ -30,6 +27,11 @@
       </div>
     </div>
   </div>-->
-  <user-inline-display [user]="user">
-  </user-inline-display>
+<div class="row">
+  <div class="col member-list">
+      <user-inline-display [user]="user"></user-inline-display>
+  </div>
+  <div *ngIf="showAdvancedSearch" class="col col-4">
+
+  </div>
 </div>

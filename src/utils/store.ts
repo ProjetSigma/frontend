@@ -21,6 +21,11 @@ export class Store extends DataStore {
         return super.find(resourceName, id, options);
     }
 
+    subFind(resourceName: string, id: string|number, name: string, params?: any, options?: any) {
+        const definition = this.getMapper(resourceName);
+        return this.getAdapter(options).subFind(definition, id, name, params, options);
+    }
+
     findAll(resourceName: string, params?: any, options?: any): Promise<any> {
         options = this.updateOptions(options);
         return super.findAll(resourceName, params, options);

@@ -1,8 +1,10 @@
 import {Component} from '@angular/core';
 import {GroupProvider} from '../group.component';
+
 import {Group} from 'resources/group';
-import {UserInlineDisplayComponent} from '../../../users/user-details/user-inline-display/user-inline-display.component';
 import {APIAdapterService} from 'services/adapter.service';
+import {Membership} from 'resources/membership';
+import {UserInlineDisplayComponent} from 'components/users/user-details/user-inline-display/user-inline-display.component';
 import {APIService} from 'services/api.service';
 
 @Component({
@@ -11,17 +13,17 @@ import {APIService} from 'services/api.service';
 export class GroupMembersComponent {
     public group: Group;
     public users;
+    public members: Membership[];
+    public showAdvancedSearch = false;
 
     constructor(public grPr: GroupProvider, protected api: APIService, protected adapter: APIAdapterService) {
         this.grPr.group.subscribe(
-            (gr: Group) => { this.group = gr;
-
-            this.users = this.api.store.find('group', this.group.pk, {
-              endpoint: 'group',
-              pathname: 'members'
-            });
+            (gr: Group) => {
+                this.group = gr;
+                this.api.store.subFind('group', this.group.pk, 'members').then(m => {
+                    this.members = m;
+                });
             }
         );
-        //this.users = adapter.GET('/group/'+this.group.pk+'/members');
     }
 }

@@ -10,5 +10,20 @@
     height: 4rem;
     border-radius: 50%;
   }
+  .avatar:hover {
+    opacity: 0.8;
+  }
 
+}
+
+.user-field-list {
+  margin-top: $margin;
+
+  i {
+    display: inline-block;
+    width: 7rem;
+  }
+  .list-group-item {
+    background-color: transparent;
+  }
 }
