@@ -1,18 +1,13 @@
-#group-writing-wrapper {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-
-  .group-writing-card {
-    padding: $large-padding $standard-padding;
+.inline-group-member {
+  .avatar {
+    display: inline-block;
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
   }
 
-  h4 {
-
+  .titles {
+    display: inline-block;
   }
 
-  input[type="text"], textarea, .input-group {
-    margin-bottom: $standard-margin;
-  }
 }
