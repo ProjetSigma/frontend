@@ -30,14 +30,19 @@ export class GroupProvider {
     providers: [GroupResolver, GroupProvider]
 })
 export class GroupComponent {
+    private group: Group;
+
     constructor(public route: ActivatedRoute, private router: Router, private grPr: GroupProvider) {}
 
     ngOnInit() {
         this.route.data.subscribe(data => {
             if(data['group'] == undefined)
                 this.router.navigate(['404'], {skipLocationChange: true});
-            else
-                this.grPr.setGroup(data['group']);
+            else {
+              this.grPr.setGroup(data['group']);
+              this.group = data['group'];
+            }
+
         });
     }
 

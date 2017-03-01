@@ -1,27 +1,36 @@
 import {Record, Schema} from 'js-data';
 import {Membership} from './membership';
 import {Acknowledgment} from './acknowledgment';
+import {User} from './user';
 
 export class Group extends Record {
     public id: number;
     public name: string;
     public desription: string;
-    
+
     public is_protected: boolean;
-    
+
     public can_anyone_ask: boolean;
     public need_validation_to_join: boolean;
-    
+
     public members_visibility: number;
     public group_visibility: number;
 
-    
+
     public acknowledging: Acknowledgment[];
     public acknowledged_by: Acknowledgment[];
     public memberships: Membership[];
 
     constructor(props?) {
         super(props);
+    }
+
+    getMembers() {
+      let members = new Array<User>();
+      for(let m of this.memberships) {
+        members.push(m.user);
+      }
+      return members;
     }
 }
 
@@ -31,11 +40,11 @@ export const groupSchema = new Schema({
         id: { type: 'integer' },
         name: { type: 'string' },
         description: { type: 'string' },
-        
+
         is_protected: { type: 'boolean' },
         can_anyone_ask: { type: 'boolean' },
         need_validation_to_join: { type: 'boolean' },
-    
+
         members_visibility: { type: 'integer' },
         group_visibility: { type: 'integer' }
     }

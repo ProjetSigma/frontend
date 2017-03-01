@@ -31,4 +31,6 @@
       </div><!-- /card-container -->
   </div><!-- /container -->
 
-</div>
+  <div *ngIf="hasPasswordError" class="alert alert-danger" role="alert">
+    <strong>Error</strong> Wrong username or password. Try again !
+  </div>

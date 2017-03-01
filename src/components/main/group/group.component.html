@@ -4,7 +4,7 @@
 		aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"><i class="fa fa-bars"></i></span>
 	</button>
-	<a href="#" class="navbar-brand">Some Group</a>
+	<h2 class="navbar-brand">{{group.name}}</h2>
 	<div class="collapse navbar-collapse" id="groupNavbar">
 		<ul class="nav navbar-nav navbar-right">
 			<li class="nav-item" routerLink="publications" routerLinkActive="active"><a  class="nav-link">Home</a></li>
@@ -15,6 +15,7 @@
 		</ul>
 	</div>
 </nav>
+<p>{{group.description}}</p>
 <div class="group-content">
 	<router-outlet></router-outlet>
 </div>
