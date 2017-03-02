@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {Router}   from '@angular/router';
-import {AuthService} from '../../services/auth.service';
+import {Router} from '@angular/router';
+import {AuthService} from 'services/auth.service';
 
 @Component({
     templateUrl: './main.component.html'
@@ -8,8 +8,9 @@ import {AuthService} from '../../services/auth.service';
 export class MainComponent {
     constructor(private router: Router, private auth: AuthService) {
         auth.isAuthenticated().subscribe((authed) => {
-            if(!authed)
-                this.router.navigate(["login"], {skipLocationChange: true});
+            if (!authed) {
+                this.router.navigate(['login'], {skipLocationChange: true});
+            }
         });
     }
 }

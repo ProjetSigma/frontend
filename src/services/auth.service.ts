@@ -1,6 +1,5 @@
-import {Injectable, Component, APP_INITIALIZER} from '@angular/core';
+import {Injectable, Component, APP_INITIALIZER, Injector} from '@angular/core';
 import {Http, Headers, URLSearchParams, Response} from '@angular/http';
-import {Router} from '@angular/router';
 
 import {Observable} from 'rxjs/Observable';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
@@ -21,7 +20,7 @@ export class AuthService {
 
     private init_promise: Promise<any> = null;
 
-    constructor(public http: Http) {
+    constructor(public http: Http, private injector: Injector) {
         this.refresh_token = localStorage.getItem(this.locStorName);
         this.access_token = new BehaviorSubject(null);
     };
@@ -100,12 +99,12 @@ export class AuthService {
         if (this.init_promise == null) {
             this.init_promise = new Promise((resolve, reject) => {
                 if (this.refresh_token == null) {
-                    resolve();
+                    resolve(false);
                 } else {
                     return this.refresh().then((resp) => {
-                        resolve();
+                        resolve(true);
                     }, (err) => {
-                        resolve();
+                        resolve(false);
                     });
                 }
             });
