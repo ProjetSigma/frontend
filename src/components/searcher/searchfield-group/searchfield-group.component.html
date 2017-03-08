@@ -1,0 +1,7 @@
+<h3>{{group_name}}</h3>
+<!--{% if deletable %}
+<i class="fa fa-fw fa-clock-o"></i>
+{% endif %}-->
+<div class="medium-12 large-6" *ngFor="let field of group_fields">
+    <label> {{field}} </label><input class="form-control" type="text" [(ngModel)]="search">
+</div>

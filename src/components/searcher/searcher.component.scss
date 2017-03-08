@@ -1,0 +1,13 @@
+$input-width: 124px;
+
+.field {
+	label{
+		margin-right: 8px;
+		width: $input-width;
+	}
+	input {
+		display: inline-block;
+		text-align: right;
+		width: calc(100% - 12px - #{$input-width});
+	}
+}

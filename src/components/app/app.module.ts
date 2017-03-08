@@ -3,6 +3,7 @@ import { LoginComponent } from '../login/login.component';
 
 import { MainDeclarations, MainProviders } from '../main/main.exports';
 
+import { SearcherDeclarations} from '../searcher/searcher.exports';
 
 import { NavbarLeftComponent } from '../navbar_left/navbar_left.component';
 import { NavbarRightComponent } from '../navbar_right/navbar_right.component';
@@ -34,6 +35,8 @@ import { RoutingModule } from './app.routing';
         LoginComponent,
 
         ...MainDeclarations,
+
+        ...SearcherDeclarations,
 
         SettingsComponent,
         UsersListComponent,
