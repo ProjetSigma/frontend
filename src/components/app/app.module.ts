@@ -28,6 +28,8 @@ import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RoutingModule } from './app.routing';
 
+import { CalendarComponent } from 'angular2-fullcalendar/src/calendar/calendar';
+
 
 @NgModule({
     declarations: [
@@ -47,7 +49,8 @@ import { RoutingModule } from './app.routing';
         EditProfileComponent,
         PhoneNumberFrenchPipe,
         NavbarLeftComponent,
-        NavbarRightComponent
+        NavbarRightComponent,
+        CalendarComponent
     ],
     providers: [
         AuthService,
@@ -65,7 +68,7 @@ import { RoutingModule } from './app.routing';
         FormsModule,
         HttpModule,
         RoutingModule,
-        NgbModule
+        NgbModule,
     ],
     bootstrap: [AppComponent]
 })

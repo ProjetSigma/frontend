@@ -5,6 +5,8 @@
 
 // Importation de bootstrap
 @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+@import '../node_modules/angular2-fullcalendar/src/calendar/calendar.scss';
+@import '../node_modules/fullcalendar/dist/fullcalendar.min.css';
 
 //Thème général perso du projet
 @import './sass/bootstrap-theme.scss';
