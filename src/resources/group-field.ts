@@ -1,4 +1,4 @@
-import {Record, Schema, Mapper} from 'js-data';
+import {Record} from 'utils/record';
 import {Group} from './group';
 
 export enum GroupFieldType {
@@ -9,7 +9,6 @@ export enum GroupFieldType {
 }
 
 export class GroupField extends Record {
-    
     public id: number;
     public group: Group;
     
@@ -19,39 +18,33 @@ export class GroupField extends Record {
     
     public is_protected: boolean;
     public multiple_values_allowed: boolean;
-    
-    constructor(props?) {
-        super(props);
-    }
 }
 
-export const groupFieldSchema = new Schema({
-	type: 'object',
-    properties: {
-        id: { type: 'integer' },
-        name: { type: 'string' },
-        type: { type: 'integer' },
-        accept: { type: 'integer' },
+// export const groupFieldSchema = new Schema({
+	// type: 'object',
+    // properties: {
+        // id: { type: 'integer' },
+        // name: { type: 'string' },
+        // type: { type: 'integer' },
+        // accept: { type: 'integer' },
         
-        is_protected: { type: 'boolean' },
-        multiple_values_allowed: { type: 'boolean' }
-    }
-});
+        // is_protected: { type: 'boolean' },
+        // multiple_values_allowed: { type: 'boolean' }
+    // }
+// });
 
 
-export const groupFieldRelations = {
-    belongsTo: {
-        group: {
-            localKey: 'group_id',
-            localField: 'group'
-        }
-    }
-};
+// export const groupFieldRelations = {
+    // belongsTo: {
+        // group: {
+            // localKey: 'group_id',
+            // localField: 'group'
+        // }
+    // }
+// };
 
-export const groupFieldMapper = {
-    recordClass: GroupField,
-    schema: groupFieldSchema,
-    relations: groupFieldRelations,
-    applySchema: true,
-    debug: true
+
+export const groupFieldRessource = {
+    name: 'group-field',
+    klass: GroupField
 };

@@ -1,5 +1,7 @@
-import {Record, Schema} from 'js-data';
-import {Membership} from './membership';
+import {Record} from 'utils/record';
+import {Collection} from 'utils/collection';
+
+import {GroupMember} from './group-member';
 import {Acknowledgment} from './acknowledgment';
 import {User} from './user';
 
@@ -19,59 +21,48 @@ export class Group extends Record {
 
     public acknowledging: Acknowledgment[];
     public acknowledged_by: Acknowledgment[];
-    public memberships: Membership[];
-
-    constructor(props?) {
-        super(props);
-    }
-
-    getMembers() {
-      let members = new Array<User>();
-      for(let m of this.memberships) {
-        members.push(m.user);
-      }
-      return members;
-    }
+    public memberships: Collection<GroupMember>;
 }
 
-export const groupSchema = new Schema({
-    type: 'object',
-    properties: {
-        id: { type: 'integer' },
-        name: { type: 'string' },
-        description: { type: 'string' },
+// export const groupSchema = new Schema({
+    // type: 'object',
+    // properties: {
+        // id: { type: 'integer' },
+        // name: { type: 'string' },
+        // description: { type: 'string' },
 
-        is_protected: { type: 'boolean' },
-        can_anyone_ask: { type: 'boolean' },
-        need_validation_to_join: { type: 'boolean' },
+        // is_protected: { type: 'boolean' },
+        // can_anyone_ask: { type: 'boolean' },
+        // need_validation_to_join: { type: 'boolean' },
 
-        members_visibility: { type: 'integer' },
-        group_visibility: { type: 'integer' }
-    }
-});
+        // members_visibility: { type: 'integer' },
+        // group_visibility: { type: 'integer' }
+    // }
+// });
 
-export const groupRelations = {
-    hasMany: {
-        acknowledgment: [{
-            foreignKey: 'acknowledged_by_id',
-            localField: 'acknowledging'
-        }, {
-            foreignKey: 'acknowledged_id',
-            localField: 'acknowledged'
-        }],
-        membership: {
-            foreignKey: 'group_id',
-            localField: 'memberships'
-        }
-    }
-};
+// export const groupRelations = {
+    // hasMany: {
+        // acknowledgment: [{
+            // foreignKey: 'acknowledged_by_id',
+            // localField: 'acknowledging'
+        // }, {
+            // foreignKey: 'acknowledged_id',
+            // localField: 'acknowledged'
+        // }],
+        // membership: {
+            // foreignKey: 'group_id',
+            // localField: 'memberships'
+        // }
+    // }
+// };
 
 
-export const groupMapper = {
-    recordClass: Group,
-    schema: groupSchema,
-    relations: groupRelations,
-    applySchema: true,
-    idAttribute: 'pk',
-    debug: true
+export const groupRessource = {
+    name: 'group',
+    klass: Group,
+    subCollections: [{
+        action: 'members',
+        field: 'memberships',
+        ressource: 'group-member'
+    }]
 };

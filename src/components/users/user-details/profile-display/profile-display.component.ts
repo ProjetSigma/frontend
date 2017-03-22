@@ -26,50 +26,50 @@ export class ProfileDisplayComponent {
     }
 
     getGroups() {
-        this.api.store.findAll('membership',{'user':this.user.id}).then(res => {
-            for (var membership of this.user.memberships) {
-                this.api.store.find('group',membership.group_id);
-            };
-        });
+        // this.api.store.findAll('membership',{'user':this.user.id}).then(res => {
+            // for (var membership of this.user.memberships) {
+                // this.api.store.find('group',membership.group_id);
+            // };
+        // });
     }
 
     realMemberships() {
-        if (this.user.memberships) {
-            return this.user.memberships.filter(function(membership) {
-                return membership.is_accepted;
-            });
-        } else {
-            return [];
-        }
+        // if (this.user.memberships) {
+            // return this.user.memberships.filter(function(membership) {
+                // return membership.is_accepted;
+            // });
+        // } else {
+            // return [];
+        // }
     }
 
     pendingMemberships() {
       ///need to interact with the group to see if need_validation_to_join is true
-        if (this.user.memberships) {
-            return this.user.memberships.filter(function(membership) {
-                return membership.is_accepted === false;
-            });
-        } else {
-            return [];
-        }
+        // if (this.user.memberships) {
+            // return this.user.memberships.filter(function(membership) {
+                // return membership.is_accepted === false;
+            // });
+        // } else {
+            // return [];
+        // }
     }
 
     existPendingMemberships() {
-        return this.pendingMemberships().length > 0;
+        // return this.pendingMemberships().length > 0;
     }
 
     invitedMemberships() {
-        if (this.user.memberships) {
-            return this.user.memberships.filter(function(membership) {
-                return membership.is_accepted === false;
-            });
-        } else {
-            return [];
-        }
+        // if (this.user.memberships) {
+            // return this.user.memberships.filter(function(membership) {
+                // return membership.is_accepted === false;
+            // });
+        // } else {
+            // return [];
+        // }
     }
 
     existInvitedMemberships() {
-        return this.invitedMemberships().length > 0;
+        // return this.invitedMemberships().length > 0;
     }
 
 }

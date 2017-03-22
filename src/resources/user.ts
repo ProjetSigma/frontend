@@ -1,5 +1,4 @@
-import {Record, Schema} from 'js-data';
-import {IActionOpts} from 'js-data-http';
+import {Record} from 'utils/record';
 
 import {Membership} from './membership';
 
@@ -16,55 +15,40 @@ export class User extends Record {
     public join_date: Date;
 	public last_login: Date;
 
-    // Relational fields
     public memberships:Membership[];
-
-    constructor (props?) {
-        super(props);
-    }
 }
 
-export const userSchema = new Schema({
-	type: 'object',
-    properties: {
-        id: {type: 'integer'},
-        lastname: {type: 'string'},
-        firstname: {type: 'string'},
-        email: {type: 'string', format: 'email'},
-        phone: {type: 'string'},
-		photo: {},
-        is_active: {type: 'boolean'},
-        last_login: {type: 'string', format: 'date-time'},
-        last_modified: {type: 'string', format: 'date-time'},
-        join_date: {type: 'string', format: 'date-time'}
-    }
-});
+// export const userSchema = new Schema({
+	// type: 'object',
+    // properties: {
+        // id: {type: 'integer'},
+        // lastname: {type: 'string'},
+        // firstname: {type: 'string'},
+        // email: {type: 'string', format: 'email'},
+        // phone: {type: 'string'},
+		// photo: {},
+        // is_active: {type: 'boolean'},
+        // last_login: {type: 'string', format: 'date-time'},
+        // last_modified: {type: 'string', format: 'date-time'},
+        // join_date: {type: 'string', format: 'date-time'}
+    // }
+// });
 
-export const userRelations = {
-    hasMany: {
-        user_cluster: {
-            foreignKey: 'user_id',
-            localField: 'user_clusters'
-        },
-        membership: {
-            foreignKey: 'user_id',
-            localField: 'memberships'
-        }
-    }
+// export const userRelations = {
+    // hasMany: {
+        // user_cluster: {
+            // foreignKey: 'user_id',
+            // localField: 'user_clusters'
+        // },
+        // membership: {
+            // foreignKey: 'user_id',
+            // localField: 'memberships'
+        // }
+    // }
+// };
+
+
+export const userRessource = {
+    name: 'user',
+    klass: User
 };
-
-export const userActions : { [key: string]: IActionOpts; } = {
-    'me': {
-        adapter: 'http',
-        pathname: 'me',
-        response: (u) => { return new User(u.data); }
-    }
-};
-
-export const userMapper = {
-    recordClass: User,
-    schema: userSchema,
-    applySchema: true,
-    relations: userRelations,
-    debug: true
-}
