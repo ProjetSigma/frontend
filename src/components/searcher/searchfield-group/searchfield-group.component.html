@@ -1,0 +1,4 @@
+<h3>{{ group.name }}</h3>
+<div class="medium-12 large-6" *ngFor="let field of group.fields;">
+    <searchfield-groupfield [groupfield]="field">FIELD</searchfield-groupfield>
+</div>

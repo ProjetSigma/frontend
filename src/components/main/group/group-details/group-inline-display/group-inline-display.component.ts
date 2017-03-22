@@ -14,5 +14,5 @@ export class GroupInlineDisplayComponent {
     @Input('group') group: Group;
 
     constructor(public api:APIService) {
-        }
+    }
 }
