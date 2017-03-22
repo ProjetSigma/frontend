@@ -11,13 +11,13 @@ import {ProfileDisplayComponent} from './profile-display/profile-display.compone
     templateUrl: 'user-details.component.html'
 })
 export class UserDetailsComponent {
-    public user = new User();
+    // public user = new User();
 
     constructor(public api: APIService, route: ActivatedRoute) {
-        route.params.forEach((params: Params) => {this.getUser(+params['id'])});
+        // route.params.forEach((params: Params) => {this.getUser(+params['id'])});
     };
 
     getUser(id) {
-        this.api.store.find('user', id).then(res => this.user = res);
+        // this.api.store.find('user', id).then(res => this.user = res);
     }
 }

@@ -26,11 +26,12 @@ export class ProfileDisplayComponent {
     }
 
     getGroups() {
-        this.api.store.findAll('membership',{'user':this.user.id}).then(res => {
-            for (var membership of this.user.memberships) {
-                this.api.store.find('group',membership.group_id);
-            };
-        });
+        console.log("Remember to change this");
+        // this.api.store.findAll('membership',{'user':this.user.id}).then(res => {
+            // for (var membership of this.user.memberships) {
+                // this.api.store.find('group',membership.group_id);
+            // };
+        // });
     }
 
     realMemberships() {

@@ -1,88 +1,62 @@
 import {Injectable} from '@angular/core';
 
 import {Store} from 'utils/store';
+import {Record} from 'utils/record';
+import {Collection} from 'utils/collection';
 import {APIAdapterService} from './adapter.service';
 
-import {acknowledgmentMapper} from 'resources/acknowledgment';
-import {acknowledgmentInvitationMapper} from 'resources/acknowledgment-invitation';
-import {groupMapper} from 'resources/group';
-import {groupFieldMapper} from 'resources/group-field';
-import {groupFieldValueMapper} from 'resources/group-field-value';
-import {membershipMapper} from 'resources/membership';
-import {groupInvitationMapper} from 'resources/group-invitation';
+import {acknowledgmentRessource} from 'resources/acknowledgment';
+import {acknowledgmentInvitationRessource} from 'resources/acknowledgment-invitation';
 
-import {User, userMapper, userActions} from 'resources/user';
+import {groupRessource} from 'resources/group';
+import {groupFieldRessource} from 'resources/group-field';
+import {groupFieldValueRessource} from 'resources/group-field-value';
+
+import {groupMemberRessource} from 'resources/group-member';
+import {groupInvitationRessource} from 'resources/group-invitation';
+import {userRessource, User} from 'resources/user';
 
 
 @Injectable()
 export class APIService {
 
-    public store: Store = new Store();
-    public me: User = new User();
-
+    public store: Store;
+    public me: User;
 
     constructor(protected adapter: APIAdapterService) {
-        this.store.registerAdapter('http', this.adapter, { default: true });
-
-        this.store.defineMapper('acknowledgment', acknowledgmentMapper);
-        this.store.defineMapper('acknowledgment-invitation', acknowledgmentInvitationMapper);
-        this.store.defineMapper('user', userMapper);
-        this.store.defineMapper('group', groupMapper);
-        this.store.defineMapper('group-field', groupFieldMapper);
-        this.store.defineMapper('group-field-value', groupFieldValueMapper);
-        this.store.defineMapper('membership', membershipMapper);
-        this.store.defineMapper('group-invitation', groupInvitationMapper);
-    }
-
-    initializeStore() {
-        // (addActions(userActions)(this.store.getMapper('user'))).me()
-        // .then(res =>  {
-            // this.me = res;
-            // this.getMyGroups();
+        this.store = new Store(this.adapter);
+        
+        this.store.addRessource(acknowledgmentRessource);
+        this.store.addRessource(acknowledgmentInvitationRessource);
+        
+        this.store.addRessource(groupRessource);
+        this.store.addRessource(groupFieldRessource);
+        this.store.addRessource(groupFieldValueRessource);
+        
+        this.store.addRessource(groupMemberRessource);
+        this.store.addRessource(groupInvitationRessource);
+        this.store.addRessource(userRessource);
+        
+        // this.store.find('group', 3).then((obj) => console.log(obj));
+        // this.store.find('group').then((items) => {
+            // for(let item of items) {
+                // console.log(item)
+            // }
         // });
-    }
+        // this.store.find('group', 7, 'members').then((items: Collection<any>) => {
+            // items.forEach((item) => {
+                // console.log(item)
+            // });
+        // });
 
-
-      // Me-related methods
-
-      // Retrieves all the groups of the logged user and attach them to the User
-      // object.
-      getMyGroups() {
-          this.store.findAll('membership', {'user': this.me.id}).then((res: any) => {
-              this.me.memberships = res;
-              for (const membership of this.me.memberships) {
-                  this.store.find('group', membership.group_id).then((resp: any) => {
-                      membership.group = resp;
-                  });
-              };
-          });
-      }
-
-    getMyMembership(group_id: number) {
-            if (this.me.memberships) {
-                for (const membership of this.me.memberships) {
-                    if (membership.group_id === group_id) {
-                        return membership;
-                    }
-                }
-                return undefined;
-            } else {
-                return undefined;
-            }
-      }
-
-     // Returns true if the user is member of the argument group.
-    isInMyGroups(group_id: number) {
-        if (this.me.memberships) {
-            for (const membership of this.me.memberships) {
-                if (membership.group_id === group_id) {
-                    return true;
-                }
-            }
-            return false;
-        } else {
-            return false;
-        }
+        // this.store.defineMapper('acknowledgment', acknowledgmentMapper);
+        // this.store.defineMapper('acknowledgment-invitation', acknowledgmentInvitationMapper);
+        // this.store.defineMapper('user', userMapper);
+        // this.store.defineMapper('group', groupMapper);
+        // this.store.defineMapper('group-field', groupFieldMapper);
+        // this.store.defineMapper('group-field-value', groupFieldValueMapper);
+        // this.store.defineMapper('membership', membershipMapper);
+        // this.store.defineMapper('group-invitation', groupInvitationMapper);
     }
 
 }

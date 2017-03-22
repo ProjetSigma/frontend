@@ -3,7 +3,7 @@ import {AuthService} from './auth.service';
 import {Transaction, SigmaWebSocket} from '../utils/websocket';
 import {ws_config} from '../config';
 
-interface RESTRequestParams { location: string; action: string; data?: any; id?: string|number; params?: any };
+import {RESTRequestParams} from 'utils/rest';
 
 @Injectable()
 export class WebSocketService {
