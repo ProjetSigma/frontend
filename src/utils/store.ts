@@ -1,58 +1,155 @@
 import {Injectable} from '@angular/core';
-import {DataStore} from 'js-data';
+import {Record, RecordConstructor} from 'utils/record';
+import {Collection, HashCollection, ProxyCollection} from 'utils/collection';
+import {Adapter, RESTRequestParams} from 'utils/adapter';
 
+interface subCollectionDescr {
+    action: string;
+    ressource: string;
+    field?: string;
+    auto?: boolean;
+}
+
+interface Ressource {
+    name: string;
+    klass: RecordConstructor;
+    idField?: string;
+    subActions?: string[];
+    subCollections?: subCollectionDescr[];
+}
+
+type RessourceDescriptor = RecordConstructor|string;
 
 @Injectable()
-export class Store extends DataStore {
-
-    constructor() {
-        super();
+export class Store {
+    private adapter: Adapter;
+    private ressources: {[key: string]: Ressource};
+    private pending: {[key: string]: Promise<Record>};
+    private records: {[key: string]: Record};
+    
+    constructor(adapter: Adapter) {
+        this.adapter = adapter;
+        this.records = {};
+        this.pending = {};
+        this.ressources = {};
     }
-
-    updateOptions(options) {
-        if (!options) { options = {}; }
-
-        options.cacheResponse = true;
-        return options;
+    
+    addRessource(res: Ressource) {
+        this.ressources[res.name] = res;
     }
-
-    find(resourceName: string, id: string|number, options?: any): Promise<any> {
-        options = this.updateOptions(options);
-        return super.find(resourceName, id, options);
+    getRessource(name: string): Ressource {
+        return this.ressources[name];
     }
-
-    subFind(resourceName: string, id: string|number, name: string, params?: any, options?: any) {
-        const definition = this.getMapper(resourceName);
-        return this.getAdapter(options).subFind(definition, id, name, params, options);
+    
+    hashName(params: RESTRequestParams) {
+        return this.adapter.buildUrl(params);
     }
-
-    findAll(resourceName: string, params?: any, options?: any): Promise<any> {
-        options = this.updateOptions(options);
-        return super.findAll(resourceName, params, options);
+    
+    get(hash: string) {
+        return this.records[hash];
     }
-
-    create(resourceName: string, attrs?: any, options?: any): Promise<any> {
-        options = this.updateOptions(options);
-        return super.create(resourceName, attrs, options);
+    
+    // ---------------------------------------------------------
+    
+    fetch(baseName: string, id?: string|number, action?: string, resName?: string): Promise<any> {
+        let params: RESTRequestParams = {location: baseName, id: id, action: action};
+        let recordName = this.hashName(params);
+        if(resName === undefined) resName = baseName;
+        
+        if(this.pending[recordName] !== undefined) {
+            return this.pending[recordName];
+        }
+        
+        this.pending[recordName] = this.adapter.rest(params).then((items) => {
+            if(items instanceof Array) {
+                let collection = new HashCollection(this, recordName, resName);
+                this.records[recordName] = collection;
+                
+                let subFetch: Promise<any>[] = new Array();
+                items.forEach((item) => {
+                    let subRecordName = this.hashName({location: resName, id: item['pk'], action: 'retrieve'});
+                    subFetch.push(this.itemFetched(resName, subRecordName, item));
+                    collection.add(subRecordName);
+                });
+                return Promise.all(subFetch).then(() => collection);
+                
+            } else {
+                return this.itemFetched(resName, recordName, items);
+            }
+        });
+        
+        return this.pending[recordName];
     }
-
-    update(resourceName: string, id: string|number, attrs: any, options?: any): Promise<any> {
-        options = this.updateOptions(options);
-        return super.update(resourceName, id, attrs, options);
+    
+    // ---------------------------------------------------------
+    
+    itemFetched(ressourceName: string, recordName: string, obj: any): Promise<any> {
+        const res = this.ressources[ressourceName];
+        
+        if(this.records[recordName] === undefined) {
+            this.records[recordName] = new (res.klass)(this, recordName, ressourceName);
+        }
+        const record = this.records[recordName];
+        for(const prop in obj) {
+            record[prop] = obj[prop];
+        }
+        
+        if(res.subCollections) {
+            let subFetch: Promise<any>[] = new Array();
+            for(const sub of res.subCollections) {
+                if(record[sub.field] === undefined) {
+                    record[sub.field] = new ProxyCollection(this, this.hashName({location: ressourceName, id: record.__.id(), action: sub.action}), sub.ressource);
+                }
+                if(sub.auto) {
+                    subFetch.push(this.find(ressourceName, record.__.id(), sub.action, sub.ressource));
+                }
+            }
+            return Promise.all(subFetch).then(() => record);
+        }
+        else {
+            return Promise.resolve(record);
+        }
     }
-
-    updateAll(resourceName: string, attrs: any, params?: any, options?: any): Promise<any> {
-        options = this.updateOptions(options);
-        return super.updateAll(resourceName, attrs, params, options);
+    
+    // ---------------------------------------------------------
+    
+    fetchWithCache(baseName: string, id?: string|number, action?: string, resName?: string) : Promise<any> {
+        let params: RESTRequestParams = {location: baseName, id: id, action: action};
+        let recordName = this.hashName(params);
+        
+        if (this.records[recordName] === undefined || this.records[recordName].__.invalidated) {
+            return this.fetch(baseName, id, action, resName);
+        }
+        return Promise.resolve(this.records[recordName]);
     }
-
-    destroy(resourceName: string, id: string|number, options?: any): Promise<any> {
-        options = this.updateOptions(options);
-        return super.destroy(resourceName, id, options);
+    
+    // ---------------------------------------------------------
+    
+    find(baseName: string, id?: string|number, action?: string, resName?: string) : Promise<any> {
+        if(action === undefined) {
+            if(id === undefined) {
+                action = 'list';
+            } else {
+                action = 'retrieve';
+            }
+        }
+        if(resName === undefined) {
+            for(let sub of this.ressources[baseName].subCollections || []) {
+                if(sub.action == action) {
+                    resName = sub.ressource;
+                    break;
+                }
+            }
+        }
+        
+        return this.fetchWithCache(baseName, id, action, resName);
     }
-
-    destroyAll(resourceName: string, params?: any, options?: any): Promise<any> {
-        options = this.updateOptions(options);
-        return super.destroyAll(resourceName, params, options);
+    
+    findAll(baseName: string) {
+        return Promise.resolve([]);
     }
+    subFind(baseName: string, id:number|string, action: string) {
+        return Promise.resolve([]);
+    }
+    
 }
