@@ -38,15 +38,17 @@ export class APIAdapterService implements Adapter {
     }
     
     rest(params: RESTRequestParams, getMethod: boolean = true): Promise<any> {
-        if (this.ws.ready()) {
-            return this.ws.sendREST(params);
-        } else {
-            let opt = this.getOptions();
-                opt.url = this.buildUrl(params);
-                opt.method = (getMethod ? RequestMethod.Get : RequestMethod.Post);
-                
-            return this.http.request(opt.url, opt).toPromise().then((res) => res.json());
-        }
+        return this.auth.init().then(() => {
+            if (this.ws.ready()) {
+                return this.ws.sendREST(params);
+            } else {
+                let opt = this.getOptions();
+                    opt.url = this.buildUrl(params);
+                    opt.method = (getMethod ? RequestMethod.Get : RequestMethod.Post);
+                    
+                return this.http.request(opt.url, opt).toPromise().then((res) => res.json());
+            }
+        });
     }
     
 }

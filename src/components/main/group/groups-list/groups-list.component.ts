@@ -21,7 +21,7 @@ export class GroupsListComponent {
     };
 
     getGroups() {
-        this.api.store.findAll('group').then(res => {
+        this.api.store.find('group').then(res => {
             this.allGroups = res;
             this.displayedGroups = res;
         });
