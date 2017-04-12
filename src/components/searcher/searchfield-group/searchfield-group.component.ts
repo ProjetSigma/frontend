@@ -11,8 +11,13 @@ import {GroupField} from '../../../resources/group-field';
 })
 export class SearchfieldGroupComponent {
     @Input('group') group: Group;
+    public fields: GroupField[] = [];
 
     constructor(public api: APIService) {
-
+    	//this.getFields();
     };
+    /*
+    getFields(){
+    	this.fields = this.group.fields;
+    };*/
 }

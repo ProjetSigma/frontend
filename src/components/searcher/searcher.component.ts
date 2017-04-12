@@ -17,6 +17,9 @@ export class SearcherComponent implements OnInit{
 
     constructor(public api: APIService){
         this.groups = [this.group];
+        this.api.store.find('group', 5).then(res => {
+            this.addGroup(res);
+        });
     }
 
     ngOnInit() {
@@ -30,6 +33,9 @@ export class SearcherComponent implements OnInit{
         });
     }
 
+    addGroup(group){
+        this.groups.push(group);
+    }
 /*
 	@Input('groups') ggroups: Group[] = [];
     public groups: Group[] = [];
