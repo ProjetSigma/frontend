@@ -38,10 +38,11 @@ export class APIService {
         this.store.addRessource(userRessource);
         
         // this.store.find('group', 3).then((obj) => console.log(obj));
-        // this.store.find('group').then((items) => {
-            // for(let item of items) {
+        // this.store.find('group').then((items: Collection<any>) => {
+            // let subitems = items.filter((gr) => (gr.pk < 10));
+            // subitems.forEach((item) => {
                 // console.log(item)
-            // }
+            // });
         // });
         // this.store.find('group', 7, 'members').then((items: Collection<any>) => {
             // items.forEach((item) => {

@@ -6,13 +6,14 @@ export interface Collection<T> {
     add(key: string);
     get(index: number): T;
     forEach(cb: {(obj: T)});
+    filter(cb: {(obj: T): boolean});
     
     [Symbol.iterator](): Iterator<T>;
 }
 
 // This collection class stores hash to reference store records
 export class HashCollection<T> extends Record implements Iterable<T>, Collection<T> {
-    private records: string[];
+    public records: string[];
     
     constructor(store: any, hash: string, resName: string) {
         super(store, hash, resName);
@@ -31,10 +32,14 @@ export class HashCollection<T> extends Record implements Iterable<T>, Collection
         return this.__.store.get(this.records[index]);
     }
     
-    forEach(cb) {
+    forEach(cb: {(obj: T)}) {
         for(const hash of this.records) {
             cb(this.__.store.get(hash));
         }
+    }
+    
+    filter(f: {(obj: T): boolean}) {
+        return new FilteredHashCollection(this, f);
     }
     
     [Symbol.iterator](): Iterator<T> {
@@ -46,6 +51,18 @@ export class HashCollection<T> extends Record implements Iterable<T>, Collection
                 else return {value: self.get(step++), done: false};
             }
         };
+    }
+}
+
+export class FilteredHashCollection<T> extends HashCollection<T> {
+    constructor(collec: HashCollection<T>, filter: {(obj: T): boolean}) {
+        super(collec.__.store, '', collec.__.resName);
+        this.records = new Array();
+        
+        for(const hash of collec.records) {
+            if(filter(this.__.store.get(hash)))
+                this.records.push(hash);
+        }
     }
 }
 
@@ -72,6 +89,10 @@ export class ProxyCollection<T> extends Record implements Iterable<T>, Collectio
     
     forEach(cb) {
         this.proxied && this.proxied.forEach(cb);
+    }
+    
+    filter(f) {
+        return this.proxied.filter(f) || undefined;
     }
     
     [Symbol.iterator](): Iterator<T> {
