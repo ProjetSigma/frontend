@@ -1,4 +1,4 @@
-import {Component, Input,OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {NgFor} from '@angular/common';
 import {ActivatedRoute, Params} from '@angular/router';
 
@@ -11,41 +11,20 @@ import {GroupField} from '../../resources/group-field';
     selector: 'searcher',
     templateUrl: 'searcher.component.html'
 })
-export class SearcherComponent implements OnInit{
-    public groups: Group[] = [];
+export class SearcherComponent implements OnInit {
     @Input('group') group: Group;
+    public groups: Group[] = [];
 
     constructor(public api: APIService){
-        this.groups = [this.group];
-        this.api.store.find('group', 5).then(res => {
-            this.addGroup(res);
-        });
     }
 
     ngOnInit() {
-        this.groups = [this.group];
+        this.addGroup(this.group);
     };
-
-    getGroup(id) {
-        this.api.store.find('group', id).then(res => {
-            this.group = res;
-            this.groups =  [res];
-        });
-    }
 
     addGroup(group){
-        this.groups.push(group);
+        if(group!=undefined){
+            this.groups.push(group);
+        };
     }
-/*
-	@Input('groups') ggroups: Group[] = [];
-    public groups: Group[] = [];
-	
-
-    constructor(public api: APIService, route: ActivatedRoute) {
-        this.groups = [];
-        this.getGroup(1);
-    };
-
-
-    */
 }

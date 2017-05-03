@@ -1,4 +1,4 @@
-<hr>
-<input class="form-control" type="text" [(ngModel)]="searchGroup" (input)="updateGroups($event)"> GROUPADD
-<searchfield-grouplisting *ngFor="let group of displayedGroups" [group]="group" (selected)="getter(group)">
+<hr id="searcher-groupadd">
+<input class="form-control" type="text" [(ngModel)]="searchGroup" (input)="inputChanged($event)">
+<searchfield-grouplisting *ngFor="let group of displayedGroups" [group]="group" [adder]="this" (selected)="getter(group)">
 </searchfield-grouplisting>

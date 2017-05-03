@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {NgFor} from '@angular/common';
 
 import {APIService} from '../../../services/api.service';
@@ -9,15 +9,21 @@ import {GroupField} from '../../../resources/group-field';
     selector: 'searchfield-group',
     templateUrl: 'searchfield-group.component.html',
 })
-export class SearchfieldGroupComponent {
+export class SearchfieldGroupComponent implements OnInit {
     @Input('group') group: Group;
     public fields: GroupField[] = [];
 
     constructor(public api: APIService) {
-    	//this.getFields();
     };
-    /*
+
+    ngOnInit(){
+        this.getFields();
+    };
+    
     getFields(){
-    	this.fields = this.group.fields;
-    };*/
+        this.api.store.find('group', this.group.pk).then(res => {
+            //window.alert((res.fields)+" "+(res.name)+" "+(res.pk));
+            this.fields.push.apply(this.fields,res.fields);
+        });
+    };
 }

@@ -4,9 +4,9 @@
     <label> Nom </label><input class="form-control" type="text" [(ngModel)]="search_lastname">
     <hr>
     <label> Groupes </label>
-    <div class="medium-12 large-6" *ngFor="let group of groups;">
-        <searchfield-group [group]="group">Loading group...</searchfield-group>
+    <div class="medium-12 large-6" *ngFor="let grp of groups;">
+        <searchfield-group [group]="grp">Loading group...</searchfield-group>
     </div>
 
-    <searchfield-groupadd></searchfield-groupadd>
+    <searchfield-groupadd [searcher]="this" ></searchfield-groupadd>
 </div>
