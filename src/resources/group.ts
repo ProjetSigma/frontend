@@ -8,7 +8,7 @@ import {User} from './user';
 export class Group extends Record {
     public pk: number;
     public name: string;
-    public desription: string;
+    public description: string;
 
     public is_protected: boolean;
 

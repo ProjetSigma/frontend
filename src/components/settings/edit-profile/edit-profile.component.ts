@@ -17,15 +17,15 @@ export class EditProfileComponent {
 
     private errorOnEdit: boolean = false;
     private profilePicture: File;
-	
+
 	constructor(public api: APIService) {
     }
-	
+
     editProfile(user: User, profilePicture: File) {
 		//Modify the JS-Data store (which itself send the right request to Django ?)
         // this.api.store.update('user', user.id, user).then(
             // () => {
-				Uploading of the photo apart
+				//Uploading of the photo apart
                 // if (profilePicture) {
 					// let photo_url = 'http://127.0.0.1:8000/user/' + user.id + '/addphoto/';
                     // this.api.store.getAdapter('http').POST(photo_url,{ file: profilePicture }).then(
@@ -49,7 +49,7 @@ export class EditProfileComponent {
             // }
             // );
     }
-	
+
 	backToProfile() {
 		this.profileEdited.emit(true);
 	}

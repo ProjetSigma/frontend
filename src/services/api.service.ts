@@ -16,6 +16,8 @@ import {groupMemberRessource} from 'resources/group-member';
 import {groupInvitationRessource} from 'resources/group-invitation';
 import {userRessource, User} from 'resources/user';
 
+import {eventResource, Event} from 'resources/event';
+
 
 @Injectable()
 export class APIService {
@@ -25,18 +27,19 @@ export class APIService {
 
     constructor(protected adapter: APIAdapterService) {
         this.store = new Store(this.adapter);
-        
+
         this.store.addRessource(acknowledgmentRessource);
         this.store.addRessource(acknowledgmentInvitationRessource);
-        
+
         this.store.addRessource(groupRessource);
         this.store.addRessource(groupFieldRessource);
         this.store.addRessource(groupFieldValueRessource);
-        
+
         this.store.addRessource(groupMemberRessource);
         this.store.addRessource(groupInvitationRessource);
         this.store.addRessource(userRessource);
-        
+        this.store.addRessource(eventResource);
+
         // this.store.find('group', 3).then((obj) => console.log(obj));
         // this.store.find('group').then((items) => {
             // for(let item of items) {
