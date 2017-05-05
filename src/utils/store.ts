@@ -68,13 +68,13 @@ export class Store {
                 let subFetch: Promise<any>[] = new Array();
                 items.forEach((item) => {
                     let subRecordName = this.hashName({location: resName, id: item['pk'], action: 'retrieve'});
-                    subFetch.push(this.itemFetched(resName, subRecordName, item));
+                    subFetch.push(this.itemFetched(resName, subRecordName, item, true));
                     collection.add(subRecordName);
                 });
                 return Promise.all(subFetch).then(() => collection);
                 
             } else {
-                return this.itemFetched(resName, recordName, items);
+                return this.itemFetched(resName, recordName, items, true);
             }
         });
         
@@ -83,13 +83,14 @@ export class Store {
     
     // ---------------------------------------------------------
     
-    itemFetched(ressourceName: string, recordName: string, obj: any): Promise<any> {
+    itemFetched(ressourceName: string, recordName: string, obj: any, partial: boolean): Promise<any> {
         const res = this.ressources[ressourceName];
         
         if(this.records[recordName] === undefined) {
             this.records[recordName] = new (res.klass)(this, recordName, ressourceName);
         }
         const record = this.records[recordName];
+        record.__.partial = partial;
         for(const prop in obj) {
             record[prop] = obj[prop];
         }
@@ -117,7 +118,7 @@ export class Store {
         let params: RESTRequestParams = {location: baseName, id: id, action: action};
         let recordName = this.hashName(params);
         
-        if (this.records[recordName] === undefined || this.records[recordName].__.invalidated) {
+        if (this.records[recordName] === undefined || this.records[recordName].__.invalidated || this.records[recordName].__.partial) {
             return this.fetch(baseName, id, action, resName);
         }
         return Promise.resolve(this.records[recordName]);
@@ -150,6 +151,12 @@ export class Store {
     }
     subFind(baseName: string, id:number|string, action: string) {
         return Promise.resolve([]);
+    }
+    
+    // ---------------------------------------------------------
+    
+    create() {
+        
     }
     
 }
