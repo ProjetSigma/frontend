@@ -8,6 +8,6 @@ import {Publication} from 'resources/publication';
 
 export class PublicationComponent {
    @Input('publication') publication: Publication;
-   constructor();
+   constructor(){};
 
 }
