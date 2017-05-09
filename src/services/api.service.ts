@@ -61,9 +61,9 @@ export class APIService {
         // this.store.defineMapper('membership', membershipMapper);
         // this.store.defineMapper('group-invitation', groupInvitationMapper);
     }
-
-    getPinnedGroups() {
-
+    
+    pinnedGroups() {
+        // return this.store.find('group-connection', )
     }
 
 }

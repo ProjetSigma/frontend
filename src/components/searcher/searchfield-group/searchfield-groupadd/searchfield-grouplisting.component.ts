@@ -1,7 +1,8 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {NgIf} from '@angular/common';
 
 import {Group} from 'resources/group';
+import {SearchfieldGroupaddComponent} from './searchfield-groupadd.component';
 
 import {APIService} from 'services/api.service';
 
@@ -11,12 +12,12 @@ import {APIService} from 'services/api.service';
 })
 export class SearchfieldGrouplistingComponent {
     @Input('group') group: Group;
-    @Output('selected') selectedEvent = new EventEmitter<Group>();
+    @Input('adder') adder: SearchfieldGroupaddComponent;
 
     constructor(public api:APIService) {
     }
 
     selected(){
-        this.selectedEvent.emit(this.group);
+        this.adder.addGroup(this.group);
     }
 }

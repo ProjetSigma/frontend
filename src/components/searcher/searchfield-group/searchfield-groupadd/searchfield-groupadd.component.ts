@@ -4,15 +4,18 @@ import {NgFor} from '@angular/common';
 import {APIService} from '../../../../services/api.service';
 import {Group} from '../../../../resources/group';
 import {GroupField} from '../../../../resources/group-field';
+import {SearcherComponent} from '../../searcher.component';
 
 @Component({
     selector: 'searchfield-groupadd',
     templateUrl: 'searchfield-groupadd.component.html',
 })
 export class SearchfieldGroupaddComponent {
-	public allGroups: Group[] = [];
+	public allGroups;
     public displayedGroups: Group[] = [];
     public searchGroup = '';
+    private searchBar;
+    @Input('searcher') searcher: SearcherComponent;
 
     constructor(public api: APIService) {
         this.allGroups = [];
@@ -22,31 +25,44 @@ export class SearchfieldGroupaddComponent {
     };
 
     getGroups() {
-        this.api.store.findAll('group').then(res => {
+        this.api.store.find('group').then(res => {
             this.allGroups = res;
-            this.displayedGroups = res;
         });
-    }
+    };
 
-    updateGroups(searchBar) {
-        this.displayedGroups = this.allGroups;
+    inputChanged(searchBar) {
+        this.searchBar = searchBar.target;
+        this.updateGroups(this.searchBar.value);
+        this.scrollDown();
+    };
 
-        let q = searchBar.target.value;
-        if (q.trim() === '') {
+    updateGroups(value) {
+        this.displayedGroups = [];
+        if (value.trim() === '') {
             return;
         }
-        q = q.toLowerCase();
+        value = value.toLowerCase();
 
         this.displayedGroups = this.allGroups.filter((group) => {
-            if (group.name.toLowerCase().indexOf(q) > -1) {
+            for(var index = 0; index<this.searcher.groups.length; index++){
+                if (this.searcher.groups[index]==group) {
+                    return false;
+                }
+            }
+            if (group.name.toLowerCase().indexOf(value) > -1) {
                 return true;
             }
             return false;
         });
-    }
+    };
 
-    getter($event){
-        this.searchGroup = '';
-        this.displayedGroups = this.allGroups;
-    }
-}
+    scrollDown(){
+        document.getElementById('searcher-groupadd').scrollIntoView();
+    };
+
+    addGroup(group){
+        this.searchBar.value='';
+        this.searcher.addGroup(group);
+        this.updateGroups('');
+    };
+};
