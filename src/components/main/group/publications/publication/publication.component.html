@@ -4,7 +4,8 @@
     <h6 class="card-subtitle mb-2 text-muted">by <em>Unknown user</em> on {{publication.date | date:'EEE, d'}}</h6>
     <div class="card-text">
       <p>
-        {{ publication.content }}
+        {{ text }}
+        <a *ngIf="publication.content.length > maxLengthAllowed" (click)="toggleCollapse()"><strong>Read {{ collapsed? 'more':'less'}}</strong></a>
       </p>
     </div>
     <div class="btn-group">
