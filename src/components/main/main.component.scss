@@ -1,3 +1,8 @@
 @import './group/group.component.scss';
 @import './user/user.component.scss';
 @import './agenda/agenda.component.scss';
+
+#main-panel {
+  background-color: $dark-white;
+  border-radius: $border-radius;
+}
