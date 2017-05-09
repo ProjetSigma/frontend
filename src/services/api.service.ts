@@ -14,9 +14,9 @@ import {groupFieldValueRessource} from 'resources/group-field-value';
 
 import {groupMemberRessource} from 'resources/group-member';
 import {groupInvitationRessource} from 'resources/group-invitation';
-import {groupPublicationRessource} from 'resources/group-publication';
 import {userRessource, User} from 'resources/user';
 
+import {publicationRessource} from 'resources/publication';
 
 @Injectable()
 export class APIService {
@@ -36,34 +36,9 @@ export class APIService {
 
         this.store.addRessource(groupMemberRessource);
         this.store.addRessource(groupInvitationRessource);
-        this.store.addRessource(groupPublicationRessource);
         this.store.addRessource(userRessource);
-
-        // this.store.find('group', 3).then((obj) => console.log(obj));
-        // this.store.find('group').then((items: Collection<any>) => {
-            // let subitems = items.filter((gr) => (gr.pk < 10));
-            // subitems.forEach((item) => {
-                // console.log(item)
-            // });
-        // });
-        // this.store.find('group', 7, 'members').then((items: Collection<any>) => {
-            // items.forEach((item) => {
-                // console.log(item)
-            // });
-        // });
-
-        // this.store.defineMapper('acknowledgment', acknowledgmentMapper);
-        // this.store.defineMapper('acknowledgment-invitation', acknowledgmentInvitationMapper);
-        // this.store.defineMapper('user', userMapper);
-        // this.store.defineMapper('group', groupMapper);
-        // this.store.defineMapper('group-field', groupFieldMapper);
-        // this.store.defineMapper('group-field-value', groupFieldValueMapper);
-        // this.store.defineMapper('membership', membershipMapper);
-        // this.store.defineMapper('group-invitation', groupInvitationMapper);
+        this.store.addRessource(publicationRessource);
     }
 
-    getPinnedGroups() {
-
-    }
 
 }

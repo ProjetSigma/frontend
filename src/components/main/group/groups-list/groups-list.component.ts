@@ -9,7 +9,7 @@ import {Group} from '../../../../resources/group';
     templateUrl: 'groups-list.component.html'
 })
 export class GroupsListComponent {
-    public allGroups: Group[] = [];
+    public allGroups;
     public displayedGroups: Group[] = [];
     public searchGroup = '';
 

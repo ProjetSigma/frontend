@@ -4,6 +4,7 @@ export class RecordInternal {
     public hash: string;
     public resName: string;
     
+    public partial: boolean;
     public invalidated: boolean;
     
     constructor(store: any, record: any, hash: string, resName: string) {
@@ -13,6 +14,7 @@ export class RecordInternal {
         this.resName = resName;
         
         this.invalidated = false;
+        this.partial = true;
     }
     
     invalidate() {
