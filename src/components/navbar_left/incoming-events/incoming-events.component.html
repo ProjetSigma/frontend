@@ -1,14 +1,14 @@
 <div class="leftbar-group">
   <h3>Agenda</h3>
   <ngb-accordion #acc="ngbAccordion" activeIds="ng-panel-0">
-      <ngb-panel>
+      <ngb-panel *ngFor="let event of events">
           <template ngbPanelTitle>
-              Event #1
+              Event #{{event.id}}
           </template>
           <template ngbPanelContent>
               <i class="fa fa-fw fa-clock-o"></i> 14h - 16h<br/>
               <i class="fa fa-fw fa-map-marker"></i> Amphi Cauchy<br/>
-              <i class="fa fa-fw fa-info-circle"></i> Lorem ipsum dolor sic amet
+              <i class="fa fa-fw fa-info-circle"></i> {{event.description}}
           </template>
       </ngb-panel>
   </ngb-accordion>
