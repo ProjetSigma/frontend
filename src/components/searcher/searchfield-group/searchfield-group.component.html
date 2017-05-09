@@ -1,4 +1,4 @@
-<h3>{{ group.name }}</h3>
+<h3 style="width: 100%">{{ group.name }} <button style="float:right" (click)="remove()"><i class="fa fa-ban" aria-hidden="true"></i></button></h3>
 <div class="medium-12 large-6" *ngFor="let field of fields;">
     <searchfield-groupfield [groupfield]="field">FIELD</searchfield-groupfield>
 </div>
