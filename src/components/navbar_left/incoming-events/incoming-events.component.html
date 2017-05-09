@@ -1,13 +1,28 @@
-<h3>Agenda</h3>
-<ngb-accordion #acc="ngbAccordion" activeIds="ng-panel-0">
-    <ngb-panel>
-        <template ngbPanelTitle>
-            Event #1
-        </template>
-        <template ngbPanelContent>
-            <i class="fa fa-fw fa-clock-o"></i> 14h - 16h<br/>
-            <i class="fa fa-fw fa-map-marker"></i> Amphi Cauchy<br/>
-            <i class="fa fa-fw fa-info-circle"></i> Lorem ipsum dolor sic amet
-        </template>
-    </ngb-panel>
-</ngb-accordion>
+<div class="leftbar-group">
+  <h3>Agenda</h3>
+  <ngb-accordion #acc="ngbAccordion" activeIds="ng-panel-0">
+      <ngb-panel>
+          <template ngbPanelTitle>
+              Event #1
+          </template>
+          <template ngbPanelContent>
+              <i class="fa fa-fw fa-clock-o"></i> 14h - 16h<br/>
+              <i class="fa fa-fw fa-map-marker"></i> Amphi Cauchy<br/>
+              <i class="fa fa-fw fa-info-circle"></i> Lorem ipsum dolor sic amet
+          </template>
+      </ngb-panel>
+  </ngb-accordion>
+  <button type="button" class="btn btn-secondary btn-block" routerLink="/agenda">View all</button>
+  <ngb-accordion #acc="ngbAccordion" activeIds="ng-panel-0">
+      <ngb-panel>
+          <template ngbPanelTitle>
+              Add Event
+          </template>
+          <template ngbPanelContent>
+              <input type="text" placeholder="Name"/><br>
+              <input type="text" placeholder="Date" />
+              <button>OK</button>
+          </template>
+      </ngb-panel>
+  </ngb-accordion>
+</div>
