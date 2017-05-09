@@ -12,7 +12,7 @@
                 <i class="fa fa-fw fa-info-circle"></i>
                 {{event.description}}
               </div>
-              <button class="btn btn-secondary">Details</button>
+              <button class="btn btn-secondary" [routerLink]="['/event', event.id]" routerLinkActive="active">Details</button>
 
           </template>
       </ngb-panel>

@@ -17,6 +17,7 @@ export class IncomingEventsComponent {
           res.forEach((e) => {
             if (i < nbEvents){
               this.events.push(e);
+              this.events[i].description = this.events[i].description.substr(0, 100) + " (...)";
             }
             i++;
           });
