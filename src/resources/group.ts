@@ -2,6 +2,7 @@ import {Record} from 'utils/record';
 import {Collection} from 'utils/collection';
 
 import {GroupMember} from './group-member';
+import {Publication} from './publication';
 import {Acknowledgment} from './acknowledgment';
 import {User} from './user';
 
@@ -64,5 +65,9 @@ export const groupRessource = {
         action: 'members',
         field: 'memberships',
         ressource: 'group-member'
-    }]
+    },
+  {
+    action: 'publications',
+    ressource: 'publication'
+  }]
 };
