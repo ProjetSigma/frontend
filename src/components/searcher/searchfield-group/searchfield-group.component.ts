@@ -22,8 +22,7 @@ export class SearchfieldGroupComponent implements OnInit {
     
     getFields(){
         this.api.store.find('group', this.group.pk).then(res => {
-            //window.alert((res.fields)+" "+(res.name)+" "+(res.pk));
-            this.fields.push.apply(this.fields,res.fields);
+            this.fields=res.fields;
         });
     };
 }
