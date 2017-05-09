@@ -3,11 +3,11 @@
 <div class="form-inline row">
     <label class="middle"> Rechercher un groupe &nbsp;</label>
     <div>
-        <input type="text" [(ngModel)]="searchGroup" (input)="updateGroups($event)">
+        <input type="text" [(ngModel)]="searchGroup" (input)="updateSearchBar($event)">
     </div>
 </div>
 <div class="expanded columns">
-    <group-inline-display *ngFor="let group of displayedGroups" [group]="group">
+    <group-inline-display *ngFor="let group of displayedGroups" [group]="group.obj">
     </group-inline-display>
 </div>
 <hr>

@@ -1,16 +1,17 @@
-<div class="card" style="margin-top:30px">
+<div class="card publication" style="margin-top:30px">
   <div class="card-block">
-    <h4 class="card-title">{{publication.title}}</h4>
-    <h6 class="card-subtitle mb-2 text-muted">by  on {{publication.date}}</h6>
+    <h4 class="card-title title">{{publication.title}}</h4>
+    <h6 class="card-subtitle mb-2 text-muted">by <em>Unknown user</em> on {{publication.date | date:'EEE, d'}}</h6>
     <div class="card-text">
       <p>
-        {{ publication.content }}
+        {{ text }}
+        <a *ngIf="publication.content.length > maxLengthAllowed" (click)="toggleCollapse()"><strong>Read {{ collapsed? 'more':'less'}}</strong></a>
       </p>
     </div>
     <div class="btn-group">
-      <button class="btn btn-secondary" name="save"><i class="fa fa-star"></i></button>
+      <button class="btn btn-secondary" name="save"><i class="fa fa-star"></i> {{ publication.number_likes}}</button>
       <button class="btn btn-secondary" name="remind"><i class="fa fa-bell"></i></button>
-      <button class="btn btn-secondary" name="reply"><i class="fa fa-comment"></i></button>
+      <button class="btn btn-secondary" name="reply"><i class="fa fa-comment"></i> {{ publication.number_comments}}</button>
       <button class="btn btn-secondary" name="share"><i class="fa fa-share-alt"></i></button>
     </div>
   </div>

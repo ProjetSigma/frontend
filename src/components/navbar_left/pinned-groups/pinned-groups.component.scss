@@ -1,0 +1,9 @@
+
+.list-group-item {
+  text-transform: capitalize;
+  
+  &.current {
+    background-color: $dark-white;
+    font-style: italic;
+  }
+}

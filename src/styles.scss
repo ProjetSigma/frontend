@@ -3,16 +3,16 @@
 //Importation à part dans le DOM car c'est du CSS directement
 @import '../node_modules/font-awesome/css/font-awesome.css';
 
-// Importation de bootstrap
+// Importation de bootstrap et des librairies
 @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 @import '../node_modules/angular2-fullcalendar/src/calendar/calendar.scss';
 @import '../node_modules/fullcalendar/dist/fullcalendar.min.css';
 
-//Thème général perso du projet
+// Thème général perso du projet
 @import './sass/bootstrap-theme.scss';
 @import './sass/variables.scss';
 
-//SASS des composants
+// SASS des composants
 @import './components/main/main.component.scss';
 
 @import './components/users/users.component.scss';

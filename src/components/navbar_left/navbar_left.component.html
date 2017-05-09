@@ -1,114 +1,14 @@
-<div id="leftbar" class="">
-    <input type="text" class="form-control"/>
-    <div class="leftbar-group">
-        <h3>Agenda</h3>
-        <ngb-accordion #acc="ngbAccordion" activeIds="ng-panel-0">
-            <ngb-panel>
-                <template ngbPanelTitle>
-                    Event #1
-                </template>
-                <template ngbPanelContent>
-                    <i class="fa fa-fw fa-clock-o"></i> 14h - 16h<br/>
-                    <i class="fa fa-fw fa-map-marker"></i> Amphi Cauchy<br/>
-                    <i class="fa fa-fw fa-info-circle"></i> Lorem ipsum dolor sic amet
-                </template>
-            </ngb-panel>
-            <ngb-panel>
-                <template ngbPanelTitle>
-                    Event #2
-                </template>
-                <template ngbPanelContent>
-                    <i class="fa fa-fw fa-clock-o"></i> 14h - 16h<br/>
-                    <i class="fa fa-fw fa-map-marker"></i> Amphi Cauchy<br/>
-                    <i class="fa fa-fw fa-info-circle"></i> Lorem ipsum dolor sic amet
-                </template>
-            </ngb-panel>
-            <ngb-panel>
-                <template ngbPanelTitle>
-                    Event #3
-                </template>
-                <template ngbPanelContent>
-                    <i class="fa fa-fw fa-clock-o"></i> 14h - 16h<br/>
-                    <i class="fa fa-fw fa-map-marker"></i> Amphi Cauchy<br/>
-                    <i class="fa fa-fw fa-info-circle"></i> Lorem ipsum dolor sic amet
-                </template>
-            </ngb-panel>
-        </ngb-accordion>
-        <button type="button" class="btn btn-secondary btn-block" routerLink="/agenda">View all</button>
-        <ngb-accordion #acc="ngbAccordion" activeIds="ng-panel-0">
-            <ngb-panel>
-                <template ngbPanelTitle>
-                    Add Event
-                </template>
-                <template ngbPanelContent>
-                    <input type="text" placeholder="Name"/><br>
-                    <input type="text" placeholder="Date" />
-                    <button>OK</button>
-                </template>
-            </ngb-panel>
-        </ngb-accordion>
-    </div>
-<!--<div id="leftbar" class="col-3">
-    <input style="margin-top:20px" type="text" placeholder="search..."/>
-    <div class="leftbar-group">
-      <h3>Agenda</h3>
-      <ul class="accordion" data-accordion role="tablist" data-allow-all-closed="true">
-        <li class="accordion-item">
-          <a href="#event1" role="tab" class="accordion-title" id="title-event-1" aria-controls="event1">Event 1</a>
-          <div id="event1" class="accordion-content" role="tabpanel" data-tab-content aria-labelledby="title-event-1">
-            <p>
-              <i class="fa fa-fw fa-clock-o"></i> 14h - 16h<br/>
-              <i class="fa fa-fw fa-map-marker"></i> Amphi Cauchy<br/>
-              <i class="fa fa-fw fa-info-circle"></i> Lorem ipsum dolor sic amet
-            </p>
-            <a href="#" class="button">Go to event</a>
-          </div>
-        </li>
-        <li class="accordion-item">
-          <a href="#event2" role="tab" class="accordion-title" id="title-event-2" aria-controls="event2">Event 1</a>
-          <div id="event2" class="accordion-content" role="tabpanel" data-tab-content aria-labelledby="title-event-2">
-            <p>
-              Date & Time : 28 nov, 14h - 16h<br/>
-              Lieu : Amphi Cauchy<br/>
-              Description : lorem ipsum dolor sic amet
-            </p>
-            <a href="#" class="button">Go to event</a>
-          </div>
-        </li>
-        <li class="accordion-item">
-          <a href="#event3" role="tab" class="accordion-title" id="title-event-3" aria-controls="event3">Event 1</a>
-          <div id="event3" class="accordion-content" role="tabpanel" data-tab-content aria-labelledby="title-event-3">
-            <p>
-              Date & Time : 28 nov, 14h - 16h<br/>
-              Lieu : Amphi Cauchy<br/>
-              Description : lorem ipsum dolor sic amet
-            </p>
-            <a href="#" class="button">Go to event</a>
-          </div>
-        </li>
-        <li class="accordion-item">
-          <a href="#event4" role="tab" class="accordion-title" id="title-event-4" aria-controls="event4">Event 1</a>
-          <div id="event4" class="accordion-content" role="tabpanel" data-tab-content aria-labelledby="title-event-4">
-            <p>
-              Date & Time : 28 nov, 14h - 16h<br/>
-              Lieu : Amphi Cauchy<br/>
-              Description : lorem ipsum dolor sic amet
-            </p>
-            <a href="#" class="button">Go to event</a>
-          </div>
-        </li>
-      </ul>
-      <div><a class="expanded button hollow">Voir l'agenda</a></div>
-      <div><a class="expanded button hollow">Ajouter un evenement</a></div>
-    </div>-->
-    <div class="main-leftbar-group leftbar-group-list">
-      <h3 routerLink="/groups" routerLinkActive="active">Groupes</h3>
-      <ul class="no-bullet">
-        <li routerLink="/group/1" routerLinkActive="active"><a>Group #1</a></li>
-      </ul>
-      <div><a routerLink="/group" routerLinkActive="active" class="expanded button hollow">Voir tous mes groupes</a></div>
-    </div>
-	<div class="main-leftbar-group">
-		<button (click)="logout()">Logout</button>
+<div id="leftbar">
+  <div class="input-group">
+    <input type="text" class="form-control" placeholder="Search"/>
+    <span class="input-group-btn">
+      <button class="btn btn-secondary"><i class="fa fa-search"></i></button>
+    </span>
+  </div>
+    <incoming-events></incoming-events>
+    <pinned-groups></pinned-groups>
+
+	<div class="leftbar-group">
+		<button class="btn btn-primary" (click)="logout()">Logout</button>
 	</div>
   </div>
