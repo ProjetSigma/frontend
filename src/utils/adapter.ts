@@ -6,7 +6,17 @@ export interface RESTRequestParams {
     params?: any
 };
 
+export enum Method {
+    Get, 
+    Post, 
+    Put, 
+    Delete, 
+    Options, 
+    Head,
+    Patch
+};
+
 export interface Adapter {
     buildUrl(params: RESTRequestParams): string;
-    rest(params: RESTRequestParams): Promise<any>;
+    rest(params: RESTRequestParams, method?: Method): Promise<any>;
 };

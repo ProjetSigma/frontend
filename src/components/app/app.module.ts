@@ -1,5 +1,6 @@
 import { AppComponent } from './app.component';
 import { LoginComponent } from '../login/login.component';
+import { ChatComponent } from '../chat/chat.component';
 
 import { MainDeclarations, MainProviders } from '../main/main.exports';
 
@@ -35,6 +36,7 @@ import { CalendarComponent } from 'angular2-fullcalendar/src/calendar/calendar';
     declarations: [
         AppComponent,
         LoginComponent,
+        ChatComponent,
 
         ...MainDeclarations,
 

@@ -2,6 +2,7 @@ import {GroupComponent, GroupResolver} from './group.component';
 import {GroupPublicationsComponent} from './publications/group-publications.component';
 import {PostFormComponent} from './publications/postform/postform.component';
 import {GroupMembersComponent} from './members/group-members.component';
+import {PublicationComponent} from './publications/publication/publication.component';
 import {GroupChatComponent} from './chat/group-chat.component';
 import {GroupSettingsComponent} from './settings/group-settings.component';
 
@@ -16,8 +17,9 @@ export const GroupDeclarations = [
     GroupMembersComponent,
     GroupChatComponent,
     GroupsListComponent,
+    GroupInlineDisplayComponent,
+    PublicationComponent,
     GroupSettingsComponent,
-    GroupInlineDisplayComponent
 ];
 
 export const GroupProviders = [

@@ -5,7 +5,7 @@ import {AuthService} from './auth.service';
 import {WebSocketService} from './ws.service';
 import {api_url} from '../config';
 
-import {Adapter, RESTRequestParams} from 'utils/adapter';
+import {Adapter, RESTRequestParams, Method} from 'utils/adapter';
 
 @Injectable()
 export class APIAdapterService implements Adapter {
@@ -37,14 +37,23 @@ export class APIAdapterService implements Adapter {
         return url;
     }
     
-    rest(params: RESTRequestParams, getMethod: boolean = true): Promise<any> {
+    rest(params: RESTRequestParams, method: Method): Promise<any> {
         return this.auth.init().then(() => {
             if (this.ws.ready()) {
                 return this.ws.sendREST(params);
             } else {
                 let opt = this.getOptions();
-                    opt.url = this.buildUrl(params);
-                    opt.method = (getMethod ? RequestMethod.Get : RequestMethod.Post);
+                opt.url = this.buildUrl(params);
+                switch(method) {
+                    case Method.Post: opt.method = RequestMethod.Post; break;
+                    case Method.Put: opt.method = RequestMethod.Put; break;
+                    case Method.Delete: opt.method = RequestMethod.Delete; break;
+                    case Method.Options: opt.method = RequestMethod.Options; break;
+                    case Method.Head: opt.method = RequestMethod.Head; break;
+                    case Method.Patch: opt.method = RequestMethod.Patch; break;
+                    default:
+                    case Method.Get: opt.method = RequestMethod.Get; break;
+                }
                     
                 return this.http.request(opt.url, opt).toPromise().then((res) => res.json());
             }
