@@ -1,0 +1,8 @@
+<div class="leftbar-group">
+  <h3 routerLink="/group" routerLinkActive="active">Groupes</h3>
+  <ul class="list-group">
+    <a *ngFor="let group of pinnedGroups" class="list-group-item" [routerLink]="['/group', group.pk]" routerLinkActive="active">{{group.name}}</a>
+    <a routerLink="/group" class="list-group-item">See all groups</a>
+  </ul>
+  <div></div>
+</div>

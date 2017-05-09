@@ -9,6 +9,7 @@ import {AuthService} from 'services/auth.service';
     templateUrl: 'navbar_left.component.html'
 })
 export class NavbarLeftComponent {
+  public
     constructor(public api:APIService, public auth: AuthService, private router: Router) {}
 
     logout() {

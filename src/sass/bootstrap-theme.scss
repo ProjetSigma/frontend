@@ -47,6 +47,7 @@ $standard-margin: 1rem;
 body {
     word-break: break-word; // Non standard for webkit
     hyphens: auto;
+    padding-top: $standard-padding;
 }
 
 //Police
