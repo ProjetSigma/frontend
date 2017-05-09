@@ -7,7 +7,7 @@ import {Publication} from 'resources/publication';
 })
 
 export class PublicationComponent {
-   @Input() publication: Publication;
+   @Input('publication') publication: Publication;
    constructor();
 
 }

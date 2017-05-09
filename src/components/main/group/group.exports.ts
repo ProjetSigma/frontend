@@ -18,7 +18,7 @@ export const GroupDeclarations = [
     GroupChatComponent,
     GroupsListComponent,
     GroupInlineDisplayComponent,
-    PublicationComponent
+    PublicationComponent,
     GroupSettingsComponent,
 ];
 

@@ -20,7 +20,7 @@ export class GroupPublicationsComponent {
             (gr: Group) => {
                 this.group = gr;
                 this.api.store.find('group', this.group.pk, 'publications').then(p => {
-                    this.publications = p;
+                    p.forEach((obj) => { console.log("log");console.log(p);this.publications.push(obj);});
                 });
             }
         );
