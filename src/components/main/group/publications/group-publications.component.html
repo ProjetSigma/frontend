@@ -1,53 +1,24 @@
 <h1>Publications</h1>
 
 
-<postform [group]=group></postform>
+<postform [group]="this.group"></postform>
 
-<div id="publications">
-  <div class="card" style="margin-top:30px">
-    <div class="card-block">
-      <h4 class="card-title">This is a title</h4>
-      <h6 class="card-subtitle mb-2 text-muted">by John Smith on Dec, 24</h6>
-      <div class="card-text">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde harum rem, beatae ipsa consectetur quisquam. Rerum ratione, delectus atque tempore sed, suscipit ullam, beatae distinctio cupiditate ipsam eligendi tempora expedita
-      </p>
-      <div class="btn-group">
-        <button class="btn btn-secondary" name="save"><i class="fa fa-star"></i></button>
-        <button class="btn btn-secondary" name="remind"><i class="fa fa-bell"></i></button>
-        <button class="btn btn-secondary" name="reply"><i class="fa fa-comment"></i></button>
-        <button class="btn btn-secondary" name="share"><i class="fa fa-share-alt"></i></button>
-      </div>
-    </div>
-  </div>
-
-  <div class="card" style="margin-top:30px">
-    <div class="card-block">
-      <h4 class="card-title">This is a title</h4>
-      <h6 class="card-subtitle mb-2 text-muted">by John Smith on Dec, 24</h6>
-      <div class="card-text">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde harum rem, beatae ipsa consectetur quisquam. Rerum ratione, delectus atque tempore sed, suscipit ullam, beatae distinctio cupiditate ipsam eligendi tempora expedita
-      </p>
-      <div class="btn-group">
-        <button class="btn btn-secondary" name="save"><i class="fa fa-star"></i></button>
-        <button class="btn btn-secondary" name="remind"><i class="fa fa-bell"></i></button>
-        <button class="btn btn-secondary" name="reply"><i class="fa fa-comment"></i></button>
-        <button class="btn btn-secondary" name="share"><i class="fa fa-share-alt"></i></button>
-      </div>
-    </div>
-  </div>
-
-  <div class="card" style="margin-top:30px">
-    <div class="card-block">
-      <h4 class="card-title">This is a title</h4>
-      <h6 class="card-subtitle mb-2 text-muted">by John Smith on Dec, 24</h6>
-      <div class="card-text">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde harum rem, beatae ipsa consectetur quisquam. Rerum ratione, delectus atque tempore sed, suscipit ullam, beatae distinctio cupiditate ipsam eligendi tempora expedita
-      </p>
-      <div class="btn-group">
-        <button class="btn btn-secondary" name="save"><i class="fa fa-star"></i></button>
-        <button class="btn btn-secondary" name="remind"><i class="fa fa-bell"></i></button>
-        <button class="btn btn-secondary" name="reply"><i class="fa fa-comment"></i></button>
-        <button class="btn btn-secondary" name="share"><i class="fa fa-share-alt"></i></button>
+<div *ngIf="loaded">
+  <div *ngFor="let publication of this.group.publications">
+    <div class="card" style="margin-top:30px">
+      <div class="card-block">
+        <h4 class="card-title">{{publication.title}}</h4>
+        <h6 class="card-subtitle mb-2 text-muted">by {{publication.title}} on Dec, 24</h6>
+        <div class="card-text">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde harum rem, beatae ipsa consectetur quisquam. Rerum ratione, delectus atque tempore sed, suscipit ullam, beatae distinctio cupiditate ipsam eligendi tempora expedita
+        </p>
+        <div class="btn-group">
+          <button class="btn btn-secondary" name="save"><i class="fa fa-star"></i></button>
+          <button class="btn btn-secondary" name="remind"><i class="fa fa-bell"></i></button>
+          <button class="btn btn-secondary" name="reply"><i class="fa fa-comment"></i></button>
+          <button class="btn btn-secondary" name="share"><i class="fa fa-share-alt"></i></button>
+        </div>
+        </div>
       </div>
     </div>
   </div>

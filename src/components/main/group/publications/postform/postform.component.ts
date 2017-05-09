@@ -8,5 +8,13 @@ import {Group} from '../../../../../resources/group';
 })
 export class PostFormComponent {
     @Input('group') group: Group;
+    public title: string;
+    public content: string;
+
     constructor() {}
+
+
+    post() {
+      
+    }
 }

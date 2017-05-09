@@ -2,6 +2,7 @@ import {Record} from 'utils/record';
 import {Collection} from 'utils/collection';
 
 import {GroupMember} from './group-member';
+import {GroupPublication} from './group-publication';
 import {Acknowledgment} from './acknowledgment';
 import {User} from './user';
 
@@ -22,6 +23,8 @@ export class Group extends Record {
     public acknowledging: Acknowledgment[];
     public acknowledged_by: Acknowledgment[];
     public memberships: Collection<GroupMember>;
+
+    public publications: Collection<GroupPublication>;
 }
 
 // export const groupSchema = new Schema({
@@ -64,5 +67,5 @@ export const groupRessource = {
         action: 'members',
         field: 'memberships',
         ressource: 'group-member'
-    }]
+    }, {action: 'publications', field:'publications', ressource:'group-publication'}]
 };
