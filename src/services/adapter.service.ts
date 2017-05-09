@@ -53,8 +53,9 @@ export class APIAdapterService implements Adapter {
                     case Method.Patch: opt.method = RequestMethod.Patch; break;
                     default:
                     case Method.Get: opt.method = RequestMethod.Get; break;
-                }
-                    
+                };
+                opt.body=params.data;
+                
                 return this.http.request(opt.url, opt).toPromise().then((res) => res.json());
             }
         });

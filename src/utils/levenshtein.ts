@@ -1,6 +1,10 @@
 export class Levenshtein {
-
   static levenshtein(a, b) {
+    var VALUE_INSERT = 0.4;
+    var VALUE_DELETE = 3;
+    var VALUE_SUBST = 2;
+
+
     if (a.length === 0) return b.length
     if (b.length === 0) return a.length
     let tmp, i, j, prev, val
@@ -17,9 +21,9 @@ export class Levenshtein {
         if (b[i-1] === a[j-1]) {
           val = row[j-1] // match
         } else {
-          val = Math.min(row[j-1] + 2, // substitution
-                Math.min(prev + 1,     // insertion
-                         row[j] + 3))  // deletion
+          val = Math.min(row[j-1] + VALUE_SUBST, // substitution
+                Math.min(prev + VALUE_INSERT,     // insertion
+                         row[j] + VALUE_DELETE))  // deletion
         }
         row[j - 1] = prev
         prev = val

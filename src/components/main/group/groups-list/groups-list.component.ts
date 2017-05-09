@@ -42,13 +42,13 @@ export class GroupsListComponent {
 
     updateGroups(q) {
         clearTimeout(this.timeouter);
-        this.timeouter = setTimeout(this.getGroups(q),600);
+        this.timeouter = setTimeout(() => this.getGroups(q),400);
 
-        this.showGroups(q);
+        //this.showGroups(q);
     }
 
     getGroups(q) {
-        this.api.store.action('search',0,'groups','groups',{word:q}).then(res => {
+        this.api.store.action('search',undefined,'groups',"group",{word:q.join(' ')}).then(res => {
             this.allGroups = res;
             this.showGroups(q);
         });
