@@ -3,7 +3,7 @@
   <ngb-accordion #acc="ngbAccordion" activeIds="ng-panel-0">
       <ngb-panel *ngFor="let event of events">
           <template ngbPanelTitle>
-              Event #{{event.id}}
+              <em>{{event.date_start | date:'EEE, d' }}</em> : Event #{{event.id}}
           </template>
           <template ngbPanelContent>
               <div>
@@ -24,9 +24,10 @@
               Add Event
           </template>
           <template ngbPanelContent>
-              <input type="text" placeholder="Name"/><br>
-              <input type="text" placeholder="Date" />
-              <button>OK</button>
+              <input class="form-control" type="text" placeholder="Name"/>
+              <textarea class="form-control" placeholder="Description"></textarea>
+              <input class="form-control" type="text" placeholder="Date" />
+              <button class="btn btn-primary">OK</button>
           </template>
       </ngb-panel>
   </ngb-accordion>
