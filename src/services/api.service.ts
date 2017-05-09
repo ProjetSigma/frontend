@@ -38,10 +38,8 @@ export class APIService {
         this.store.addRessource(groupInvitationRessource);
         this.store.addRessource(userRessource);
         this.store.addRessource(publicationRessource);
-
-        this.store.action('search', undefined, 'groups', undefined, {'word': 'test'});
     }
-    
+
 
 
 }
