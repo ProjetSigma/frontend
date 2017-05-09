@@ -165,7 +165,7 @@ export class Store {
             method = Method.Post;
         }
         
-        return this.fetch(baseName, id, action, resName, data, method); 
+        return this.fetchAction(baseName, id, action, resName, data, method); 
     }
     
 
@@ -174,6 +174,31 @@ export class Store {
     }
     subFind(baseName: string, id:number|string, action: string) {
         return Promise.resolve([]);
+    }
+
+    fetchAction(baseName: string, id?: string|number, action?: string, resName?: string, data?: any, method?: Method): Promise<any> {
+        let params: RESTRequestParams = {location: baseName, id: id, action: action, data: data};
+        
+        let recordName = this.hashName(params);
+        if(resName === undefined) resName = baseName;
+        
+        return this.adapter.rest(params, method).then((items) => {
+            if(items instanceof Array) {
+                let collection = new HashCollection(this, recordName, resName);
+                this.records[recordName] = collection;
+
+                let subFetch: Promise<any>[] = new Array();
+                items.forEach((item) => {
+                    let subRecordName = this.hashName({location: resName, id: item['pk'] | item['id'], action: 'retrieve'});
+                    subFetch.push(this.itemFetched(resName, subRecordName, item, true));
+                    collection.add(subRecordName);
+                });
+                return Promise.all(subFetch).then(() => collection);
+
+            } else {
+                return this.itemFetched(resName, recordName, items, true);
+            }
+        });
     }
     
 }
