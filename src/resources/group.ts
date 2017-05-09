@@ -9,6 +9,7 @@ export class Group extends Record {
     public pk: number;
     public name: string;
     public desription: string;
+    public score: number; //could be cleaner
 
     public is_protected: boolean;
 

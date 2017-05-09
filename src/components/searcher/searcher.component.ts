@@ -27,4 +27,13 @@ export class SearcherComponent implements OnInit {
             this.groups.push(group);
         };
     }
+
+    removeGroup(group){
+        for (var v = 0; v < this.groups.length; v++) {
+            if(this.groups[v]==group){
+                this.groups.splice(v,1);
+                break;
+            }
+        }
+    }
 }
