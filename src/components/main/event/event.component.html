@@ -1,0 +1,52 @@
+<h4>Event #{{event.id}} :</h4>
+<h3 class="text-capitalize"> {{ event.name}} </h3>
+
+    <p>{{ event.description }}</p>
+
+
+<div class="card">
+  <div class="card-block">
+    <h4 class="card-title">Informations</h4>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <em>Start</em>
+      &nbsp;&nbsp;&nbsp;<i class="fa fa-calendar-o"></i>&nbsp;{{ event.date_start | date:'shortDate' }}
+      &nbsp;<i class="fa fa-clock-o"></i> &nbsp;{{ event.date_start | date:'shortTime' }}
+    </li>
+    <li class="list-group-item">
+      <em>End</em>
+      &nbsp;&nbsp;&nbsp;<i class="fa fa-calendar-o"></i>&nbsp;{{ event.date_end | date:'shortDate' }}
+      &nbsp;<i class="fa fa-clock-o"></i> &nbsp;{{ event.date_end | date:'shortTime' }}
+    </li>
+    <li class="list-group-item">
+      <em>Place</em>
+      &nbsp;&nbsp;&nbsp;<i class="fa fa-map-marker"></i>&nbsp;{{ event.place_name }}
+    </li>
+    <li class="list-group-item">
+      <em>Invited</em>
+      &nbsp;&nbsp;&nbsp;<i class="fa fa-users"></i>&nbsp;{{ event.number_invited }}
+
+    </li>
+    <li class="list-group-item">
+      <em>Interested</em>
+      &nbsp;&nbsp;&nbsp;<i class="fa fa-star"></i>&nbsp;{{ event.number_interested }}
+
+    </li>
+  </ul>
+</div>
+<br/>
+<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+  <button type="button" class="btn btn-outline-success">I'm interested</button>
+  <button type="button" class="btn btn-outline-danger">Don't show again</button>
+
+  <div class="btn-group" role="group">
+    <button id="btnGroupDrop1" type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Add to my calendar
+    </button>
+    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+      <a class="dropdown-item" href="#">Work</a>
+      <a class="dropdown-item" href="#">Holidays</a>
+    </div>
+  </div>
+</div>

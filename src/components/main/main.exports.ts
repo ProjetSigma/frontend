@@ -5,6 +5,7 @@ import {AgendaComponent } from './agenda/agenda.component';
 
 import {GroupDeclarations, GroupProviders} from './group/group.exports';
 import {UserDeclarations, UserProviders} from './user/user.exports';
+import {EventDeclarations, EventProviders} from './event/event.exports';
 
 
 export const MainDeclarations = [
@@ -14,10 +15,12 @@ export const MainDeclarations = [
     AgendaComponent,
 
     ...UserDeclarations,
-    ...GroupDeclarations
+    ...GroupDeclarations,
+    ...EventDeclarations,
 ]
 
 export const MainProviders = [
     ...UserProviders,
-    ...GroupProviders
+    ...GroupProviders,
+    ...EventProviders,
 ]
