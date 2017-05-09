@@ -10,7 +10,7 @@ import {AuthService} from 'services/auth.service';
 })
 export class NavbarLeftComponent {
     constructor(public api:APIService, public auth: AuthService, private router: Router) {}
-    
+
     logout() {
         this.auth.logout().then(() => {
             this.router.navigate(['']);

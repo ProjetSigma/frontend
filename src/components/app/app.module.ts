@@ -3,10 +3,9 @@ import { LoginComponent } from '../login/login.component';
 import { ChatComponent } from '../chat/chat.component';
 
 import { MainDeclarations, MainProviders } from '../main/main.exports';
+import { NavbarLeftDeclarations, NavbarLeftProviders } from '../navbar_left/navbar_left.exports';
 
 import { SearcherDeclarations} from '../searcher/searcher.exports';
-
-import { NavbarLeftComponent } from '../navbar_left/navbar_left.component';
 import { NavbarRightComponent } from '../navbar_right/navbar_right.component';
 import { SettingsComponent } from '../settings/settings.component';
 import { EditPasswordComponent } from '../settings/edit-password/edit-password.component';
@@ -39,7 +38,7 @@ import { CalendarComponent } from 'angular2-fullcalendar/src/calendar/calendar';
         ChatComponent,
 
         ...MainDeclarations,
-
+        ...NavbarLeftDeclarations,
         ...SearcherDeclarations,
 
         SettingsComponent,
@@ -50,7 +49,6 @@ import { CalendarComponent } from 'angular2-fullcalendar/src/calendar/calendar';
         EditPasswordComponent,
         EditProfileComponent,
         PhoneNumberFrenchPipe,
-        NavbarLeftComponent,
         NavbarRightComponent,
         CalendarComponent
     ],
@@ -62,7 +60,8 @@ import { CalendarComponent } from 'angular2-fullcalendar/src/calendar/calendar';
 
         AuthInitializer,
 
-        ...MainProviders
+        ...MainProviders,
+        ...NavbarLeftProviders,
     ],
 
     imports: [
