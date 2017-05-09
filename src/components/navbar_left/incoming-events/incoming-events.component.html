@@ -6,9 +6,14 @@
               Event #{{event.id}}
           </template>
           <template ngbPanelContent>
-              <i class="fa fa-fw fa-clock-o"></i> 14h - 16h<br/>
-              <i class="fa fa-fw fa-map-marker"></i> Amphi Cauchy<br/>
-              <i class="fa fa-fw fa-info-circle"></i> {{event.description}}
+              <div>
+                <i class="fa fa-fw fa-clock-o"></i> {{ event.date_start | date:'H:m' }} - {{ event.date_end | date:'H:m'}}<br/>
+                <i class="fa fa-fw fa-map-marker"></i> {{ event.place_name }}<br/>
+                <i class="fa fa-fw fa-info-circle"></i>
+                {{event.description}}
+              </div>
+              <button class="btn btn-secondary">Details</button>
+
           </template>
       </ngb-panel>
   </ngb-accordion>
