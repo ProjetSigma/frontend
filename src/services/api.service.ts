@@ -17,6 +17,7 @@ import {groupInvitationRessource} from 'resources/group-invitation';
 import {userRessource, User} from 'resources/user';
 
 import {publicationRessource} from 'resources/publication';
+import {eventRessource} from 'resources/event';
 
 @Injectable()
 export class APIService {
@@ -38,10 +39,10 @@ export class APIService {
         this.store.addRessource(groupInvitationRessource);
         this.store.addRessource(userRessource);
         this.store.addRessource(publicationRessource);
+        this.store.addRessource(eventRessource);
 
-        this.store.action('search', undefined, 'groups', undefined, {'word': 'test'});
     }
-    
+
 
 
 }
