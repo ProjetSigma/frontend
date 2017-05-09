@@ -37,6 +37,8 @@ export class APIService {
         this.store.addRessource(groupInvitationRessource);
         this.store.addRessource(userRessource);
         
+        this.store.action('search', undefined, 'groups', undefined, {'word': 'test'});
+        
         // this.store.find('group', 3).then((obj) => console.log(obj));
         // this.store.find('group').then((items: Collection<any>) => {
             // let subitems = items.filter((gr) => (gr.pk < 10));
