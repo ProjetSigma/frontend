@@ -15,7 +15,9 @@ import {groupFieldValueRessource} from 'resources/group-field-value';
 import {groupMemberRessource} from 'resources/group-member';
 import {groupInvitationRessource} from 'resources/group-invitation';
 import {userRessource, User} from 'resources/user';
+import {chatRessource} from 'resources/chat';
 
+import {chatMessageRessource} from 'resources/chat-message';
 import {publicationRessource} from 'resources/publication';
 import {eventRessource} from 'resources/event';
 
@@ -32,6 +34,7 @@ export class APIService {
         this.store.addRessource(acknowledgmentInvitationRessource);
 
         this.store.addRessource(groupRessource);
+        this.store.addRessource(chatRessource);
         this.store.addRessource(groupFieldRessource);
         this.store.addRessource(groupFieldValueRessource);
 
@@ -40,6 +43,7 @@ export class APIService {
         this.store.addRessource(userRessource);
         this.store.addRessource(publicationRessource);
         this.store.addRessource(eventRessource);
+        this.store.addRessource(chatMessageRessource);
 
     }
 

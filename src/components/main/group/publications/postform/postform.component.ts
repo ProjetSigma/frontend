@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 
 import {Group} from '../../../../../resources/group';
+import {APIService} from 'services/api.service';
 
 @Component({
     selector: 'postform',
@@ -11,10 +12,12 @@ export class PostFormComponent {
     public title: string;
     public content: string;
 
-    constructor() {}
+    constructor(public api: APIService) {
+
+    }
 
 
     post() {
-      
+      this.api.store.action('group', this.group.pk, 'post_publi', 'publication', {"zerzer":"zerzer"});
     }
 }

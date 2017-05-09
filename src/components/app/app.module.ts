@@ -1,6 +1,7 @@
 import { AppComponent } from './app.component';
 import { LoginComponent } from '../login/login.component';
 import { ChatComponent } from '../chat/chat.component';
+import { ChatMessageComponent } from '../chat/chat-message/chat-message.component';
 
 import { MainDeclarations, MainProviders } from '../main/main.exports';
 import { NavbarLeftDeclarations, NavbarLeftProviders } from '../navbar_left/navbar_left.exports';
@@ -36,6 +37,7 @@ import { CalendarComponent } from 'angular2-fullcalendar/src/calendar/calendar';
         AppComponent,
         LoginComponent,
         ChatComponent,
+        ChatMessageComponent,
 
         ...MainDeclarations,
         ...NavbarLeftDeclarations,

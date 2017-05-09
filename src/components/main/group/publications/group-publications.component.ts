@@ -12,7 +12,6 @@ import {PublicationComponent} from './publication/publication.component';
 })
 export class GroupPublicationsComponent{
     public group: Group;
-    public loaded = false;
 
     constructor(public grPr: GroupProvider, public api: APIService) {
         this.grPr.group.subscribe(
@@ -20,7 +19,6 @@ export class GroupPublicationsComponent{
                 this.group = gr;
                 this.api.store.find("group", this.group.pk, "publications").then((response)=>{
                   this.group.publications = response;
-                  this.loaded = true;
                 });
             }
         );
