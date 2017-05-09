@@ -18,7 +18,6 @@ export class IncomingEventsComponent {
             if (i < nbEvents){
               this.events.push(e);
             }
-            console.log(i);
             i++;
           });
         })
