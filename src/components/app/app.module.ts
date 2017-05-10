@@ -4,6 +4,7 @@ import { ChatComponent } from '../chat/chat.component';
 
 import { MainDeclarations, MainProviders } from '../main/main.exports';
 import { NavbarLeftDeclarations, NavbarLeftProviders } from '../navbar_left/navbar_left.exports';
+import { EventsDeclarations} from '../events/events.exports';
 
 import { SearcherDeclarations} from '../searcher/searcher.exports';
 import { NavbarRightComponent } from '../navbar_right/navbar_right.component';
@@ -40,6 +41,7 @@ import { CalendarComponent } from 'angular2-fullcalendar/src/calendar/calendar';
         ...MainDeclarations,
         ...NavbarLeftDeclarations,
         ...SearcherDeclarations,
+        ...EventsDeclarations,
 
         SettingsComponent,
         UsersListComponent,

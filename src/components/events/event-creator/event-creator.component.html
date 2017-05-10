@@ -1,0 +1,18 @@
+<div class="card event-creator">
+  <div class="card-block">
+    <h3>New event</h3>
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Title"/>
+      <div class="input-group">
+        <input class="form-control" placeholder="yyyy-mm-dd"
+               name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+        <div class="input-group-addon" (click)="d.toggle()" >
+          <i class="fa fa-calendar-o"></i>
+        </div>
+      </div>
+      <textarea class="form-control" placeholder="Description"></textarea>
+      <input type="text" class="form-control" placeholder="Place"/>
+      <button type="button" class="btn btn-primary">Create</button>
+    </div>
+  </div>
+</div>

@@ -3,10 +3,10 @@ import {APIService} from 'services/api.service';
 
 
 @Component({
-    selector: 'event-display',
-    templateUrl: 'event-display.component.html',
+    selector: 'event-creator',
+    templateUrl: 'event-creator.component.html',
 })
-export class EventDisplayComponent {
+export class EventCreatorComponent {
 
     constructor(public api: APIService) { };
 

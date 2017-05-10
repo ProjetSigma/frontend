@@ -1,13 +1,13 @@
 import {Component, Input} from '@angular/core';
-import {NgIf} from '@angular/common';
+import {APIService} from 'services/api.service';
 
-import {Group} from '../../../../resources/group';
 
 @Component({
-    selector: 'group-inline-display',
-    templateUrl: 'group-inline-display.component.html'
+    selector: 'event-inline-display',
+    templateUrl: 'event-inline-display.component.html',
 })
-export class GroupInlineDisplayComponent {
-    @Input('group') group: Group;
+export class EventInlineDisplayComponent {
+
+    constructor(public api: APIService) { };
 
 }
