@@ -21,6 +21,6 @@ export class ChatComponent {
 
 
     post() {
-        this.api.store.action('chat-message', undefined, undefined, 'chat-message', {"user":this.api.me.id, "chat":11, "message":this.message});
+        this.api.store.action('chat-message',undefined,undefined, 'chat-message', {"user":1, "chat":18, "message":this.message});
     }
 }

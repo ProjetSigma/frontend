@@ -44,7 +44,6 @@ export class APIService {
         this.store.addRessource(publicationRessource);
         this.store.addRessource(eventRessource);
         this.store.addRessource(chatMessageRessource);
-
     }
 
 }

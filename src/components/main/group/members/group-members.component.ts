@@ -12,16 +12,17 @@ import {APIService} from 'services/api.service';
 })
 export class GroupMembersComponent {
     public group: Group;
-    public users;
     public members: Membership[];
     public showAdvancedSearch = false;
+    public loaded = true;
 
     constructor(public grPr: GroupProvider, protected api: APIService, protected adapter: APIAdapterService) {
         this.grPr.group.subscribe(
             (gr: Group) => {
                 this.group = gr;
-                this.api.store.subFind('group', this.group.pk, 'members').then(m => {
+                this.api.store.find('group', this.group.pk, 'members').then(m => {
                     this.members = m;
+                    this.loaded = true;
                 });
             }
         );
