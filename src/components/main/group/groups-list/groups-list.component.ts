@@ -11,10 +11,12 @@ import {Levenshtein} from '../../../../utils/levenshtein';
     templateUrl: 'groups-list.component.html'
 })
 export class GroupsListComponent {
-    public allGroups;
+    protected allGroups;
+    protected blackList;
     public displayedGroups;
-    public searchGroup = '';
-    public timeouter;
+    protected searchGroup = '';
+    protected searchBar;
+    protected timeouter;
 
     constructor(public api: APIService) {
         this.allGroups = [];
@@ -26,7 +28,7 @@ export class GroupsListComponent {
     initGroups() {
         this.api.store.find('group').then(res => {
             this.allGroups = res;
-            this.updateGroups([]);
+            this.showDefault();
         });
     }
 
@@ -35,16 +37,13 @@ export class GroupsListComponent {
         if (q.trim() === '') {
             return;
         }
-        q = q.toLowerCase().split(' ');
-
-        this.updateGroups(q);
+        let value = q.toLowerCase().split(' ');
+        this.updateGroups(value);
     }
 
-    updateGroups(q) {
+    updateGroups(value){
         clearTimeout(this.timeouter);
-        this.timeouter = setTimeout(() => this.getGroups(q),400);
-
-        //this.showGroups(q);
+        this.timeouter = setTimeout(() => this.getGroups(value),400);
     }
 
     getGroups(q) {
@@ -54,13 +53,38 @@ export class GroupsListComponent {
         });
     }
 
+    showDefault() {
+        var i = 0;
+        this.allGroups.forEach((obj)=>{
+            this.displayedGroups[i] = {
+                obj:obj,
+                score:0
+            };
+            i++;
+        });
+    }
+
     showGroups(q) {
-        var preScores = Array(this.allGroups.length);
-        this.displayedGroups = Array(this.allGroups.length);
+        if(q.length == 0){
+            this.showDefault();
+        }
+
+        var filteredGroups = this.allGroups.filter((group) => {
+            for(var index = 0; index<this.blackList.length; index++){
+                if (this.blackList[index]==group) {
+                    return false;
+                }
+            }
+            return true;
+        });
+
+
+        var preScores = Array(filteredGroups);
+        this.displayedGroups = Array(filteredGroups);
         var curMax = -1;
         var i = 0;
 
-        this.allGroups.forEach((obj)=>{
+        filteredGroups.forEach((obj)=>{
             var score = Levenshtein.compare_string_arrays(obj.name.toLowerCase().split(' '),q);
             preScores[i] = score;
             if(score > curMax){
@@ -70,7 +94,7 @@ export class GroupsListComponent {
         });
 
         i=0;
-        this.allGroups.forEach((obj)=>{
+        filteredGroups.forEach((obj)=>{
             preScores[i] /= curMax;
             this.displayedGroups[i] = {
                 obj:obj,

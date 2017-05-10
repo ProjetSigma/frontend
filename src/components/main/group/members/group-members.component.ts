@@ -13,6 +13,7 @@ import {APIService} from 'services/api.service';
 export class GroupMembersComponent {
     public group: Group;
     public users;
+    public groupfields;
     public members: Membership[];
     public showAdvancedSearch = false;
 
@@ -20,8 +21,11 @@ export class GroupMembersComponent {
         this.grPr.group.subscribe(
             (gr: Group) => {
                 this.group = gr;
-                this.api.store.subFind('group', this.group.pk, 'members').then(m => {
+                this.api.store.find('group', this.group.pk, 'members').then(m => {
                     this.members = m;
+                });
+                this.api.store.find('group', this.group.pk).then(res => {
+                    this.groupfields = res.fields;
                 });
             }
         );

@@ -29,7 +29,7 @@
   </div>-->
 <div class="row">
   <div class="col member-list">
-      <user-inline-display [user]="user"></user-inline-display>
+      <user-inline-display *ngFor="let member of members" [membership]="member" [groupfields]="groupfields"></user-inline-display>
   </div>
   <div *ngIf="showAdvancedSearch" class="col col-4">
       <searcher [group]="group">Loading...</searcher>
