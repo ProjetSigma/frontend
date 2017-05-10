@@ -13,9 +13,9 @@ export class APIAdapterService implements Adapter {
     private basePath: string;
 
     constructor(public http: Http, public auth: AuthService, public ws: WebSocketService) {
-        
+
     }
-    
+
     getOptions(): RequestOptionsArgs {
         if (!this.auth.isAuthenticated()) { return {}; }
         return {
@@ -25,18 +25,20 @@ export class APIAdapterService implements Adapter {
             })
         };
     }
-    
+
     buildUrl(params: RESTRequestParams): string {
         let url: string = api_url;
-        url += params.location + '/';
+        if(params.location !== undefined) {
+          url += params.location + '/';
+        }
         if(params.id !== undefined) {
             url += params.id + '/';
-        } if(["list", "retrieve", "create", "update", "destroy"].indexOf(params.action) == -1) {
+        } if(["list", "retrieve", "create", "update", "destroy"].indexOf(params.action) == -1 && params.action !== undefined) {
             url += params.action + '/';
         }
         return url;
     }
-    
+
     rest(params: RESTRequestParams, method: Method): Promise<any> {
         return this.auth.init().then(() => {
             if (this.ws.ready()) {
@@ -55,10 +57,10 @@ export class APIAdapterService implements Adapter {
                     case Method.Get: opt.method = RequestMethod.Get; break;
                 };
                 opt.body=params.data;
-                
+
                 return this.http.request(opt.url, opt).toPromise().then((res) => res.json());
             }
         });
     }
-    
+
 }

@@ -4,16 +4,16 @@
       <img class="avatar" src="../resources/img/default.jpg">
     </div>
     <div class="col">
-        <h4 class="card-title">Félix Martel</h4>
-        <h6 class="card-subtitle">Branleur-en-chef</h6>
+        <h4 class="card-title">{{user.firstname}} {{user.lastname}}</h4>
+        <h6 class="card-subtitle">subtitle</h6>
     </div>
     <div class="col col-auto">
       <button type="button" class="btn btn-secondary"><i class="fa fa-envelope"></i></button>
     </div>
   </div>
   <ul *ngIf="show" class="user-field-list list-group list-group-flush">
-    <li class="list-group-item" *ngFor="let field of field_values">
-      <i>{{group_fields[field.id]}}</i>{{field.value}}
+    <li class="list-group-item" *ngFor="let field of fields">
+      <i>{{field.name}}</i>{{field.value}}
     </li>
   </ul>
 </div>
