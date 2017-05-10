@@ -1,4 +1,7 @@
 <div>
 	<angular2-fullcalendar [options]="calendarOptions"></angular2-fullcalendar>
+	<div *ngIf="isSelected">
+		<event-display [event]="selectedEvent"></event-display>
+	</div>
 	<event-creator></event-creator>
 </div>
