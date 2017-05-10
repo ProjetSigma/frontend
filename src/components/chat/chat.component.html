@@ -1,10 +1,13 @@
-<div class="card">Salut</div>
+<div class="card">
+  <chat-message *ngFor="let message of this.chat.messages" [chat-message]="message">
+  </chat-message>
+</div>
 
 <div class="card">
   <div>
 
     <form class="form-inline">
-      <textarea class="form-control" [(ngModel)]="message" placeholder="Your message ..."></textarea>
+      <textarea class="form-control" [(ngModel)]="message" placeholder="Your message ..." name="message"></textarea>
       <button type="button" style="margin-left:50%;" class="btn btn-primary" (click)="post()">Post</button>
     </form>
   </div>

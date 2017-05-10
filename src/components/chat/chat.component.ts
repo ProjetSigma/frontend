@@ -1,5 +1,9 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Router}   from '@angular/router';
+import {APIService} from 'services/api.service';
+import {Chat}   from 'resources/chat';
+import {ChatMessage}   from 'resources/chat-message';
+import {ChatMessageComponent} from './chat-message/chat-message.component';
 
 @Component({
     selector: 'chat',
@@ -9,7 +13,14 @@ import {Router}   from '@angular/router';
 export class ChatComponent {
 
     public message: string;
+    @Input('chat') chat: Chat;
 
-    constructor(private router: Router) {}
+    constructor(public api: APIService) {
 
+    }
+
+
+    post() {
+        this.api.store.action('chat-message',undefined,undefined, 'chat-message', {"user":1, "chat":18, "message":this.message});
+    }
 }

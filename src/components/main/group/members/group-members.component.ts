@@ -16,6 +16,7 @@ export class GroupMembersComponent {
     public groupfields;
     public members: Membership[];
     public showAdvancedSearch = false;
+    public loaded = true;
 
     constructor(public grPr: GroupProvider, protected api: APIService, protected adapter: APIAdapterService) {
         this.grPr.group.subscribe(
@@ -23,6 +24,7 @@ export class GroupMembersComponent {
                 this.group = gr;
                 this.api.store.find('group', this.group.pk, 'members').then(m => {
                     this.members = m;
+                    this.loaded = true;
                 });
                 this.api.store.find('group', this.group.pk).then(res => {
                     this.groupfields = res.fields;

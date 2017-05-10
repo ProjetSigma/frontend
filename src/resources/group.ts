@@ -5,6 +5,7 @@ import {GroupMember} from './group-member';
 import {Publication} from './publication';
 import {Acknowledgment} from './acknowledgment';
 import {User} from './user';
+import {Chat} from './chat';
 
 export class Group extends Record {
     public pk: number;
@@ -26,41 +27,8 @@ export class Group extends Record {
     public memberships: Collection<GroupMember>;
 
     public publications: Collection<Publication>;
+    public chat: Chat;
 }
-
-// export const groupSchema = new Schema({
-    // type: 'object',
-    // properties: {
-        // id: { type: 'integer' },
-        // name: { type: 'string' },
-        // description: { type: 'string' },
-
-        // is_protected: { type: 'boolean' },
-        // can_anyone_ask: { type: 'boolean' },
-        // need_validation_to_join: { type: 'boolean' },
-
-        // members_visibility: { type: 'integer' },
-        // group_visibility: { type: 'integer' }
-    // }
-// });
-
-// export const groupRelations = {
-    // hasMany: {
-        // acknowledgment: [{
-            // foreignKey: 'acknowledged_by_id',
-            // localField: 'acknowledging'
-        // }, {
-            // foreignKey: 'acknowledged_id',
-            // localField: 'acknowledged'
-        // }],
-        // membership: {
-            // foreignKey: 'group_id',
-            // localField: 'memberships'
-        // }
-    // }
-// };
-
-
 export const groupRessource = {
     name: 'group',
     klass: Group,
