@@ -18,6 +18,6 @@ export class PostFormComponent {
 
 
     post() {
-      this.api.store.action('group', this.group.pk, 'post_publi', 'publication', {"zerzer":"zerzer"});
+      this.api.store.action('publication', undefined, undefined, 'publication', {"title":this.title, "content":this.content, "author":1});
     }
 }
